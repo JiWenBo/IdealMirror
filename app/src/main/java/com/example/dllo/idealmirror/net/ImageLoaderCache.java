@@ -7,6 +7,7 @@ import android.os.Environment;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.base.BaseApplication;
 
 
 import java.io.File;

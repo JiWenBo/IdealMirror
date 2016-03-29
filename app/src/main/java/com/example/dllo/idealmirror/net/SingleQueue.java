@@ -2,6 +2,7 @@ package com.example.dllo.idealmirror.net;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.dllo.idealmirror.base.BaseApplication;
 
 
 /**
