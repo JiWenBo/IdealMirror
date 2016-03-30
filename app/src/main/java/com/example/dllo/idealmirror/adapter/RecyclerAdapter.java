@@ -15,14 +15,14 @@ import java.util.List;
 /**
  * Created by dllo on 16/3/30.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
     private List<Integer> data;
     private Context context;
 
-    public RecyclerAdapter( Context context) {
+    public RecyclerAdapter(Context context) {
         this.context = context;
         data = new ArrayList<>();
-        for (int i =0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             data.add(R.mipmap.ic_launcher);
         }
 
@@ -30,13 +30,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_pageitem,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_pageitem, null);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        for (int i=0;i<data.size();i++){
+        for (int i = 0; i < data.size(); i++) {
             holder.img.setImageResource(data.get(i));
         }
     }
@@ -48,6 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.picture);

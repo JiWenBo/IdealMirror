@@ -9,8 +9,8 @@ import android.view.View;
 /**
  * Created by dllo on 16/3/30.
  */
-public class VerticalViewPager extends ViewPager{
-    private float startX,startY;
+public class VerticalViewPager extends ViewPager {
+    private float startX, startY;
 
 
     public VerticalViewPager(Context context) {
@@ -29,7 +29,7 @@ public class VerticalViewPager extends ViewPager{
         setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
-    private class VerticalPageTransformer implements ViewPager.PageTransformer{
+    private class VerticalPageTransformer implements ViewPager.PageTransformer {
 
         @Override
         public void transformPage(View page, float position) {
@@ -65,14 +65,27 @@ public class VerticalViewPager extends ViewPager{
     public boolean onInterceptTouchEvent(MotionEvent event) {
         boolean intercepted = super.onInterceptTouchEvent(swapXY(event));
         swapXY(event);
-
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                startX = event.getX();
+                startY = event.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float moveX = event.getX();
+                float moveY = event.getY();
+                if (Math.abs(moveY - startY) - Math.abs(moveX - startX) > 0) {
+                    return true;
+                }
+                break;
+        }
         return intercepted;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
-        switch (action){
+        switch (action) {
             case MotionEvent.ACTION_DOWN:
                 startX = (event.getY() / getHeight()) * getWidth();
                 startY = (event.getY() / getWidth()) * getHeight();
