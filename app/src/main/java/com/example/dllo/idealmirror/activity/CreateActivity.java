@@ -1,20 +1,16 @@
 package com.example.dllo.idealmirror.activity;
 
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
-
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
 
 /**
- * Created by LYH on 16/3/30.
+ * Created by nan on 16/3/30.
  */
-public class LoginActivity extends BaseActivity {
-    
+public class CreateActivity extends BaseActivity {
+
     @Override
     protected int setContent() {
-        return R.layout.activity_login;
+        return R.layout.activity_create_account;
     }
 
     @Override
