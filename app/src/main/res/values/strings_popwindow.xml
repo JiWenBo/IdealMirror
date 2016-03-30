@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IdealMirror</string>
+
+    <string name="watchAll">浏览所有分类</string>
+    <string name="watchOptical">浏览平光镜</string>
+    <string name="watchSun">浏览太阳镜</string>
+    <string name="share">分享专题</string>
+    <string name="shopCart">我的购物车</string>
+    <string name="exit">退出</string>
+    <string name="returnHome">返回首页</string>
+
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="popwindow_line_left">50px</dimen>
+    <dimen name="popwindow_watchall_top">148px</dimen>
+    <dimen name="popwindow_textsize">28px</dimen>
+    <dimen name="popwindow_underline_wid">180px</dimen>
+    <dimen name="popwindow_underline_hei">12px</dimen>
+    <dimen name="popwindow_underline_top">22px</dimen>
+    <dimen name="popwindow_shopCart_top">44px</dimen>
+    <dimen name="popwindow_exit_top">44px</dimen>
+    <dimen name="popwindow_returnHome_top">44px</dimen>
+    <dimen name="popwindow_share_top">44px</dimen>
+    <dimen name="popwindow_watchSun_top">44px</dimen>
+    <dimen name="popwindow_watchOptical_top">44px</dimen>
+
+</resources>
