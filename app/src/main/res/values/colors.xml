@@ -4,13 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-
-
-    <color name="colorBackground">#f1f1f1</color>
-    <color name="colorCreateTest">#090909</color>
-    <color name="colorCreateWhite">#ffffff</color>
-
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorGray">#b0b0b0</color>
 
 </resources>
