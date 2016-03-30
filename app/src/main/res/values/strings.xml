@@ -1,16 +1,13 @@
 <resources>
     <string name="app_name">IdealMirror</string>
-<<<<<<< HEAD
     <string name="denglu">登陆</string>
     <string name="liulan">浏览所有类别</string>
     <string name="tuij">显示排序为 最新推荐</string>
-=======
-
     <string name="create_title">创建账号</string>
     <string name="create_phone_text">手机号</string>
     <string name="create_verifi_text">验证码</string>
     <string name="create_verifi_btn_text">发送验证码</string>
     <string name="create_setpw_text">设置密码</string>
     <string name="create_btn_text">创建账号</string>
->>>>>>> feature/王亚男_注册
+
 </resources>
