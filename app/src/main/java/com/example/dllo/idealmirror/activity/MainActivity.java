@@ -7,21 +7,42 @@ import android.widget.ImageView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.adapter.VerticalAdapter;
+import com.example.dllo.idealmirror.base.BaseActivity;
+import com.example.dllo.idealmirror.fragment.PageFragment;
 import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.tool.VerticalViewPager;
 
-public class MainActivity extends AppCompatActivity {
-    private ImageView imageView;
+import java.util.ArrayList;
+import java.util.List;
+import android.support.v4.app.Fragment;
+
+public class MainActivity extends BaseActivity {
+    private VerticalViewPager verticalViewPager;
+    private VerticalAdapter verticalAdapter;
+    private List<Fragment> data;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        imageView = (ImageView) findViewById(R.id.imageview);
-        NetHelper netHelper = new NetHelper();
-        ImageLoader imageLoader = netHelper.getImageLoader();
-        String url ="http://img4.imgtn.bdimg.com/it/u=1730609487,964171457&fm=21&gp=0.jpg";
-        imageLoader.get(url, ImageLoader.getImageListener(imageView, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-        new ImageLoaderCache().getImageLoader(url,imageView);
+    protected int setContent() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
+       verticalViewPager = bindView(R.id.verviewpager);
+
+    }
+
+    @Override
+    protected void initData() {
+         data = new ArrayList<>();
+        for (int i=0;i<5;i++){
+            data.add(new PageFragment());
+        }
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(),data);
+        verticalViewPager.setAdapter(verticalAdapter);
+
     }
 }

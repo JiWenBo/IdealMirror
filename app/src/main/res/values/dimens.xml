@@ -2,4 +2,14 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="marleftfour_eight">48px</dimen>
+    <dimen name="marbtmfour_eight">48px</dimen>
+    <dimen name="marrigfour_eight">48px</dimen>
+    <dimen name="matlefttwo_two">22px</dimen>
+    <dimen name="martopthree_four">34px</dimen>
+    <dimen name="marleft_n">9px</dimen>
+    <dimen name="mattop_twosix">26px</dimen>
+    <dimen name="mattopnine">94px</dimen>
+    <dimen name="hei">833px</dimen>
+    <dimen name="marleft_twotwo">22px</dimen>
 </resources>
