@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <com.example.dllo.idealmirror.tool.VerticalViewPager
-        android:id="@+id/verviewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    </com.example.dllo.idealmirror.tool.VerticalViewPager>
-    <ImageView
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/marleftfour_eight"
-        android:layout_marginBottom="@dimen/marbtmfour_eight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/mirror"/>
-    <TextView
-        android:layout_marginRight="@dimen/marrigfour_eight"
-        android:layout_marginBottom="@dimen/marbtmfour_eight"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:textColor="#fff"
-        android:text="@string/denglu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
+    <android.support.v4.view.DirectionalViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/marbtmfour_eight"
+        android:layout_marginLeft="@dimen/marleftfour_eight"
+        android:src="@drawable/mirror" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/marbtmfour_eight"
+        android:layout_marginRight="@dimen/marrigfour_eight"
+        android:text="@string/denglu"
+        android:textColor="#fff" />
 
 
 </RelativeLayout>
