@@ -2,4 +2,24 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="activity_create_padding">30px</dimen>
+    <dimen name="create_title_size">34px</dimen>
+    <dimen name="create_close_right">16px</dimen>
+    <dimen name="create_unline_top">20px</dimen>
+    <dimen name="create_phone_top">40px</dimen>
+    <dimen name="create_phone_size">24px</dimen>
+    <dimen name="create_edit_height">80px</dimen>
+    <dimen name="create_phone_edit_top">20px</dimen>
+    <dimen name="create_verifi_text_top">30px</dimen>
+    <dimen name="create_verifi_size">24px</dimen>
+    <dimen name="create_verifi_edit_height">80px</dimen>
+    <dimen name="create_verifi_edit_top">20px</dimen>
+    <dimen name="create_verifi_btn_width">208px</dimen>
+    <dimen name="create_setpw_text_top">30px</dimen>
+    <dimen name="create_setpw_text_size">24px</dimen>
+    <dimen name="create_setpw_edit_top">20px</dimen>
+    <dimen name="create_btn_height">80px</dimen>
+    <dimen name="create_btn_top">50px</dimen>
+    <dimen name="create_btn_text_size">34px</dimen>
 </resources>
