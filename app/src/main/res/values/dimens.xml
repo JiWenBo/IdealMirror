@@ -63,5 +63,6 @@
     <dimen name="recyclerView_allAddress_alterRight">60px</dimen>
     <dimen name="recyclerView_allAddress_deleteWidth">130px</dimen>
     <dimen name="recyclerView_allAddress_delete_size">26px</dimen>
+    <dimen name="login_edit_height">80px</dimen>
 
 </resources>
