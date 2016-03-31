@@ -1,28 +1,28 @@
 package com.example.dllo.idealmirror.fragment;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.RecyclerAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
-import com.example.dllo.idealmirror.net.OkHttpListener;
-import com.example.dllo.idealmirror.net.OkHttpPost;
+import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.net.VolleyListener;
+import com.example.dllo.idealmirror.tool.LogUtils;
+import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
-import com.squareup.okhttp.FormEncodingBuilder;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by dllo on 16/3/29.
  */
-public class PageFragment extends BaseFragment implements OkHttpListener{
+public class PageFragment extends BaseFragment implements VolleyListener,Url{
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
     private GoodsListBean goodsListBean;
+    private HashMap<String,String> parm;
 
 
 
@@ -39,40 +39,29 @@ public class PageFragment extends BaseFragment implements OkHttpListener{
 
     @Override
     protected void initData() {
-        recyclerAdapter = new RecyclerAdapter(getContext());
-        getPostData();
-
-
-
+        recyclerAdapter = new RecyclerAdapter(getContext(),goodsListBean);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(recyclerAdapter);
+        parm = new HashMap<>();
+        NetHelper netHelper = new NetHelper();
+        parm.put("token","");
+        parm.put("device_type", "3");
+        parm.put("page","");
+        parm.put("last_time", "");
+        parm.put("category_id", "");
+        netHelper.getInformation(GOODS_LIST, this, parm);
     }
-    private void getPostData(){
-        OkHttpPost httppost = new OkHttpPost();
-        FormEncodingBuilder builder = new FormEncodingBuilder();
-        builder.add("token","");
-        builder.add("last_time","");
-        builder.add("device_type","3");
-        builder.add("category_id","269");
-        builder.add("version","1.0.1");
-        builder.add("page","");
-        httppost.requesPost(builder, "index.php/products/goods_list",this);
-    }
+
 
     @Override
     public void getSuccess(String body) {
-        JSONObject jsonObject = null;
         try {
-            jsonObject = new JSONObject(body);
+            LogUtils.d("请求成功");
+            JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
-            goodsListBean=new GoodsListBean();
-            goodsListBean= gson.fromJson(jsonObject.toString(), GoodsListBean.class);
-            Log.d("数据", goodsListBean.toString());
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            recyclerView.setLayoutManager(linearLayoutManager);
-            recyclerView.setAdapter(recyclerAdapter);
-
-
-
+            goodsListBean = gson.fromJson(object.toString(),GoodsListBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -82,6 +71,6 @@ public class PageFragment extends BaseFragment implements OkHttpListener{
 
     @Override
     public void getFail() {
-
+        LogUtils.d("请求失败");
     }
 }

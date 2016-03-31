@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +24,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     private GoodsListBean goodsListBean;
     private Context context;
 
-    public RecyclerAdapter(Context context) {
+    public RecyclerAdapter(Context context,GoodsListBean goodsListBeans) {
         this.context = context;
-
-
-    }
-
-    public void getData(GoodsListBean goodsListBeans){
         this.goodsListBean = goodsListBeans;
-        notifyDataSetChanged();
     }
+
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,23 +40,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NetHelper netHelper = new NetHelper();
-        ImageLoader loader = netHelper.getImageLoader();
-        loader.get(goodsListBean.getData().getList().get(0).getDesign_des().get(position).getImg(), ImageLoader.getImageListener(holder.img,R.mipmap.ic_launcher,R.mipmap.ic_launcher));
-
+        for (int i=0;i<10;i++){
+            holder.img.setImageResource(R.mipmap.ic_launcher);
+        }
+      //  ImageLoader loader = netHelper.getImageLoader();
+       // loader.get(goodsListBean.getData().getList().get(0).getDesign_des().get(position).getImg(), ImageLoader.getImageListener(holder.img,R.mipmap.ic_launcher,R.mipmap.ic_launcher));
+       //holder.tex.
     }
 
     @Override
     public int getItemCount() {
-            return  goodsListBean.getData().getList().get(0).getDesign_des().size();
+            return  10;
 
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
+       // LinearLayout tex;
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            AutoUtils.autoSize(itemView);
             img = (ImageView) itemView.findViewById(R.id.picture);
+           // tex = (LinearLayout) itemView.findViewById(R.id.itemx);
         }
     }
 }

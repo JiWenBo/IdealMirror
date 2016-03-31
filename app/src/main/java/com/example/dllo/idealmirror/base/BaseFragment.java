@@ -1,16 +1,23 @@
 package com.example.dllo.idealmirror.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zhy.autolayout.AutoFrameLayout;
+
 /**
  * Created by nan on 16/3/29.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment{
+
+
+
 
     // 绑定布局
     @Nullable

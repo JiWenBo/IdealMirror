@@ -3,7 +3,7 @@ package com.example.dllo.idealmirror.net;
 /**
  * Created by dllo on 16/3/30.
  */
-public interface OkHttpListener {
+public interface VolleyListener {
     void getSuccess(String body);
     void getFail();
 }
