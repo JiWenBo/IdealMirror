@@ -19,5 +19,17 @@
     <string name="loginBtn">登录</string>
     <string name="createAccounts">创建帐号</string>
     <string name="socialContactPwd">使用社交帐号</string>
+    
+    <string name="addAddress">添加地址</string>
+    <string name="addReceiverName">添加收件人姓名</string>
+    <string name="addContactPhone">添加联络人电话号码</string>
+    <string name="addReceiverGoodsAddress">添加收货地址</string>
+    <string name="commitAddress">提交地址</string>
+    <string name="forgetPassword">忘记密码</string>
+    <string name="alterPassword">修改密码</string>
+
+    <string name="delete">删除</string>
+    <string name="address">地址：</string>
+    <string name="addressee">收件人：</string>
 
 </resources>

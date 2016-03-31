@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/allAddress_line"
+    android:background="@color/colorWhite"
+    android:layout_marginTop="@dimen/recyclerView_allAddress_itemTop">
+
+    <com.example.dllo.idealmirror.tool.SwipeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/recyclerView_allAddress_contentTop"
+                android:layout_marginLeft="@dimen/recyclerView_allAddress_contentLeft"
+                android:layout_marginBottom="@dimen/recyclerView_allAddress_contentBottom"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/recyclerView_allAddress_addressee_size"
+                        android:text="@string/addressee"/>
+                    <TextView
+                        android:id="@+id/allAddress_addressee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/recyclerView_allAddress_addressee_size"
+                        android:textColor="@color/colorBlack"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:layout_marginTop="@dimen/recyclerView_allAddress_addressTop"
+                        android:textSize="@dimen/recyclerView_allAddress_address_size"
+                        android:text="@string/address"/>
+                    <TextView
+                        android:id="@+id/allAddress_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/recyclerView_allAddress_addressTop"
+                        android:layout_marginRight="@dimen/recyclerView_allAddress_addressRight"
+                        android:textSize="@dimen/recyclerView_allAddress_address_size"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/allAddress_phoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/recyclerView_allAddress_phoneNum_top"
+                    android:textSize="@dimen/recyclerView_allAddress_phoneNum_size"
+                    android:textColor="@color/colorBlack" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/recyclerView_allAddress_alterRight"
+                android:src="@mipmap/alter"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/allAddress_delete"
+            android:layout_width="@dimen/recyclerView_allAddress_deleteWidth"
+            android:layout_height="match_parent"
+            android:background="@color/colorDelete"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/delete"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/recyclerView_allAddress_delete_size" />
+        </RelativeLayout>
+
+    </com.example.dllo.idealmirror.tool.SwipeLayout>
+</LinearLayout>

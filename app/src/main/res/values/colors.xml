@@ -11,5 +11,5 @@
     <color name="colorBackground">#f1f1f1</color>
     <color name="colorCreateTest">#090909</color>
     <color name="colorCreateWhite">#ffffff</color>
-
+    <color name="colorDelete">#e62f4a</color>
 </resources>

@@ -26,6 +26,10 @@
         <activity android:name=".bean.GoodsListBean"/>
         <activity android:name=".database.Database"/>
         <activity android:name=".tool.Tool"/>
+        <activity android:name=".activity.AllAddressActivity">
+        </activity>
+        <activity android:name=".activity.AddAddressActivity"/>
+        <activity android:name=".activity.ForgetPasswordActivity"/>
 
 
     </application>
