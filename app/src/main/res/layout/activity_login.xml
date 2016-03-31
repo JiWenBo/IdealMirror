@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activity_create_padding"
+    android:background="@color/colorBackground"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_titleRL_top"
-        android:layout_marginRight="@dimen/login_titleRL_right"
-        android:layout_marginLeft="@dimen/login_titleRL_left">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,40 +26,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_titleUndline_top"
-        android:layout_marginRight="@dimen/login_titleUndline_right"
-        android:layout_marginLeft="@dimen/login_titleUndline_left"
         android:layout_gravity="center"
         android:background="@drawable/item_underline_black"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_phone_top"
-        android:layout_marginLeft="@dimen/login_phone_left"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/login_phone_size"
         android:text="@string/phoneNumber"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/login_phoneNumber_top"
-        android:layout_marginLeft="@dimen/login_phoneNumber_left"
-        android:layout_marginRight="@dimen/login_phoneNumber_right"
         android:textColor="@color/colorBlack"
         android:background="@drawable/phonenum_input"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_passWd_top"
-        android:layout_marginLeft="@dimen/login_passWord_left"
         android:textColor="@color/colorBlack"
-        android:textSize="24px"
+        android:textSize="@dimen/login_passWord_size"
         android:text="@string/passWord"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/login_passWord_top"
-        android:layout_marginLeft="@dimen/login_passWord_left"
-        android:layout_marginRight="@dimen/login_passWord_right"
         android:textColor="@color/colorBlack"
         android:background="@drawable/phonenum_input"/>
     <RelativeLayout
@@ -71,7 +62,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/login_forget_right"
             android:layout_marginTop="@dimen/login_forget_top"
             android:textSize="@dimen/login_forget_size"
             android:textColor="@color/colorBlack"
@@ -79,23 +69,21 @@
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/login_loginBtn_right"
-            android:layout_marginLeft="@dimen/login_loginBtn_left"
+            android:layout_height="@dimen/login_edit_height"
             android:layout_marginTop="@dimen/login_loginBtn_top"
             android:textSize="@dimen/login_loginBtn_size"
             android:textColor="@color/colorBlack"
+            android:gravity="center"
             android:background="@drawable/login_selector"
             android:text="@string/loginBtn"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/login_create_right"
-            android:layout_marginLeft="@dimen/login_create_left"
+            android:layout_height="@dimen/login_edit_height"
             android:layout_below="@id/login_btn"
             android:layout_marginTop="@dimen/login_create_top"
             android:textSize="@dimen/login_create_size"
             android:textColor="@color/colorBlack"
+            android:gravity="center"
             android:background="@drawable/login_btn_true"
             android:text="@string/createAccounts"/>
 
@@ -104,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/login_sina_bottom"
-            android:layout_marginLeft="@dimen/login_sina_left"
+            android:paddingLeft="@dimen/login_sina_paddingleft"
             android:src="@drawable/sina_icon"/>
         <ImageView
             android:id="@+id/weixin_iv"
@@ -113,7 +101,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/login_wechat_bottom"
-            android:layout_marginRight="@dimen/login_wechat_right"
+            android:paddingRight="@dimen/login_wechat_paddingright"
             android:src="@drawable/wechat_icon"/>
         <TextView
             android:layout_width="wrap_content"

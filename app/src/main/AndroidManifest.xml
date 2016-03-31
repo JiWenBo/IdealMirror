@@ -23,11 +23,17 @@
         <activity android:name=".bean.GoodsListBean"/>
         <activity android:name=".database.Database"/>
         <activity android:name=".tool.Tool"/>
+
         <meta-data android:name="design_width" android:value="720">
         </meta-data>
         <meta-data android:name="design_height" android:value="1319">
         </meta-data>
-        <uses-permission android:name="android.permission.INTERNET"/>
+        <activity android:name=".activity.AllAddressActivity">
+        </activity>
+        <activity android:name=".activity.AddAddressActivity"/>
+        <activity android:name=".activity.ForgetPasswordActivity"/>
+
+
 
     </application>
 
