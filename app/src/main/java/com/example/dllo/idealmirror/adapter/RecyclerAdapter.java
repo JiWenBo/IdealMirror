@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.bean.GoodsListBean;
+import com.example.dllo.idealmirror.net.NetHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +19,18 @@ import java.util.List;
  * Created by dllo on 16/3/30.
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
-    private List<Integer> data;
+    private GoodsListBean goodsListBean;
     private Context context;
 
     public RecyclerAdapter(Context context) {
         this.context = context;
-        data = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            data.add(R.mipmap.ic_launcher);
-        }
 
+
+    }
+
+    public void getData(GoodsListBean goodsListBeans){
+        this.goodsListBean = goodsListBeans;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -36,14 +41,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        for (int i = 0; i < data.size(); i++) {
-            holder.img.setImageResource(data.get(i));
-        }
+        NetHelper netHelper = new NetHelper();
+        ImageLoader loader = netHelper.getImageLoader();
+        loader.get(goodsListBean.getData().getList().get(0).getDesign_des().get(position).getImg(), ImageLoader.getImageListener(holder.img,R.mipmap.ic_launcher,R.mipmap.ic_launcher));
+
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+            return  goodsListBean.getData().getList().get(0).getDesign_des().size();
+
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

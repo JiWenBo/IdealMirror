@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".adapter.VerticalAdapter"/>
-        <activity android:name=".bean.Bean"/>
+        <activity android:name=".bean.GoodsListBean"/>
         <activity android:name=".database.Database"/>
         <activity android:name=".tool.Tool"/>
 
