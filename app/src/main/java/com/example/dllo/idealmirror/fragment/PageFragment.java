@@ -50,8 +50,7 @@ public class PageFragment extends BaseFragment implements VolleyListener,Url{
         parm.put("device_type", "3");
         parm.put("page","");
         parm.put("last_time", "");
-        parm.put("category_id", "");
-        netHelper.getInformation(GOODS_LIST, this, parm);
+        netHelper.getInformation(INDEX_MRTJ,this,parm);
     }
 
 
