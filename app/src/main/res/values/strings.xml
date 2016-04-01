@@ -31,5 +31,11 @@
     <string name="delete">删除</string>
     <string name="address">地址：</string>
     <string name="addressee">收件人：</string>
+    <string name="myaddress">我的所有地址</string>
+    <string name="add">添加地址</string>
+    <string name="text">$450</string>
+    <string name="caomeiyanj">草莓红色圆框眼镜</string>
+    <string name="faguo">法国巴黎</string>
+    <string name="textsee">SEE CONCEPT</string>
 
 </resources>

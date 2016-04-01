@@ -19,6 +19,7 @@ public class VerticalAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
+
         return data.get(position);
     }
 
@@ -26,4 +27,6 @@ public class VerticalAdapter extends FragmentPagerAdapter{
     public int getCount() {
         return data.size();
     }
+
+
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_create_padding"
     android:background="@color/colorBackground"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -16,11 +16,12 @@
             android:textColor="@color/colorBlack"
             android:text="@string/loginTitle"/>
         <ImageView
+            android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/close"
             android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
@@ -54,9 +55,9 @@
         android:layout_marginTop="@dimen/login_passWord_top"
         android:textColor="@color/colorBlack"
         android:background="@drawable/phonenum_input"/>
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/heithzero"
         android:layout_weight="1">
         <TextView
             android:layout_width="wrap_content"
@@ -72,17 +73,18 @@
             android:layout_height="@dimen/login_edit_height"
             android:layout_marginTop="@dimen/login_loginBtn_top"
             android:textSize="@dimen/login_loginBtn_size"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:gravity="center"
             android:background="@drawable/login_selector"
             android:text="@string/loginBtn"/>
         <Button
+            android:id="@+id/creat_number"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_edit_height"
             android:layout_below="@id/login_btn"
             android:layout_marginTop="@dimen/login_create_top"
             android:textSize="@dimen/login_create_size"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:gravity="center"
             android:background="@drawable/login_btn_true"
             android:text="@string/createAccounts"/>
@@ -112,6 +114,6 @@
             android:textSize="@dimen/login_social_size"
             android:textColor="@color/colorBlack"
             android:text="@string/socialContactPwd"/>
-    </RelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

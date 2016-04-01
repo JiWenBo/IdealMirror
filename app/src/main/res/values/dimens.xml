@@ -48,8 +48,8 @@
     <dimen name="addAddress_addAddressEt_top">20px</dimen>
     <dimen name="addAddress_commitAddress_top">50px</dimen>
     <dimen name="addAddress_commitAddress_size">30px</dimen>
-    <dimen name="login_sina_paddingleft">150px</dimen>
-    <dimen name="login_wechat_paddingright">150px</dimen>
+    <dimen name="login_sina_paddingleft">200px</dimen>
+    <dimen name="login_wechat_paddingright">200px</dimen>
     <dimen name="recyclerView_allAddress_itemTop">20px</dimen>
     <dimen name="recyclerView_allAddress_contentTop">40px</dimen>
     <dimen name="recyclerView_allAddress_contentLeft">24px</dimen>
@@ -64,5 +64,31 @@
     <dimen name="recyclerView_allAddress_deleteWidth">130px</dimen>
     <dimen name="recyclerView_allAddress_delete_size">26px</dimen>
     <dimen name="login_edit_height">80px</dimen>
+    <dimen name="widthzero">0dp</dimen>
+    <dimen name="heihun">160px</dimen>
+    <dimen name="fifthpx">50px</dimen>
+    <dimen name="zeropx">0dp</dimen>
+    <dimen name="zerodp">0dp</dimen>
+    <dimen name="heithzero">0dp</dimen>
+    <dimen name="marop">68px</dimen>
+    <dimen name="textsize">30px</dimen>
+    <dimen name="textsizefive">25px</dimen>
+    <dimen name="marlefttwo">22px</dimen>
+    <dimen name="widththouth">470px</dimen>
+    <dimen name="heithright">870px</dimen>
+    <dimen name="layhei">238px</dimen>
+    <dimen name="martopsix">630px</dimen>
+    <dimen name="martopfive">50px</dimen>
+    <dimen name="heigh_fifth">15dp</dimen>
+    <dimen name="marleftsix">16dp</dimen>
+    <dimen name="texsizethree">30px</dimen>
+    <dimen name="marrightsix">16dp</dimen>
+    <dimen name="heieight">18dp</dimen>
+    <dimen name="marlatfthree">32px</dimen>
+    <dimen name="martop">16px</dimen>
+    <dimen name="textsizetwo">24px</dimen>
+    <dimen name="topthree">30px</dimen>
+    <dimen name="sixpx">16px</dimen>
+    <dimen name="threepx">30px</dimen>
 
 </resources>

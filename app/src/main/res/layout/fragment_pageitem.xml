@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemx"
-    android:layout_width="470px"
-    android:layout_height="870px"
+    android:layout_width="@dimen/widththouth"
+    android:layout_height="@dimen/heithright"
     >
 <com.zhy.autolayout.AutoRelativeLayout
     android:layout_marginRight="@dimen/marleft_twotwo"
-    android:background="#fff"
-    android:layout_width="470px"
-    android:layout_height="870px"
+    android:background="@color/colorWhite"
+    android:layout_width="@dimen/widththouth"
+    android:layout_height="@dimen/heithright"
     >
     <ImageView
         android:id="@+id/picture"
-        android:layout_width="470px"
-        android:scaleType="fitCenter"
+        android:layout_width="@dimen/widththouth"
+        android:scaleType="fitXY"
         android:layout_height="wrap_content" />
     <com.zhy.autolayout.AutoLinearLayout
-        android:background="#fff"
-        android:layout_width="470px"
-        android:layout_height="238px"
-        android:layout_marginTop="630px"
+        android:background="@color/colorWhite"
+        android:layout_width="@dimen/widththouth"
+        android:layout_height="@dimen/layhei"
+        android:layout_marginTop="@dimen/martopsix"
         android:orientation="vertical">
         <com.zhy.autolayout.AutoLinearLayout
 
-            android:layout_marginTop="50px"
-            android:layout_width="470px"
-            android:layout_height="15dp"
+            android:layout_marginTop="@dimen/martopfive"
+            android:layout_width="@dimen/widththouth"
+            android:layout_height="@dimen/heigh_fifth"
             android:orientation="horizontal">
             <TextView
-                android:layout_marginLeft="16dp"
-                android:textColor="#000"
+                android:layout_marginLeft="@dimen/marleftsix"
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
-                android:text="SEE CONCEPT"
-                android:textSize="30px"
+                android:text="@string/textsee"
+                android:textSize="@dimen/texsizethree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:textColor="#000"
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="@dimen/marrightsix"
                 android:gravity="right"
-                android:text="$450"
+                android:text="@string/text"
                 android:layout_width="match_parent"
-                android:layout_height="18dp" />
+                android:layout_height="@dimen/heieight" />
         </com.zhy.autolayout.AutoLinearLayout>
         <TextView
-            android:layout_marginLeft="32px"
-            android:layout_marginTop="16px"
+            android:layout_marginLeft="@dimen/marlatfthree"
+            android:layout_marginTop="@dimen/martop"
             android:textColor="#333"
-            android:text="法国巴黎"
-            android:textSize="24px"
+            android:text="@string/faguo"
+            android:textSize="@dimen/textsizetwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="30px"
+            android:layout_marginRight="@dimen/marlatfthree"
+            android:layout_marginLeft="@dimen/marlatfthree"
+            android:layout_marginTop="@dimen/topthree"
             android:src="@drawable/create_account_unline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
-            android:textColor="#000"
-            android:layout_marginLeft="32px"
-            android:layout_marginTop="16px"
-            android:text="草莓红色圆框眼镜"
-            android:textSize="30px"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="@dimen/marlatfthree"
+            android:layout_marginTop="@dimen/sixpx"
+            android:text="@string/caomeiyanj"
+            android:textSize="@dimen/threepx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </com.zhy.autolayout.AutoLinearLayout>

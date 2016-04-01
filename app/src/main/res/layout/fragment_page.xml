@@ -4,14 +4,14 @@
     android:background="@drawable/background"
     android:orientation="vertical">
     <com.zhy.autolayout.AutoLinearLayout
-        android:layout_marginTop="38px"
+        android:layout_marginTop="@dimen/marop"
         android:layout_marginLeft="@dimen/matlefttwo_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:textSize="30px"
-            android:textColor="#fff"
+            android:textSize="@dimen/textsize"
+            android:textColor="@color/colorWhite"
             android:text="@string/liulan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -31,15 +31,15 @@
     <TextView
         android:layout_marginLeft="@dimen/matlefttwo_two"
         android:layout_marginTop="@dimen/mattop_twosix"
-        android:textColor="#fff"
-        android:textSize="25px"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/textsizefive"
         android:text="@string/tuij"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="@dimen/mattopnine"
         android:id="@+id/recycle"
-        android:layout_marginLeft="22px"
+        android:layout_marginLeft="@dimen/marlefttwo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/hei">
     </android.support.v7.widget.RecyclerView>

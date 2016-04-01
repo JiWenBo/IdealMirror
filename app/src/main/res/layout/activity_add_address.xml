@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="@dimen/addAddress_layout_left"
     android:layout_marginRight="@dimen/addAddress_layout_right"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/addAddress_title_top"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/close"
             android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
@@ -78,4 +78,4 @@
         android:textSize="@dimen/addAddress_commitAddress_size"
         android:gravity="center"
         android:text="@string/commitAddress"/>
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

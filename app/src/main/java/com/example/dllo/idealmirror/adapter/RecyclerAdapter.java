@@ -25,7 +25,6 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
     private GoodsListBean goodsListBean;
     private Context context;
-    private ImageLoaderCache imageLoaderCache;
 
     public RecyclerAdapter(Context context,GoodsListBean goodsListBeans) {
         this.context = context;
@@ -46,10 +45,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         ImageLoader loader = netHelper.getImageLoader();
         String goodsurl = goodsListBean.getData().getList().get(0).getGoods_img();
-        LogUtils.d(goodsurl);
         loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-        //imageLoaderCache.getImageLoader(goodsListBean.getData().getList().get(0).getGoods_img(), holder.img);
-
     }
 
     @Override
