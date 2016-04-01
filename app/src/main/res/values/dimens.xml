@@ -101,5 +101,8 @@
     <dimen name="fourfours">44px</dimen>
     <dimen name="twoehi">28px</dimen>
     <dimen name="twotwoss">22px</dimen>
+    <dimen name="addAddress_addName_edit_height">80px</dimen>
+    <dimen name="addAddress_addPhone_edit_height">80px</dimen>
+    <dimen name="addAddress_address_edit_height">200px</dimen>
 
 </resources>
