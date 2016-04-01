@@ -25,7 +25,6 @@ public class PageFragment extends BaseFragment implements VolleyListener,Url{
     private HashMap<String,String> parm;
 
 
-
     @Override
     public int getLayout() {
         return R.layout.fragment_page;
@@ -39,18 +38,13 @@ public class PageFragment extends BaseFragment implements VolleyListener,Url{
 
     @Override
     protected void initData() {
-        recyclerAdapter = new RecyclerAdapter(getContext(),goodsListBean);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(recyclerAdapter);
+
         parm = new HashMap<>();
         NetHelper netHelper = new NetHelper();
-        parm.put("token","");
+        parm.put("token", "");
         parm.put("device_type", "3");
-        parm.put("page","");
-        parm.put("last_time", "");
-        netHelper.getInformation(INDEX_MRTJ,this,parm);
+        parm.put("category_id","268");
+        netHelper.getInformation(GOODS_LIST, this,parm);
     }
 
 
@@ -64,6 +58,11 @@ public class PageFragment extends BaseFragment implements VolleyListener,Url{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        recyclerAdapter = new RecyclerAdapter(getContext(),goodsListBean);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(recyclerAdapter);
 
 
     }

@@ -52,6 +52,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void initData() {
         data = new ArrayList<>();
+        NetHelper netHelper = new NetHelper();
         for (int i = 0; i < 5; i++) {
             data.add(new PageFragment());
         }
@@ -91,6 +92,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
+
             //结束时候怎么样
             @Override
             public void onAnimationEnd(Animation animation) {
