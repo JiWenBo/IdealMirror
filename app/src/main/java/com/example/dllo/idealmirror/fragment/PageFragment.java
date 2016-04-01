@@ -35,11 +35,14 @@ public class PageFragment extends BaseFragment implements VolleyListener,Url{
         recyclerView = bindView(R.id.recycle);
 
     }
+
+    /**
+     * 商品列表list参数
+     */
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
         String sd = bundle.getString("cate");
-        LogUtils.d("ssssssssss",sd);
         parm = new HashMap<>();
         NetHelper netHelper = new NetHelper();
         parm.put("token", "");
