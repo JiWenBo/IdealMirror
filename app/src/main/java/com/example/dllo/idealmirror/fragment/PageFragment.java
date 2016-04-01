@@ -2,6 +2,9 @@ package com.example.dllo.idealmirror.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.RecyclerAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
@@ -9,8 +12,10 @@ import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
+import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,11 +24,16 @@ import java.util.HashMap;
 /**
  * Created by dllo on 16/3/29.
  */
-public class PageFragment extends BaseFragment implements VolleyListener,Url{
+public class PageFragment extends BaseFragment implements VolleyListener, Url {
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
     private GoodsListBean goodsListBean;
+
     private HashMap<String,String> parm;
+
+    private LinearLayout layout;
+    private PopWindow popWindow;
+
 
     @Override
     public int getLayout() {
@@ -33,7 +43,14 @@ public class PageFragment extends BaseFragment implements VolleyListener,Url{
     @Override
     protected void initView() {
         recyclerView = bindView(R.id.recycle);
-
+        layout = bindView(R.id.page_layout);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popWindow = new PopWindow(getContext());
+                popWindow.showPopWindow(v);
+            }
+        });
     }
 
     /**
@@ -58,7 +75,7 @@ public class PageFragment extends BaseFragment implements VolleyListener,Url{
             LogUtils.d("请求成功");
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
-            goodsListBean = gson.fromJson(object.toString(),GoodsListBean.class);
+            goodsListBean = gson.fromJson(object.toString(), GoodsListBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

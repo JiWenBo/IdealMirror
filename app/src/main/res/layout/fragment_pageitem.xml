@@ -2,72 +2,79 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemx"
     android:layout_width="@dimen/widththouth"
-    android:layout_height="@dimen/heithright"
-    >
-<com.zhy.autolayout.AutoRelativeLayout
-    android:layout_marginRight="@dimen/marleft_twotwo"
-    android:background="@color/colorWhite"
-    android:layout_width="@dimen/widththouth"
-    android:layout_height="@dimen/heithright"
-    >
-    <ImageView
-        android:id="@+id/picture"
-        android:layout_width="@dimen/widththouth"
-        android:scaleType="fitXY"
-        android:layout_height="wrap_content" />
-    <com.zhy.autolayout.AutoLinearLayout
-        android:background="@color/colorWhite"
-        android:layout_width="@dimen/widththouth"
-        android:layout_height="@dimen/layhei"
-        android:layout_marginTop="@dimen/martopsix"
-        android:orientation="vertical">
-        <com.zhy.autolayout.AutoLinearLayout
+    android:layout_height="@dimen/heithright">
 
-            android:layout_marginTop="@dimen/martopfive"
-            android:layout_width="@dimen/widththouth"
-            android:layout_height="@dimen/heigh_fifth"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_marginLeft="@dimen/marleftsix"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:text="@string/textsee"
-                android:textSize="@dimen/texsizethree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:layout_marginRight="@dimen/marrightsix"
-                android:gravity="right"
-                android:text="@string/text"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/heieight" />
-        </com.zhy.autolayout.AutoLinearLayout>
-        <TextView
-            android:layout_marginLeft="@dimen/marlatfthree"
-            android:layout_marginTop="@dimen/martop"
-            android:textColor="#333"
-            android:text="@string/faguo"
-            android:textSize="@dimen/textsizetwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="@dimen/widththouth"
+        android:layout_height="@dimen/heithright"
+        android:layout_marginRight="@dimen/marleft_twotwo"
+        android:background="@color/colorWhite">
+
         <ImageView
-            android:layout_marginRight="@dimen/marlatfthree"
-            android:layout_marginLeft="@dimen/marlatfthree"
-            android:layout_marginTop="@dimen/topthree"
-            android:src="@drawable/create_account_unline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textColor="@color/colorBlack"
-            android:layout_marginLeft="@dimen/marlatfthree"
-            android:layout_marginTop="@dimen/sixpx"
-            android:text="@string/caomeiyanj"
-            android:textSize="@dimen/threepx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </com.zhy.autolayout.AutoLinearLayout>
-</com.zhy.autolayout.AutoRelativeLayout>
+            android:id="@+id/picture"
+            android:layout_width="@dimen/widththouth"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="@dimen/widththouth"
+            android:layout_height="@dimen/layhei"
+            android:layout_marginTop="@dimen/martopsix"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <com.zhy.autolayout.AutoLinearLayout
+
+                android:layout_width="@dimen/widththouth"
+                android:layout_height="@dimen/heigh_fifth"
+                android:layout_marginTop="@dimen/martopfive"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/marleftsix"
+                    android:text="@string/textsee"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/texsizethree"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/heieight"
+                    android:layout_marginRight="@dimen/marrightsix"
+                    android:gravity="right"
+                    android:text="@string/text"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marlatfthree"
+                android:layout_marginTop="@dimen/martop"
+                android:text="@string/faguo"
+                android:textColor="#333"
+                android:textSize="@dimen/textsizetwo" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marlatfthree"
+                android:layout_marginRight="@dimen/marlatfthree"
+                android:layout_marginTop="@dimen/topthree"
+                android:src="@drawable/create_account_unline" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marlatfthree"
+                android:layout_marginTop="@dimen/sixpx"
+                android:text="@string/caomeiyanj"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/threepx" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

@@ -1,47 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical">
     <com.zhy.autolayout.AutoLinearLayout
-        android:layout_marginTop="@dimen/marop"
-        android:layout_marginLeft="@dimen/matlefttwo_two"
+        android:id="@+id/page_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textSize="@dimen/textsize"
-            android:textColor="@color/colorWhite"
-            android:text="@string/liulan"
+        android:orientation="vertical"
+        >
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/matlefttwo_two"
+            android:layout_marginTop="@dimen/marop"
+            android:orientation="horizontal">
+            <!--<TextView-->
+            <!--android:textSize="@dimen/textsize"-->
+            <!--android:textColor="@color/colorWhite"-->
+            <!--android:text="@string/liulan"-->
+
+            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/background"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/page_layout"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/liulan"
+                android:textColor="#fff" />
+
+            <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="@dimen/marleft_n"-->
+            <!--android:src="@drawable/pull_down_content" />-->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/marleft_n"
+                android:src="@drawable/pull_down_content" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
         <ImageView
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/marleft_n"
-            android:src="@drawable/pull_down_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/matlefttwo_two"
+            android:layout_marginTop="@dimen/matlefttwo_two"
+            android:src="@drawable/title_underline" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/matlefttwo_two"
+            android:layout_marginTop="@dimen/mattop_twosix"
+            android:text="@string/tuij"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textsizefive" />
     </com.zhy.autolayout.AutoLinearLayout>
-    <ImageView
-        android:layout_marginLeft="@dimen/matlefttwo_two"
-        android:layout_marginTop="@dimen/matlefttwo_two"
-        android:src="@drawable/title_underline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginLeft="@dimen/matlefttwo_two"
-        android:layout_marginTop="@dimen/mattop_twosix"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/textsizefive"
-        android:text="@string/tuij"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/matlefttwo_two"-->
+    <!--android:layout_marginTop="@dimen/mattop_twosix"-->
+    <!--android:text="@string/tuij"-->
+    <!--android:textColor="#fff"-->
+    <!--android:textSize="23px" />-->
+
+
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="@dimen/mattopnine"
         android:id="@+id/recycle"
-        android:layout_marginLeft="@dimen/marlefttwo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/hei">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="@dimen/hei"
+        android:layout_marginLeft="@dimen/marlefttwo"
+        android:layout_marginTop="@dimen/mattopnine" />
 
 </com.zhy.autolayout.AutoLinearLayout>
+
