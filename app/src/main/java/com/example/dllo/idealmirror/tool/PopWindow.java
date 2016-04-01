@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.PopupAdapter;
+import com.example.dllo.idealmirror.bean.GoodList;
 import com.example.dllo.idealmirror.bean.PopupListBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
@@ -29,17 +30,18 @@ import java.util.HashMap;
 /**
  * Created by LYH on 16/3/30.
  */
-public class PopWindow implements Url, VolleyListener, View.OnClickListener {
+public class PopWindow implements Url, View.OnClickListener {
     private ListView listView;
     private Context context;
     private PopupWindow popupWindow;
     private PopupAdapter adapter;
-    private PopupListBean bean;
     private HashMap<String, String> param;
     private LinearLayout homeLayout, returnLayout;
     private TextView homeTv, returnTv;
     private ImageView homeIv, returnIv;
     private MainActivity mainActivity;
+    private static GoodList bean;
+
 
     public PopWindow(Context context) {
         this.context = context;
@@ -50,7 +52,7 @@ public class PopWindow implements Url, VolleyListener, View.OnClickListener {
 
         // 设置popupWindow的高度 宽度
         popupWindow = new PopupWindow(view,
-                WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+                WindowManager.LayoutParams.MATCH_PARENT,1000);
         // 颜色半透明
         popupWindow.setBackgroundDrawable(new ColorDrawable(0xb0000000));
         // 设置popupWindow的显示和消失动画
@@ -61,17 +63,19 @@ public class PopWindow implements Url, VolleyListener, View.OnClickListener {
 
         // 初始化组件
         initViewPop(view);
-        // 添加数据
-        initDataPop();
+
     }
 
-    private void initDataPop() {
-        param = new HashMap<>();
-        bean = new PopupListBean();
-        NetHelper netHelper = new NetHelper();
-        param.put("token", "");
-        netHelper.getInformation(MENU_LIST, this, param);
+    /**
+     * 从activity传递实体类
+     * @param beans
+     */
+
+    public void initDataPop(GoodList beans) {
+
+        this.bean = beans;
     }
+
 
     private void initViewPop(View view) {
         listView = (ListView) view.findViewById(R.id.popup_list);
@@ -84,7 +88,8 @@ public class PopWindow implements Url, VolleyListener, View.OnClickListener {
         returnIv = (ImageView) view.findViewById(R.id.popup_return_line);
         returnLayout = (LinearLayout) view.findViewById(R.id.popup_return_layout);
         returnLayout.setOnClickListener(this);
-
+        adapter = new PopupAdapter(bean,context);
+        listView.setAdapter(adapter);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,19 +103,19 @@ public class PopWindow implements Url, VolleyListener, View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mainActivity = (MainActivity) context;
                 mainActivity.getDatafromFragment(position);
+                popupWindow.dismiss();
             }
         });
     }
 
-    @Override
+   /* @Override
     public void getSuccess(String body) {
         try {
             LogUtils.d("menu的数据.请求成功");
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
             bean = gson.fromJson(object.toString(), PopupListBean.class);
-            adapter = new PopupAdapter(bean, context);
-            listView.setAdapter(adapter);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -119,7 +124,7 @@ public class PopWindow implements Url, VolleyListener, View.OnClickListener {
     @Override
     public void getFail() {
         LogUtils.d("menu的数据请求失败");
-    }
+    }*/
 
     @Override
     public void onClick(View v) {

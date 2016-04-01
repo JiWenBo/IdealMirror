@@ -16,38 +16,11 @@
             android:layout_marginLeft="@dimen/matlefttwo_two"
             android:layout_marginTop="@dimen/marop"
             android:orientation="horizontal">
-            <!--<TextView-->
-            <!--android:textSize="@dimen/textsize"-->
-            <!--android:textColor="@color/colorWhite"-->
-            <!--android:text="@string/liulan"-->
-
-            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@drawable/background"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<LinearLayout-->
-            <!--android:id="@+id/page_layout"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/liulan"
                 android:textColor="#fff" />
-
-            <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginLeft="@dimen/marleft_n"-->
-            <!--android:src="@drawable/pull_down_content" />-->
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,18 +46,6 @@
             android:textSize="@dimen/textsizefive" />
     </com.zhy.autolayout.AutoLinearLayout>
 
-
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginLeft="@dimen/matlefttwo_two"-->
-    <!--android:layout_marginTop="@dimen/mattop_twosix"-->
-    <!--android:text="@string/tuij"-->
-    <!--android:textColor="#fff"-->
-    <!--android:textSize="23px" />-->
-
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle"
         android:layout_width="match_parent"
@@ -93,4 +54,3 @@
         android:layout_marginTop="@dimen/mattopnine" />
 
 </com.zhy.autolayout.AutoLinearLayout>
-

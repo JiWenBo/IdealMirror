@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,17 +9,17 @@
         android:id="@+id/popup_item_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44px"
-        android:text="浏览平光眼镜"
+        android:layout_marginTop="@dimen/fourmar"
+        android:text="@string/liulanping"
         android:textColor="@drawable/selector_popup_item"
-        android:textSize="28px" />
+        android:textSize="@dimen/twoeight" />
 
     <ImageView
         android:id="@+id/popup_item_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22px"
+        android:layout_marginTop="@dimen/twotwo"
         android:src="@drawable/title_underline"
         android:visibility="invisible"/>
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

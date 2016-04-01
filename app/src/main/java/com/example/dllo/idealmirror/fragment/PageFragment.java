@@ -1,5 +1,7 @@
 package com.example.dllo.idealmirror.fragment;
+
 import android.os.Bundle;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -28,6 +30,7 @@ public class PageFragment extends BaseFragment implements VolleyListener, Url {
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
     private GoodsListBean goodsListBean;
+
 
     private HashMap<String,String> parm;
 
@@ -58,6 +61,7 @@ public class PageFragment extends BaseFragment implements VolleyListener, Url {
      */
     @Override
     protected void initData() {
+
         Bundle bundle = getArguments();
         String sd = bundle.getString("cate");
         parm = new HashMap<>();
@@ -66,6 +70,7 @@ public class PageFragment extends BaseFragment implements VolleyListener, Url {
         parm.put("device_type", "3");
         parm.put("category_id",sd);
         netHelper.getInformation(GOODS_LIST, this,parm);
+
     }
 
 

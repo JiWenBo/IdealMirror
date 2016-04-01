@@ -90,5 +90,16 @@
     <dimen name="topthree">30px</dimen>
     <dimen name="sixpx">16px</dimen>
     <dimen name="threepx">30px</dimen>
+    <dimen name="fourmar">44px</dimen>
+    <dimen name="twoeight">28px</dimen>
+    <dimen name="twotwo">22px</dimen>
+    <dimen name="fivepx">50px</dimen>
+    <dimen name="sixpxs">60px</dimen>
+    <dimen name="fourfour">44px</dimen>
+    <dimen name="two">28px</dimen>
+    <dimen name="twos">22px</dimen>
+    <dimen name="fourfours">44px</dimen>
+    <dimen name="twoehi">28px</dimen>
+    <dimen name="twotwoss">22px</dimen>
 
 </resources>
