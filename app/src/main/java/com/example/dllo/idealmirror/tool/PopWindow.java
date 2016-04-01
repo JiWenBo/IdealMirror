@@ -1,147 +1,130 @@
 package com.example.dllo.idealmirror.tool;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.activity.MainActivity;
+import com.example.dllo.idealmirror.adapter.PopupAdapter;
+import com.example.dllo.idealmirror.bean.PopupListBean;
+import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.net.VolleyListener;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by LYH on 16/3/30.
  */
-public class PopWindow implements View.OnClickListener {
-
-    private TextView watchAllTv,watchOpticalTv,watchSunTv,shareTv,shopCartTv,returnHomeTv,exitTv;
-    private ImageView watchAllIv,watchOpticalIv,watchSunIv,shareIv,shopCartIv,returnHomeIv,exitIv;
+public class PopWindow implements Url, VolleyListener, View.OnClickListener {
+    private ListView listView;
     private Context context;
     private PopupWindow popupWindow;
+    private PopupAdapter adapter;
+    private PopupListBean bean;
+    private HashMap<String, String> param;
+    private LinearLayout homeLayout, returnLayout;
+    private TextView homeTv, returnTv;
+    private ImageView homeIv, returnIv;
+    private MainActivity mainActivity;
 
     public PopWindow(Context context) {
         this.context = context;
     }
 
-    public void showPopupWindow(View v){
-        popupWindow = new PopupWindow(context);
+    public void showPopWindow(View v) {
         View view = LayoutInflater.from(context).inflate(R.layout.popupwindow_item, null);
-        popupWindow.setContentView(view);
-        popupWindow.setBackgroundDrawable(null);
-        popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-        popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
 
+        // 设置popupWindow的高度 宽度
+        popupWindow = new PopupWindow(view,
+                WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        // 颜色半透明
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0xb0000000));
+        // 设置popupWindow的显示和消失动画
         popupWindow.setAnimationStyle(R.style.PopupAnimation);
+        // 设置中间显示
+        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
         popupWindow.update();
 
-        //初始化组件
-        initView(view);
+        // 初始化组件
+        initViewPop(view);
+        // 添加数据
+        initDataPop();
     }
 
-
-    public void initView(View view){
-        watchAllTv = (TextView) view.findViewById(R.id.popup_watchAll);
-        watchOpticalTv = (TextView) view.findViewById(R.id.popup_watchOptical);
-        watchSunTv = (TextView) view.findViewById(R.id.popup_watchSun);
-        shareTv = (TextView) view.findViewById(R.id.popup_share);
-        shopCartTv = (TextView) view.findViewById(R.id.popup_shopCart);
-        returnHomeTv = (TextView) view.findViewById(R.id.popup_returnHome);
-        exitTv = (TextView) view.findViewById(R.id.popup_exit);
-        watchAllIv = (ImageView) view.findViewById(R.id.popup_watchAll_underline);
-        watchOpticalIv = (ImageView) view.findViewById(R.id.popup_watchOptical_underline);
-        watchSunIv = (ImageView) view.findViewById(R.id.popup_watchSun_underline);
-        shareIv = (ImageView) view.findViewById(R.id.popup_share_underline);
-        shopCartIv = (ImageView) view.findViewById(R.id.popup_shopCart_underline);
-        returnHomeIv = (ImageView) view.findViewById(R.id.popup_returnHome_underline);
-        exitIv = (ImageView) view.findViewById(R.id.popup_exit_underline);
-        watchAllTv.setOnClickListener(this);
-        watchOpticalTv.setOnClickListener(this);
-        watchSunTv.setOnClickListener(this);
-        shareTv.setOnClickListener(this);
-        shopCartTv.setOnClickListener(this);
-        returnHomeTv.setOnClickListener(this);
-        exitTv.setOnClickListener(this);
-
+    private void initDataPop() {
+        param = new HashMap<>();
+        bean = new PopupListBean();
+        NetHelper netHelper = new NetHelper();
+        param.put("token", "");
+        netHelper.getInformation(MENU_LIST, this, param);
     }
+
+    private void initViewPop(View view) {
+        listView = (ListView) view.findViewById(R.id.popup_list);
+        homeTv = (TextView) view.findViewById(R.id.popup_to_home_title);
+        homeIv = (ImageView) view.findViewById(R.id.popup_to_home_line);
+        homeLayout = (LinearLayout) view.findViewById(R.id.popup_to_home_layout);
+        homeLayout.setOnClickListener(this);
+
+        returnTv = (TextView) view.findViewById(R.id.popup_return_title);
+        returnIv = (ImageView) view.findViewById(R.id.popup_return_line);
+        returnLayout = (LinearLayout) view.findViewById(R.id.popup_return_layout);
+        returnLayout.setOnClickListener(this);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 点击界面退出
+                popupWindow.dismiss();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mainActivity = (MainActivity) context;
+                mainActivity.getDatafromFragment(position);
+            }
+        });
+    }
+
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.popup_watchAll:
-                watchAllIv.setVisibility(View.VISIBLE);
-
-                watchOpticalIv.setVisibility(View.INVISIBLE);
-                watchSunIv.setVisibility(View.INVISIBLE);
-                shareIv.setVisibility(View.INVISIBLE);
-                shopCartIv.setVisibility(View.INVISIBLE);
-                returnHomeIv.setVisibility(View.INVISIBLE);
-                exitIv.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.popup_watchOptical:
-                watchOpticalIv.setVisibility(View.VISIBLE);
-
-                watchAllIv.setVisibility(View.INVISIBLE);
-                watchSunIv.setVisibility(View.INVISIBLE);
-                shareIv.setVisibility(View.INVISIBLE);
-                shopCartIv.setVisibility(View.INVISIBLE);
-                returnHomeIv.setVisibility(View.INVISIBLE);
-                exitIv.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.popup_watchSun:
-                watchSunIv.setVisibility(View.VISIBLE);
-
-                watchAllIv.setVisibility(View.INVISIBLE);
-                watchOpticalIv.setVisibility(View.INVISIBLE);
-                shareIv.setVisibility(View.INVISIBLE);
-                shopCartIv.setVisibility(View.INVISIBLE);
-                returnHomeIv.setVisibility(View.INVISIBLE);
-                exitIv.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.popup_share:
-                shareIv.setVisibility(View.VISIBLE);
-
-                watchAllIv.setVisibility(View.INVISIBLE);
-                watchOpticalIv.setVisibility(View.INVISIBLE);
-                watchSunIv.setVisibility(View.INVISIBLE);
-                shopCartIv.setVisibility(View.INVISIBLE);
-                returnHomeIv.setVisibility(View.INVISIBLE);
-                exitIv.setVisibility(View.INVISIBLE);
-
-                break;
-            case R.id.popup_shopCart:
-                shopCartIv.setVisibility(View.VISIBLE);
-
-                watchAllIv.setVisibility(View.INVISIBLE);
-                watchOpticalIv.setVisibility(View.INVISIBLE);
-                watchSunIv.setVisibility(View.INVISIBLE);
-                shareIv.setVisibility(View.INVISIBLE);
-                returnHomeIv.setVisibility(View.INVISIBLE);
-                exitIv.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.popup_returnHome:
-                returnHomeIv.setVisibility(View.VISIBLE);
-
-                watchAllIv.setVisibility(View.INVISIBLE);
-                watchOpticalIv.setVisibility(View.INVISIBLE);
-                watchSunIv.setVisibility(View.INVISIBLE);
-                shareIv.setVisibility(View.INVISIBLE);
-                shopCartIv.setVisibility(View.INVISIBLE);
-                exitIv.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.popup_exit:
-                exitIv.setVisibility(View.VISIBLE);
-
-                watchAllIv.setVisibility(View.INVISIBLE);
-                watchOpticalIv.setVisibility(View.INVISIBLE);
-                watchSunIv.setVisibility(View.INVISIBLE);
-                shareIv.setVisibility(View.INVISIBLE);
-                shopCartIv.setVisibility(View.INVISIBLE);
-                returnHomeIv.setVisibility(View.INVISIBLE);
-                break;
+    public void getSuccess(String body) {
+        try {
+            LogUtils.d("menu的数据.请求成功");
+            JSONObject object = new JSONObject(body);
+            Gson gson = new Gson();
+            bean = gson.fromJson(object.toString(), PopupListBean.class);
+            adapter = new PopupAdapter(bean, context);
+            listView.setAdapter(adapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
+    @Override
+    public void getFail() {
+        LogUtils.d("menu的数据请求失败");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+        }
+    }
 }

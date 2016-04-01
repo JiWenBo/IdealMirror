@@ -1,47 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical">
+
     <LinearLayout
-        android:layout_marginLeft="@dimen/matlefttwo_two"
-        android:layout_marginTop="@dimen/martopthree_four"
+        android:id="@+id/page_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="#fff"
-            android:text="@string/liulan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:layout_gravity="center"
+        android:orientation="vertical">
 
-            android:layout_marginLeft="@dimen/marleft_n"
-            android:src="@drawable/pull_down_content"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/matlefttwo_two"
+            android:layout_marginTop="@dimen/martopthree_four"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/liulan"
+                android:textColor="#fff" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/marleft_n"
+                android:src="@drawable/pull_down_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/matlefttwo_two"
+            android:layout_marginTop="@dimen/matlefttwo_two"
+            android:src="@drawable/title_underline" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/matlefttwo_two"
+            android:layout_marginTop="@dimen/mattop_twosix"
+            android:text="@string/tuij"
+            android:textColor="#fff"
+            android:textSize="23px" />
     </LinearLayout>
-    <ImageView
-        android:layout_marginLeft="@dimen/matlefttwo_two"
-        android:layout_marginTop="@dimen/matlefttwo_two"
-        android:src="@drawable/title_underline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginLeft="@dimen/matlefttwo_two"
-        android:layout_marginTop="@dimen/mattop_twosix"
-        android:textColor="#fff"
-        android:textSize="23px"
-        android:text="@string/tuij"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="@dimen/mattopnine"
         android:id="@+id/recycle"
-        android:layout_marginLeft="22px"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/hei">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="@dimen/hei"
+        android:layout_marginLeft="22px"
+        android:layout_marginTop="@dimen/mattopnine"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
