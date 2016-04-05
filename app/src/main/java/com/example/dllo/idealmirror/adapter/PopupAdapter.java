@@ -8,18 +8,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.dllo.idealmirror.R;
-import com.example.dllo.idealmirror.activity.MainActivity;
+
 import com.example.dllo.idealmirror.bean.GoodList;
-import com.example.dllo.idealmirror.bean.PopupListBean;
-import com.example.dllo.idealmirror.tool.PopWindow;
 
-import java.util.ArrayList;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by nan on 16/3/31.
@@ -27,17 +21,12 @@ import de.greenrobot.event.EventBus;
 public class PopupAdapter extends BaseAdapter {
     private GoodList bean;
     private Context context;
-//    private PopupWindow popupWindow;
-//    private PopWindow popWindow;
-//    private MainActivity mainActivity;
+
 
     public PopupAdapter(GoodList beans, Context context) {
         this.bean = beans;
         this.context = context;
 
-//        mainActivity = (MainActivity) context;
-//        popupWindow = new PopupWindow();
-//        popWindow = new PopWindow(context);
     }
 
 
@@ -73,16 +62,6 @@ public class PopupAdapter extends BaseAdapter {
         holder.underLine.setVisibility(View.INVISIBLE);
         holder.title.setText(bean.getData().getList().get(position).getTitle());
 
-//        final PopupHolder finalHolder = holder;
-//        holder.layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mainActivity.getDatafromFragment((int) getItemId(position));
-//                finalHolder.title.setSelected(true);
-//                finalHolder.underLine.setVisibility(View.VISIBLE);
-//                popupWindow.dismiss();
-//            }
-//        });
         return convertView;
     }
 

@@ -9,61 +9,33 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
-
-
 import android.content.Context;
-import android.support.v4.view.DirectionalViewPager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-
 import android.widget.ImageView;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
-
 import com.example.dllo.idealmirror.bean.GoodList;
-
-import com.example.dllo.idealmirror.bean.PopupListBean;
-
-import com.example.dllo.idealmirror.fragment.PageFragment;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
-import com.example.dllo.idealmirror.tool.LogUtils;
-
 import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
-
-
 import java.lang.reflect.Field;
-
-import java.util.ArrayList;
-import java.util.List;
-import android.support.v4.app.Fragment;
-
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.widget.Scroller;
-
-import de.greenrobot.event.EventBus;
-
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,VolleyListener,Url{
     private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
-    private List<Fragment> data;
+  //  private List<Fragment> data;
     private ImageView mirror;
     private Bundle bundle;
     private GoodList datas;
     private TextView longin;
-    private PopupListBean bean;
-
-
     @Override
     protected int setContent() {
         return R.layout.activity_main;
@@ -80,7 +52,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     @Override
     protected void initData() {
-        data = new ArrayList<>();
+       // data = new ArrayList<>();
         NetHelper netHelper = new NetHelper();
         netHelper.getInformation(MENU_LIST, this, null);
 
@@ -161,17 +133,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         PopWindow popWindow = new PopWindow(this);
         popWindow.initDataPop(datas);
 
-        for (int i = 0; i < datas.getData().getList().size(); i++) {
+     /*   for (int i = 0; i < datas.getData().getList().size(); i++) {
+
             bundle = new Bundle();
-            PageFragment pageFragment = new PageFragment();
+            GoodsListFragment pageFragment = new GoodsListFragment();
             String categorys = datas.getData().getList().get(i).getInfo_data();
             LogUtils.d(categorys);
             bundle.putString("cate", categorys);
             pageFragment.setArguments(bundle);
             data.add(pageFragment);
-        }
+        }*/
 
-        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), data);
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager());
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
     }
@@ -179,6 +152,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     public void getFail() {
 
     }
+
+
+
     //暴露方法 得到position
     public void getDatafromFragment(int position) {
         Log.d("MainActivity", "从fragment历来" + position);

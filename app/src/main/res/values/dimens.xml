@@ -87,7 +87,7 @@
     <dimen name="marlatfthree">32px</dimen>
     <dimen name="martop">16px</dimen>
     <dimen name="textsizetwo">24px</dimen>
-    <dimen name="topthree">30px</dimen>
+    <dimen name="topthree">100px</dimen>
     <dimen name="sixpx">16px</dimen>
     <dimen name="threepx">30px</dimen>
     <dimen name="fourmar">44px</dimen>
@@ -101,5 +101,8 @@
     <dimen name="fourfours">44px</dimen>
     <dimen name="twoehi">28px</dimen>
     <dimen name="twotwoss">22px</dimen>
+    <dimen name="marfour">470px</dimen>
+    <dimen name="sevenfive">750px</dimen>
+    <dimen name="threeten">30px</dimen>
 
 </resources>

@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marlatfthree"
                 android:layout_marginRight="@dimen/marlatfthree"
-                android:layout_marginTop="@dimen/topthree"
+                android:layout_marginTop="32px"
                 android:src="@drawable/create_account_unline" />
 
             <TextView

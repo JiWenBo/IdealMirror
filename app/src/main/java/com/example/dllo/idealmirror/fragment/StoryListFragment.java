@@ -1,21 +1,21 @@
 package com.example.dllo.idealmirror.fragment;
 
 import android.os.Bundle;
-
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.dllo.idealmirror.R;
-import com.example.dllo.idealmirror.adapter.RecyclerAdapter;
+import com.example.dllo.idealmirror.adapter.MrtjAdapter;
+import com.example.dllo.idealmirror.adapter.StoryAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
-import com.example.dllo.idealmirror.bean.GoodsListBean;
+import com.example.dllo.idealmirror.bean.MrtjListBean;
+import com.example.dllo.idealmirror.bean.StoryListBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.PopWindow;
-import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -24,29 +24,26 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 /**
- * Created by dllo on 16/3/29.
+ * Created by dllo on 16/4/1.
  */
-public class PageFragment extends BaseFragment implements VolleyListener, Url {
+public class StoryListFragment extends BaseFragment implements VolleyListener {
+    private StoryAdapter storyAdapter;
+    private StoryListBean storyListBean;
+    private HashMap<String,String> data;
     private RecyclerView recyclerView;
-    private RecyclerAdapter recyclerAdapter;
-    private GoodsListBean goodsListBean;
-
-
-    private HashMap<String,String> parm;
-
     private LinearLayout layout;
     private PopWindow popWindow;
 
 
     @Override
     public int getLayout() {
-        return R.layout.fragment_page;
+        return R.layout.fragment_story;
     }
 
     @Override
     protected void initView() {
-        recyclerView = bindView(R.id.recycle);
-        layout = bindView(R.id.page_layout);
+        recyclerView = bindView(R.id.story_recycle);
+        layout = bindView(R.id.story_layout);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,13 +60,12 @@ public class PageFragment extends BaseFragment implements VolleyListener, Url {
     protected void initData() {
 
         Bundle bundle = getArguments();
-        String sd = bundle.getString("cate");
-        parm = new HashMap<>();
+        String sd = bundle.getString("body");
+        data = new HashMap<>();
         NetHelper netHelper = new NetHelper();
-        parm.put("token", "");
-        parm.put("device_type", "3");
-        parm.put("category_id",sd);
-        netHelper.getInformation(GOODS_LIST, this,parm);
+        data.put("token", "");
+        data.put("device_type", "3");
+        netHelper.getInformation(sd, this,data);
 
     }
 
@@ -80,15 +76,15 @@ public class PageFragment extends BaseFragment implements VolleyListener, Url {
             LogUtils.d("请求成功");
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
-            goodsListBean = gson.fromJson(object.toString(), GoodsListBean.class);
+            storyListBean = gson.fromJson(object.toString(), StoryListBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        recyclerAdapter = new RecyclerAdapter(getContext(),goodsListBean);
+        storyAdapter = new StoryAdapter(getContext(),storyListBean);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(recyclerAdapter);
+        recyclerView.setAdapter(storyAdapter);
 
 
     }
@@ -96,5 +92,17 @@ public class PageFragment extends BaseFragment implements VolleyListener, Url {
     @Override
     public void getFail() {
         LogUtils.d("请求失败");
+    }
+    /**
+     * 通过静态方法将参数传过来
+     * @param body
+     * @return
+     */
+    public static StoryListFragment setUrl(String body){
+        StoryListFragment storyListFragment = new StoryListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("body",body);
+        storyListFragment.setArguments(bundle);
+        return storyListFragment;
     }
 }

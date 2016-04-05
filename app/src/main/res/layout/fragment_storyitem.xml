@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemx"
+    android:layout_width="@dimen/widththouth"
+    android:layout_height="@dimen/heithright">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="@dimen/widththouth"
+        android:layout_height="@dimen/heithright"
+        android:layout_marginRight="@dimen/marleft_twotwo"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="@dimen/marfour"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="@dimen/widththouth"
+            android:layout_height="@dimen/layhei"
+            android:layout_marginTop="@dimen/sevenfive"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marlatfthree"
+                android:layout_marginRight="@dimen/marlatfthree"
+                android:layout_marginTop="@dimen/threeten"
+                android:src="@drawable/create_account_unline" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marlatfthree"
+                android:layout_marginTop="@dimen/sixpx"
+                android:text="@string/caomeiyanj"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/threepx" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>
