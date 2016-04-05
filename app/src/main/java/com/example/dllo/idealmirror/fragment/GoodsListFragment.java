@@ -2,13 +2,17 @@ package com.example.dllo.idealmirror.fragment;
 
 import android.os.Bundle;
 
+import android.support.v4.view.DirectionalViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.adapter.PopupAdapter;
 import com.example.dllo.idealmirror.adapter.RecyclerAdapter;
+import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.net.NetHelper;
@@ -33,7 +37,9 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     private HashMap<String,String> parm;
     private LinearLayout layout;
     private PopWindow popWindow;
-
+    private static String title;
+    private String store;
+    TextView titleTv;
 
     @Override
     public int getLayout() {
@@ -44,10 +50,11 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     protected void initView() {
         recyclerView = bindView(R.id.recycle);
         layout = bindView(R.id.page_layout);
+        titleTv = bindView(R.id.goods_fragment_title);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popWindow = new PopWindow(getContext());
+                popWindow = new PopWindow(getContext(), store);
                 popWindow.showPopWindow(v);
             }
         });
@@ -62,13 +69,15 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         Bundle bundle = getArguments();
         String sd = bundle.getString("body");
         String parms = bundle.getString("parms");
+        title = bundle.getString("title");
+        store = bundle.getString("store");
         parm = new HashMap<>();
         NetHelper netHelper = new NetHelper();
         parm.put("token", "");
         parm.put("device_type", "3");
         parm.put("category_id",parms);
-        netHelper.getInformation(sd,this,parm);
-
+        netHelper.getInformation(sd, this, parm);
+        titleTv.setText(title);
     }
 
 
@@ -95,11 +104,13 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     public void getFail() {
         LogUtils.d("请求失败");
     }
-    public static GoodsListFragment setUrl(String body,String parm){
+    public static GoodsListFragment setUrl(String body, String parm, String title, String store){
         GoodsListFragment goodsListFragment = new GoodsListFragment();
         Bundle bundle = new Bundle();
         bundle.putString("body",body);//url,接口,
         bundle.putString("parms",parm);
+        bundle.putString("title", title);
+        bundle.putString("store", store);
         goodsListFragment.setArguments(bundle);
         return goodsListFragment;
     }

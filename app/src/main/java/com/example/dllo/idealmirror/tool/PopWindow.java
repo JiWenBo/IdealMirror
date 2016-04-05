@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.PopupAdapter;
+import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.bean.GoodList;
 
 import com.example.dllo.idealmirror.net.NetHelper;
@@ -27,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by LYH on 16/3/30.
  */
@@ -35,16 +38,20 @@ public class PopWindow implements Url, View.OnClickListener {
     private Context context;
     private PopupWindow popupWindow;
     private PopupAdapter adapter;
-    private HashMap<String, String> param;
     private LinearLayout homeLayout, returnLayout;
     private TextView homeTv, returnTv;
     private ImageView homeIv, returnIv;
     private MainActivity mainActivity;
     private static GoodList bean;
-    private int position;
+    String store;
 
     public PopWindow(Context context) {
         this.context = context;
+    }
+
+    public PopWindow(Context context, String store) {
+        this.context = context;
+        this.store = store;
     }
 
     public void showPopWindow(View v) {
@@ -68,10 +75,8 @@ public class PopWindow implements Url, View.OnClickListener {
 
     /**
      * 从activity传递实体类
-     *
      * @param beans
      */
-
     public void initDataPop(GoodList beans) {
         this.bean = beans;
     }
@@ -88,7 +93,7 @@ public class PopWindow implements Url, View.OnClickListener {
         returnIv = (ImageView) view.findViewById(R.id.popup_return_line);
         returnLayout = (LinearLayout) view.findViewById(R.id.popup_return_layout);
         returnLayout.setOnClickListener(this);
-        adapter = new PopupAdapter(bean, context, position);
+        adapter = new PopupAdapter(bean, context, store);
         listView.setAdapter(adapter);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,11 +107,11 @@ public class PopWindow implements Url, View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mainActivity = (MainActivity) context;
-//                private static int position = position;
                 mainActivity.getDatafromFragment(position);
                 popupWindow.dismiss();
             }
         });
+
     }
 
    /* @Override
