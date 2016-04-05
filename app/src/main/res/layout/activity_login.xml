@@ -2,92 +2,102 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_create_padding"
     android:background="@color/colorBackground"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/activity_create_padding">
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/login_title_textsize"
+            android:text="@string/loginTitle"
             android:textColor="@color/colorBlack"
-            android:text="@string/loginTitle"/>
+            android:textSize="@dimen/login_title_textsize" />
+
         <ImageView
             android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/close"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:src="@drawable/close" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_titleUndline_top"
         android:layout_gravity="center"
-        android:background="@drawable/item_underline_black"/>
+        android:layout_marginTop="@dimen/login_titleUndline_top"
+        android:background="@drawable/item_underline_black" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_phone_top"
+        android:text="@string/phoneNumber"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/login_phone_size"
-        android:text="@string/phoneNumber"/>
+        android:textSize="@dimen/login_phone_size" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/login_phoneNumber_top"
-        android:textColor="@color/colorBlack"
-        android:background="@drawable/phonenum_input"/>
+        android:background="@drawable/phonenum_input"
+        android:textColor="@color/colorBlack" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_passWd_top"
+        android:text="@string/passWord"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/login_passWord_size"
-        android:text="@string/passWord"/>
+        android:textSize="@dimen/login_passWord_size" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/login_passWord_top"
-        android:textColor="@color/colorBlack"
-        android:background="@drawable/phonenum_input"/>
+        android:background="@drawable/phonenum_input"
+        android:textColor="@color/colorBlack" />
+
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/heithzero"
         android:layout_weight="1">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/login_forget_top"
-            android:textSize="@dimen/login_forget_size"
+            android:text="@string/forgetPwd"
             android:textColor="@color/colorBlack"
-            android:text="@string/forgetPwd"/>
+            android:textSize="@dimen/login_forget_size" />
+
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_edit_height"
             android:layout_marginTop="@dimen/login_loginBtn_top"
-            android:textSize="@dimen/login_loginBtn_size"
-            android:textColor="@color/colorWhite"
-            android:gravity="center"
             android:background="@drawable/login_selector"
-            android:text="@string/loginBtn"/>
+            android:gravity="center"
+            android:text="@string/loginBtn"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/login_loginBtn_size" />
+
         <Button
             android:id="@+id/creat_number"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_edit_height"
             android:layout_below="@id/login_btn"
             android:layout_marginTop="@dimen/login_create_top"
-            android:textSize="@dimen/login_create_size"
-            android:textColor="@color/colorWhite"
-            android:gravity="center"
             android:background="@drawable/login_btn_true"
-            android:text="@string/createAccounts"/>
+            android:gravity="center"
+            android:text="@string/createAccounts"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/login_create_size" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -95,7 +105,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/login_sina_bottom"
             android:paddingLeft="@dimen/login_sina_paddingleft"
-            android:src="@drawable/sina_icon"/>
+            android:src="@drawable/sina_icon" />
+
         <ImageView
             android:id="@+id/weixin_iv"
             android:layout_width="wrap_content"
@@ -104,16 +115,17 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/login_wechat_bottom"
             android:paddingRight="@dimen/login_wechat_paddingright"
-            android:src="@drawable/wechat_icon"/>
+            android:src="@drawable/wechat_icon" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/weixin_iv"
-            android:layout_marginBottom="@dimen/login_social_bottom"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/login_social_size"
+            android:layout_marginBottom="@dimen/login_social_bottom"
+            android:text="@string/socialContactPwd"
             android:textColor="@color/colorBlack"
-            android:text="@string/socialContactPwd"/>
+            android:textSize="@dimen/login_social_size" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

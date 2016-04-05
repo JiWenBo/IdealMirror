@@ -27,19 +27,13 @@ import de.greenrobot.event.EventBus;
 public class PopupAdapter extends BaseAdapter {
     private GoodList bean;
     private Context context;
-//    private PopupWindow popupWindow;
-//    private PopWindow popWindow;
-//    private MainActivity mainActivity;
+    private int position;
 
-    public PopupAdapter(GoodList beans, Context context) {
+    public PopupAdapter(GoodList beans, Context context, int position) {
         this.bean = beans;
         this.context = context;
-
-//        mainActivity = (MainActivity) context;
-//        popupWindow = new PopupWindow();
-//        popWindow = new PopWindow(context);
+        this.position = position;
     }
-
 
     @Override
     public int getCount() {
@@ -64,31 +58,19 @@ public class PopupAdapter extends BaseAdapter {
             holder = new PopupHolder();
             holder.title = (TextView) convertView.findViewById(R.id.popup_item_tv);
             holder.underLine = (ImageView) convertView.findViewById(R.id.popup_item_line);
-            holder.layout = (LinearLayout) convertView.findViewById(R.id.popup_item_layout);
             convertView.setTag(holder);
         } else {
             holder = (PopupHolder) convertView.getTag();
         }
+        holder.title.setText(bean.getData().getList().get(position).getTitle());
         holder.title.setSelected(false);
         holder.underLine.setVisibility(View.INVISIBLE);
-        holder.title.setText(bean.getData().getList().get(position).getTitle());
 
-//        final PopupHolder finalHolder = holder;
-//        holder.layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mainActivity.getDatafromFragment((int) getItemId(position));
-//                finalHolder.title.setSelected(true);
-//                finalHolder.underLine.setVisibility(View.VISIBLE);
-//                popupWindow.dismiss();
-//            }
-//        });
         return convertView;
     }
 
     public class PopupHolder {
         private TextView title;
         private ImageView underLine;
-        private LinearLayout layout;
     }
 }

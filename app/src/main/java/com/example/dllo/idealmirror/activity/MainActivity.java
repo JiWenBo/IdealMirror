@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.widget.ImageView;
+
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
@@ -41,10 +42,12 @@ import java.lang.reflect.Field;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.support.v4.app.Fragment;
 
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,7 +56,7 @@ import android.widget.Scroller;
 import de.greenrobot.event.EventBus;
 
 
-public class MainActivity extends BaseActivity implements View.OnClickListener,VolleyListener,Url{
+public class MainActivity extends BaseActivity implements View.OnClickListener, VolleyListener, Url {
     private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
     private List<Fragment> data;
@@ -62,7 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     private GoodList datas;
     private TextView longin;
     private PopupListBean bean;
-
+    private static int position;
 
     @Override
     protected int setContent() {
@@ -88,13 +91,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.mirrorpic: //Mirror按钮动画
                 playHeartbeatAnimation();
                 break;
 
             case R.id.login:     //登陆
-                Intent intent = new Intent(this,LoginActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -154,7 +157,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         try {
             JSONObject jsonObject = new JSONObject(body);
             Gson gson = new Gson();
-          datas =  gson.fromJson(jsonObject.toString(), GoodList.class);
+            datas = gson.fromJson(jsonObject.toString(), GoodList.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -175,14 +178,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
     }
+
     @Override
     public void getFail() {
 
     }
+
     //暴露方法 得到position
     public void getDatafromFragment(int position) {
         Log.d("MainActivity", "从fragment历来" + position);
-
+        this.position = position;
         //这个是设置viewPager切换过度时间的类
         ViewPagerScroller scroller = new ViewPagerScroller(this);
         scroller.setScrollDuration(80);
