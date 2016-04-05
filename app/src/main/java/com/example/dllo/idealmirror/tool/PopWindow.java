@@ -41,7 +41,7 @@ public class PopWindow implements Url, View.OnClickListener {
     private ImageView homeIv, returnIv;
     private MainActivity mainActivity;
     private static GoodList bean;
-
+    private int position;
 
     public PopWindow(Context context) {
         this.context = context;
@@ -52,9 +52,9 @@ public class PopWindow implements Url, View.OnClickListener {
 
         // 设置popupWindow的高度 宽度
         popupWindow = new PopupWindow(view,
-                WindowManager.LayoutParams.MATCH_PARENT,1000);
+                WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         // 颜色半透明
-        popupWindow.setBackgroundDrawable(new ColorDrawable(0xb0000000));
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
         // 设置popupWindow的显示和消失动画
         popupWindow.setAnimationStyle(R.style.PopupAnimation);
         // 设置中间显示
@@ -68,11 +68,11 @@ public class PopWindow implements Url, View.OnClickListener {
 
     /**
      * 从activity传递实体类
+     *
      * @param beans
      */
 
     public void initDataPop(GoodList beans) {
-
         this.bean = beans;
     }
 
@@ -88,7 +88,7 @@ public class PopWindow implements Url, View.OnClickListener {
         returnIv = (ImageView) view.findViewById(R.id.popup_return_line);
         returnLayout = (LinearLayout) view.findViewById(R.id.popup_return_layout);
         returnLayout.setOnClickListener(this);
-        adapter = new PopupAdapter(bean,context);
+        adapter = new PopupAdapter(bean, context, position);
         listView.setAdapter(adapter);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +102,7 @@ public class PopWindow implements Url, View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mainActivity = (MainActivity) context;
+//                private static int position = position;
                 mainActivity.getDatafromFragment(position);
                 popupWindow.dismiss();
             }

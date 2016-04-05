@@ -9,73 +9,81 @@
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/addAddress_title_top"
         android:layout_marginRight="@dimen/addAddress_title_right"
-        >
+        android:layout_marginTop="@dimen/addAddress_title_top">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/addAddress_title_size"
+            android:text="@string/addAddress"
             android:textColor="@color/colorBlack"
-            android:text="@string/addAddress"/>
+            android:textSize="@dimen/addAddress_title_size" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/close"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:src="@drawable/close" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/addAddress_titleUnderline_top"
         android:layout_gravity="center"
-        android:background="@drawable/item_underline_black"/>
+        android:layout_marginTop="@dimen/addAddress_titleUnderline_top"
+        android:background="@drawable/item_underline_black" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/addAddress_addName_top"
+        android:text="@string/addReceiverName"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/addAddress_addName_size"
-        android:text="@string/addReceiverName"/>
+        android:textSize="@dimen/addAddress_addName_size" />
+
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/addAddress_addName_edit_height"
         android:layout_marginTop="@dimen/addAddress_addNameEt_top"
-        android:textColor="@color/colorBlack"
-        android:background="@drawable/phonenum_input"/>
+        android:background="@drawable/phonenum_input"
+        android:textColor="@color/colorBlack" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/addAddress_addPhone_top"
+        android:text="@string/addContactPhone"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/addAddress_addPhone_size"
-        android:text="@string/addContactPhone"/>
+        android:textSize="@dimen/addAddress_addPhone_size" />
+
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/addAddress_addPhone_edit_height"
         android:layout_marginTop="@dimen/addAddress_addPhoneEt_top"
-        android:textColor="@color/colorBlack"
-        android:background="@drawable/phonenum_input"/>
+        android:background="@drawable/phonenum_input"
+        android:textColor="@color/colorBlack" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/addAddress_addAddress_top"
+        android:text="@string/addReceiverGoodsAddress"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/addAddress_addAddress_size"
-        android:text="@string/addReceiverGoodsAddress"/>
+        android:textSize="@dimen/addAddress_addAddress_size" />
+
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/addAddress_address_edit_height"
         android:layout_marginTop="@dimen/addAddress_addAddressEt_top"
-        android:textColor="@color/colorBlack"
-        android:background="@drawable/address_input"/>
+        android:background="@drawable/address_input"
+        android:textColor="@color/colorBlack" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/addAddress_commitAddress_top"
         android:background="@drawable/create_account_true"
-        android:textSize="@dimen/addAddress_commitAddress_size"
         android:gravity="center"
-        android:text="@string/commitAddress"/>
+        android:text="@string/commitAddress"
+        android:textSize="@dimen/addAddress_commitAddress_size" />
 </com.zhy.autolayout.AutoLinearLayout>
