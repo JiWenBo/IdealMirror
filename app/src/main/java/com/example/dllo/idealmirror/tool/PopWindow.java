@@ -17,7 +17,7 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.PopupAdapter;
 import com.example.dllo.idealmirror.bean.GoodList;
-import com.example.dllo.idealmirror.bean.PopupListBean;
+
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.google.gson.Gson;

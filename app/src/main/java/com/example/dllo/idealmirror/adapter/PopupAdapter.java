@@ -8,18 +8,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.dllo.idealmirror.R;
-import com.example.dllo.idealmirror.activity.MainActivity;
+
 import com.example.dllo.idealmirror.bean.GoodList;
-import com.example.dllo.idealmirror.bean.PopupListBean;
-import com.example.dllo.idealmirror.tool.PopWindow;
 
-import java.util.ArrayList;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by nan on 16/3/31.

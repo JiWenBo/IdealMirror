@@ -9,27 +9,27 @@ import android.widget.ImageView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
-import com.example.dllo.idealmirror.bean.GoodsListBean;
+import com.example.dllo.idealmirror.bean.MrtjListBean;
+import com.example.dllo.idealmirror.bean.StoryListBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.zhy.autolayout.utils.AutoUtils;
 
 /**
- * Created by dllo on 16/3/30.
+ * Created by dllo on 16/4/1.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
-    private GoodsListBean goodsListBean;
+public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder> {
+    private StoryListBean storyListBean;
     private Context context;
 
-    public RecyclerAdapter(Context context,GoodsListBean goodsListBeans) {
+    public StoryAdapter(Context context, StoryListBean storyListBeans) {
         this.context = context;
-        this.goodsListBean = goodsListBeans;
+        this.storyListBean = storyListBeans;
     }
-
 
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_goodsitem, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_storyitem, null);
         return new MyViewHolder(view);
     }
 
@@ -38,13 +38,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         NetHelper netHelper = new NetHelper();
 
         ImageLoader loader = netHelper.getImageLoader();
-        String goodsurl = goodsListBean.getData().getList().get(0).getGoods_img();
+        String goodsurl = storyListBean.getData().getList().get(position).getStory_img();
         loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
     }
 
     @Override
     public int getItemCount() {
-            return  goodsListBean.getData().getList().size();
+        return storyListBean.getData().getList().size();
 
     }
 
@@ -56,7 +56,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             super(itemView);
             AutoUtils.autoSize(itemView);
             img = (ImageView) itemView.findViewById(R.id.picture);
-           // tex = (LinearLayout) itemView.findViewById(R.id.itemx);
+            // tex = (LinearLayout) itemView.findViewById(R.id.itemx);
         }
     }
+
 }
