@@ -10,7 +10,7 @@ import com.example.dllo.idealmirror.base.BaseActivity;
  * Created by nan on 16/3/30.
  */
 public class CreateActivity extends BaseActivity implements View.OnClickListener{
-    private ImageView creatclose;
+    private ImageView close;
 
     @Override
     protected int setContent() {
@@ -19,18 +19,18 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
-       creatclose = bindView(R.id.creat_close);
+       close = bindView(R.id.create_close);
     }
 
     @Override
     protected void initData() {
-        creatclose.setOnClickListener(this);
+        close.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.creat_close:
+            case R.id.create_close:
                 finish();
                 break;
         }
