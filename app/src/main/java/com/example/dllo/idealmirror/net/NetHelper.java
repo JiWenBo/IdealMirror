@@ -26,8 +26,8 @@ public class NetHelper {
         //请求队列的初始化
         SingleQueue singleQueue = SingleQueue.getInstance();
         requestQueue = singleQueue.getQueue();
-        imageLoader = new ImageLoader(requestQueue, new MenoryCache());//初始化ImageLoader.请求队列，重点第二个参数
-        //
+        imageLoader = new ImageLoader(requestQueue,new ImageLoaderCache());//初始化ImageLoader.请求队列，重点第二个参数
+
     }
 
     public ImageLoader getImageLoader() {

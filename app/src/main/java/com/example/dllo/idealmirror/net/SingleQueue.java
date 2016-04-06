@@ -23,9 +23,7 @@ public class SingleQueue {
                 if (singleQueue == null){
                     singleQueue = new SingleQueue();
                 }
-
             }
-
         }
         return singleQueue;
     }

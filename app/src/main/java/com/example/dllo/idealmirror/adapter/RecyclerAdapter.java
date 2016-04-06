@@ -56,7 +56,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             super(itemView);
             AutoUtils.autoSize(itemView);
             img = (ImageView) itemView.findViewById(R.id.picture);
-           // tex = (LinearLayout) itemView.findViewById(R.id.itemx);
         }
     }
 }

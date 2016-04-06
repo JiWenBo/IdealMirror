@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.dllo.idealmirror.fragment.GoodsListFragment;
 import com.example.dllo.idealmirror.fragment.MrtjFragment;
+import com.example.dllo.idealmirror.fragment.ShoppingFragment;
 import com.example.dllo.idealmirror.fragment.StoryListFragment;
 import com.example.dllo.idealmirror.tool.Url;
 
@@ -17,9 +18,11 @@ import java.util.List;
  */
 public class VerticalAdapter extends FragmentPagerAdapter implements Url{
    // List<Fragment> data;
+    private ShoppingFragment fragmenta;
     public VerticalAdapter(FragmentManager fm) {
         super(fm);
        // this.data = datafrag;
+        fragmenta = new ShoppingFragment();
     }
 
     @Override
@@ -35,6 +38,8 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url{
                 return GoodsListFragment.setUrl("http://api101.test.mirroreye.cn/index.php/products/goods_list","268");
             case 4:
                 return StoryListFragment.setUrl("http://api101.test.mirroreye.cn/index.php/story/story_list");
+            case 5:
+                return fragmenta;
 
         }
 
@@ -48,7 +53,7 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url{
 
     @Override
     public int getCount() {
-        return 5;
+        return 6;
     }
 
 

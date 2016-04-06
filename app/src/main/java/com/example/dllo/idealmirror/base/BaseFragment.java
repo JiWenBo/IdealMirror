@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.zhy.autolayout.AutoFrameLayout;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by nan on 16/3/29.
  */

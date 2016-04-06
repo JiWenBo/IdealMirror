@@ -49,30 +49,22 @@ public class DirectionalViewPager extends ViewPager {
     private static final String TAG = "DirectionalViewPager";
     private static final String XML_NS = "http://schemas.android.com/apk/res/android";
     private static final boolean DEBUG = false;
-
     private static final boolean USE_CACHE = false;
-
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
-
     private final ArrayList<ItemInfo> mItems = new ArrayList<ItemInfo>();
-
     private PagerAdapter mAdapter;
     private int          mCurItem; // Index of currently displayed page.
     private int mRestoredCurItem = -1;
     private Parcelable mRestoredAdapterState = null;
     private ClassLoader mRestoredClassLoader = null;
     private Scroller mScroller;
-
     private int mChildWidthMeasureSpec;
     private int mChildHeightMeasureSpec;
     private boolean mInLayout;
-
     private boolean mScrollingCacheEnabled;
-
     private boolean mPopulatePending;
     private boolean mScrolling;
-
     private boolean mIsBeingDragged;
     private boolean mIsUnableToDrag;
     private int mTouchSlop;

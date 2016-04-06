@@ -21,7 +21,7 @@ import android.widget.ImageView;
 /**
  * Created by dllo on 16/3/29.
  */
-public class ImageLoaderCache {
+public class ImageLoaderCache implements ImageLoader.ImageCache{
     private ImageLoader imageLoader;
     // 文件存储路径
     private String diskPath;
@@ -52,6 +52,16 @@ public class ImageLoaderCache {
         }
         diskPath = file.getAbsolutePath();
         imageLoader = new ImageLoader(requestQueue, new DoubleCache());
+    }
+
+    @Override
+    public Bitmap getBitmap(String url) {
+        return null;
+    }
+
+    @Override
+    public void putBitmap(String url, Bitmap bitmap) {
+
     }
 
     /**

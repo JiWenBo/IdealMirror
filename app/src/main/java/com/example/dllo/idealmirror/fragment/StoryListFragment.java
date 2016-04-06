@@ -5,12 +5,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import com.example.dllo.idealmirror.R;
-import com.example.dllo.idealmirror.adapter.MrtjAdapter;
 import com.example.dllo.idealmirror.adapter.StoryAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
-import com.example.dllo.idealmirror.bean.MrtjListBean;
 import com.example.dllo.idealmirror.bean.StoryListBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
@@ -28,7 +25,7 @@ import java.util.HashMap;
  */
 public class StoryListFragment extends BaseFragment implements VolleyListener {
     private StoryAdapter storyAdapter;
-    private StoryListBean storyListBean;
+    private static StoryListBean storyListBean;
     private HashMap<String,String> data;
     private RecyclerView recyclerView;
     private LinearLayout layout;
@@ -65,7 +62,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener {
         NetHelper netHelper = new NetHelper();
         data.put("token", "");
         data.put("device_type", "3");
-        netHelper.getInformation(sd, this,data);
+        netHelper.getInformation(sd, this, data);
 
     }
 
@@ -80,6 +77,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         storyAdapter = new StoryAdapter(getContext(),storyListBean);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -104,5 +102,9 @@ public class StoryListFragment extends BaseFragment implements VolleyListener {
         bundle.putString("body",body);
         storyListFragment.setArguments(bundle);
         return storyListFragment;
+    }
+
+    public static StoryListBean bean(){
+        return storyListBean;
     }
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/itemx"
+    android:id="@+id/storyitem"
     android:layout_width="@dimen/widththouth"
-    android:layout_height="@dimen/heithright">
+    android:layout_height="@dimen/nineone">
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="@dimen/widththouth"
-        android:layout_height="@dimen/heithright"
+        android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/marleft_twotwo"
         android:background="@color/colorWhite">
 
@@ -18,8 +18,8 @@
 
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="@dimen/widththouth"
-            android:layout_height="@dimen/layhei"
-            android:layout_marginTop="@dimen/sevenfive"
+            android:layout_height="@dimen/onefive"
+            android:layout_marginTop="@dimen/sevennine"
             android:background="@color/colorWhite"
             android:orientation="vertical">
             <ImageView
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marlatfthree"
                 android:layout_marginRight="@dimen/marlatfthree"
-                android:layout_marginTop="@dimen/threeten"
+                android:layout_marginTop="@dimen/threefour"
                 android:src="@drawable/create_account_unline" />
 
             <TextView

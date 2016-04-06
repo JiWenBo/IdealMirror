@@ -109,6 +109,10 @@
     <dimen name="marfour">470px</dimen>
     <dimen name="sevenfive">750px</dimen>
     <dimen name="threeten">30px</dimen>
+    <dimen name="nineone">912px</dimen>
+    <dimen name="sevennine">750px</dimen>
+    <dimen name="threefour">34px</dimen>
+    <dimen name="onefive">158px</dimen>
 
 
 </resources>
