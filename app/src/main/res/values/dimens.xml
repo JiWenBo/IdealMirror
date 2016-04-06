@@ -64,6 +64,7 @@
     <dimen name="recyclerView_allAddress_deleteWidth">130px</dimen>
     <dimen name="recyclerView_allAddress_delete_size">26px</dimen>
     <dimen name="login_edit_height">80px</dimen>
+
     <dimen name="widthzero">0dp</dimen>
     <dimen name="heihun">160px</dimen>
     <dimen name="fifthpx">50px</dimen>
@@ -121,6 +122,9 @@
     <dimen name="three">32px</dimen>
     <dimen name="twotwos">22px</dimen>
     <dimen name="twoing">20px</dimen>
+
+
+    <dimen name="addAddress_edit">200px</dimen>
 
 
 </resources>
