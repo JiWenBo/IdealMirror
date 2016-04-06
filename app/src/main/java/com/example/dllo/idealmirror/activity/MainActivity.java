@@ -18,6 +18,8 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.GoodList;
+import com.example.dllo.idealmirror.fragment.GoodsListFragment;
+import com.example.dllo.idealmirror.fragment.MrtjFragment;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.PopWindow;
@@ -50,6 +52,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     private Bundle bundle;
     private GoodList datas;
     private TextView longin;
+
 
     @Override
     protected int setContent() {
@@ -146,7 +149,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         }
         PopWindow popWindow = new PopWindow(this);
         popWindow.initDataPop(datas);
-
         verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), datas);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);

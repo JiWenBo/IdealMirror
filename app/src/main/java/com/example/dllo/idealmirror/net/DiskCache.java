@@ -25,9 +25,10 @@ public class DiskCache implements ImageLoader.ImageCache {
             // 获取url中的图片名称
 
             String fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
+           LogUtils.d("存储url",url);
             // 用文件名拼接出实际文件存储路径
             String filePath = diskPath + "/" + fileName;
-            LogUtils.d(filePath);
+            LogUtils.d("存储路径",filePath);
             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
             return bitmap;
         }

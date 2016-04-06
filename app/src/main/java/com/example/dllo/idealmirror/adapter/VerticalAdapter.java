@@ -41,9 +41,9 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url{
              store = datas.getData().getList().get(position).getStore();
              title = datas.getData().getList().get(position).getTitle();
         }
-
-        LogUtils.d(store);
         switch (position){
+
+
             case 0:
                 return MrtjFragment.setUrl(INDEX_MRTJ, title, store);
             case 1:
