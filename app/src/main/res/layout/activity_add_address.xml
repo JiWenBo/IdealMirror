@@ -40,7 +40,7 @@
         android:text="@string/addReceiverName"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/addAddress_addNameEt_top"
         android:textColor="@color/colorBlack"
         android:background="@drawable/phonenum_input"/>
@@ -53,7 +53,7 @@
         android:text="@string/addContactPhone"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/addAddress_addPhoneEt_top"
         android:textColor="@color/colorBlack"
         android:background="@drawable/phonenum_input"/>
@@ -66,13 +66,13 @@
         android:text="@string/addReceiverGoodsAddress"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/addAddress_edit"
         android:layout_marginTop="@dimen/addAddress_addAddressEt_top"
         android:textColor="@color/colorBlack"
         android:background="@drawable/address_input"/>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/addAddress_commitAddress_top"
         android:background="@drawable/create_account_true"
         android:textSize="@dimen/addAddress_commitAddress_size"
