@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
+import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -40,6 +41,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         ImageLoader loader = netHelper.getImageLoader();
         String goodsurl = goodsListBean.getData().getList().get(0).getGoods_img();
         loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.ShareActivity;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
 import com.example.dllo.idealmirror.bean.StoryListBean;
+import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
@@ -43,6 +44,8 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
         ImageLoader loader = netHelper.getImageLoader();
         String goodsurl = storyListBean.getData().getList().get(position).getStory_img();
         loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+
+
     }
 
     @Override

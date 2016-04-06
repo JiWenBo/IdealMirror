@@ -29,15 +29,15 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url{
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return MrtjFragment.setUrl("http://api101.test.mirroreye.cn/index.php/index/mrtj");
+                return MrtjFragment.setUrl(INDEX_MRTJ);
             case 1:
-                return GoodsListFragment.setUrl("http://api101.test.mirroreye.cn/index.php/products/goods_list","269");
+                return GoodsListFragment.setUrl(GOODS_LIST,"269");
             case 2:
-                return GoodsListFragment.setUrl("http://api101.test.mirroreye.cn/index.php/products/goods_list","268");
+                return GoodsListFragment.setUrl(GOODS_LIST,"268");
             case 3:
-                return GoodsListFragment.setUrl("http://api101.test.mirroreye.cn/index.php/products/goods_list","268");
+                return GoodsListFragment.setUrl(GOODS_LIST,"268");
             case 4:
-                return StoryListFragment.setUrl("http://api101.test.mirroreye.cn/index.php/story/story_list");
+                return StoryListFragment.setUrl(STORY_LIST);
             case 5:
                 return fragmenta;
 

@@ -1,4 +1,5 @@
 package com.example.dllo.idealmirror.fragment;
+import android.util.Log;
 import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseFragment;
@@ -8,12 +9,12 @@ import com.example.dllo.idealmirror.base.BaseFragment;
  */
 public class ShareFragmnet extends BaseFragment{
     private  TextView titles,subtitle,smalltitle;
-    private String _titile,_subtitle,_smalltitle;
+    private static String _titile,_subtitle,_smalltitle;
 
-    public void ShareFragmnets(String titlke,String s,String ds) {
-        _titile = titlke;
-        _subtitle = s;
-        _smalltitle = ds;
+    public void ShareFragmnets(String smal,String title,String subti) {
+        _smalltitle = smal;
+        _titile = title;
+        _subtitle = subti;
     }
 
     @Override
@@ -32,9 +33,7 @@ public class ShareFragmnet extends BaseFragment{
     @Override
     protected void initData() {
         smalltitle.setText(_smalltitle);
-    }
-    public static ShareFragmnet getFragment(){
-        ShareFragmnet shareFragmnet = new ShareFragmnet();
-        return shareFragmnet;
+        subtitle.setText(_subtitle);
+        titles.setText(_titile);
     }
 }

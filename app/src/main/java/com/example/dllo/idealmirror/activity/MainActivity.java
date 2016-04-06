@@ -46,7 +46,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
-  //  private List<Fragment> data;
     private ImageView mirror;
     private Bundle bundle;
     private GoodList datas;
@@ -160,7 +159,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     //暴露方法 得到position
     public void getDatafromFragment(int position) {
-        Log.d("MainActivity", "从fragment历来" + position);
         this.position = position;
         //这个是设置viewPager切换过度时间的类
         ViewPagerScroller scroller = new ViewPagerScroller(this);

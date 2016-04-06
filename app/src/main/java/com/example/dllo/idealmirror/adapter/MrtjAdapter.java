@@ -11,6 +11,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
+import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -41,6 +42,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder>{
         ImageLoader loader = netHelper.getImageLoader();
         String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
         loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+
     }
 
     @Override
@@ -57,7 +59,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder>{
             super(itemView);
             AutoUtils.autoSize(itemView);
             img = (ImageView) itemView.findViewById(R.id.picture);
-            // tex = (LinearLayout) itemView.findViewById(R.id.itemx);
+
         }
     }
 }

@@ -113,6 +113,14 @@
     <dimen name="sevennine">750px</dimen>
     <dimen name="threefour">34px</dimen>
     <dimen name="onefive">158px</dimen>
+    <dimen name="sixzero">640px</dimen>
+    <dimen name="sixfive">650px</dimen>
+    <dimen name="sixone">610px</dimen>
+    <dimen name="twonine">290px</dimen>
+    <dimen name="fourtwo">42px</dimen>
+    <dimen name="three">32px</dimen>
+    <dimen name="twotwos">22px</dimen>
+    <dimen name="twoing">20px</dimen>
 
 
 </resources>

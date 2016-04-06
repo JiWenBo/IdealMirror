@@ -7,8 +7,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
+import com.example.dllo.idealmirror.base.BaseApplication;
+import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.Url;
 
+import java.io.File;
 import java.util.HashMap;
 
 import java.util.Map;
@@ -20,13 +23,29 @@ public class NetHelper {
     RequestQueue requestQueue;
     VolleyListener postListenetr;//接口对象，请求后回调
     private ImageLoader imageLoader;//用来加载网络图片
+    private String diskPath;
 
 
     public NetHelper() {
         //请求队列的初始化
         SingleQueue singleQueue = SingleQueue.getInstance();
         requestQueue = singleQueue.getQueue();
-        imageLoader = new ImageLoader(requestQueue,new ImageLoaderCache());//初始化ImageLoader.请求队列，重点第二个参数
+        //初始化ImageLoader 需要2个参数,分别是请求队列和缓存对象
+        //缓存分三级    第一级  硬盘级,缓存会存在SD卡中
+        //            第二级  是在内存中,存在
+        //            第三级  网络层
+        //定义硬盘图片缓存的根路径
+        //将图片储存在/data/data 目录下
+        File file = BaseApplication.getContext().getCacheDir();
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        diskPath = BaseApplication.getContext().getCacheDir().toString();
+
+        LogUtils.d("文件路径",BaseApplication.getContext().getCacheDir().toString());
+        //实现三级缓存
+        imageLoader = new ImageLoader(requestQueue, new DiskCache(diskPath));
+     //   imageLoader = new ImageLoader(requestQueue,new MenoryCache());//初始化ImageLoader.请求队列，重点第二个参数
 
     }
 
@@ -55,7 +74,6 @@ public class NetHelper {
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-
                 return param;
             }
         };
@@ -63,11 +81,9 @@ public class NetHelper {
         requestQueue.add(request);
 
     }
-
     public void getImageList(String url, ImageLoader.ImageListener listener) {
         imageLoader.get(url, listener, 100, 100);
     }
-
     public void getImage(String url, ImageLoader.ImageListener listener) {
         imageLoader.get(url, listener);
     }

@@ -7,6 +7,7 @@ import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.StoryListBean;
 import com.example.dllo.idealmirror.fragment.ShareFragmnet;
 import com.example.dllo.idealmirror.fragment.StoryListFragment;
+import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,9 @@ public class ShareActivity extends BaseActivity {
         adapter = new ShareAdapter(getSupportFragmentManager(),beans);
         viewPagers.setAdapter(adapter);
         viewPagers.setOrientation(DirectionalViewPager.VERTICAL);
-        setImg(0);
+        /*
+        * 给一个初始的值,以免第一次进入时没有数据*/
+        setImgandtext(0);
         viewPagers.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -58,8 +61,7 @@ public class ShareActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.e("1", position + "S");
-                setImg(position);
+                setImgandtext(position);
             }
 
             @Override
@@ -69,10 +71,15 @@ public class ShareActivity extends BaseActivity {
         });
     }
 
-    private void  setImg(int position){
+    private void  setImgandtext(int position){
         NetHelper netHelper = new NetHelper();
         ImageLoader imageLoader = netHelper.getImageLoader();
         imageLoader.get(beans.getData().getList().get(1).getStory_data().getImg_array().get(position),
                 ImageLoader.getImageListener(imageViewl, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+        ShareFragmnet shareFragmnet = new ShareFragmnet();
+        shareFragmnet.ShareFragmnets(beans.getData().getList().get(1).getStory_data().getText_array().get(position).getSmallTitle(),
+                beans.getData().getList().get(1).getStory_data().getText_array().get(position).getTitle(),
+                beans.getData().getList().get(1).getStory_data().getText_array().get(position).getSubTitle());
+
     }
 }
