@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     private Bundle bundle;
     private GoodList datas;
     private TextView longin;
-    private static int position;
+
     @Override
     protected int setContent() {
         return R.layout.activity_main;
@@ -147,7 +147,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         PopWindow popWindow = new PopWindow(this);
         popWindow.initDataPop(datas);
 
-        verticalAdapter = new VerticalAdapter(getSupportFragmentManager());
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), datas);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
     }
@@ -159,7 +159,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     //暴露方法 得到position
     public void getDatafromFragment(int position) {
-        this.position = position;
+        Log.d("MainActivity", "从fragment历来" + position);
+
         //这个是设置viewPager切换过度时间的类
         ViewPagerScroller scroller = new ViewPagerScroller(this);
         scroller.setScrollDuration(80);

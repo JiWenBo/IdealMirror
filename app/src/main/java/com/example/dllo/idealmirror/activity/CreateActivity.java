@@ -27,11 +27,13 @@ import java.util.Map;
 /**
  * Created by nan on 16/3/30.
  */
+
 public class CreateActivity extends BaseActivity implements View.OnClickListener, Url {
     ImageView closeIv;
     EditText phoneEt, codeEt, passwordEt;
     Button codeBtn, accountBtn;
     private UserRegBean bean;
+
 
     @Override
     protected int setContent() {
@@ -40,6 +42,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
+
         closeIv = bindView(R.id.create_close);
         phoneEt = bindView(R.id.create_phone_et);
         codeEt = bindView(R.id.create_verifi_et);
@@ -50,6 +53,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
+
         closeIv.setOnClickListener(this);
         codeBtn.setOnClickListener(this);
         accountBtn.setOnClickListener(this);

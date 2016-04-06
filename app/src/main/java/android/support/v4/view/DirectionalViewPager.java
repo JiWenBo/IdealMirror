@@ -32,6 +32,8 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
+import com.example.dllo.idealmirror.adapter.PopupAdapter;
+
 import java.util.ArrayList;
 
 /**
@@ -98,6 +100,10 @@ public class DirectionalViewPager extends ViewPager {
     private OnPageChangeListener mOnPageChangeListener;
 
     private int mScrollState = SCROLL_STATE_IDLE;
+
+    public int getmCurItem() {
+        return mCurItem;
+    }
 
     public DirectionalViewPager(Context context) {
         super(context);
@@ -1087,4 +1093,5 @@ public class DirectionalViewPager extends ViewPager {
             dataSetChanged();
         }
     }
+
 }

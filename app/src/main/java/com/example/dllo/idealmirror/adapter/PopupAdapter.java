@@ -1,6 +1,7 @@
 package com.example.dllo.idealmirror.adapter;
 
 import android.content.Context;
+import android.support.v4.view.DirectionalViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,12 +22,13 @@ import com.example.dllo.idealmirror.bean.GoodList;
 public class PopupAdapter extends BaseAdapter {
     private GoodList bean;
     private Context context;
-    private int position;
+    String store;
 
-    public PopupAdapter(GoodList beans, Context context, int position) {
+    public PopupAdapter(GoodList beans, Context context, String store) {
         this.bean = beans;
         this.context = context;
-        this.position = position;
+        this.store = store;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -49,22 +51,30 @@ public class PopupAdapter extends BaseAdapter {
         PopupHolder holder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_popup, null);
-            holder = new PopupHolder();
-            holder.title = (TextView) convertView.findViewById(R.id.popup_item_tv);
-            holder.underLine = (ImageView) convertView.findViewById(R.id.popup_item_line);
+            holder = new PopupHolder(convertView, position);
             convertView.setTag(holder);
         } else {
             holder = (PopupHolder) convertView.getTag();
         }
-        holder.title.setText(bean.getData().getList().get(position).getTitle());
-        holder.title.setSelected(false);
-        holder.underLine.setVisibility(View.INVISIBLE);
+        holder.titleTv.setText(bean.getData().getList().get(position).getTitle());
 
         return convertView;
     }
 
     public class PopupHolder {
-        private TextView title;
+        private TextView titleTv;
         private ImageView underLine;
+
+        public PopupHolder(View itemView, int position) {
+            titleTv = (TextView) itemView.findViewById(R.id.popup_item_tv);
+            underLine = (ImageView) itemView.findViewById(R.id.popup_item_line);
+            if (bean.getData().getList().get(position).getStore().equals(store)) {
+                titleTv.setSelected(true);
+                underLine.setVisibility(View.VISIBLE);
+            } else {
+                titleTv.setSelected(false);
+                underLine.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 }
