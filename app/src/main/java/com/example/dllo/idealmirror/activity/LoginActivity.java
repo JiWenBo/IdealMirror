@@ -2,10 +2,9 @@ package com.example.dllo.idealmirror.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.dllo.idealmirror.R;
@@ -14,9 +13,10 @@ import com.example.dllo.idealmirror.base.BaseActivity;
 /**
  * Created by LYH on 16/3/30.
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener{
-    private Button creatnum;
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
+    private Button createBtn;
     private ImageView close;
+    EditText phoneEt;
 
     @Override
     protected int setContent() {
@@ -25,23 +25,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void initView() {
-        creatnum = bindView(R.id.creat_number);
+        createBtn = bindView(R.id.create_number);
         close = bindView(R.id.close);
 
     }
 
     @Override
     protected void initData() {
-        creatnum.setOnClickListener(this);
+        createBtn.setOnClickListener(this);
         close.setOnClickListener(this);
-
+        // 注册成功后, 获得手机号
+        Intent intentPhone = getIntent();
+        Bundle bundle = intentPhone.getExtras();
+        if (bundle != null) {
+            phoneEt.setText(bundle.getString("phone"));
+        }
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.creat_number:
-                Intent intent = new Intent(this,CreateActivity.class);
+        switch (v.getId()) {
+            case R.id.create_number:
+                Intent intent = new Intent(this, CreateActivity.class);
                 startActivity(intent);
                 break;
             case R.id.close:
