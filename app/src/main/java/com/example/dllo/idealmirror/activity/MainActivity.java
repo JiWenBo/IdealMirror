@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         switch (v.getId()) {
             case R.id.mirrorpic:
                 // Mirror按钮动画
-                playHeartbeatAnimation();
+                playHeartbeatAnimation(mirror);
                 break;
             case R.id.login:
                 // 登陆
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
             case R.id.main_shopping:
                 // 购物车
                 // 按钮动画
-                playHeartbeatAnimation();
+                playHeartbeatAnimation(shopping);
                 break;
         }
     }
@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
      * 图片跳动
      */
     // 按钮模拟心脏跳动
-    private void playHeartbeatAnimation() {
+    private void playHeartbeatAnimation(final View view) {
         AnimationSet animationSet = new AnimationSet(true);
         // Animation.RELATIVE_TO_SELF 变化中心角
         animationSet.addAnimation(new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
@@ -140,12 +140,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
                 animationSet.setInterpolator(new DecelerateInterpolator());
                 animationSet.setFillAfter(false);
                 // 实现心跳的View
-                mirror.startAnimation(animationSet);
+                view.startAnimation(animationSet);
             }
         });
 
         // 实现心跳的View
-        mirror.startAnimation(animationSet);
+        view.startAnimation(animationSet);
 
     }
 
