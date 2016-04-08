@@ -104,6 +104,7 @@
             android:textSize="@dimen/login_create_size" />
 
         <ImageView
+            android:id="@+id/login_sina"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -112,7 +113,7 @@
             android:src="@drawable/sina_icon" />
 
         <ImageView
-            android:id="@+id/weixin_iv"
+            android:id="@+id/login_wechat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -124,7 +125,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/weixin_iv"
+            android:layout_above="@id/login_wechat"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/login_social_bottom"
             android:text="@string/socialContactPwd"

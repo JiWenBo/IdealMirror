@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
+import com.example.dllo.idealmirror.bean.SinaUserBean;
 import com.example.dllo.idealmirror.bean.UserRegBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
@@ -27,13 +28,20 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+
 /**
  * Created by LYH on 16/3/30.
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener, Url, VolleyListener {
     Button createBtn, loginBtn;
-    ImageView close;
+    ImageView close, sina, weChat;
     EditText phoneEt, passwordEt;
+    private Platform sinaPlatform;
+    private SinaUserBean userBean;
 
     @Override
     protected int setContent() {
@@ -42,19 +50,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void initView() {
+        // 创建账号
         createBtn = bindView(R.id.create_number);
+        createBtn.setOnClickListener(this);
+        // 关闭页面
         close = bindView(R.id.close);
+        close.setOnClickListener(this);
+        // 电话号码
         phoneEt = bindView(R.id.login_phone_et);
+        // 密码
         passwordEt = bindView(R.id.login_password_et);
+        // 登陆
         loginBtn = bindView(R.id.login_btn);
+        loginBtn.setOnClickListener(this);
+        // 新浪登陆
+        sina = bindView(R.id.login_sina);
+        sina.setOnClickListener(this);
+        // 微信登录
+        weChat = bindView(R.id.login_wechat);
     }
 
     @Override
     protected void initData() {
-        createBtn.setOnClickListener(this);
-        close.setOnClickListener(this);
-        loginBtn.setOnClickListener(this);
-
         // 监听电话号码的EditText
         phoneEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -125,9 +142,68 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.login_btn:
                 toLogin();
                 break;
+            case R.id.login_sina:
+                loginSina();
+                break;
         }
     }
 
+    // 新浪微博登陆
+    private void loginSina() {
+        ShareSDK.initSDK(this);
+        sinaPlatform = ShareSDK.getPlatform(SinaWeibo.NAME);
+        if (sinaPlatform.isAuthValid()) {
+            sinaPlatform.removeAccount();
+        }
+        sinaPlatform.setPlatformActionListener(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+//                new SinaThread().start();
+                Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
+//                userBean = new SinaUserBean();
+//                userBean.setName(sinaPlatform.getDb().getUserName());
+//                userBean.setImg(sinaPlatform.getDb().getUserIcon());
+//                userBean.setId(sinaPlatform.getDb().getUserId());
+                bundlingUser();
+//                finish();
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+                Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+                Toast.makeText(LoginActivity.this, "取消登陆", Toast.LENGTH_SHORT).show();
+            }
+        });
+        sinaPlatform.SSOSetting(false);
+        sinaPlatform.showUser(null);
+    }
+
+    // 绑定账号
+    private void bundlingUser() {
+        NetHelper bundlingHelper = new NetHelper();
+        HashMap<String, String> paramBund = new HashMap<>();
+        paramBund.put("iswb_orwx", "1");
+        paramBund.put("wb_name", sinaPlatform.getDb().getUserName());
+        paramBund.put("wb_img", sinaPlatform.getDb().getUserIcon());
+        paramBund.put("wb_id", sinaPlatform.getDb().getUserId());
+        bundlingHelper.getInformation(USER_BUNDLING, new VolleyListener() {
+            @Override
+            public void getSuccess(String body) {
+                LogUtils.d("微博body" + body);
+            }
+
+            @Override
+            public void getFail() {
+                Log.d("LoginActivity", "请求时报");
+            }
+        }, paramBund);
+    }
+
+    // 实现登陆
     private void toLogin() {
         NetHelper netHelper = new NetHelper();
         HashMap<String, String> param = new HashMap<>();
@@ -136,6 +212,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         netHelper.getInformation(USER_LOGIN, this, param);
     }
 
+    // 登陆成功
     @Override
     public void getSuccess(String body) {
         LogUtils.d(body);
@@ -167,9 +244,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
+    // 登陆失败
     @Override
     public void getFail() {
         Toast.makeText(this, "失败", Toast.LENGTH_SHORT).show();
     }
 
+//    private class SinaThread extends Thread {
+//        @Override
+//        public void run() {
+//            super.run();
+//            SinaUserBean userBean = new SinaUserBean();
+//            userBean.setName(sinaPlatform.getDb().getUserName());
+//            userBean.setImg(sinaPlatform.getDb().getUserIcon());
+//            userBean.setId(sinaPlatform.getDb().getUserId());
+//        }
+//    }
 }

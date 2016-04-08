@@ -33,9 +33,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.Scroller;
 
-
-
-
 public class MainActivity extends BaseActivity implements View.OnClickListener,VolleyListener,Url{
     private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
@@ -61,6 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     @Override
     protected void initData() {
+        // 菜单数据请求
         NetHelper netHelper = new NetHelper();
         netHelper.getInformation(MENU_LIST, this, null);
     }
@@ -86,14 +84,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.mirrorpic: //Mirror按钮动画
+            case R.id.mirrorpic:
+                // Mirror按钮动画
                 playHeartbeatAnimation();
                 break;
-            case R.id.login:     //登陆
+            case R.id.login:
+                // 登陆
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.main_shopping:
+                // 购物车
+                // 按钮动画
+                playHeartbeatAnimation();
                 break;
         }
     }
@@ -146,6 +149,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     }
 
+    // 菜单请求成功
     @Override
     public void getSuccess(String body) {
         data = new GoodList();
@@ -164,6 +168,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
     }
 
+    // 菜单请求失败
     @Override
     public void getFail() {
 
