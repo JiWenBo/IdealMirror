@@ -28,7 +28,19 @@
         android:layout_marginBottom="@dimen/marbtmfour_eight"
         android:layout_marginRight="@dimen/marrigfour_eight"
         android:text="@string/denglu"
-        android:textColor="#fff" />
+        android:textColor="@color/colorWhite" />
 
 
+    <TextView
+        android:id="@+id/main_shopping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/marbtmfour_eight"
+        android:layout_marginRight="@dimen/marrigfour_eight"
+        android:text="@string/main_shopping"
+        android:textColor="@color/colorWhite"
+        android:visibility="gone"
+        />
 </com.zhy.autolayout.AutoRelativeLayout>

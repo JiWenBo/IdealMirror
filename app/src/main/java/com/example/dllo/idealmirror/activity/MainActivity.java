@@ -1,8 +1,9 @@
 package com.example.dllo.idealmirror.activity;
 
 import android.content.Intent;
-import android.support.v4.view.DirectionalViewPager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.view.DirectionalViewPager;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -26,13 +27,6 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.support.v4.app.Fragment;
-
-import android.widget.PopupWindow;
-
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -43,13 +37,11 @@ import android.widget.Scroller;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,VolleyListener,Url{
-
     private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
     private ImageView mirror;
-    private Bundle bundle;
-    private GoodList datas;
-    private TextView longin;
+    private GoodList data;
+    private TextView login, shopping;
 
     @Override
     protected int setContent() {
@@ -61,15 +53,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         viewPager = bindView(R.id.viewpager);
         mirror = bindView(R.id.mirrorpic);
         mirror.setOnClickListener(this);
-        longin = bindView(R.id.login);
-        longin.setOnClickListener(this);
+        login = bindView(R.id.login);
+        login.setOnClickListener(this);
+        shopping = bindView(R.id.main_shopping);
+        shopping.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         NetHelper netHelper = new NetHelper();
         netHelper.getInformation(MENU_LIST, this, null);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 在Activity可交互时 读取数据
+        // 实例化一个SharedPreferences对象
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        // 获得value 第二个参数的默认值
+        boolean isLogin = sharedPreferences.getBoolean("isLogin", false);
+        // 如果登陆成功
+        if (isLogin) {
+            login.setVisibility(View.GONE);
+            shopping.setVisibility(View.VISIBLE);
+        } else {
+            login.setVisibility(View.VISIBLE);
+            shopping.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -78,10 +89,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
             case R.id.mirrorpic: //Mirror按钮动画
                 playHeartbeatAnimation();
                 break;
-
             case R.id.login:     //登陆
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.main_shopping:
                 break;
         }
     }
@@ -136,18 +148,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
     @Override
     public void getSuccess(String body) {
-        datas = new GoodList();
+        data = new GoodList();
         try {
             JSONObject jsonObject = new JSONObject(body);
             Gson gson = new Gson();
-            datas = gson.fromJson(jsonObject.toString(), GoodList.class);
+            data = gson.fromJson(jsonObject.toString(), GoodList.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         PopWindow popWindow = new PopWindow(this);
-        popWindow.initDataPop(datas);
+        popWindow.initDataPop(data);
 
-        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), datas);
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), data);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
     }
@@ -158,7 +170,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     }
 
     //暴露方法 得到position
-    public void getDatafromFragment(int position) {
+    public void getDataFromFragment(int position) {
         Log.d("MainActivity", "从fragment历来" + position);
 
         //这个是设置viewPager切换过度时间的类
@@ -213,5 +225,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
             }
         }
     }
+
 
 }

@@ -16,19 +16,7 @@ import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.PopupAdapter;
-import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.bean.GoodList;
-
-import com.example.dllo.idealmirror.net.NetHelper;
-import com.example.dllo.idealmirror.net.VolleyListener;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by LYH on 16/3/30.
@@ -107,7 +95,7 @@ public class PopWindow implements Url, View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mainActivity = (MainActivity) context;
-                mainActivity.getDatafromFragment(position);
+                mainActivity.getDataFromFragment(position);
                 popupWindow.dismiss();
             }
         });

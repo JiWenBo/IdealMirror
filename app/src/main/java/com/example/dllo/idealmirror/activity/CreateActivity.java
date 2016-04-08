@@ -42,7 +42,6 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
-
         closeIv = bindView(R.id.create_close);
         phoneEt = bindView(R.id.create_phone_et);
         codeEt = bindView(R.id.create_verifi_et);
@@ -53,7 +52,6 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
-
         closeIv.setOnClickListener(this);
         codeBtn.setOnClickListener(this);
         accountBtn.setOnClickListener(this);
@@ -77,6 +75,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void createAccount() {
+        bean = new UserRegBean();
         NetHelper helper = new NetHelper();
         HashMap<String, String> paramCreate = new HashMap<>();
         paramCreate.put("phone_number", phoneEt.getText().toString());
