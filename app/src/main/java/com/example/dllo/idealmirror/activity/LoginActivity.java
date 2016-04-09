@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +14,8 @@ import android.widget.Toast;
 
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
-import com.example.dllo.idealmirror.bean.SinaBundlingBean;
 import com.example.dllo.idealmirror.bean.SinaUserBean;
+import com.example.dllo.idealmirror.bean.UserRegBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
@@ -206,7 +205,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             case "1":
                                 Toast.makeText(getBaseContext(), "登陆成功", Toast.LENGTH_SHORT).show();
                                 Gson gson = new Gson();
-                                SinaBundlingBean bean = gson.fromJson(object.toString(), SinaBundlingBean.class);
+                                UserRegBean bean = new UserRegBean();
+                                bean = gson.fromJson(object.toString(), UserRegBean.class);
                                 // 确认已经登陆成功 返回到main
                                 makeSureLogin();
                                 finish();
