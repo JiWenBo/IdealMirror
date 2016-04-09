@@ -31,7 +31,6 @@ import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 import java.lang.reflect.Field;
-
 import java.util.ArrayList;
 import java.util.List;
 
