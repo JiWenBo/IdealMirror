@@ -54,6 +54,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" >
 
+            <meta-data
+                android:name="AuthorizeAdapter"
+                android:value="cn.sharesdk.demo.MyAdapter" />
+
             <intent-filter>
                 <data android:scheme="tencent100371282" />
                 <action android:name="android.intent.action.VIEW" />

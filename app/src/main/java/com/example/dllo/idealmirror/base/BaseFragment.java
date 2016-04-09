@@ -18,9 +18,6 @@ import de.greenrobot.event.EventBus;
  */
 public abstract class BaseFragment extends Fragment{
 
-
-
-
     // 绑定布局
     @Nullable
     @Override

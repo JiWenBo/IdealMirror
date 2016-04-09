@@ -2,7 +2,8 @@ package com.example.dllo.idealmirror.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.DirectionalViewPager;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -19,6 +20,7 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.GoodList;
+import com.example.dllo.idealmirror.fragment.ShoppingFragment;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.PopWindow;
@@ -27,6 +29,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 
 
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -39,6 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     private ImageView mirror;
     private GoodList data;
     private TextView login, shopping;
+    private LinearLayout menu;
 
     @Override
     protected int setContent() {
@@ -54,6 +58,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         login.setOnClickListener(this);
         shopping = bindView(R.id.main_shopping);
         shopping.setOnClickListener(this);
+        menu = bindView(R.id.main_menu_layout);
+        menu.setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +103,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
                 // 购物车
                 // 按钮动画
                 playHeartbeatAnimation(shopping);
+                getDataFromFragment(data.getData().getList().size() - 1);
                 break;
         }
     }

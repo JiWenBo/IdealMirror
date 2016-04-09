@@ -11,17 +11,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
+import com.example.dllo.idealmirror.bean.SinaBundlingBean;
 import com.example.dllo.idealmirror.bean.SinaUserBean;
-import com.example.dllo.idealmirror.bean.UserRegBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.Url;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     ImageView close, sina, weChat;
     EditText phoneEt, passwordEt;
     private Platform sinaPlatform;
-    private SinaUserBean userBean;
+    private SinaUserBean userBean;     // 微博用户的信息
 
     @Override
     protected int setContent() {
@@ -149,7 +149,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     // 新浪微博登陆
-    private void loginSina() {
+    public void loginSina() {
+        userBean = new SinaUserBean();
         ShareSDK.initSDK(this);
         sinaPlatform = ShareSDK.getPlatform(SinaWeibo.NAME);
         if (sinaPlatform.isAuthValid()) {
@@ -158,42 +159,63 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         sinaPlatform.setPlatformActionListener(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-//                new SinaThread().start();
-                Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
-//                userBean = new SinaUserBean();
-//                userBean.setName(sinaPlatform.getDb().getUserName());
-//                userBean.setImg(sinaPlatform.getDb().getUserIcon());
-//                userBean.setId(sinaPlatform.getDb().getUserId());
-                bundlingUser();
-//                finish();
+                userBean.setName(sinaPlatform.getDb().getUserName());
+                userBean.setId(sinaPlatform.getDb().getUserId());
+                userBean.setImg(sinaPlatform.getDb().getUserIcon());
+                toBundling();
             }
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-                Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onCancel(Platform platform, int i) {
-                Toast.makeText(LoginActivity.this, "取消登陆", Toast.LENGTH_SHORT).show();
+
             }
         });
         sinaPlatform.SSOSetting(false);
         sinaPlatform.showUser(null);
     }
 
-    // 绑定账号
-    private void bundlingUser() {
+    // 绑定第三方账号
+    private void toBundling() {
+        Log.d("LoginActivity", "bundling");
         NetHelper bundlingHelper = new NetHelper();
         HashMap<String, String> paramBund = new HashMap<>();
         paramBund.put("iswb_orwx", "1");
-        paramBund.put("wb_name", sinaPlatform.getDb().getUserName());
-        paramBund.put("wb_img", sinaPlatform.getDb().getUserIcon());
-        paramBund.put("wb_id", sinaPlatform.getDb().getUserId());
+        paramBund.put("wb_name", userBean.getName());
+        paramBund.put("wb_img", userBean.getImg());
+        paramBund.put("wb_id", userBean.getId());
+        Log.d("LoginActivity", userBean.getName());
         bundlingHelper.getInformation(USER_BUNDLING, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
+                // 请求成功
                 LogUtils.d("微博body" + body);
+                try {
+                    JSONObject object = new JSONObject(body);
+                    if (object.has("result")) {
+                        String result = object.getString("result");
+                        switch (result) {
+                            case "":
+                                String msg = object.getString("msg");
+                                Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
+                                break;
+                            case "1":
+                                Toast.makeText(getBaseContext(), "登陆成功", Toast.LENGTH_SHORT).show();
+                                Gson gson = new Gson();
+                                SinaBundlingBean bean = gson.fromJson(object.toString(), SinaBundlingBean.class);
+                                // 确认已经登陆成功 返回到main
+                                makeSureLogin();
+                                finish();
+                                break;
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -227,14 +249,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         break;
                     case "1":
                         Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
-                        // 登陆成功时  实例化一个Share的Preferences对象
-                        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
-                        // 实例化SharedPreferences.Editor对象
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        // 保存数据
-                        editor.putBoolean("isLogin", true);
-                        // 提交当前数据
-                        editor.commit();
+                        makeSureLogin();
                         finish();
                         break;
                 }
@@ -244,20 +259,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
+    // 确认已经登陆 存到数据库
+    private void makeSureLogin() {
+        // 登陆成功时  实例化一个Share的Preferences对象
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        // 实例化SharedPreferences.Editor对象
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        // 保存数据
+        editor.putBoolean("isLogin", true);
+        // 提交当前数据
+        editor.commit();
+    }
+
     // 登陆失败
     @Override
     public void getFail() {
         Toast.makeText(this, "失败", Toast.LENGTH_SHORT).show();
     }
 
-//    private class SinaThread extends Thread {
-//        @Override
-//        public void run() {
-//            super.run();
-//            SinaUserBean userBean = new SinaUserBean();
-//            userBean.setName(sinaPlatform.getDb().getUserName());
-//            userBean.setImg(sinaPlatform.getDb().getUserIcon());
-//            userBean.setId(sinaPlatform.getDb().getUserId());
-//        }
-//    }
 }
