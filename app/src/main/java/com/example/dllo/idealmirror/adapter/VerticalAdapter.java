@@ -9,6 +9,7 @@ import com.example.dllo.idealmirror.fragment.MrtjFragment;
 import com.example.dllo.idealmirror.fragment.ShoppingFragment;
 import com.example.dllo.idealmirror.fragment.StoryListFragment;
 import com.example.dllo.idealmirror.mirrordao.GoodListCache;
+import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.Url;
 
 import java.util.List;
@@ -32,27 +33,37 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
 
     @Override
     public Fragment getItem(int position) {
+        if (position < 3) {
 
-        store = data.get(position).getStore();
+            store = data.get(position).getStore();
+            if (data.get(position).getType().equals("6")) {
+                LogUtils.d("asdf" + position);
+                return MrtjFragment.setUrl(INDEX_MRTJ, data.get(position).getTitle(), store);
+            } else if (data.get(position).getType().equals("3")) {
+                LogUtils.d("asdf" + position);
+                return GoodsListFragment.setUrl(++position, data.get(--position).getTitle(), store);
+            }
 
-        if (data.get(position).getType().equals("6")){
-            return MrtjFragment.setUrl(INDEX_MRTJ, data.get(position).getTitle(), store);
         }
-        else if (data.get(position).getType().equals("3")){
-            return GoodsListFragment.setUrl(++position, data.get(--position).getTitle(), store);
-        }
-        else if (position==3){
+
+
+        if (position == 3) {
+            LogUtils.d("asdf" + position);
             return StoryListFragment.setUrl("专题分享", "XXX");
         }
-        else if (position==4){
+
+        if (position == 4) {
+            LogUtils.d("asdf" + position);
             return fragmenta;
         }
+
+
         return null;
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 
 }

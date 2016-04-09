@@ -1,9 +1,12 @@
 package com.example.dllo.idealmirror.activity;
-
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
 import android.support.v4.view.DirectionalViewPager;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -28,27 +31,36 @@ import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 import java.lang.reflect.Field;
+
 import java.util.ArrayList;
 import java.util.List;
+
+
+
+import android.widget.LinearLayout;
+
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.Scroller;
 
 
+
 public class MainActivity extends BaseActivity implements View.OnClickListener, VolleyListener, Url {
 
-    private DirectionalViewPager viewPager;
-    private VerticalAdapter verticalAdapter;
+
     private ImageView mirror;
     private GoodList datas;
-    private TextView longin;
     private DaoSession daoSession;
     private DaoMaster daoMaster;
     private SQLiteDatabase db;
     private GoodListCacheDao goodListCacheDao;
     private List<GoodListCache> goodListCachelist;
     private GoodListCache goodListCache;
+    private DirectionalViewPager viewPager;
+    private VerticalAdapter verticalAdapter;
+    private TextView login, shopping;
+    private LinearLayout menu;
 
     public MainActivity() {
     }
@@ -64,28 +76,59 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         viewPager = bindView(R.id.viewpager);
         mirror = bindView(R.id.mirrorpic);
         mirror.setOnClickListener(this);
-        longin = bindView(R.id.login);
-        longin.setOnClickListener(this);
+        login = bindView(R.id.login);
+        login.setOnClickListener(this);
+        shopping = bindView(R.id.main_shopping);
+        shopping.setOnClickListener(this);
+        menu = bindView(R.id.main_menu_layout);
+        menu.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
+        // 菜单数据请求
         NetHelper netHelper = new NetHelper();
         netHelper.getInformation(MENU_LIST, this, null);
+    }
 
 
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 在Activity可交互时 读取数据
+        // 实例化一个SharedPreferences对象
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        // 获得value 第二个参数的默认值
+        boolean isLogin = sharedPreferences.getBoolean("isLogin", false);
+        // 如果登陆成功
+        if (isLogin) {
+            login.setVisibility(View.GONE);
+            shopping.setVisibility(View.VISIBLE);
+        } else {
+            login.setVisibility(View.VISIBLE);
+            shopping.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.mirrorpic: //Mirror按钮动画
-                playHeartbeatAnimation();
+            case R.id.mirrorpic:
+                // Mirror按钮动画
+                playHeartbeatAnimation(mirror);
                 break;
-
-            case R.id.login:     //登陆
+            case R.id.login:
+                // 登陆
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.main_shopping:
+                // 购物车
+                // 按钮动画
+                playHeartbeatAnimation(shopping);
+                getDataFromFragment(4);
                 break;
         }
     }
@@ -95,7 +138,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * 图片跳动
      */
     // 按钮模拟心脏跳动
-    private void playHeartbeatAnimation() {
+    private void playHeartbeatAnimation(final View view) {
         AnimationSet animationSet = new AnimationSet(true);
         // Animation.RELATIVE_TO_SELF 变化中心角
         animationSet.addAnimation(new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
@@ -129,15 +172,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 animationSet.setInterpolator(new DecelerateInterpolator());
                 animationSet.setFillAfter(false);
                 // 实现心跳的View
-                mirror.startAnimation(animationSet);
+                view.startAnimation(animationSet);
             }
         });
 
         // 实现心跳的View
-        mirror.startAnimation(animationSet);
+        view.startAnimation(animationSet);
 
     }
 
+    // 菜单请求成功
     @Override
     public void getSuccess(String body) {
         datas = new GoodList();
@@ -159,7 +203,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         /*将数据重新添加到数据库*/
         goodListCacheDao = DaoSingleton.getInstance().getGoodListCacheDao();
         goodListCachelist = new ArrayList<>();
-        for (int i = 0; i < datas.getData().getList().size(); i++) {
+        for (int i = 0; i < datas.getData().getList().size()-1; i++) {
             goodListCache = new GoodListCache();
             goodListCache.setType(datas.getData().getList().get(i).getType());
             goodListCache.setButtomColor(datas.getData().getList().get(i).getButtomColor());
@@ -179,6 +223,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     }
 
+    // 菜单请求失败
     @Override
     public void getFail() {
 
@@ -198,7 +243,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     //暴露方法 得到position
-    public void getDatafromFragment(int position) {
+
+    public void getDataFromFragment(int position) {
+
         //这个是设置viewPager切换过度时间的类
         ViewPagerScroller scroller = new ViewPagerScroller(this);
         scroller.setScrollDuration(80);
@@ -251,5 +298,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             }
         }
     }
+
 
 }

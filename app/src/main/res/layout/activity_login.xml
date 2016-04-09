@@ -41,9 +41,11 @@
         android:textSize="@dimen/login_phone_size" />
 
     <EditText
+        android:id="@+id/login_phone_et"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/login_phoneNumber_top"
+        android:phoneNumber="true"
         android:background="@drawable/phonenum_input"
         android:textColor="@color/colorBlack" />
 
@@ -56,9 +58,11 @@
         android:textSize="@dimen/login_passWord_size" />
 
     <EditText
+        android:id="@+id/login_password_et"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/login_passWord_top"
+        android:password="true"
         android:background="@drawable/phonenum_input"
         android:textColor="@color/colorBlack" />
 
@@ -81,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_edit_height"
             android:layout_marginTop="@dimen/login_loginBtn_top"
-            android:background="@drawable/login_selector"
+            android:background="@drawable/button_use_false"
             android:gravity="center"
             android:text="@string/loginBtn"
             android:textColor="@color/colorWhite"
@@ -100,6 +104,7 @@
             android:textSize="@dimen/login_create_size" />
 
         <ImageView
+            android:id="@+id/login_sina"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -108,7 +113,7 @@
             android:src="@drawable/sina_icon" />
 
         <ImageView
-            android:id="@+id/weixin_iv"
+            android:id="@+id/login_wechat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -120,7 +125,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/weixin_iv"
+            android:layout_above="@id/login_wechat"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/login_social_bottom"
             android:text="@string/socialContactPwd"

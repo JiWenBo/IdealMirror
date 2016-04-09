@@ -42,7 +42,6 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
-
         closeIv = bindView(R.id.create_close);
         phoneEt = bindView(R.id.create_phone_et);
         codeEt = bindView(R.id.create_verifi_et);
@@ -53,7 +52,6 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
-
         closeIv.setOnClickListener(this);
         codeBtn.setOnClickListener(this);
         accountBtn.setOnClickListener(this);
@@ -77,6 +75,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void createAccount() {
+        bean = new UserRegBean();
         NetHelper helper = new NetHelper();
         HashMap<String, String> paramCreate = new HashMap<>();
         paramCreate.put("phone_number", phoneEt.getText().toString());
@@ -96,12 +95,12 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
                                 Toast.makeText(CreateActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 break;
                             case "0":
-                                Toast.makeText(CreateActivity.this, "请确认填写信息", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateActivity.this, R.string.java_create_sure_message, Toast.LENGTH_SHORT).show();
                                 break;
                             case "1":
                                 Gson gson = new Gson();
                                 bean = gson.fromJson(object.toString(), UserRegBean.class);
-                                Toast.makeText(CreateActivity.this, "创建成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateActivity.this, R.string.java_create_success, Toast.LENGTH_SHORT).show();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("phone", phoneEt.getText().toString());
                                 Intent intent = new Intent(CreateActivity.this, LoginActivity.class);
@@ -119,7 +118,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void getFail() {
-                Toast.makeText(CreateActivity.this, "创建失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateActivity.this, R.string.java_create_fail, Toast.LENGTH_SHORT).show();
             }
         }, paramCreate);
     }
