@@ -192,7 +192,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void getSuccess(String body) {
                 // 请求成功
-                LogUtils.d("微博body" + body);
+                LogUtils.d("sinaBody" + body);
                 try {
                     JSONObject object = new JSONObject(body);
                     if (object.has("result")) {
@@ -203,7 +203,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
                                 break;
                             case "1":
-                                Toast.makeText(getBaseContext(), "登陆成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), R.string.java_login_success, Toast.LENGTH_SHORT).show();
                                 Gson gson = new Gson();
                                 UserRegBean bean = new UserRegBean();
                                 bean = gson.fromJson(object.toString(), UserRegBean.class);
@@ -220,7 +220,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
             @Override
             public void getFail() {
-                Log.d("LoginActivity", "请求时报");
+                Toast.makeText(getBaseContext(), R.string.java_login_fail, Toast.LENGTH_SHORT).show();
             }
         }, paramBund);
     }
@@ -248,7 +248,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                         break;
                     case "1":
-                        Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.java_login_success, Toast.LENGTH_SHORT).show();
                         makeSureLogin();
                         finish();
                         break;
@@ -274,7 +274,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     // 登陆失败
     @Override
     public void getFail() {
-        Toast.makeText(this, "失败", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.java_login_fail, Toast.LENGTH_SHORT).show();
     }
 
 }
