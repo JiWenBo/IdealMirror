@@ -1,6 +1,7 @@
 package com.example.dllo.idealmirror.activity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.view.DirectionalViewPager;
 import android.os.Bundle;
 import android.view.View;
@@ -11,47 +12,46 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.ImageView;
-
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.GoodList;
-import com.example.dllo.idealmirror.fragment.GoodsListFragment;
-import com.example.dllo.idealmirror.fragment.MrtjFragment;
+import com.example.dllo.idealmirror.mirrordao.DaoMaster;
+import com.example.dllo.idealmirror.mirrordao.DaoSession;
+import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
+import com.example.dllo.idealmirror.mirrordao.GoodListCache;
+import com.example.dllo.idealmirror.mirrordao.GoodListCacheDao;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 import java.lang.reflect.Field;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-import android.support.v4.app.Fragment;
-
-import android.widget.PopupWindow;
-
 import android.widget.TextView;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.Scroller;
 
 
-
-
-public class MainActivity extends BaseActivity implements View.OnClickListener,VolleyListener,Url{
+public class MainActivity extends BaseActivity implements View.OnClickListener, VolleyListener, Url {
 
     private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
     private ImageView mirror;
-    private Bundle bundle;
     private GoodList datas;
     private TextView longin;
+    private DaoSession daoSession;
+    private DaoMaster daoMaster;
+    private SQLiteDatabase db;
+    private GoodListCacheDao goodListCacheDao;
+    private List<GoodListCache> goodListCachelist;
+    private GoodListCache goodListCache;
+
+    public MainActivity() {
+    }
 
 
     @Override
@@ -72,6 +72,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     protected void initData() {
         NetHelper netHelper = new NetHelper();
         netHelper.getInformation(MENU_LIST, this, null);
+
 
     }
 
@@ -147,22 +148,57 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        /*第一步清空数据库*/
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "allmirror.db", null);
+        db = helper.getWritableDatabase();
+        daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        goodListCacheDao = daoSession.getGoodListCacheDao();
+        goodListCacheDao.deleteAll();
+        /*将数据重新添加到数据库*/
+        goodListCacheDao = DaoSingleton.getInstance().getGoodListCacheDao();
+        goodListCachelist = new ArrayList<>();
+        for (int i = 0; i < datas.getData().getList().size(); i++) {
+            goodListCache = new GoodListCache();
+            goodListCache.setType(datas.getData().getList().get(i).getType());
+            goodListCache.setButtomColor(datas.getData().getList().get(i).getButtomColor());
+            goodListCache.setInfo_data(datas.getData().getList().get(i).getInfo_data());
+            goodListCache.setTitle(datas.getData().getList().get(i).getTitle());
+            goodListCache.setTopColor(datas.getData().getList().get(i).getTopColor());
+            goodListCache.setStore(datas.getData().getList().get(i).getStore());
+            goodListCacheDao.insert(goodListCache);
+            goodListCachelist.add(goodListCache);
+        }
         PopWindow popWindow = new PopWindow(this);
-        popWindow.initDataPop(datas);
-        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), datas);
+        popWindow.initDataPop(goodListCachelist);
+        goodListCachelist = goodListCacheDao.queryBuilder().list();
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
+
     }
 
     @Override
     public void getFail() {
 
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "allmirror.db", null);
+        db = helper.getWritableDatabase();
+        daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        goodListCacheDao = daoSession.getGoodListCacheDao();
+        goodListCachelist = goodListCacheDao.queryBuilder().list();
+        PopWindow popWindow = new PopWindow(this);
+        popWindow.initDataPop(goodListCachelist);
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
+        viewPager.setAdapter(verticalAdapter);
+        viewPager.setOrientation(DirectionalViewPager.VERTICAL);
+
+
     }
 
     //暴露方法 得到position
     public void getDatafromFragment(int position) {
-        Log.d("MainActivity", "从fragment历来" + position);
-
         //这个是设置viewPager切换过度时间的类
         ViewPagerScroller scroller = new ViewPagerScroller(this);
         scroller.setScrollDuration(80);

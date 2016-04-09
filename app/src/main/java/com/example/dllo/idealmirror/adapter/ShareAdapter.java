@@ -16,27 +16,23 @@ import java.util.List;
  */
 public class ShareAdapter extends FragmentPagerAdapter{
     private List<Fragment> data;
-    private StoryListBean bean;
 
 
-    public ShareAdapter(FragmentManager fm,StoryListBean beans) {
+    public ShareAdapter(FragmentManager fm, List<Fragment> data){
         super(fm);
-        this.bean = beans;
-        data = new ArrayList<>();
-        for (int i=0;i<beans.getData().getList().get(1).getStory_data().getImg_array().size();i++){
-            data.add(new ShareFragmnet());
-        }
+        this.data = data;
 
     }
-
     @Override
     public Fragment getItem(int position) {
+
         return data.get(position);
     }
 
     @Override
     public int getCount() {
         return data.size();
+
     }
 
     @Override

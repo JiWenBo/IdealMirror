@@ -31,30 +31,30 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/mrtj_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/marleftsix"
-                    android:text="@string/textsee"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/texsizethree"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/mrtj_price"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/heieight"
                     android:layout_marginRight="@dimen/marrightsix"
                     android:gravity="right"
-                    android:text="@string/text"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
             </com.zhy.autolayout.AutoLinearLayout>
 
             <TextView
+                android:id="@+id/mrtj_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marlatfthree"
                 android:layout_marginTop="@dimen/martop"
-                android:text="@string/faguo"
                 android:textColor="#333"
                 android:textSize="@dimen/textsizetwo" />
 
@@ -63,15 +63,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marlatfthree"
                 android:layout_marginRight="@dimen/marlatfthree"
-                android:layout_marginTop="32px"
+                android:layout_marginTop="20px"
                 android:src="@drawable/create_account_unline" />
 
             <TextView
+                android:id="@+id/mrtj_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marlatfthree"
                 android:layout_marginTop="@dimen/sixpx"
-                android:text="@string/caomeiyanj"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/threepx" />
         </com.zhy.autolayout.AutoLinearLayout>

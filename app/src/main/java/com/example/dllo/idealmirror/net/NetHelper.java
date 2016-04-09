@@ -27,16 +27,21 @@ public class NetHelper {
 
 
     public NetHelper() {
-        //请求队列的初始化
-        SingleQueue singleQueue = SingleQueue.getInstance();
-        requestQueue = singleQueue.getQueue();
-        //初始化ImageLoader 需要2个参数,分别是请求队列和缓存对象
-        //缓存分三级    第一级  硬盘级,缓存会存在SD卡中
-        //            第二级  是在内存中,存在
-        //            第三级  网络层
-        //定义硬盘图片缓存的根路径
-        //将图片储存在/data/data 目录下
+
+         // 请求队列的初始化
+         SingleQueue singleQueue = SingleQueue.getInstance();
+         requestQueue = singleQueue.getQueue();
+         /*
+         初始化ImageLoader 需要2个参数,分别是请求队列和缓存对象
+         缓存分三级    第一级  硬盘级,缓存会存在SD卡中
+         第二级  是在内存中,存在
+         第三级  网络层
+         定义硬盘图片缓存的根路径
+         将图片储存在/data/data 目录下
+          */
+
         File file = BaseApplication.getContext().getCacheDir();
+
         if (!file.exists()) {
             file.mkdir();
         }
@@ -44,8 +49,7 @@ public class NetHelper {
 
         LogUtils.d("文件路径",BaseApplication.getContext().getCacheDir().toString());
         //实现三级缓存
-        imageLoader = new ImageLoader(requestQueue, new DiskCache(diskPath));
-     //   imageLoader = new ImageLoader(requestQueue,new MenoryCache());//初始化ImageLoader.请求队列，重点第二个参数
+        imageLoader = new ImageLoader(requestQueue, new DoubleCache(diskPath));
 
     }
 

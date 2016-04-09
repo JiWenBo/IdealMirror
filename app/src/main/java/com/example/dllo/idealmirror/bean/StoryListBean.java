@@ -1,29 +1,45 @@
 package com.example.dllo.idealmirror.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
  */
-public class StoryListBean {
+public class StoryListBean implements Parcelable{
 
 
-    /**
-     * result : 1
-     * msg :
-     * data : {"pagination":{"first_time":"1453959684","last_time":"1452132854","has_more":"2"},"list":[{"story_title":"全世界最會穿衣服的苦臉博主","story_des":"","story_img":"http://7xprhi.com2.z0.glb.qiniucdn.com/13b935186a1406edb06068fb61bf50edb.jpg","story_id":"2","story_url":"http://api101.test.mirroreye.cn/index.php/storyweb?id=2&share=1","if_original":"1","original_url":"","from":"","story_data":{"story_date_type":"2","img_array":["http://7xprhi.com2.z0.glb.qiniucdn.com/M17b0aabdce5870932df86b868294866b7.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m2245b64b4520d725c865616d4b5e3fc1c.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m3ebd601e6cd31b38797d87294fb03d9e5.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m485f1e1004900b78720e8b396b2ccf928.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m55afca333e108e47043e54f24eb82e063.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m63da356c2efe9f5f0e810c0c353c93885.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m732df6063ecdddd71774c104c4fff75b9.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m867d3dcc10931e2e987011f23c67b8299.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m9ac8bf26d54319c159e684b2b9592a34a.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m10e8454a1e42309454ab641953636e1b91.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m110e647141bb6e2a0839a80ea778d4eb58.jpg"],"text_array":[{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"因为拍照不笑，被大家称为\u201c苦脸博主\u201d的Marcel Floruss，是一个纽约时装学院的学生，他拥有模特般的高挑身材以及立体帅气的五官。他的私服一向备受好评，他的出镜单品可能是Marc by Marc Jacobs，也有可能是H&M。Marcel Floruss巧妙地将古着与快时尚、高定单品相融合，既有熟男的庄重，也有街头的潮流。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"Marcel Floruss追求最简单的时尚，因为有德国血统，所以服装搭配上有很多独特的德国时尚。中长款呢大衣搭配利落黑裤，内搭保暖的棉服都不会显臃肿。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"粗线毛衣能给人一种温暖的感觉，整体造型冷静的色调又看起来有德国人的严谨。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"Marcel Floruss的西装造型也非常值得借鉴。剪裁立体的灰色西装外套搭配清新的蓝色系衬衫，深色领带和方巾中和浅蓝和灰色的反差，搭在手里的呢子外套也是造型的一部分。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"如果有一种单品能让单调无味的西装套装起死回生，那就是男士马甲，即使脱掉西装，马甲也是一件有着不可思议魔力的单品。棕色马甲搭配浅色衬衣，卷起的袖口流露出绅士与雅痞交融的男人味儿。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"西装外套搭配小脚裤也是一个不错的选择，成熟的酒红色褪去了年龄上的青涩，蓝色衬衣和鞋子的颜色相得益彰，墨镜和手表也为造型加分。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"时尚博主的街拍都离不开太阳镜，Marcel Floruss也将太阳镜列为出镜必备配饰之一。除了增加西装造型的酷味儿，太阳镜也可以用来衬托破洞牛仔裤的休闲与随性。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"而圆框太阳镜充满复古味道，独特的圆框造型既保留了复古气，又可以修正脸型轮廓，夸张的大镜片与整体造型的现代感碰撞。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"秋冬季节的搭配层层叠加实在是考验搭配功力，Marcel Floruss这身当季最流行的羊羔毛外套颜色与鞋子统一，一顶深蓝色毛线帽戴在头上，尽显英伦时尚气息。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"卡其色毛线帽的选择完全是为了中和服装，黑色皮衣野性而时髦，一股美式机车范儿。个性毛线帽子的装饰，整体真的够MEN够有型。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"服装搭配能力固然重要，最重要的还是又一个能做衣服架的好肉体，看Marcel Floruss的线条，脱衣有肉穿衣显瘦才是时尚搭配的真理。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}}],"story_date_url":"http://api101.test.mirroreye.cn/index.php/storyweb?id=1","title":"页面标题","subtitle":"副标题","head_img":"http://image.mirroreye.cn/4d5800fc355d27aae903714cb044cc4548a2767d133cf13ce411af67facf33bb.jpg","if_suggest":"1","goods_data":[]}}]}
-     */
+
 
     private String result;
     private String msg;
-    /**
-     * pagination : {"first_time":"1453959684","last_time":"1452132854","has_more":"2"}
-     * list : [{"story_title":"全世界最會穿衣服的苦臉博主","story_des":"","story_img":"http://7xprhi.com2.z0.glb.qiniucdn.com/13b935186a1406edb06068fb61bf50edb.jpg","story_id":"2","story_url":"http://api101.test.mirroreye.cn/index.php/storyweb?id=2&share=1","if_original":"1","original_url":"","from":"","story_data":{"story_date_type":"2","img_array":["http://7xprhi.com2.z0.glb.qiniucdn.com/M17b0aabdce5870932df86b868294866b7.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m2245b64b4520d725c865616d4b5e3fc1c.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m3ebd601e6cd31b38797d87294fb03d9e5.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m485f1e1004900b78720e8b396b2ccf928.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m55afca333e108e47043e54f24eb82e063.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m63da356c2efe9f5f0e810c0c353c93885.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m732df6063ecdddd71774c104c4fff75b9.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m867d3dcc10931e2e987011f23c67b8299.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m9ac8bf26d54319c159e684b2b9592a34a.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m10e8454a1e42309454ab641953636e1b91.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m110e647141bb6e2a0839a80ea778d4eb58.jpg"],"text_array":[{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"因为拍照不笑，被大家称为\u201c苦脸博主\u201d的Marcel Floruss，是一个纽约时装学院的学生，他拥有模特般的高挑身材以及立体帅气的五官。他的私服一向备受好评，他的出镜单品可能是Marc by Marc Jacobs，也有可能是H&M。Marcel Floruss巧妙地将古着与快时尚、高定单品相融合，既有熟男的庄重，也有街头的潮流。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"Marcel Floruss追求最简单的时尚，因为有德国血统，所以服装搭配上有很多独特的德国时尚。中长款呢大衣搭配利落黑裤，内搭保暖的棉服都不会显臃肿。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"粗线毛衣能给人一种温暖的感觉，整体造型冷静的色调又看起来有德国人的严谨。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"Marcel Floruss的西装造型也非常值得借鉴。剪裁立体的灰色西装外套搭配清新的蓝色系衬衫，深色领带和方巾中和浅蓝和灰色的反差，搭在手里的呢子外套也是造型的一部分。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"如果有一种单品能让单调无味的西装套装起死回生，那就是男士马甲，即使脱掉西装，马甲也是一件有着不可思议魔力的单品。棕色马甲搭配浅色衬衣，卷起的袖口流露出绅士与雅痞交融的男人味儿。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"西装外套搭配小脚裤也是一个不错的选择，成熟的酒红色褪去了年龄上的青涩，蓝色衬衣和鞋子的颜色相得益彰，墨镜和手表也为造型加分。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"时尚博主的街拍都离不开太阳镜，Marcel Floruss也将太阳镜列为出镜必备配饰之一。除了增加西装造型的酷味儿，太阳镜也可以用来衬托破洞牛仔裤的休闲与随性。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"而圆框太阳镜充满复古味道，独特的圆框造型既保留了复古气，又可以修正脸型轮廓，夸张的大镜片与整体造型的现代感碰撞。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"秋冬季节的搭配层层叠加实在是考验搭配功力，Marcel Floruss这身当季最流行的羊羔毛外套颜色与鞋子统一，一顶深蓝色毛线帽戴在头上，尽显英伦时尚气息。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"卡其色毛线帽的选择完全是为了中和服装，黑色皮衣野性而时髦，一股美式机车范儿。个性毛线帽子的装饰，整体真的够MEN够有型。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"服装搭配能力固然重要，最重要的还是又一个能做衣服架的好肉体，看Marcel Floruss的线条，脱衣有肉穿衣显瘦才是时尚搭配的真理。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}}],"story_date_url":"http://api101.test.mirroreye.cn/index.php/storyweb?id=1","title":"页面标题","subtitle":"副标题","head_img":"http://image.mirroreye.cn/4d5800fc355d27aae903714cb044cc4548a2767d133cf13ce411af67facf33bb.jpg","if_suggest":"1","goods_data":[]}}]
-     */
-
     private DataEntity data;
+
+    public StoryListBean(){
+
+    }
+
+    public StoryListBean(Parcel in) {
+        result = in.readString();
+        msg = in.readString();
+    }
+
+    public static final Creator<StoryListBean> CREATOR = new Creator<StoryListBean>() {
+        @Override
+        public StoryListBean createFromParcel(Parcel in) {
+            return new StoryListBean(in);
+        }
+
+        @Override
+        public StoryListBean[] newArray(int size) {
+            return new StoryListBean[size];
+        }
+    };
 
     public static StoryListBean objectFromData(String str) {
 
@@ -54,27 +70,39 @@ public class StoryListBean {
         return data;
     }
 
-    public static class DataEntity {
-        /**
-         * first_time : 1453959684
-         * last_time : 1452132854
-         * has_more : 2
-         */
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(result);
+        dest.writeString(msg);
+    }
+
+    public static class DataEntity implements Parcelable{
+
 
         private PaginationEntity pagination;
-        /**
-         * story_title : 全世界最會穿衣服的苦臉博主
-         * story_des :
-         * story_img : http://7xprhi.com2.z0.glb.qiniucdn.com/13b935186a1406edb06068fb61bf50edb.jpg
-         * story_id : 2
-         * story_url : http://api101.test.mirroreye.cn/index.php/storyweb?id=2&share=1
-         * if_original : 1
-         * original_url :
-         * from :
-         * story_data : {"story_date_type":"2","img_array":["http://7xprhi.com2.z0.glb.qiniucdn.com/M17b0aabdce5870932df86b868294866b7.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m2245b64b4520d725c865616d4b5e3fc1c.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m3ebd601e6cd31b38797d87294fb03d9e5.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m485f1e1004900b78720e8b396b2ccf928.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m55afca333e108e47043e54f24eb82e063.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m63da356c2efe9f5f0e810c0c353c93885.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m732df6063ecdddd71774c104c4fff75b9.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m867d3dcc10931e2e987011f23c67b8299.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m9ac8bf26d54319c159e684b2b9592a34a.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m10e8454a1e42309454ab641953636e1b91.jpg","http://7xprhi.com2.z0.glb.qiniucdn.com/m110e647141bb6e2a0839a80ea778d4eb58.jpg"],"text_array":[{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"因为拍照不笑，被大家称为\u201c苦脸博主\u201d的Marcel Floruss，是一个纽约时装学院的学生，他拥有模特般的高挑身材以及立体帅气的五官。他的私服一向备受好评，他的出镜单品可能是Marc by Marc Jacobs，也有可能是H&M。Marcel Floruss巧妙地将古着与快时尚、高定单品相融合，既有熟男的庄重，也有街头的潮流。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"Marcel Floruss追求最简单的时尚，因为有德国血统，所以服装搭配上有很多独特的德国时尚。中长款呢大衣搭配利落黑裤，内搭保暖的棉服都不会显臃肿。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"粗线毛衣能给人一种温暖的感觉，整体造型冷静的色调又看起来有德国人的严谨。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"Marcel Floruss的西装造型也非常值得借鉴。剪裁立体的灰色西装外套搭配清新的蓝色系衬衫，深色领带和方巾中和浅蓝和灰色的反差，搭在手里的呢子外套也是造型的一部分。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"如果有一种单品能让单调无味的西装套装起死回生，那就是男士马甲，即使脱掉西装，马甲也是一件有着不可思议魔力的单品。棕色马甲搭配浅色衬衣，卷起的袖口流露出绅士与雅痞交融的男人味儿。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"西装外套搭配小脚裤也是一个不错的选择，成熟的酒红色褪去了年龄上的青涩，蓝色衬衣和鞋子的颜色相得益彰，墨镜和手表也为造型加分。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"时尚博主的街拍都离不开太阳镜，Marcel Floruss也将太阳镜列为出镜必备配饰之一。除了增加西装造型的酷味儿，太阳镜也可以用来衬托破洞牛仔裤的休闲与随性。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"而圆框太阳镜充满复古味道，独特的圆框造型既保留了复古气，又可以修正脸型轮廓，夸张的大镜片与整体造型的现代感碰撞。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"秋冬季节的搭配层层叠加实在是考验搭配功力，Marcel Floruss这身当季最流行的羊羔毛外套颜色与鞋子统一，一顶深蓝色毛线帽戴在头上，尽显英伦时尚气息。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"卡其色毛线帽的选择完全是为了中和服装，黑色皮衣野性而时髦，一股美式机车范儿。个性毛线帽子的装饰，整体真的够MEN够有型。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}},{"verticalTitle":"","verticalTitleColor":"","smallTitle":"探究Marcel Floruss的私服搭配","title":"全世界最會穿衣服的苦臉博主","titleColor":"fffffff","subTitle":"服装搭配能力固然重要，最重要的还是又一个能做衣服架的好肉体，看Marcel Floruss的线条，脱衣有肉穿衣显瘦才是时尚搭配的真理。","colorTitle":"","colorTitleColor":"6c1836ff","category":"styleTwo","info_if_tag":"2","goodsname":"","goodsprice":"","goodsx":"","goodsY":"","good_info":{"goods_id":"","goods_pic":"","model":"","goods_img":"","goods_name":"","last_storge":"","whole_storge":"","height":"","ordain":"","product_area":"","goods_price":"","discount_price":"","brand":"","info_des":"","goods_data":[{"introContent":"","cellHeight":"","name":"","location":"","country":"","english":""}],"design_des":[{"img":"","cellHeight":"","type":""}],"goods_share":"http://api101.test.mirroreye.cn/index.php/goodweb/info?id="}}],"story_date_url":"http://api101.test.mirroreye.cn/index.php/storyweb?id=1","title":"页面标题","subtitle":"副标题","head_img":"http://image.mirroreye.cn/4d5800fc355d27aae903714cb044cc4548a2767d133cf13ce411af67facf33bb.jpg","if_suggest":"1","goods_data":[]}
-         */
+
 
         private List<ListEntity> list;
+
+        protected DataEntity(Parcel in) {
+        }
+
+        public static final Creator<DataEntity> CREATOR = new Creator<DataEntity>() {
+            @Override
+            public DataEntity createFromParcel(Parcel in) {
+                return new DataEntity(in);
+            }
+
+            @Override
+            public DataEntity[] newArray(int size) {
+                return new DataEntity[size];
+            }
+        };
 
         public static DataEntity objectFromData(String str) {
 
@@ -97,10 +125,37 @@ public class StoryListBean {
             return list;
         }
 
-        public static class PaginationEntity {
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+        }
+
+        public static class PaginationEntity implements Parcelable{
             private String first_time;
             private String last_time;
             private String has_more;
+
+            protected PaginationEntity(Parcel in) {
+                first_time = in.readString();
+                last_time = in.readString();
+                has_more = in.readString();
+            }
+
+            public static final Creator<PaginationEntity> CREATOR = new Creator<PaginationEntity>() {
+                @Override
+                public PaginationEntity createFromParcel(Parcel in) {
+                    return new PaginationEntity(in);
+                }
+
+                @Override
+                public PaginationEntity[] newArray(int size) {
+                    return new PaginationEntity[size];
+                }
+            };
 
             public static PaginationEntity objectFromData(String str) {
 
@@ -130,9 +185,21 @@ public class StoryListBean {
             public String getHas_more() {
                 return has_more;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(first_time);
+                dest.writeString(last_time);
+                dest.writeString(has_more);
+            }
         }
 
-        public static class ListEntity {
+        public static class ListEntity implements Parcelable{
             private String story_title;
             private String story_des;
             private String story_img;
@@ -154,6 +221,29 @@ public class StoryListBean {
              */
 
             private StoryDataEntity story_data;
+
+            protected ListEntity(Parcel in) {
+                story_title = in.readString();
+                story_des = in.readString();
+                story_img = in.readString();
+                story_id = in.readString();
+                story_url = in.readString();
+                if_original = in.readString();
+                original_url = in.readString();
+                from = in.readString();
+            }
+
+            public static final Creator<ListEntity> CREATOR = new Creator<ListEntity>() {
+                @Override
+                public ListEntity createFromParcel(Parcel in) {
+                    return new ListEntity(in);
+                }
+
+                @Override
+                public ListEntity[] newArray(int size) {
+                    return new ListEntity[size];
+                }
+            };
 
             public static ListEntity objectFromData(String str) {
 
@@ -232,7 +322,24 @@ public class StoryListBean {
                 return story_data;
             }
 
-            public static class StoryDataEntity {
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(story_title);
+                dest.writeString(story_des);
+                dest.writeString(story_img);
+                dest.writeString(story_id);
+                dest.writeString(story_url);
+                dest.writeString(if_original);
+                dest.writeString(original_url);
+                dest.writeString(from);
+            }
+
+            public static class StoryDataEntity implements Parcelable{
                 private String story_date_type;
                 private String story_date_url;
                 private String title;
@@ -260,6 +367,28 @@ public class StoryListBean {
 
                 private List<TextArrayEntity> text_array;
                 private List<?> goods_data;
+
+                protected StoryDataEntity(Parcel in) {
+                    story_date_type = in.readString();
+                    story_date_url = in.readString();
+                    title = in.readString();
+                    subtitle = in.readString();
+                    head_img = in.readString();
+                    if_suggest = in.readString();
+                    img_array = in.createStringArrayList();
+                }
+
+                public static final Creator<StoryDataEntity> CREATOR = new Creator<StoryDataEntity>() {
+                    @Override
+                    public StoryDataEntity createFromParcel(Parcel in) {
+                        return new StoryDataEntity(in);
+                    }
+
+                    @Override
+                    public StoryDataEntity[] newArray(int size) {
+                        return new StoryDataEntity[size];
+                    }
+                };
 
                 public static StoryDataEntity objectFromData(String str) {
 
@@ -338,7 +467,23 @@ public class StoryListBean {
                     return goods_data;
                 }
 
-                public static class TextArrayEntity {
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeString(story_date_type);
+                    dest.writeString(story_date_url);
+                    dest.writeString(title);
+                    dest.writeString(subtitle);
+                    dest.writeString(head_img);
+                    dest.writeString(if_suggest);
+                    dest.writeStringList(img_array);
+                }
+
+                public static class TextArrayEntity implements Parcelable{
                     private String verticalTitle;
                     private String verticalTitleColor;
                     private String smallTitle;
@@ -374,6 +519,35 @@ public class StoryListBean {
                      */
 
                     private GoodInfoEntity good_info;
+
+                    protected TextArrayEntity(Parcel in) {
+                        verticalTitle = in.readString();
+                        verticalTitleColor = in.readString();
+                        smallTitle = in.readString();
+                        title = in.readString();
+                        titleColor = in.readString();
+                        subTitle = in.readString();
+                        colorTitle = in.readString();
+                        colorTitleColor = in.readString();
+                        category = in.readString();
+                        info_if_tag = in.readString();
+                        goodsname = in.readString();
+                        goodsprice = in.readString();
+                        goodsx = in.readString();
+                        goodsY = in.readString();
+                    }
+
+                    public static final Creator<TextArrayEntity> CREATOR = new Creator<TextArrayEntity>() {
+                        @Override
+                        public TextArrayEntity createFromParcel(Parcel in) {
+                            return new TextArrayEntity(in);
+                        }
+
+                        @Override
+                        public TextArrayEntity[] newArray(int size) {
+                            return new TextArrayEntity[size];
+                        }
+                    };
 
                     public static TextArrayEntity objectFromData(String str) {
 
@@ -500,7 +674,30 @@ public class StoryListBean {
                         return good_info;
                     }
 
-                    public static class GoodInfoEntity {
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel dest, int flags) {
+                        dest.writeString(verticalTitle);
+                        dest.writeString(verticalTitleColor);
+                        dest.writeString(smallTitle);
+                        dest.writeString(title);
+                        dest.writeString(titleColor);
+                        dest.writeString(subTitle);
+                        dest.writeString(colorTitle);
+                        dest.writeString(colorTitleColor);
+                        dest.writeString(category);
+                        dest.writeString(info_if_tag);
+                        dest.writeString(goodsname);
+                        dest.writeString(goodsprice);
+                        dest.writeString(goodsx);
+                        dest.writeString(goodsY);
+                    }
+
+                    public static class GoodInfoEntity implements Parcelable{
                         private String goods_id;
                         private String goods_pic;
                         private String model;
@@ -533,6 +730,36 @@ public class StoryListBean {
                          */
 
                         private List<DesignDesEntity> design_des;
+
+                        protected GoodInfoEntity(Parcel in) {
+                            goods_id = in.readString();
+                            goods_pic = in.readString();
+                            model = in.readString();
+                            goods_img = in.readString();
+                            goods_name = in.readString();
+                            last_storge = in.readString();
+                            whole_storge = in.readString();
+                            height = in.readString();
+                            ordain = in.readString();
+                            product_area = in.readString();
+                            goods_price = in.readString();
+                            discount_price = in.readString();
+                            brand = in.readString();
+                            info_des = in.readString();
+                            goods_share = in.readString();
+                        }
+
+                        public static final Creator<GoodInfoEntity> CREATOR = new Creator<GoodInfoEntity>() {
+                            @Override
+                            public GoodInfoEntity createFromParcel(Parcel in) {
+                                return new GoodInfoEntity(in);
+                            }
+
+                            @Override
+                            public GoodInfoEntity[] newArray(int size) {
+                                return new GoodInfoEntity[size];
+                            }
+                        };
 
                         public static GoodInfoEntity objectFromData(String str) {
 
@@ -675,13 +902,58 @@ public class StoryListBean {
                             return design_des;
                         }
 
-                        public static class GoodsDataEntity {
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel dest, int flags) {
+                            dest.writeString(goods_id);
+                            dest.writeString(goods_pic);
+                            dest.writeString(model);
+                            dest.writeString(goods_img);
+                            dest.writeString(goods_name);
+                            dest.writeString(last_storge);
+                            dest.writeString(whole_storge);
+                            dest.writeString(height);
+                            dest.writeString(ordain);
+                            dest.writeString(product_area);
+                            dest.writeString(goods_price);
+                            dest.writeString(discount_price);
+                            dest.writeString(brand);
+                            dest.writeString(info_des);
+                            dest.writeString(goods_share);
+                        }
+
+                        public static class GoodsDataEntity implements Parcelable{
                             private String introContent;
                             private String cellHeight;
                             private String name;
                             private String location;
                             private String country;
                             private String english;
+
+                            protected GoodsDataEntity(Parcel in) {
+                                introContent = in.readString();
+                                cellHeight = in.readString();
+                                name = in.readString();
+                                location = in.readString();
+                                country = in.readString();
+                                english = in.readString();
+                            }
+
+                            public static final Creator<GoodsDataEntity> CREATOR = new Creator<GoodsDataEntity>() {
+                                @Override
+                                public GoodsDataEntity createFromParcel(Parcel in) {
+                                    return new GoodsDataEntity(in);
+                                }
+
+                                @Override
+                                public GoodsDataEntity[] newArray(int size) {
+                                    return new GoodsDataEntity[size];
+                                }
+                            };
 
                             public static GoodsDataEntity objectFromData(String str) {
 
@@ -735,12 +1007,45 @@ public class StoryListBean {
                             public String getEnglish() {
                                 return english;
                             }
+
+                            @Override
+                            public int describeContents() {
+                                return 0;
+                            }
+
+                            @Override
+                            public void writeToParcel(Parcel dest, int flags) {
+                                dest.writeString(introContent);
+                                dest.writeString(cellHeight);
+                                dest.writeString(name);
+                                dest.writeString(location);
+                                dest.writeString(country);
+                                dest.writeString(english);
+                            }
                         }
 
-                        public static class DesignDesEntity {
+                        public static class DesignDesEntity implements Parcelable{
                             private String img;
                             private String cellHeight;
                             private String type;
+
+                            protected DesignDesEntity(Parcel in) {
+                                img = in.readString();
+                                cellHeight = in.readString();
+                                type = in.readString();
+                            }
+
+                            public static final Creator<DesignDesEntity> CREATOR = new Creator<DesignDesEntity>() {
+                                @Override
+                                public DesignDesEntity createFromParcel(Parcel in) {
+                                    return new DesignDesEntity(in);
+                                }
+
+                                @Override
+                                public DesignDesEntity[] newArray(int size) {
+                                    return new DesignDesEntity[size];
+                                }
+                            };
 
                             public static DesignDesEntity objectFromData(String str) {
 
@@ -769,6 +1074,18 @@ public class StoryListBean {
 
                             public String getType() {
                                 return type;
+                            }
+
+                            @Override
+                            public int describeContents() {
+                                return 0;
+                            }
+
+                            @Override
+                            public void writeToParcel(Parcel dest, int flags) {
+                                dest.writeString(img);
+                                dest.writeString(cellHeight);
+                                dest.writeString(type);
                             }
                         }
                     }

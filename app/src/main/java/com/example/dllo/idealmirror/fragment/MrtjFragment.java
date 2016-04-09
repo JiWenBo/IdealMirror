@@ -1,5 +1,6 @@
 package com.example.dllo.idealmirror.fragment;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,11 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.MrtjAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
+import com.example.dllo.idealmirror.mirrordao.AllMirrorCache;
+import com.example.dllo.idealmirror.mirrordao.AllMirrorCacheDao;
+import com.example.dllo.idealmirror.mirrordao.DaoMaster;
+import com.example.dllo.idealmirror.mirrordao.DaoSession;
+import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
@@ -20,7 +26,9 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
@@ -35,6 +43,9 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
     private String title;
     private String store;
     TextView titleTv;
+    private AllMirrorCacheDao allMirrorCacheDao;
+    private List<AllMirrorCache> mirrordata;
+    private AllMirrorCache allMirrorCache;
 
     @Override
     public int getLayout() {
@@ -71,6 +82,9 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         data.put("device_type", "3");
         netHelper.getInformation(sd, this, data);
         titleTv.setText(title);
+
+        /*对数据库操作之前的准备*/
+        allMirrorCacheDao = DaoSingleton.getInstance().getAllMirrorCacheDao();
     }
 
 
@@ -84,18 +98,43 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        /*第一步删除数据库中的所有数据*/
+        allMirrorCacheDao.deleteAll();
+
+        /**
+         * 第二步:将新数据再加入数据库中
+         */
+        allMirrorCache = new AllMirrorCache();
+        allMirrorCache.setImgurl(mrtjListBean.getData().getList().get(0).getData_info().getGoods_img());
+        allMirrorCache.setBrand(mrtjListBean.getData().getList().get(0).getData_info().getBrand());
+        allMirrorCache.setGoodname(mrtjListBean.getData().getList().get(0).getData_info().getGoods_name());
+        allMirrorCache.setGoodprice(mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
+        allMirrorCache.setProductarea(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
+        allMirrorCacheDao.insert(allMirrorCache);
+
         mrtjAdapter = new MrtjAdapter(getContext(),mrtjListBean);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mrtjAdapter);
-
-
     }
 
     @Override
     public void getFail() {
-        LogUtils.d("请求失败");
+        /**
+         * 失败之后调用数据库取出数据
+         */
+        mirrordata = new ArrayList<>();
+        mirrordata  = allMirrorCacheDao.queryBuilder().list();
+
+
+        mrtjAdapter = new MrtjAdapter(getActivity());
+        mrtjAdapter.getData(mirrordata);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(mrtjAdapter);
+
     }
     /**
      * 通过静态方法将参数传过来

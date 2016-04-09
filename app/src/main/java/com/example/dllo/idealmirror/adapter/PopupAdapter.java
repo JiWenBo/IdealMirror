@@ -14,18 +14,21 @@ import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
 
 import com.example.dllo.idealmirror.bean.GoodList;
+import com.example.dllo.idealmirror.mirrordao.GoodListCache;
+
+import java.util.List;
 
 
 /**
  * Created by nan on 16/3/31.
  */
 public class PopupAdapter extends BaseAdapter {
-    private GoodList bean;
     private Context context;
+    private List<GoodListCache> data;
     String store;
 
-    public PopupAdapter(GoodList beans, Context context, String store) {
-        this.bean = beans;
+    public PopupAdapter(List<GoodListCache> datas, Context context, String store) {
+        this.data = datas;
         this.context = context;
         this.store = store;
         notifyDataSetChanged();
@@ -33,12 +36,13 @@ public class PopupAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return bean.getData().getList().size();
+
+        return data.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return bean.getData().getList().get(position);
+        return data.get(position);
     }
 
     @Override
@@ -56,7 +60,7 @@ public class PopupAdapter extends BaseAdapter {
         } else {
             holder = (PopupHolder) convertView.getTag();
         }
-        holder.titleTv.setText(bean.getData().getList().get(position).getTitle());
+        holder.titleTv.setText(data.get(position).getTitle());
 
         return convertView;
     }
@@ -68,7 +72,7 @@ public class PopupAdapter extends BaseAdapter {
         public PopupHolder(View itemView, int position) {
             titleTv = (TextView) itemView.findViewById(R.id.popup_item_tv);
             underLine = (ImageView) itemView.findViewById(R.id.popup_item_line);
-            if (bean.getData().getList().get(position).getStore().equals(store)) {
+            if (data.get(position).getStore().equals(store)) {
                 titleTv.setSelected(true);
                 underLine.setVisibility(View.VISIBLE);
             } else {

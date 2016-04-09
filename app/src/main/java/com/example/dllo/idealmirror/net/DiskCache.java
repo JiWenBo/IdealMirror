@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by dllo on 16/4/6.
  */
 public class DiskCache implements ImageLoader.ImageCache {
-    private String diskPath;
+    private String diskPath;//文件路径
 
     public DiskCache(String diskPath) {
         this.diskPath = diskPath;
@@ -23,19 +23,17 @@ public class DiskCache implements ImageLoader.ImageCache {
     @Override
         public Bitmap getBitmap(String url) {
             // 获取url中的图片名称
-
-            String fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
-           LogUtils.d("存储url",url);
+           String fileName = MDStr.getMD5(url);
             // 用文件名拼接出实际文件存储路径
             String filePath = diskPath + "/" + fileName;
-            LogUtils.d("存储路径",filePath);
             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
             return bitmap;
         }
         @Override
         public void putBitmap(String url, Bitmap bitmap) {
             // 获取url中的图片名称
-            String fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
+           // String fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
+            String fileName = MDStr.getMD5(url);
             // 用文件名拼接出实际文件存储路径
             String filePath = diskPath + "/" + fileName;
 
@@ -43,7 +41,7 @@ public class DiskCache implements ImageLoader.ImageCache {
             try {
                 fos = new FileOutputStream(filePath);
                 // 将bitmap对象写入文件中
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0, fos);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } finally {
@@ -55,6 +53,7 @@ public class DiskCache implements ImageLoader.ImageCache {
                         e.printStackTrace();
                     }
                 }
+
             }
         }
 }

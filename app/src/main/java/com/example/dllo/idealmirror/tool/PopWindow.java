@@ -19,6 +19,7 @@ import com.example.dllo.idealmirror.adapter.PopupAdapter;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.bean.GoodList;
 
+import com.example.dllo.idealmirror.mirrordao.GoodListCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.google.gson.Gson;
@@ -27,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -42,7 +44,7 @@ public class PopWindow implements Url, View.OnClickListener {
     private TextView homeTv, returnTv;
     private ImageView homeIv, returnIv;
     private MainActivity mainActivity;
-    private static GoodList bean;
+    private static List<GoodListCache>  bean;
     String store;
 
     public PopWindow(Context context) {
@@ -77,7 +79,7 @@ public class PopWindow implements Url, View.OnClickListener {
      * 从activity传递实体类
      * @param beans
      */
-    public void initDataPop(GoodList beans) {
+    public void initDataPop(List<GoodListCache> beans) {
         this.bean = beans;
     }
 
@@ -113,25 +115,6 @@ public class PopWindow implements Url, View.OnClickListener {
         });
 
     }
-
-   /* @Override
-    public void getSuccess(String body) {
-        try {
-            LogUtils.d("menu的数据.请求成功");
-            JSONObject object = new JSONObject(body);
-            Gson gson = new Gson();
-            bean = gson.fromJson(object.toString(), PopupListBean.class);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void getFail() {
-        LogUtils.d("menu的数据请求失败");
-    }*/
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

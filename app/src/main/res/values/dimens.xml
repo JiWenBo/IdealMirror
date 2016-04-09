@@ -78,15 +78,15 @@
     <dimen name="widththouth">470px</dimen>
     <dimen name="heithright">870px</dimen>
     <dimen name="layhei">238px</dimen>
-    <dimen name="martopsix">630px</dimen>
-    <dimen name="martopfive">50px</dimen>
+    <dimen name="martopsix">650px</dimen>
+    <dimen name="martopfive">30px</dimen>
     <dimen name="heigh_fifth">15dp</dimen>
     <dimen name="marleftsix">16dp</dimen>
     <dimen name="texsizethree">30px</dimen>
     <dimen name="marrightsix">16dp</dimen>
     <dimen name="heieight">18dp</dimen>
     <dimen name="marlatfthree">32px</dimen>
-    <dimen name="martop">16px</dimen>
+    <dimen name="martop">20px</dimen>
     <dimen name="textsizetwo">24px</dimen>
     <dimen name="topthree">100px</dimen>
     <dimen name="sixpx">16px</dimen>
@@ -125,6 +125,11 @@
 
 
     <dimen name="addAddress_edit">200px</dimen>
+    <dimen name="twozerop">20px</dimen>
+    <dimen name="zerofice">205dp</dimen>
+    <dimen name="twosd">2dp</dimen>
+    <dimen name="threezero">30dp</dimen>
+    <dimen name="twozero">20px</dimen>
 
 
 </resources>

@@ -12,20 +12,21 @@ public class DoubleCache implements ImageLoader.ImageCache{
 
         private MenoryCache memoryCache;
         private DiskCache diskCache;
+      //  private String diskPathurl;//文件路径
 
-        public DoubleCache() {
+        public DoubleCache(String diskPathurl) {
             memoryCache = new MenoryCache();
-            //diskCache = new DiskCache();
+            diskCache = new DiskCache(diskPathurl);
         }
 
         @Override
         public Bitmap getBitmap(String url) {
             Bitmap bitmap = memoryCache.getBitmap(url);
             if (bitmap == null) {
-                LogUtils.d("diskcache");
+
                 bitmap = diskCache.getBitmap(url);
             }
-            LogUtils.d("diskcache2");
+
             return bitmap;
         }
 

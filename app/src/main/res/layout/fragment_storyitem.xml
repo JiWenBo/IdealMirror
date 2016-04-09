@@ -31,11 +31,11 @@
                 android:src="@drawable/create_account_unline" />
 
             <TextView
+                android:id="@+id/storytitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marlatfthree"
                 android:layout_marginTop="@dimen/sixpx"
-                android:text="@string/caomeiyanj"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/threepx" />
         </com.zhy.autolayout.AutoLinearLayout>

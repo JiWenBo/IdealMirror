@@ -6,27 +6,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
-import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
-import com.example.dllo.idealmirror.net.ImageLoaderCache;
+import com.example.dllo.idealmirror.mirrordao.AllMirrorCache;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.tool.isNetWork;
 import com.zhy.autolayout.utils.AutoUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
  */
-public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder>{
+public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> {
     private MrtjListBean mrtjListBean;
     private Context context;
+    private isNetWork isNetWorks;
+    private List<AllMirrorCache> data;
 
-    public MrtjAdapter(Context context,MrtjListBean mrtjListBeans) {
+    public MrtjAdapter(Context context) {
         this.context = context;
-        this.mrtjListBean = mrtjListBeans;
     }
 
+    public MrtjAdapter(Context context, MrtjListBean mrtjListBeans) {
+        this.context = context;
+        this.mrtjListBean = mrtjListBeans;
+        this.isNetWorks = new isNetWork();
+    }
+
+    public void getData(List<AllMirrorCache> datas) {
+        data = new ArrayList<>();
+        this.data = datas;
+    }
 
 
     @Override
@@ -38,28 +52,50 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NetHelper netHelper = new NetHelper();
-
         ImageLoader loader = netHelper.getImageLoader();
-        String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
-        loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
 
+
+        if (isNetWorks.isnetWorkAvilable(context)) {
+            String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
+            loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+            holder.price.setText("¥"+mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
+            holder.brand.setText(mrtjListBean.getData().getList().get(0).getData_info().getBrand());
+            holder.area.setText(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
+            holder.name.setText(mrtjListBean.getData().getList().get(0).getData_info().getGoods_name());
+        } else {
+            holder.price.setText("¥"+data.get(0).getGoodprice());
+            holder.brand.setText(data.get(0).getBrand());
+            holder.area.setText(data.get(0).getProductarea());
+            holder.name.setText(data.get(0).getGoodname());
+            loader.get(data.get(0).getImgurl(), ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return  mrtjListBean.getData().getList().size();
+        if (isNetWorks.isnetWorkAvilable(context)) {
+            return mrtjListBean.getData().getList().size();
+        } else {
+            return data.size();
+        }
+
 
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-
-
+        TextView name,area,brand,price;
         public MyViewHolder(View itemView) {
             super(itemView);
             AutoUtils.autoSize(itemView);
             img = (ImageView) itemView.findViewById(R.id.picture);
+            name = (TextView) itemView.findViewById(R.id.mrtj_name);
+            area = (TextView) itemView.findViewById(R.id.mrtj_area);
+            brand = (TextView) itemView.findViewById(R.id.mrtj_brand);
+            price = (TextView) itemView.findViewById(R.id.mrtj_price);
 
         }
     }
+
 }

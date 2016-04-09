@@ -10,27 +10,36 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.StoryAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.StoryListBean;
+import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
+import com.example.dllo.idealmirror.mirrordao.StoryMirror;
+import com.example.dllo.idealmirror.mirrordao.StoryMirrorDao;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.PopWindow;
+import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
  */
-public class StoryListFragment extends BaseFragment implements VolleyListener {
+public class StoryListFragment extends BaseFragment implements VolleyListener,Url{
     private StoryAdapter storyAdapter;
     private static StoryListBean storyListBean;
     private HashMap<String,String> data;
     private RecyclerView recyclerView;
     private LinearLayout layout;
     private PopWindow popWindow;
+    private StoryMirrorDao storyMirrorDao;
+    private StoryMirror storyMirror;
+    private List<StoryMirror> storyMirrors;
     String title;
     String store;
     TextView titleTv;
@@ -62,15 +71,15 @@ public class StoryListFragment extends BaseFragment implements VolleyListener {
     protected void initData() {
 
         Bundle bundle = getArguments();
-        String sd = bundle.getString("body");
         title = bundle.getString("title");
         store = bundle.getString("store");
         data = new HashMap<>();
         NetHelper netHelper = new NetHelper();
         data.put("token", "");
         data.put("device_type", "3");
-        netHelper.getInformation(sd, this, data);
+        netHelper.getInformation(TEST_STORY_LIST, this, data);
         titleTv.setText(title);
+        storyMirrorDao = DaoSingleton.getInstance().getStoryMirrorDao();
 
     }
 
@@ -85,8 +94,17 @@ public class StoryListFragment extends BaseFragment implements VolleyListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        storyAdapter = new StoryAdapter(getContext(),storyListBean);
+        storyMirrorDao.deleteAll();
+        storyMirrors = new ArrayList<>();
+        for (int i=0;i<storyListBean.getData().getList().size();i++){
+            storyMirror = new StoryMirror();
+            storyMirror.setPicimg(storyListBean.getData().getList().get(i).getStory_img());
+            storyMirror.setTitle(storyListBean.getData().getList().get(i).getStory_title());
+            storyMirrorDao.insert(storyMirror);
+            storyMirrors.add(storyMirror);
+        }
+        storyMirrors = storyMirrorDao.queryBuilder().list();
+        storyAdapter = new StoryAdapter(getContext(),storyMirrors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -98,16 +116,21 @@ public class StoryListFragment extends BaseFragment implements VolleyListener {
     @Override
     public void getFail() {
         LogUtils.d("请求失败");
+        storyMirrors = storyMirrorDao.queryBuilder().list();
+        storyAdapter = new StoryAdapter(getContext(),storyMirrors);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(storyAdapter);
     }
     /**
      * 通过静态方法将参数传过来
      * @param body
      * @return
      */
-    public static StoryListFragment setUrl(String body, String title, String store){
+    public static StoryListFragment setUrl( String title, String store){
         StoryListFragment storyListFragment = new StoryListFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("body",body);
         bundle.putString("title", title);
         bundle.putString("store", store);
         storyListFragment.setArguments(bundle);
