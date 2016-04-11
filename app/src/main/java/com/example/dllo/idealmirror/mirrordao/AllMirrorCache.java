@@ -12,6 +12,7 @@ public class AllMirrorCache {
     private String productarea;
     private String brand;
     private String goodprice;
+    private String goodsid;
 
     public AllMirrorCache() {
     }
@@ -20,13 +21,14 @@ public class AllMirrorCache {
         this.id = id;
     }
 
-    public AllMirrorCache(Long id, String imgurl, String goodname, String productarea, String brand, String goodprice) {
+    public AllMirrorCache(Long id, String imgurl, String goodname, String productarea, String brand, String goodprice, String goodsid) {
         this.id = id;
         this.imgurl = imgurl;
         this.goodname = goodname;
         this.productarea = productarea;
         this.brand = brand;
         this.goodprice = goodprice;
+        this.goodsid = goodsid;
     }
 
     public Long getId() {
@@ -75,6 +77,14 @@ public class AllMirrorCache {
 
     public void setGoodprice(String goodprice) {
         this.goodprice = goodprice;
+    }
+
+    public String getGoodsid() {
+        return goodsid;
+    }
+
+    public void setGoodsid(String goodsid) {
+        this.goodsid = goodsid;
     }
 
 }

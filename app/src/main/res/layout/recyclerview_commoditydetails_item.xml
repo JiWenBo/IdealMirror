@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recyclerview_commodityDetails_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/recyclerview_commodityDetails_iv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commodityItem_item_picHei"
+        fresco:placeholderImage="@mipmap/ic_launcher"
+         />
+
+    <LinearLayout
+        android:id="@+id/recyclerview_commodityDetails_storyLinear"
+        android:layout_width="@dimen/commodityItem_item_storyWid"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerview_commodityDetails_iv"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorBlack"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/commodityItem_item_storyLeft"
+        android:paddingRight="@dimen/commodityItem_item_storyRight">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/commodityItem_head_lineHei"
+            android:layout_marginTop="@dimen/commodityItem_head_lineTop"
+            android:background="@drawable/title_underline" />
+
+
+        <TextView
+            android:id="@+id/recyclerview_commodityDetails_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/commodityItem_item_nameTop"
+            android:layout_gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/commodityItem_item_nameSize" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/commodityItem_head_lineHei"
+            android:layout_marginTop="@dimen/commodityItem_title_underTop"
+            android:background="@drawable/title_underline" />
+
+        <TextView
+            android:id="@+id/recyclerview_commodityDetails_intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/commodityItem_item_introBot"
+            android:layout_marginTop="@dimen/commodityItem_item_introTop"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/commodityItem_item_introSize" />
+    </LinearLayout>
+</RelativeLayout>

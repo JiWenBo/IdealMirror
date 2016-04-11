@@ -110,6 +110,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         allMirrorCache.setGoodname(mrtjListBean.getData().getList().get(0).getData_info().getGoods_name());
         allMirrorCache.setGoodprice(mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
         allMirrorCache.setProductarea(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
+        allMirrorCache.setProductarea(mrtjListBean.getData().getList().get(0).getData_info().getGoods_id());
         allMirrorCacheDao.insert(allMirrorCache);
 
         mrtjAdapter = new MrtjAdapter(getContext(),mrtjListBean);

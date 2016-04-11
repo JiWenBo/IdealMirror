@@ -6,8 +6,8 @@ import de.greenrobot.daogenerator.Schema;
 import de.greenrobot.daogenerator.DaoGenerator;
 
 public class MyClass {
-    public static void main(String[] args){
-       Schema schema = new Schema(1,"com.example.dllo.idealmirror.mirrordao") ;
+    public static void main(String[] args) {
+        Schema schema = new Schema(1, "com.example.dllo.idealmirror.mirrordao");
 /**/
         Entity entity = schema.addEntity("AllMirrorCache");//AllMirrorCache 的表
         entity.addIdProperty().primaryKey().autoincrement();//添加一个主键
@@ -16,6 +16,7 @@ public class MyClass {
         entity.addStringProperty("productarea");
         entity.addStringProperty("brand");
         entity.addStringProperty("goodprice");
+        entity.addStringProperty("goodsid");
 
 
 /*GoodList*/
@@ -28,16 +29,18 @@ public class MyClass {
         goodentity.addStringProperty("topColor");
         goodentity.addStringProperty("buttomColor");
 
+
 /*平光镜数据库  */
-            Entity plainmirror = schema.addEntity("PlainMirror");//GoodListDao 的表
-            plainmirror.addIdProperty().primaryKey().autoincrement();//添加一个主键
-            plainmirror.addStringProperty("goodsimg");
-            plainmirror.addStringProperty("goodsname");
-            plainmirror.addStringProperty("wholestorge");
-            plainmirror.addStringProperty("product");
-            plainmirror.addStringProperty("goodsprice");
-            plainmirror.addStringProperty("brand");
-            plainmirror.addStringProperty("discount");
+        Entity plainmirror = schema.addEntity("PlainMirror");//GoodListDao 的表
+        plainmirror.addIdProperty().primaryKey().autoincrement();//添加一个主键
+        plainmirror.addStringProperty("goodsimg");
+        plainmirror.addStringProperty("goodsname");
+        plainmirror.addStringProperty("wholestorge");
+        plainmirror.addStringProperty("product");
+        plainmirror.addStringProperty("goodsprice");
+        plainmirror.addStringProperty("brand");
+        plainmirror.addStringProperty("discount");
+        plainmirror.addStringProperty("goodsid");
 
         /*专题分享表*/
         Entity storymirror = schema.addEntity("StoryMirror");
@@ -47,9 +50,8 @@ public class MyClass {
         storymirror.addStringProperty("type");
 
 
-
         try {
-            new DaoGenerator().generateAll(schema,"./app/src/main/java");
+            new DaoGenerator().generateAll(schema, "./app/src/main/java");
         } catch (Exception e) {
             e.printStackTrace();
         }

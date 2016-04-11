@@ -2,13 +2,15 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemx"
     android:layout_width="@dimen/widththouth"
-    android:layout_height="@dimen/heithright">
+    android:layout_height="@dimen/heithright"
+    >
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="@dimen/widththouth"
         android:layout_height="@dimen/heithright"
         android:layout_marginRight="@dimen/marleft_twotwo"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:id="@+id/picclick">
 
         <ImageView
             android:id="@+id/picture"

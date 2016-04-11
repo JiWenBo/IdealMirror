@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/commodityDetails_head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:background="@color/colorBlack">
+
+        <ImageView
+            android:layout_width="@dimen/commodityItem_head_shareWid"
+            android:layout_height="@dimen/commodityItem_head_shareHei"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/commodityItem_head_shareRight"
+            android:layout_marginTop="@dimen/commodityItem_head_shareTop"
+            android:src="@drawable/share" />
+
+        <RelativeLayout
+            android:id="@+id/commoditydetails_commodityIntro"
+            android:layout_width="@dimen/commodityItem_head_rlWid"
+            android:layout_height="@dimen/commodityItem_head_rlHei"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/commodityItem_head_rlTop"
+            android:background="@drawable/share_frame">
+
+            <TextView
+                android:id="@+id/commoditydetails_englishTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/commodityItem_head_engTitTop"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/commodityItem_head_engTitSize" />
+
+            <ImageView
+                android:id="@+id/commoditydetails_whiteLine"
+                android:layout_width="@dimen/commodityItem_head_lineWid"
+                android:layout_height="@dimen/commodityItem_head_lineHei"
+                android:layout_below="@id/commoditydetails_englishTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/commodityItem_head_lineTop"
+                android:background="@drawable/title_underline"/>
+
+            <TextView
+                android:id="@+id/commoditydetails_name"
+                android:layout_width="@dimen/commodityItem_head_nameWid"
+                android:layout_height="@dimen/commodityItem_head_nameHei"
+                android:layout_below="@id/commoditydetails_whiteLine"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/commodityItem_head_nameSize" />
+
+            <ImageView
+                android:id="@+id/commoditydetails_whiteUnderLine"
+                android:layout_width="@dimen/commodityItem_head_underlineWid"
+                android:layout_height="@dimen/commodityItem_head_underlineHei"
+                android:layout_below="@id/commoditydetails_name"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/title_underline" />
+
+            <TextView
+                android:id="@+id/commoditydetails_commodityStory"
+                android:layout_width="@dimen/commodityItem_head_storyWid"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/commoditydetails_whiteUnderLine"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/commodityItem_head_storyTop"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/commodityItem_head_storySize" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/commoditydetails_commodityStory"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/commodityItem_head_llTop"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/commodityItem_head_priceHei"
+                    android:src="@drawable/money" />
+
+                <TextView
+                    android:id="@+id/commoditydetails_commodityMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/commodityItem_head_priceLeft"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/commodityItem_head_priceSize" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/commoditydetails_watchDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/commoditydetails_commodityIntro"
+            android:layout_marginTop="@dimen/commodityItem_head_endllTop"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/watchDetails"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/commodityItem_head_watchSize" />
+
+            <ImageView
+                android:layout_width="@dimen/commodityItem_head_watchWid"
+                android:layout_height="@dimen/commodityItem_head_watchHei"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/commodityItem_head_watchBot"
+                android:layout_marginTop="@dimen/commodityItem_head_watchTop"
+                android:src="@drawable/pull_down" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

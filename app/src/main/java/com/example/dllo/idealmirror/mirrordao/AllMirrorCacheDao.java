@@ -29,6 +29,7 @@ public class AllMirrorCacheDao extends AbstractDao<AllMirrorCache, Long> {
         public final static Property Productarea = new Property(3, String.class, "productarea", false, "PRODUCTAREA");
         public final static Property Brand = new Property(4, String.class, "brand", false, "BRAND");
         public final static Property Goodprice = new Property(5, String.class, "goodprice", false, "GOODPRICE");
+        public final static Property Goodsid = new Property(6, String.class, "goodsid", false, "GOODSID");
     };
 
 
@@ -49,7 +50,8 @@ public class AllMirrorCacheDao extends AbstractDao<AllMirrorCache, Long> {
                 "\"GOODNAME\" TEXT," + // 2: goodname
                 "\"PRODUCTAREA\" TEXT," + // 3: productarea
                 "\"BRAND\" TEXT," + // 4: brand
-                "\"GOODPRICE\" TEXT);"); // 5: goodprice
+                "\"GOODPRICE\" TEXT," + // 5: goodprice
+                "\"GOODSID\" TEXT);"); // 6: goodsid
     }
 
     /** Drops the underlying database table. */
@@ -92,6 +94,11 @@ public class AllMirrorCacheDao extends AbstractDao<AllMirrorCache, Long> {
         if (goodprice != null) {
             stmt.bindString(6, goodprice);
         }
+ 
+        String goodsid = entity.getGoodsid();
+        if (goodsid != null) {
+            stmt.bindString(7, goodsid);
+        }
     }
 
     /** @inheritdoc */
@@ -109,7 +116,8 @@ public class AllMirrorCacheDao extends AbstractDao<AllMirrorCache, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // goodname
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // productarea
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // brand
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // goodprice
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // goodprice
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // goodsid
         );
         return entity;
     }
@@ -123,6 +131,7 @@ public class AllMirrorCacheDao extends AbstractDao<AllMirrorCache, Long> {
         entity.setProductarea(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setBrand(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setGoodprice(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setGoodsid(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     /** @inheritdoc */

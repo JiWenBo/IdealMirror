@@ -14,6 +14,7 @@ public class PlainMirror {
     private String goodsprice;
     private String brand;
     private String discount;
+    private String goodsid;
 
     public PlainMirror() {
     }
@@ -22,7 +23,7 @@ public class PlainMirror {
         this.id = id;
     }
 
-    public PlainMirror(Long id, String goodsimg, String goodsname, String wholestorge, String product, String goodsprice, String brand, String discount) {
+    public PlainMirror(Long id, String goodsimg, String goodsname, String wholestorge, String product, String goodsprice, String brand, String discount, String goodsid) {
         this.id = id;
         this.goodsimg = goodsimg;
         this.goodsname = goodsname;
@@ -31,6 +32,7 @@ public class PlainMirror {
         this.goodsprice = goodsprice;
         this.brand = brand;
         this.discount = discount;
+        this.goodsid = goodsid;
     }
 
     public Long getId() {
@@ -95,6 +97,14 @@ public class PlainMirror {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    public String getGoodsid() {
+        return goodsid;
+    }
+
+    public void setGoodsid(String goodsid) {
+        this.goodsid = goodsid;
     }
 
 }

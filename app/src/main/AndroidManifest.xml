@@ -80,6 +80,9 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.CommodityDetailsActivity"/>
+        <activity android:name=".activity.AdornPhotosActivity"/>
+        <activity android:name=".activity.PhotoActivity"/>
     </application>
 
 </manifest>

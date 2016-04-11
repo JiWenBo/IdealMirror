@@ -33,11 +33,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
 import android.widget.LinearLayout;
-
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,9 +85,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         NetHelper netHelper = new NetHelper();
         netHelper.getInformation(MENU_LIST, this, null);
     }
-
-
-
 
     @Override
     protected void onResume() {

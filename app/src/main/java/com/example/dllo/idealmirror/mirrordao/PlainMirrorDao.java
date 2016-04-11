@@ -31,6 +31,7 @@ public class PlainMirrorDao extends AbstractDao<PlainMirror, Long> {
         public final static Property Goodsprice = new Property(5, String.class, "goodsprice", false, "GOODSPRICE");
         public final static Property Brand = new Property(6, String.class, "brand", false, "BRAND");
         public final static Property Discount = new Property(7, String.class, "discount", false, "DISCOUNT");
+        public final static Property Goodsid = new Property(8, String.class, "goodsid", false, "GOODSID");
     };
 
 
@@ -53,7 +54,8 @@ public class PlainMirrorDao extends AbstractDao<PlainMirror, Long> {
                 "\"PRODUCT\" TEXT," + // 4: product
                 "\"GOODSPRICE\" TEXT," + // 5: goodsprice
                 "\"BRAND\" TEXT," + // 6: brand
-                "\"DISCOUNT\" TEXT);"); // 7: discount
+                "\"DISCOUNT\" TEXT," + // 7: discount
+                "\"GOODSID\" TEXT);"); // 8: goodsid
     }
 
     /** Drops the underlying database table. */
@@ -106,6 +108,11 @@ public class PlainMirrorDao extends AbstractDao<PlainMirror, Long> {
         if (discount != null) {
             stmt.bindString(8, discount);
         }
+ 
+        String goodsid = entity.getGoodsid();
+        if (goodsid != null) {
+            stmt.bindString(9, goodsid);
+        }
     }
 
     /** @inheritdoc */
@@ -125,7 +132,8 @@ public class PlainMirrorDao extends AbstractDao<PlainMirror, Long> {
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // product
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // goodsprice
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // brand
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // discount
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // discount
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // goodsid
         );
         return entity;
     }
@@ -141,6 +149,7 @@ public class PlainMirrorDao extends AbstractDao<PlainMirror, Long> {
         entity.setGoodsprice(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setBrand(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setDiscount(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setGoodsid(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     /** @inheritdoc */

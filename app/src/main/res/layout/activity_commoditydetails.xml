@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/commodityDetails_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/commoditydetails_backgroud_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fresco:placeholderImage="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/commoditydetails_menu_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/commodityDetails_menu_bottom"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/commoditydetails_return_btn"
+            android:layout_width="@dimen/commodityDetails_menu_returnWid"
+            android:layout_height="@dimen/commodityDetails_menu_hei"
+            android:layout_marginLeft="@dimen/commodityDetails_menu_returnLeft"
+            android:src="@drawable/return_btn" />
+
+        <TextView
+            android:id="@+id/commoditydetails_adornPhotos"
+            android:layout_width="@dimen/commodityDetails_menu_adornWid"
+            android:layout_height="@dimen/commodityDetails_menu_hei"
+            android:layout_marginLeft="@dimen/commodityDetails_menu_adornLeft"
+            android:layout_toRightOf="@id/commoditydetails_return_btn"
+            android:background="@drawable/adorn_photos_btn"
+            android:gravity="center"
+            android:text="@string/adornPhotos"
+            android:textColor="@color/colorWhite" />
+
+        <ImageView
+            android:id="@+id/commodityDetails_menu_buy"
+            android:layout_width="@dimen/commodityDetails_menu_buyWid"
+            android:layout_height="@dimen/commodityDetails_menu_hei"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/commodityDetails_menu_buyRight"
+            android:src="@drawable/buy_btn" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

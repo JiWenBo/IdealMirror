@@ -5,6 +5,7 @@
     android:layout_height="@dimen/heithright">
 
     <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/picclick"
         android:layout_width="@dimen/widththouth"
         android:layout_height="@dimen/heithright"
         android:layout_marginRight="@dimen/marleft_twotwo"

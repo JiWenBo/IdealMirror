@@ -108,6 +108,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
             plainMirror.setGoodsprice(goodsListBean.getData().getList().get(i).getGoods_price());
             plainMirror.setProduct(goodsListBean.getData().getList().get(i).getProduct_area());
             plainMirror.setWholestorge(goodsListBean.getData().getList().get(i).getWhole_storge());
+            plainMirror.setGoodsid(goodsListBean.getData().getList().get(i).getGoods_id());
             plainMirrors.add(plainMirror);
             plainMirrorDao.insert(plainMirror);
         }

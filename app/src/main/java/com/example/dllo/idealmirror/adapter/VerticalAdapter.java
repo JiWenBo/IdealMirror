@@ -37,23 +37,21 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
 
             store = data.get(position).getStore();
             if (data.get(position).getType().equals("6")) {
-                LogUtils.d("asdf" + position);
                 return MrtjFragment.setUrl(INDEX_MRTJ, data.get(position).getTitle(), store);
             } else if (data.get(position).getType().equals("3")) {
-                LogUtils.d("asdf" + position);
+
                 return GoodsListFragment.setUrl(++position, data.get(--position).getTitle(), store);
             }
 
         }
 
-
         if (position == 3) {
-            LogUtils.d("asdf" + position);
+
             return StoryListFragment.setUrl("专题分享", "XXX");
         }
 
         if (position == 4) {
-            LogUtils.d("asdf" + position);
+
             return fragmenta;
         }
 

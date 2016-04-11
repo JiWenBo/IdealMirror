@@ -1,6 +1,8 @@
 package com.example.dllo.idealmirror.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +12,13 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.activity.CommodityDetailsActivity;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.mirrordao.PlainMirror;
 import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.tool.LogUtils;
+import com.zhy.autolayout.AutoRelativeLayout;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;
@@ -54,6 +58,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             holder.disprice.setText("¥"+data.getDiscount());
         }
 
+        holder.pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommodityDetailsActivity.class);
+                intent.putExtra("id",data.getGoodsid());
+                intent.putExtra("backgroudUrl",data.getGoodsimg());
+                LogUtils.d(data.getGoodsid());
+                        ((Activity) context).startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -66,6 +81,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         ImageView img;
         TextView name,price,area,disprice,brand;
         View line;
+        AutoRelativeLayout pic;
         public MyViewHolder(View itemView) {
             super(itemView);
             AutoUtils.autoSize(itemView);
@@ -76,6 +92,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             disprice = (TextView) itemView.findViewById(R.id.good_disprice);
             brand = (TextView) itemView.findViewById(R.id.good_brand);
             line = itemView.findViewById(R.id.line);
+            pic = (AutoRelativeLayout) itemView.findViewById(R.id.picclick);
         }
     }
 }

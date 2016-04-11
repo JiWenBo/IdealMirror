@@ -49,4 +49,8 @@
     <string name="java_login_success">登陆成功</string>
     <string name="java_login_fail">登录失败</string>
 
+    <string name="adornPhotos">佩戴图集</string>
+    <string name="watchDetails">滑动浏览详情</string>
+    <string name="goodsShow">商品细节展示</string>
+
 </resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/adornpgotos_top">
+
+    <RelativeLayout
+        android:id="@+id/adornPhotos_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/adornPhotos_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/adornPhotos_title_bottom"
+            android:text="@string/goodsShow" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/adornPhotos_name"
+            android:src="@drawable/item_underline_black" />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/adornPhotos_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/adornPhotos_title"
+        android:layout_marginTop="@dimen/adornPhotos_recyclerView_top" />
+    <RelativeLayout
+        android:id="@+id/commoditydetails_menu_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/commodityDetails_menu_bottom">
+
+        <ImageView
+            android:id="@+id/adornPhotos_return_btn"
+            android:layout_width="@dimen/commodityDetails_menu_returnWid"
+            android:layout_height="@dimen/commodityDetails_menu_hei"
+            android:layout_marginLeft="@dimen/commodityDetails_menu_returnLeft"
+            android:src="@drawable/return_btn" />
+
+        <ImageView
+            android:id="@+id/adornPhotos_buy_btn"
+            android:layout_width="@dimen/commodityDetails_menu_buyWid"
+            android:layout_height="@dimen/commodityDetails_menu_hei"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/commodityDetails_menu_buyRight"
+            android:src="@drawable/buy_btn" />
+    </RelativeLayout>
+
+</RelativeLayout>

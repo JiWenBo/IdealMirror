@@ -1,6 +1,8 @@
 package com.example.dllo.idealmirror.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +12,13 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.activity.CommodityDetailsActivity;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
 import com.example.dllo.idealmirror.mirrordao.AllMirrorCache;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.isNetWork;
+import com.zhy.autolayout.AutoRelativeLayout;
 import com.zhy.autolayout.utils.AutoUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,18 +55,27 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         NetHelper netHelper = new NetHelper();
         ImageLoader loader = netHelper.getImageLoader();
 
 
         if (isNetWorks.isnetWorkAvilable(context)) {
-            String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
+            final String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
             loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-            holder.price.setText("¥"+mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
+            holder.price.setText("¥" + mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
             holder.brand.setText(mrtjListBean.getData().getList().get(0).getData_info().getBrand());
             holder.area.setText(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
             holder.name.setText(mrtjListBean.getData().getList().get(0).getData_info().getGoods_name());
+            holder.pic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CommodityDetailsActivity.class);
+                    intent.putExtra("id", mrtjListBean.getData().getList().get(0).getData_info().getGoods_id());
+                    intent.putExtra("backgroudUrl",goodsurl);
+                    context.startActivity(intent);
+                }
+            });
         } else {
             holder.price.setText("¥"+data.get(0).getGoodprice());
             holder.brand.setText(data.get(0).getBrand());
@@ -69,6 +83,18 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
             holder.name.setText(data.get(0).getGoodname());
             loader.get(data.get(0).getImgurl(), ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
 
+
+        holder.pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommodityDetailsActivity.class);
+                intent.putExtra("id",data.get(0).getGoodsid());
+                intent.putExtra("backgroudUrl", data.get(0).getImgurl());
+             //   LogUtils.d(data.get(0).getGoodsid());
+                ((Activity)context).startActivity(intent);
+
+            }
+        });
         }
     }
 
@@ -86,6 +112,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
         TextView name,area,brand,price;
+        AutoRelativeLayout pic;
         public MyViewHolder(View itemView) {
             super(itemView);
             AutoUtils.autoSize(itemView);
@@ -94,6 +121,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
             area = (TextView) itemView.findViewById(R.id.mrtj_area);
             brand = (TextView) itemView.findViewById(R.id.mrtj_brand);
             price = (TextView) itemView.findViewById(R.id.mrtj_price);
+            pic = (AutoRelativeLayout) itemView.findViewById(R.id.picclick);
 
         }
     }
