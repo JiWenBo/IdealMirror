@@ -1,7 +1,7 @@
 package com.example.dllo.idealmirror.fragment;
 
-import android.app.ProgressDialog;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
+
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,18 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.MrtjAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
 import com.example.dllo.idealmirror.mirrordao.AllMirrorCache;
 import com.example.dllo.idealmirror.mirrordao.AllMirrorCacheDao;
-import com.example.dllo.idealmirror.mirrordao.DaoMaster;
-import com.example.dllo.idealmirror.mirrordao.DaoSession;
 import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
-import com.example.dllo.idealmirror.tool.PopWindow;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -40,13 +38,19 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
     private HashMap<String,String> data;
     private RecyclerView recyclerView;
     private LinearLayout layout;
-    private PopWindow popWindow;
     private String title;
     private String store;
     TextView titleTv;
     private AllMirrorCacheDao allMirrorCacheDao;
     private List<AllMirrorCache> mirrordata;
     private AllMirrorCache allMirrorCache;
+    private MainActivity mainActivity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) context;
+    }
 
 
 
@@ -63,8 +67,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popWindow = new PopWindow(getContext(), store);
-                popWindow.showPopWindow(v);
+                mainActivity.setMenuFrame(getActivity(), store);
             }
         });
 
@@ -75,7 +78,6 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
      */
     @Override
     protected void initData() {
-
         Bundle bundle = getArguments();
         String sd = bundle.getString("body");
         title = bundle.getString("title");

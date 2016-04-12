@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.activity.CommodityDetailsActivity;
+import com.example.dllo.idealmirror.base.BaseApplication;
 import com.example.dllo.idealmirror.bean.CommodityDetailsData;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.R;
@@ -23,6 +24,9 @@ import com.example.dllo.idealmirror.tool.Url;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
+
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by LYH on 16/4/1.
@@ -125,6 +129,12 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             ((HeadViewHolder) holder).commodityHeadNameTv.setText(goodsListData.getData().getBrand());
             ((HeadViewHolder) holder).commodityHeadStoryTv.setText(goodsListData.getData().getInfo_des());
             ((HeadViewHolder) holder).commodityHeadMoney.setText(goodsListData.getData().getGoods_price());
+            ((HeadViewHolder) holder).shareIv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toShare();
+                }
+            });
 
         }
         //带标题的布局
@@ -149,7 +159,7 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             Uri uri = Uri.parse(goodsListData.getData().getGoods_pic());
             ((GoodsTitleViewHolder) holder).commodityTitleIv.setImageURI(uri);
 
-                    ((GoodsTitleViewHolder) holder).position = position;
+            ((GoodsTitleViewHolder) holder).position = position;
         }
         //不带标题的布局
         if (holder instanceof GoodsDetailsViewHolder) {
@@ -194,7 +204,6 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
         //需要网络解析的数据
         private TextView commodityHeadEnglishNameTv, commodityHeadNameTv, commodityHeadStoryTv, commodityHeadMoney;
         private ImageView shareIv;
-        private int position;
 
         public HeadViewHolder(View itemView) {
             super(itemView);
@@ -202,7 +211,34 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             commodityHeadNameTv = (TextView) itemView.findViewById(R.id.commoditydetails_name);
             commodityHeadStoryTv = (TextView) itemView.findViewById(R.id.commoditydetails_commodityStory);
             commodityHeadMoney = (TextView) itemView.findViewById(R.id.commoditydetails_commodityMoney);
+            shareIv = (ImageView) itemView.findViewById(R.id.commodity_detail_share);
         }
+    }
+
+    // 分享
+    private void toShare() {
+        ShareSDK.initSDK(BaseApplication.getContext());
+        OnekeyShare onekeyShare = new OnekeyShare();
+        // 关闭sso授权
+        onekeyShare.disableSSOWhenAuthorize();
+        // text是分享文本 所有的平台都需要这个字段
+        onekeyShare.setText(goodsListData.getData().getBrand());
+        // 微博 QQ空间
+        onekeyShare.setImageUrl(goodsListData.getData().getGoods_img());
+        // 微博
+        onekeyShare.setUrl(goodsListData.getData().getGoods_share() + goodsListData.getData().getGoods_id());
+
+        // QQ空间
+        onekeyShare.setTitle("美若推荐");
+        // QQ空间  titleUrl是标题的网络连接
+        onekeyShare.setTitleUrl(goodsListData.getData().getGoods_share() + goodsListData.getData().getGoods_id());
+        // QQ空间  site是分享此内容的网站名称
+        onekeyShare.setSite(String.valueOf(R.string.app_name));
+        // QQ空间  siteUrl是分享此内容的网站地址
+        onekeyShare.setSiteUrl(goodsListData.getData().getGoods_share() + goodsListData.getData().getGoods_id());
+
+        // 启动分享GUI
+        onekeyShare.show(BaseApplication.getContext());
     }
 
     //商品二级页面第二布局(全透明)加载布局时别忘喽!

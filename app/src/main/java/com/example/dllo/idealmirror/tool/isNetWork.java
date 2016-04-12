@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
  * 该类为了判断是否有网络
  * Created by dllo on 16/4/7.
  */
-public class isNetWork {
+public class IsNetWork {
     public static boolean isnetWorkAvilable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager == null) {

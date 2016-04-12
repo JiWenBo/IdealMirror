@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/commodityItem_item_picHei"
         fresco:placeholderImage="@mipmap/ic_launcher"
-         />
+        android:layout_margin="@dimen/commodityItem_title_sdv_margin"/>
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/recyclerview_commodityDetails_storyLinear"
@@ -21,6 +21,7 @@
         android:layout_centerHorizontal="true"
         android:background="@color/colorBlack"
         android:orientation="vertical"
+        android:layout_marginTop="100dp"
         android:paddingLeft="@dimen/commodityItem_item_storyLeft"
         android:paddingRight="@dimen/commodityItem_item_storyRight">
 

@@ -47,7 +47,7 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
 
         if (position == 3) {
 
-            return StoryListFragment.setUrl("专题分享", "XXX");
+            return StoryListFragment.setUrl("専題分享", "XXX");
         }
 
         if (position == 4) {

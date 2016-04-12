@@ -176,8 +176,8 @@
     <dimen name="commodityItem_title_lineLeft">54px</dimen>
     <dimen name="commodityItem_title_lineRight">54px</dimen>
     <dimen name="commodityItem_title_lineTop">24px</dimen>
-    <dimen name="commodityItem_title_picHei">800px</dimen>
-    <dimen name="commodityItem_title_storyWid">590px</dimen>
+    <dimen name="commodityItem_title_picHei">600px</dimen>
+    <dimen name="commodityItem_title_storyWid">580px</dimen>
     <dimen name="commodityItem_title_storyLeft">20px</dimen>
     <dimen name="commodityItem_title_storyRight">20px</dimen>
     <dimen name="commodityItem_title_lineHei">6px</dimen>
@@ -203,6 +203,7 @@
     <dimen name="adornpgotos_top">20px</dimen>
     <dimen name="adornPhotos_title_bottom">20px</dimen>
     <dimen name="adornPhotos_recyclerView_top">20px</dimen>
+
     <dimen name="therezero">30px</dimen>
     <dimen name="threrfour">34px</dimen>
     <dimen name="onesix">16px</dimen>
@@ -221,6 +222,9 @@
     <dimen name="twosixs">26px</dimen>
     <dimen name="threez">30px</dimen>
     <dimen name="sux">24px</dimen>
+
+    <dimen name="commodityItem_title_sdv_margin">10dp</dimen>
+
 
 
 </resources>

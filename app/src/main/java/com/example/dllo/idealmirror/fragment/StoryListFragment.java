@@ -1,5 +1,6 @@
 package com.example.dllo.idealmirror.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.StoryAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.StoryListBean;
@@ -16,7 +18,6 @@ import com.example.dllo.idealmirror.mirrordao.StoryMirrorDao;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
-import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 
@@ -36,14 +37,19 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
     private HashMap<String,String> data;
     private RecyclerView recyclerView;
     private LinearLayout layout;
-    private PopWindow popWindow;
     private StoryMirrorDao storyMirrorDao;
     private StoryMirror storyMirror;
     private List<StoryMirror> storyMirrors;
     String title;
     String store;
     TextView titleTv;
+    private MainActivity mainActivity;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) context;
+    }
 
     @Override
     public int getLayout() {
@@ -58,8 +64,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popWindow = new PopWindow(getContext(), store);
-                popWindow.showPopWindow(v);
+                mainActivity.setMenuFrame(getActivity(), "分享");
             }
         });
     }
