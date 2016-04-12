@@ -2,7 +2,6 @@ package com.example.dllo.idealmirror.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,10 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.ShareActivity;
-import com.example.dllo.idealmirror.bean.MrtjListBean;
-import com.example.dllo.idealmirror.bean.StoryListBean;
 import com.example.dllo.idealmirror.mirrordao.StoryMirror;
-import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
-import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.ToastUtils;
-import com.example.dllo.idealmirror.tool.isNetWork;
-import com.zhy.autolayout.AutoLinearLayout;
+import com.example.dllo.idealmirror.tool.IsNetWork;
 import com.zhy.autolayout.AutoRelativeLayout;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -80,7 +74,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
 
         @Override
         public void onClick(View v) {
-            if (isNetWork.isnetWorkAvilable(context)){
+            if (IsNetWork.isnetWorkAvilable(context)){
                 Intent intent = new Intent(context, ShareActivity.class);
                 intent.putExtra("posi", thisposition+"");
                 context.startActivity(intent);

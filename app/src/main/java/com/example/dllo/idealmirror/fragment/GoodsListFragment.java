@@ -1,5 +1,5 @@
 package com.example.dllo.idealmirror.fragment;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,18 +7,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.RecyclerAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
-import com.example.dllo.idealmirror.mirrordao.DaoMaster;
-import com.example.dllo.idealmirror.mirrordao.DaoSession;
 import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
 import com.example.dllo.idealmirror.mirrordao.PlainMirror;
 import com.example.dllo.idealmirror.mirrordao.PlainMirrorDao;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
-import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 import org.json.JSONException;
@@ -36,21 +34,27 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     private GoodsListBean goodsListBean;
     private HashMap<String, String> parm;
     private LinearLayout layout;
-    private PopWindow popWindow;
     private static String title,numType;
     private String store;
     TextView titleTv;
+    private MainActivity mainActivity;
     /*数据库类*/
     private List<PlainMirror> plainMirrors;
     private PlainMirror plainMirror;
 
     private PlainMirrorDao plainMirrorDao;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) context;
+    }
 
     @Override
     public int getLayout() {
         return R.layout.fragment_goods;
     }
+
 
     @Override
     protected void initView() {
@@ -60,8 +64,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popWindow = new PopWindow(getContext(), store);
-                popWindow.showPopWindow(v);
+                mainActivity.setMenuFrame(getActivity(), store);
             }
         });
     }

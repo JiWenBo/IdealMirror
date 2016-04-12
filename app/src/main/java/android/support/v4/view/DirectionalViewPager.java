@@ -32,8 +32,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import com.example.dllo.idealmirror.adapter.PopupAdapter;
-
 import java.util.ArrayList;
 
 /**

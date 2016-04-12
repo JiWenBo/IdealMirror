@@ -3,23 +3,24 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 import android.support.v4.view.DirectionalViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.GoodList;
+import com.example.dllo.idealmirror.fragment.MenuFragment;
 import com.example.dllo.idealmirror.mirrordao.DaoMaster;
 import com.example.dllo.idealmirror.mirrordao.DaoSession;
 import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
@@ -27,7 +28,6 @@ import com.example.dllo.idealmirror.mirrordao.GoodListCache;
 import com.example.dllo.idealmirror.mirrordao.GoodListCacheDao;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
-import com.example.dllo.idealmirror.tool.PopWindow;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 import java.lang.reflect.Field;
@@ -42,8 +42,6 @@ import android.widget.Scroller;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, VolleyListener, Url {
-
-
     private ImageView mirror;
     private GoodList datas;
     private DaoSession daoSession;
@@ -56,10 +54,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private VerticalAdapter verticalAdapter;
     private TextView login, shopping;
     private LinearLayout menu;
+    private FrameLayout frameLayout;
 
     public MainActivity() {
     }
-
 
     @Override
     protected int setContent() {
@@ -77,6 +75,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         shopping.setOnClickListener(this);
         menu = bindView(R.id.main_menu_layout);
         menu.setOnClickListener(this);
+        frameLayout = bindView(R.id.main_menu_frame);
     }
 
     @Override
@@ -206,8 +205,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             goodListCacheDao.insert(goodListCache);
             goodListCachelist.add(goodListCache);
         }
-        PopWindow popWindow = new PopWindow(this);
-        popWindow.initDataPop(goodListCachelist);
         goodListCachelist = goodListCacheDao.queryBuilder().list();
         verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
         viewPager.setAdapter(verticalAdapter);
@@ -225,8 +222,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         daoSession = daoMaster.newSession();
         goodListCacheDao = daoSession.getGoodListCacheDao();
         goodListCachelist = goodListCacheDao.queryBuilder().list();
-        PopWindow popWindow = new PopWindow(this);
-        popWindow.initDataPop(goodListCachelist);
         verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
@@ -291,5 +286,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
+    public void setMenuFrame(Context context, String store) {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().add(R.id.main_menu_frame,
+                new MenuFragment(store, context, goodListCachelist)).commit();
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.menu_fragment);
+        frameLayout.setAnimation(animation);
+    }
 
 }

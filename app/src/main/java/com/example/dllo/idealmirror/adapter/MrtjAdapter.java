@@ -16,8 +16,7 @@ import com.example.dllo.idealmirror.activity.CommodityDetailsActivity;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
 import com.example.dllo.idealmirror.mirrordao.AllMirrorCache;
 import com.example.dllo.idealmirror.net.NetHelper;
-import com.example.dllo.idealmirror.tool.LogUtils;
-import com.example.dllo.idealmirror.tool.isNetWork;
+import com.example.dllo.idealmirror.tool.IsNetWork;
 import com.zhy.autolayout.AutoRelativeLayout;
 import com.zhy.autolayout.utils.AutoUtils;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import java.util.List;
 public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> {
     private MrtjListBean mrtjListBean;
     private Context context;
-    private isNetWork isNetWorks;
+    private IsNetWork isNetWorks;
     private List<AllMirrorCache> data;
 
     public MrtjAdapter(Context context) {
@@ -39,7 +38,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
     public MrtjAdapter(Context context, MrtjListBean mrtjListBeans) {
         this.context = context;
         this.mrtjListBean = mrtjListBeans;
-        this.isNetWorks = new isNetWork();
+        this.isNetWorks = new IsNetWork();
     }
 
     public void getData(List<AllMirrorCache> datas) {

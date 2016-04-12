@@ -31,12 +31,15 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 /**
  * Created by LYH on 16/4/1.
  */
-public class CommodityDetailsActivity extends BaseActivity implements VolleyListener,Url, View.OnClickListener {
+public class CommodityDetailsActivity extends BaseActivity implements VolleyListener, Url, View.OnClickListener {
 
-    private HashMap<String,String> parm;
+    private HashMap<String, String> parm;
     private Context context;
     private CommodityDetailsData goodsListData;
 
@@ -62,22 +65,20 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     @Override
     protected void initView() {
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        backgroudIv = (SimpleDraweeView) findViewById(R.id.commoditydetails_backgroud_iv);
-        returnIv = (ImageView) findViewById(R.id.commoditydetails_return_btn);
-        adornPhotoTv = (TextView) findViewById(R.id.commoditydetails_adornPhotos);
-        buyIv = (ImageView) findViewById(R.id.commodityDetails_menu_buy);
+        recyclerView = bindView(R.id.recyclerview);
+        backgroudIv = bindView(R.id.commoditydetails_backgroud_iv);
+        returnIv = bindView(R.id.commoditydetails_return_btn);
+        adornPhotoTv = bindView(R.id.commoditydetails_adornPhotos);
+        buyIv = bindView(R.id.commodityDetails_menu_buy);
         returnIv.setOnClickListener(this);
         adornPhotoTv.setOnClickListener(this);
         buyIv.setOnClickListener(this);
 
-        NetHelper netHelper = new NetHelper();
-
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         backgroud = intent.getStringExtra("backgroudUrl");
-        Log.d("ididid","------"+id);
-        Log.d("backgroudUrl","-----"+ backgroud);
+        Log.d("ididid", "------" + id);
+        Log.d("backgroudUrl", "-----" + backgroud);
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -98,28 +99,28 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 Log.d("滑动效果", value + "   " + dy);
 
                 //这是Recyclerview 的方法来获得当前的 value 值.
-                commodityDetailsAdapter.setScrollValue(value,dy);
+                commodityDetailsAdapter.setScrollValue(value, dy);
 
 
                 //头布局透明度渐变
-                if (dy > 0 && value >= -1110){
-                    commodityDetailsHeadRl.setAlpha((float)(0.5 - (-value)/0.5/1110*0.5/2));
-                }else if (dy < 0 && value >= -1110){
-                    commodityDetailsHeadRl.setAlpha((float)(0.5 - (-value)/0.5/1110*0.5/2));
+                if (dy > 0 && value >= -1110) {
+                    commodityDetailsHeadRl.setAlpha((float) (0.5 - (-value) / 0.5 / 1110 * 0.5 / 2));
+                } else if (dy < 0 && value >= -1110) {
+                    commodityDetailsHeadRl.setAlpha((float) (0.5 - (-value) / 0.5 / 1110 * 0.5 / 2));
                 }
 
 
                 //按钮弹出动画效果
-                if (value <= -2600 && visible == false){
+                if (value <= -2600 && visible == false) {
                     commodityDetailsMenuRl.setVisibility(View.VISIBLE);
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", -800, 0);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl, "translationX", -800, 0);
                     animator.setDuration(500);
                     animator.start();
                     visible = true;
 
-                }else if (value >= -2590 && visible == true){
+                } else if (value >= -2590 && visible == true) {
 //                    commodityDetailsMenuRl.setVisibility(View.INVISIBLE);
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", 0, -800);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl, "translationX", 0, -800);
                     animator.setDuration(500);
                     animator.start();
                     visible = false;
@@ -132,11 +133,11 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     @Override
     protected void initData() {
         NetHelper netHelper = new NetHelper();
-        HashMap<String,String> data;
+        HashMap<String, String> data;
         data = new HashMap<>();
-        data.put("device_type","3");
-        data.put("goods_id",id);
-        data.put("version","1.0.1");
+        data.put("device_type", "3");
+        data.put("goods_id", id);
+        data.put("version", "1.0.1");
         netHelper.getInformation(GOODS_INFO, this, data);
 
     }
@@ -153,7 +154,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
             e.printStackTrace();
         }
 
-        commodityDetailsAdapter = new CommodityDetailsAdapter(goodsListData,context);
+        commodityDetailsAdapter = new CommodityDetailsAdapter(goodsListData, context);
         GridLayoutManager gm = new GridLayoutManager(this, 1);
         gm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gm);
@@ -171,19 +172,18 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
 
     @Override
     public void onClick(View v) {
-     switch (v.getId()){
-         case R.id.commoditydetails_return_btn:
-             finish();
-             break;
-         case R.id.commoditydetails_adornPhotos:
-             Intent intentAdorn = new Intent(this,AdornPhotosActivity.class);
-             intentAdorn.putExtra("id",id);
-             startActivity(intentAdorn);
-
-             break;
-         case R.id.commodityDetails_menu_buy:
-
-             break;
-     }
+        switch (v.getId()) {
+            case R.id.commoditydetails_return_btn:
+                finish();
+                break;
+            case R.id.commoditydetails_adornPhotos:
+                Intent intentAdorn = new Intent(this, AdornPhotosActivity.class);
+                intentAdorn.putExtra("id", id);
+                startActivity(intentAdorn);
+                break;
+            case R.id.commodityDetails_menu_buy:
+                break;
+        }
     }
+
 }

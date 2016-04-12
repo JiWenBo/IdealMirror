@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@drawable/background">
     <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/mrtj_layout"
+        android:id="@+id/shopping_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

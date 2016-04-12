@@ -11,6 +11,7 @@
         android:background="@color/colorBlack">
 
         <ImageView
+            android:id="@+id/commodity_detail_share"
             android:layout_width="@dimen/commodityItem_head_shareWid"
             android:layout_height="@dimen/commodityItem_head_shareHei"
             android:layout_alignParentRight="true"
