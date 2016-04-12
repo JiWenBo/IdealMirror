@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/commodityDetails_head_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/commodityItem_head_shareTop"
             android:src="@drawable/share" />
 
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/commoditydetails_commodityIntro"
             android:layout_width="@dimen/commodityItem_head_rlWid"
             android:layout_height="@dimen/commodityItem_head_rlHei"
@@ -73,7 +73,7 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/commodityItem_head_storySize" />
 
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/commoditydetails_commodityStory"
@@ -94,11 +94,11 @@
                     android:layout_marginLeft="@dimen/commodityItem_head_priceLeft"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/commodityItem_head_priceSize" />
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
 
-        </RelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/commoditydetails_watchDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:layout_marginBottom="@dimen/commodityItem_head_watchBot"
                 android:layout_marginTop="@dimen/commodityItem_head_watchTop"
                 android:src="@drawable/pull_down" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-    </RelativeLayout>
-</LinearLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

@@ -203,6 +203,24 @@
     <dimen name="adornpgotos_top">20px</dimen>
     <dimen name="adornPhotos_title_bottom">20px</dimen>
     <dimen name="adornPhotos_recyclerView_top">20px</dimen>
+    <dimen name="therezero">30px</dimen>
+    <dimen name="threrfour">34px</dimen>
+    <dimen name="onesix">16px</dimen>
+    <dimen name="twoseven">272px</dimen>
+    <dimen name="four">40px</dimen>
+    <dimen name="twosss">20px</dimen>
+    <dimen name="twosix">26px</dimen>
+    <dimen name="one">1px</dimen>
+    <dimen name="hunder">40px</dimen>
+    <dimen name="eight">80px</dimen>
+    <dimen name="twoix">26px</dimen>
+    <dimen name="twosec">272px</dimen>
+    <dimen name="fourzero">40px</dimen>
+    <dimen name="twotwoeight">228px</dimen>
+    <dimen name="there">30px</dimen>
+    <dimen name="twosixs">26px</dimen>
+    <dimen name="threez">30px</dimen>
+    <dimen name="sux">24px</dimen>
 
 
 </resources>

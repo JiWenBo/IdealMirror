@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -182,6 +183,8 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
 
              break;
          case R.id.commodityDetails_menu_buy:
+             Intent intent = new Intent(this,BuyDetailsActivity.class);
+             startActivity(intent);
 
              break;
      }

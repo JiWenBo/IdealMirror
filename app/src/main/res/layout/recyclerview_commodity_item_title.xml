@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,7 +34,7 @@
         fresco:placeholderImage="@mipmap/ic_launcher"
          />
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/recyclerview_title_storyLinear"
         android:layout_width="@dimen/commodityItem_title_storyWid"
         android:layout_height="wrap_content"
@@ -96,6 +96,6 @@
             android:layout_marginTop="@dimen/commodityItem_title_introTop"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/commodityItem_title_introSize" />
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
-</RelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

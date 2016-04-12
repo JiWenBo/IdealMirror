@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/allAddress_line"
@@ -10,18 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/additem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/recyclerView_allAddress_contentTop"
                 android:layout_marginLeft="@dimen/recyclerView_allAddress_contentLeft"
                 android:layout_marginBottom="@dimen/recyclerView_allAddress_contentBottom"
                 android:orientation="vertical">
-                <LinearLayout
+                <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -38,9 +39,9 @@
                         android:textSize="@dimen/recyclerView_allAddress_addressee_size"
                         android:textColor="@color/colorBlack"
                         />
-                </LinearLayout>
+                </com.zhy.autolayout.AutoLinearLayout>
 
-                <LinearLayout
+                <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -59,17 +60,19 @@
                         android:layout_marginRight="@dimen/recyclerView_allAddress_addressRight"
                         android:textSize="@dimen/recyclerView_allAddress_address_size"
                         android:textColor="@color/colorBlack" />
-                </LinearLayout>
+                </com.zhy.autolayout.AutoLinearLayout>
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/allAddress_phoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/recyclerView_allAddress_phoneNum_top"
                     android:textSize="@dimen/recyclerView_allAddress_phoneNum_size"
                     android:textColor="@color/colorBlack" />
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
             <ImageView
+                android:id="@+id/editing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -77,10 +80,10 @@
                 android:layout_marginRight="@dimen/recyclerView_allAddress_alterRight"
                 android:src="@mipmap/alter"/>
 
-        </RelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
 
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/allAddress_delete"
             android:layout_width="@dimen/recyclerView_allAddress_deleteWidth"
             android:layout_height="match_parent"
@@ -94,7 +97,7 @@
                 android:text="@string/delete"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/recyclerView_allAddress_delete_size" />
-        </RelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
     </com.example.dllo.idealmirror.tool.SwipeLayout>
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

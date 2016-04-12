@@ -52,5 +52,10 @@
     <string name="adornPhotos">佩戴图集</string>
     <string name="watchDetails">滑动浏览详情</string>
     <string name="goodsShow">商品细节展示</string>
+    <string name="xiangqing">订单详情</string>
+    <string name="xinxi">请填写收件人信息:</string>
+    <string name="dizhi">填写地址</string>
+    <string name="yes">确认下单</string>
+    <string name="tianjiadizhi">添加地址</string>
 
 </resources>

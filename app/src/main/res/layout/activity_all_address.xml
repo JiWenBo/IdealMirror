@@ -20,6 +20,8 @@
             android:textSize="@dimen/create_title_size" />
 
         <ImageView
+            android:id="@+id/add_close"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -32,6 +34,7 @@
         android:layout_marginTop="@dimen/create_unline_top"
         android:src="@drawable/create_account_unline" />
     <Button
+        android:id="@+id/addaddress"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heihun"
         android:layout_marginTop="@dimen/fifthpx"

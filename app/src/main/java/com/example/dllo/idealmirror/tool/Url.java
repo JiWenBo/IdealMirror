@@ -5,6 +5,7 @@ package com.example.dllo.idealmirror.tool;
  */
 public interface Url {
     String URL = "http://api101.test.mirroreye.cn/";
+    String TOKEN = "1bb26b25b32ccb55890611b8fb9d552f";
 
     String MENU_LIST = URL + "index.php/index/menu_list";
     String STORY_LIST = URL + "index.php/story/story_list";

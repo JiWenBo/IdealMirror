@@ -39,7 +39,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     private PopWindow popWindow;
     private static String title,numType;
     private String store;
-    TextView titleTv;
+    private TextView titleTv;
     /*数据库类*/
     private List<PlainMirror> plainMirrors;
     private PlainMirror plainMirror;

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -31,6 +32,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
     private Context context;
     private isNetWork isNetWorks;
     private List<AllMirrorCache> data;
+
 
     public MrtjAdapter(Context context) {
         this.context = context;
@@ -60,6 +62,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
         ImageLoader loader = netHelper.getImageLoader();
 
 
+
         if (isNetWorks.isnetWorkAvilable(context)) {
             final String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
             loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
@@ -67,6 +70,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
             holder.brand.setText(mrtjListBean.getData().getList().get(0).getData_info().getBrand());
             holder.area.setText(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
             holder.name.setText(mrtjListBean.getData().getList().get(0).getData_info().getGoods_name());
+            holder.bar.setVisibility(View.GONE);
             holder.pic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,8 +85,9 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
             holder.brand.setText(data.get(0).getBrand());
             holder.area.setText(data.get(0).getProductarea());
             holder.name.setText(data.get(0).getGoodname());
-            loader.get(data.get(0).getImgurl(), ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
 
+            loader.get(data.get(0).getImgurl(), ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+            holder.bar.setVisibility(View.GONE);
 
         holder.pic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +95,6 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
                 Intent intent = new Intent(context, CommodityDetailsActivity.class);
                 intent.putExtra("id",data.get(0).getGoodsid());
                 intent.putExtra("backgroudUrl", data.get(0).getImgurl());
-             //   LogUtils.d(data.get(0).getGoodsid());
                 ((Activity)context).startActivity(intent);
 
             }
@@ -113,6 +117,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
         ImageView img;
         TextView name,area,brand,price;
         AutoRelativeLayout pic;
+        ProgressBar bar;
         public MyViewHolder(View itemView) {
             super(itemView);
             AutoUtils.autoSize(itemView);
@@ -122,6 +127,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
             brand = (TextView) itemView.findViewById(R.id.mrtj_brand);
             price = (TextView) itemView.findViewById(R.id.mrtj_price);
             pic = (AutoRelativeLayout) itemView.findViewById(R.id.picclick);
+            bar = (ProgressBar) itemView.findViewById(R.id.progressbar);
 
         }
     }

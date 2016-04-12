@@ -1,5 +1,6 @@
 package com.example.dllo.idealmirror.fragment;
 
+import android.app.ProgressDialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +48,8 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
     private List<AllMirrorCache> mirrordata;
     private AllMirrorCache allMirrorCache;
 
+
+
     @Override
     public int getLayout() {
         return R.layout.fragment_mrtj;
@@ -64,6 +67,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
                 popWindow.showPopWindow(v);
             }
         });
+
     }
 
     /**
@@ -85,6 +89,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
 
         /*对数据库操作之前的准备*/
         allMirrorCacheDao = DaoSingleton.getInstance().getAllMirrorCacheDao();
+
     }
 
 
@@ -112,7 +117,6 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         allMirrorCache.setProductarea(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
         allMirrorCache.setProductarea(mrtjListBean.getData().getList().get(0).getData_info().getGoods_id());
         allMirrorCacheDao.insert(allMirrorCache);
-
         mrtjAdapter = new MrtjAdapter(getContext(),mrtjListBean);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

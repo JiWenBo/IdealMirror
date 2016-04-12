@@ -206,6 +206,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             goodListCacheDao.insert(goodListCache);
             goodListCachelist.add(goodListCache);
         }
+
         PopWindow popWindow = new PopWindow(this);
         popWindow.initDataPop(goodListCachelist);
         goodListCachelist = goodListCacheDao.queryBuilder().list();
