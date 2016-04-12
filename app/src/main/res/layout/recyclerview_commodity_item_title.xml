@@ -32,7 +32,8 @@
         android:layout_height="@dimen/commodityItem_title_picHei"
         android:layout_below="@id/commoditydetails_item_underline"
         fresco:placeholderImage="@mipmap/ic_launcher"
-         />
+        android:layout_marginTop="200dp"
+        android:layout_margin="@dimen/commodityItem_title_sdv_margin"/>
 
     <LinearLayout
         android:id="@+id/recyclerview_title_storyLinear"
@@ -42,6 +43,7 @@
         android:layout_centerHorizontal="true"
         android:background="@color/colorBlack"
         android:orientation="vertical"
+        android:layout_marginTop="240dp"
         android:paddingLeft="@dimen/commodityItem_title_storyLeft"
         android:paddingRight="@dimen/commodityItem_title_storyRight">
 
