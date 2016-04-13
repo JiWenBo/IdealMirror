@@ -43,11 +43,11 @@
         android:background="#ffffff"
         android:orientation="vertical">
         <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginLeft="20px"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,6 +66,7 @@
                 android:textSize="@dimen/twosix"/>
         </com.zhy.autolayout.AutoLinearLayout>
         <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginLeft="20px"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -88,6 +89,7 @@
         </com.zhy.autolayout.AutoLinearLayout>
 
         <TextView
+            android:layout_marginLeft="20px"
             android:id="@+id/phone"
             android:text="dsfasf"
             android:layout_width="wrap_content"
@@ -95,9 +97,6 @@
             android:layout_marginTop="@dimen/twosss"
             android:textColor="#333"
             android:textSize="@dimen/twosix"/>
-
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/one"
@@ -145,28 +144,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40px"
-
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
                 android:textColor="#333"
                 android:textSize="@dimen/there" />
-
             <TextView
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30px"
                 android:textColor="#333"
-                android:textSize="@dimen/twosixs" />
+                android:textSize="@dimen/twosixs"
+                android:text="文案(订购商品)文案(订购商品)文案(订购商品)文案(订购商品)"/>
 
             <TextView
+                android:textStyle="bold"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
                 android:id="@+id/mirrprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/threez"
                 android:textColor="#ff5aab"
-                android:textSize="@dimen/sux" />
-
+                android:textSize="@dimen/sux"
+                />
         </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoLinearLayout>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
@@ -176,7 +180,5 @@
         android:text="@string/yes"
         android:textColor="#fff"
         android:textSize="@dimen/addAddress_commitAddress_size" />
-
-
 </com.zhy.autolayout.AutoLinearLayout>
 

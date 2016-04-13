@@ -186,6 +186,9 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
              break;
          case R.id.commodityDetails_menu_buy:
              Intent intent = new Intent(this,BuyDetailsActivity.class);
+             intent.putExtra("good_pic",goodsListData.getData().getGoods_pic());
+             intent.putExtra("good_name",goodsListData.getData().getGoods_name());
+             intent.putExtra("good_price",goodsListData.getData().getGoods_price());
              startActivity(intent);
 
              break;
