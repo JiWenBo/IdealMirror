@@ -2,13 +2,14 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/allAddress_line"
+
     android:background="@color/colorWhite"
     android:layout_marginTop="@dimen/recyclerView_allAddress_itemTop">
 
     <com.example.dllo.idealmirror.tool.SwipeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/allAddress_line">
 
         <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/additem"

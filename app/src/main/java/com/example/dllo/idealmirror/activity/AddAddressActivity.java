@@ -1,21 +1,15 @@
 package com.example.dllo.idealmirror.activity;
-
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
-import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
-
 import java.util.HashMap;
 
 /**
@@ -28,6 +22,7 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
     ImageView close;
     String addr;
     HashMap<String, String> parm;
+    private int result = 1;
 
 
     @Override
@@ -47,8 +42,8 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         addtitle = bindView(R.id.add_addtitle);
         title = bindView(R.id.add_title);
         close = bindView(R.id.set_close);
-    }
 
+    }
     @Override
     protected void initData() {
         Intent intent = getIntent();
@@ -70,8 +65,7 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         sub_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (title.getText().equals(getString(R.string.tianjiadizhi)))
-                {
+                if (title.getText().equals(getString(R.string.tianjiadizhi))) {
                     NetHelper helper = new NetHelper();
                     parm = new HashMap<>();
                     parm.put("cellphone", number.getText().toString());
@@ -79,31 +73,35 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
                     parm.put("username", name.getText().toString());
                     parm.put("token", TOKEN);
                     helper.getInformation(USER_ADD_ADDRESS, AddAddressActivity.this, parm);
-                }
-                else {
+                } else {
 
                     NetHelper helper = new NetHelper();
                     parm = new HashMap<>();
-                    parm.put("addr_id",addr);
+                    parm.put("addr_id", addr);
                     parm.put("cellphone", number.getText().toString());
                     parm.put("addr_info", address.getText().toString());
                     parm.put("username", name.getText().toString());
                     parm.put("token", TOKEN);
                     helper.getInformation(USER_EDIT_ADDRESS, AddAddressActivity.this, parm);
-                }
 
+                }
             }
         });
     }
 
+
     @Override
     public void getSuccess(String body) {
-
+        /*点击之后刷新UI*/
+        Intent setnewUi = new Intent(BROIDCAST);
+        sendBroadcast(setnewUi);
         finish();
+
     }
 
     @Override
     public void getFail() {
 
     }
+
 }

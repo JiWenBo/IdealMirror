@@ -133,8 +133,6 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
          */
         mirrordata = new ArrayList<>();
         mirrordata  = allMirrorCacheDao.queryBuilder().list();
-
-
         mrtjAdapter = new MrtjAdapter(getActivity());
         mrtjAdapter.getData(mirrordata);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

@@ -1,25 +1,19 @@
 package com.example.dllo.idealmirror.adapter;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.AddAddressActivity;
 import com.example.dllo.idealmirror.bean.Address;
-import com.example.dllo.idealmirror.tool.LogUtils;
-import com.zhy.autolayout.AutoRelativeLayout;
+import com.example.dllo.idealmirror.tool.ContentViewLinister;
+import com.example.dllo.idealmirror.tool.SwipeLayout;
 
-import java.util.List;
 
 /**
  * Created by LYH on 16/3/31.
@@ -57,7 +51,7 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
     }
 
     public interface RecyclerItemLinstener{
-        void getitemData(String addr);
+        void getitemData(String addr,int position);
     }
 
 
@@ -104,8 +98,8 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
     class AllAddressViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView addresseeTv,addressTv,phoneNumberTv;
         private RelativeLayout deleteRl;
-        private AutoRelativeLayout setaddress;
         private ImageView line;
+        private SwipeLayout addressline;
         private int position;
 
         public AllAddressViewHolder(View itemView) {
@@ -114,23 +108,24 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
             addressTv = (TextView) itemView.findViewById(R.id.allAddress_address);
             phoneNumberTv = (TextView) itemView.findViewById(R.id.allAddress_phoneNumber);
             line = (ImageView) itemView.findViewById(R.id.editing);
-           // setaddress = (AutoRelativeLayout) itemView.findViewById(R.id.additem);
-           // setaddress.setOnClickListener(this);
+            addressline = (SwipeLayout) itemView.findViewById(R.id.allAddress_line);
+            addressline.setContentListener(new ContentViewLinister() {
+                @Override
+                public void doSomeThing() {
+                    relistener.getitemData(data.getData().getList().get(position).getAddr_id(),position);
+
+                }
+            });
             deleteRl = (RelativeLayout) itemView.findViewById(R.id.allAddress_delete);
+
             deleteRl.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View v) {
-
                     listrner.getData(data.getData().getList().get(position).getAddr_id(),position);
                     notifyDataSetChanged();
-
-               /* case R.id.additem:
-                    relistener.getitemData(data.getData().getList().get(position).getAddr_id());
-                    break;*/
-
 
         }
     }

@@ -60,6 +60,13 @@
     <string name="tianjiadizhi">添加地址</string>
 
     <string name="menu_story_text">専題分享</string>
+    <string name="wenan">文案(订购商品)文案(订购商品)文案(订购商品)文案(订购商品)</string>
+    <string name="moren">地址已添加为默认地址</string>
+    <string name="name">添加收件人姓名</string>
+    <string name="number">添加联系人电话号码</string>
+    <string name="addresss">添加收货地址</string>
+    <string name="addaddress">添加地址</string>
+    <string name="asfd">提交地址</string>
 
 
 </resources>

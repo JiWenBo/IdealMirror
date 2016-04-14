@@ -1,6 +1,9 @@
 package com.example.dllo.idealmirror.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,28 +21,30 @@ import com.example.dllo.idealmirror.bean.Address;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
+import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 /**
  * Created by LYH on 16/3/31.
  */
-public class AllAddressActivity extends BaseActivity implements Url, VolleyListener, AllAddressRcAdapter.ReclcleListrner ,AllAddressRcAdapter.RecyclerItemLinstener{
+public class AllAddressActivity extends BaseActivity implements Url, VolleyListener, AllAddressRcAdapter.ReclcleListrner,
+        AllAddressRcAdapter.RecyclerItemLinstener {
 
     private RecyclerView recyclerView;
     private AllAddressRcAdapter allAddressRcAdapter;
-    private Address data;
+    private static Address data;
     private Button add;
     private ImageView close;
+    private int request = 1;
     HashMap<String, String> parma;
     HashMap<String, String> parm;
+    private int result = 1;
+    private GetNewUI getNewUI;
 
 
     @Override
@@ -53,7 +58,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         NetHelper helper = new NetHelper();
 
         parma = new HashMap<>();
-        parma.put("token", "1bb26b25b32ccb55890611b8fb9d552f");
+        parma.put("token", TOKEN);
         parma.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, parma);
         add = bindView(R.id.addaddress);
@@ -64,6 +69,11 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
 
     @Override
     protected void initData() {
+        getNewUI = new GetNewUI();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BROIDCAST);
+        registerReceiver(getNewUI, intentFilter);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,12 +81,12 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                 intent.putExtra("name", "");
                 intent.putExtra("number", "");
                 intent.putExtra("address", "");
-                intent.putExtra("nametitie", "添加收件人姓名");
-                intent.putExtra("numtitle", "添加联系人电话号码");
-                intent.putExtra("addtitle", "添加收货地址");
-                intent.putExtra("title", "添加地址");
-                intent.putExtra("btntext", "提交地址");
-                startActivity(intent);
+                intent.putExtra("nametitie", getString(R.string.name));
+                intent.putExtra("numtitle", getString(R.string.number));
+                intent.putExtra("addtitle", getString(R.string.addresss));
+                intent.putExtra("title", getString(R.string.addaddress));
+                intent.putExtra("btntext", getString(R.string.asfd));
+                startActivityForResult(intent, request);
             }
         });
         close.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +105,6 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void SuccessData(String body) throws JSONException {
@@ -106,6 +114,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         data = gson.fromJson(jsonObject.toString(), Address.class);
         allAddressRcAdapter = new AllAddressRcAdapter(data, AllAddressActivity.this);
         allAddressRcAdapter.getListener(AllAddressActivity.this);
+        allAddressRcAdapter.RecyclerItem(AllAddressActivity.this);
         recyclerView.setAdapter(allAddressRcAdapter);
         GridLayoutManager gm = new GridLayoutManager(this, 1);
         gm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -114,7 +123,6 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
 
     @Override
     public void getFail() {
-
 
     }
 
@@ -161,22 +169,62 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
     }
 
     @Override
-    public void getitemData(String addr) {
-       NetHelper helper  =new NetHelper();
-        HashMap<String,String> data;
-        data = new HashMap<>();
-        data.put("token",TOKEN);
-        data.put("addr_id",addr);
+    public void getitemData(String addr, final int position) {
+        NetHelper helper = new NetHelper();
+        final HashMap<String, String> datas;
+        datas = new HashMap<>();
+        datas.put("token", TOKEN);
+        datas.put("addr_id", addr);
         helper.getInformation(USER_MR_ADDRESS, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
-                LogUtils.e("item",body);
+                ToastUtils.showToast(AllAddressActivity.this, getString(R.string.moren));
+                Intent intents = new Intent(AllAddressActivity.this, BuyDetailsActivity.class);
+                intents.putExtra("nameid", data.getData().getList().get(position).getUsername());
+                intents.putExtra("addressid", data.getData().getList().get(position).getAddr_info());
+                intents.putExtra("phone", data.getData().getList().get(position).getCellphone());
+                setResult(result, intents);
+                finish();
+
             }
 
             @Override
             public void getFail() {
 
             }
-        }, data);
+        }, datas);
+    }
+
+    public class GetNewUI extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            /*重新拉取数据刷新*/
+            NetHelper helper = new NetHelper();
+            parma = new HashMap<>();
+            parma.put("token", TOKEN);
+            parma.put("device_type", "3");
+            helper.getInformation(USER_ADDRESS_LIST, new VolleyListener() {
+                @Override
+                public void getSuccess(String body) {
+                    try {
+                        SuccessData(body);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void getFail() {
+
+                }
+            }, parma);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(getNewUI);
     }
 }

@@ -13,6 +13,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16px"
@@ -27,7 +28,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/onesix"
             android:src="@drawable/close" />
-
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <ImageView
@@ -53,12 +53,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/twosss"
                 android:layout_marginTop="@dimen/twosss"
-                android:text="@string/xinxi"
                 android:textColor="#333"
                 android:textSize="@dimen/twosix" />
             <TextView
                 android:id="@+id/nameID"
-                android:text="dsfasf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/twosss"
@@ -71,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +79,6 @@
                 android:textSize="@dimen/twosix" />
             <TextView
                 android:id="@+id/addressID"
-                android:text="dsfasf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/twosss"
@@ -89,9 +87,9 @@
         </com.zhy.autolayout.AutoLinearLayout>
 
         <TextView
-            android:layout_marginLeft="20px"
+            android:textStyle="bold"
+            android:layout_marginLeft="40px"
             android:id="@+id/phone"
-            android:text="dsfasf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/twosss"
@@ -156,7 +154,7 @@
                 android:layout_marginTop="30px"
                 android:textColor="#333"
                 android:textSize="@dimen/twosixs"
-                android:text="文案(订购商品)文案(订购商品)文案(订购商品)文案(订购商品)"/>
+                android:text="@string/wenan"/>
 
             <TextView
                 android:textStyle="bold"

@@ -4,41 +4,26 @@ import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
- * 观察QQ的滑动删除效果，可以猜测可以滑动删除的部分主要包含两个部分，
- * 一个是内容区域（用于放置正常显示的view），另一个是操作区域（用于放置删除按钮）。
- * 默认情况下，操作区域是不显示的，内容区域的大小是填充整个容器，操作区域始终位于内容区域的右面。
- * 当开始滑动的时候，整个容器中的所有子view都像左滑动，如果操作区域此时是不可见的，设置为可见
+ * Created by Bruce on 11/24/14.
  */
-
-/**
- * 观察QQ的滑动删除效果，可以猜测可以滑动删除的部分主要包含两个部分，
- * 一个是内容区域（用于放置正常显示的view），另一个是操作区域（用于放置删除按钮）。
- * 默认情况下，操作区域是不显示的，内容区域的大小是填充整个容器，操作区域始终位于内容区域的右面。
- * 当开始滑动的时候，整个容器中的所有子view都像左滑动，如果操作区域此时是不可见的，设置为可见
- */
-
-/**
- *自定义一个layout SwipeLayout继承自LinearLayout。
- * SwipeLayout包含两个子view，第一个子view是内容区域，第二个子view是操作区域。
- * 滑动效果的控制，主要就是通过检测SwipeLayout的touch事件来实现，
- * 这里不想自己去通过监听touch事件来实现滑动效果，那是一个很繁琐的过程。
- * Android support库里其实已经提供了一个很好的工具类来帮我们做这件事情ViewDragHelper。
- * 如果你看过Android原生的DrawerLayout的代码，就会发现DrawerLayout的滑动效果也是通过ViewDragHelper类实现的。
- */
-
 public class SwipeLayout extends LinearLayout {
-
+    //添加一个接口
+    private ContentViewLinister linister;
     private ViewDragHelper viewDragHelper;
-    private View contentView;  // 左边的view
-    private View actionView;   // 右边的view
-    private int dragDistance;  // 拖动的距离
+    private View contentView;
+    private View actionView;
+    private int dragDistance;
     private final double AUTO_OPEN_SPEED_LIMIT = 800.0;
     private int draggedX;
+    private boolean flag = true;
+
 
     public SwipeLayout(Context context) {
         this(context, null);
@@ -50,111 +35,138 @@ public class SwipeLayout extends LinearLayout {
 
     public SwipeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        // 第一步 在容器中创建一个ViewDragHelper类的对象。
         viewDragHelper = ViewDragHelper.create(this, new DragHelperCallback());
+        this.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                float yStart = 0, y = 0;
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        yStart = event.getY();
+                        flag = true;
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        y = yStart - event.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (flag) {
+                            linister.doSomeThing();
+                        }
+                        break;
+                }
+                if (Math.abs(y) > 2) {
+                    flag = false;
+                }
+                return false;
+            }
+        });
     }
 
+
+    //    设置接口的方法
+    public void setContentListener(ContentViewLinister listener) {
+        this.linister = listener;
+    }
+
+
+    //onFinishInflate 当View中所有的子控件均被映射成xml后触发
     @Override
-    protected void onFinishInflate() {  // onFinishInflate方法 当View中所有的子控件均被映射成xml后触发
+    protected void onFinishInflate() {
+
         contentView = getChildAt(0);
         actionView = getChildAt(1);
         actionView.setVisibility(GONE);
     }
 
-
-    //在SwipeLayout的 复写LinearLayout的measure方法的事件中，
-    // 设置拖动的距离为actionView的宽度。
-    // onMeasure:当子View的父控件要放置该View的时候，父控件会传递两个参数给View
-    //  获取子View的宽高尺寸
+    //    当控件的父元素正要放置该控件时调用.父元素会问子控件一个问题，“你想要用多大地方啊？”，
+// 然后传入两个参数——widthMeasureSpec和heightMeasureSpec.
+//            这两个参数指明控件可获得的空间以及关于这个空间描述的元数据.
+//            更好的方法是你传递View的高度和宽度到setMeasuredDimension方法里,
+// 这样可以直接告诉父控件，需要多大地方放置子控件.
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
         dragDistance = actionView.getMeasuredWidth();
-    }
-
-
-    // 第二步 接下来要把容器的事件处理委托给ViewDragHelper对象
-    //  onInterceptTouchEvent返回true，就是为了这个区域内的任何触摸事件，都要拦截一下
-
-    //ViewDragHelper对象来决定motion event是否是属于拖动过程。
-    // 如果motion event属于拖动过程，那么触摸事件就交给ViewDragHelper来处理，
-    // ViewDragHelper在处理拖动过程的时候，会调用ViewDragHelper.Callback对象的一系列方法。
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (viewDragHelper.shouldInterceptTouchEvent(ev)) {  // 有兴趣的 可以看看shouldInterceptTouchEvent这个方法  －.－
-            return true;
-        }
-        return super.onInterceptTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        viewDragHelper.processTouchEvent(event);
-        return true;
-    }
-
-    @Override
-    public void computeScroll() {
-        super.computeScroll();
-        if (viewDragHelper.continueSettling(true)) {
-            ViewCompat.postInvalidateOnAnimation(this);
-        }
+        Log.e("onMeasure", "dragDistance="+dragDistance);
     }
 
 
     private class DragHelperCallback extends ViewDragHelper.Callback {
-
-        // tryCaptureView方法，用来确定contentView和actionView是可以拖动的
+        //        返回ture则表示可以捕获该view，你可以根据传入的第一个view参数决定哪些可以捕获
         @Override
         public boolean tryCaptureView(View view, int i) {
+            Log.e("tryCaptureView","tryCaptureView");
             return view == contentView || view == actionView;
         }
 
-        //onViewPositionChanged在被拖动的view位置改变的时候调用，
-        // 如果被拖动的view是contentView，我们需要在这里更新actionView的位置
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             draggedX = left;
+            Log.e("onviewposition-left=" + draggedX, "dx=" + dx);
+//            选择删除按钮的时候  left 的值是700+
+//      选删除按钮的时候只要向右移动就会隐藏按钮
             if (changedView == contentView) {
+
                 actionView.offsetLeftAndRight(dx);
             } else {
+
                 contentView.offsetLeftAndRight(dx);
             }
             if (actionView.getVisibility() == View.GONE) {
+
                 actionView.setVisibility(View.VISIBLE);
             }
             invalidate();
         }
 
-        // clampViewPositionHorizontal用来限制view在x轴上拖动，要实现水平拖动效果必须要实现这个方法，
-        // 我们这里因为仅仅需要实现水平拖动，所以没有实现clampViewPositionVertical方法
+        //        可以在该方法中对child移动的边界进行控制，left , top 分别为即将移动到的位置，
+//        比如横向的情况下，我希望只在ViewGroup的内部移动，即：最小>=paddingleft，
+//        最大<=ViewGroup.getWidth()-paddingright-child.getWidth
+//        手指触摸移动时实时回调
+//        限制拖动子窗口一直是横移动
+//        1被拖动的窗口   2 沿x轴运动的  3提出位置向左变化
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
             if (child == contentView) {
+                Log.e("clampview+dx+" + dx, "num==" + left);
+//                DX应该是带有刷新的那种  left是直接往左传
                 final int leftBound = getPaddingLeft();
                 final int minLeftBound = -leftBound - dragDistance;
                 final int newLeft = Math.min(Math.max(minLeftBound, left), 0);
+                Log.e("newleft(shangmian", "是多少" + newLeft);
                 return newLeft;
             } else {
+//                走这里的时候 向右滑动  怎嘛滑动距离都会
+//                必须向右滑动一点 才开始计算这个方法
+//                返回的值是700+   是向右滑动700
+//                一旦走了这个方法 则按钮的 点击事件  就会被取消
+//                取消后 按钮应该就放回的False  所以会交给按钮的这个父类
+//                父类获得了监听
+//                在抬手式的时候  xvle的值  是0了   所以需要关闭按钮
+//这个返回值到底给谁了啊?   上面方法中有一部分原因
                 final int minLeftBound = getPaddingLeft() + contentView.getMeasuredWidth() - dragDistance;
                 final int maxLeftBound = getPaddingLeft() + contentView.getMeasuredWidth() + getPaddingRight();
                 final int newLeft = Math.min(Math.max(left, minLeftBound), maxLeftBound);
+                Log.e("newleft(xiamian()+dx" + dx, "是多少" + newLeft);
                 return newLeft;
             }
+
         }
 
-        // getViewHorizontalDragRange方法用来限制view可以拖动的范围
+        //得到窗口横向移动的范围
         @Override
         public int getViewHorizontalDragRange(View child) {
+           // Log.e("getViewHorizontalDragRange","");
             return dragDistance;
         }
 
-        // onViewReleased方法中，根据滑动手势的速度以及滑动的距离来确定是否显示actionView。
-        // smoothSlideViewTo方法用来在滑动手势之后实现惯性滑动效果
+        // 抬手  参数1向左滑动的速度
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             super.onViewReleased(releasedChild, xvel, yvel);
             boolean settleToOpen = false;
+            Log.e("xvelxvelxvel", "==" + xvel);
             if (xvel > AUTO_OPEN_SPEED_LIMIT) {
                 settleToOpen = false;
             } else if (xvel < -AUTO_OPEN_SPEED_LIMIT) {
@@ -164,10 +176,45 @@ public class SwipeLayout extends LinearLayout {
             } else if (draggedX > -dragDistance / 2) {
                 settleToOpen = false;
             }
-
             final int settleDestX = settleToOpen ? -dragDistance : 0;
+            Log.e("settleDestX", settleDestX + "");
             viewDragHelper.smoothSlideViewTo(contentView, settleDestX, 0);
             ViewCompat.postInvalidateOnAnimation(SwipeLayout.this);
         }
     }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        //如果这个事件是提供给父视图的拦截事件  就应该拦截
+//        按钮向右滑动一点的时候才去 拦截  要不不拦截
+//        可能是向右滑动一点 子布局就不能点击了  这个时候就点击事件就没被激活
+//        所有就被传给了  父类  父类在交给viewDragHelper
+//        问题 2  问神马按钮向右滑动一点就滑动隐藏了
+        if (viewDragHelper.shouldInterceptTouchEvent(ev)) {
+            Log.e("viewDragHelper", "走没走这里");
+            return true;
+        }
+        Log.e("viewDragHelper", "下面走没走这里");
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+       Log.e("onTouchEvent","onTouchEvent");
+//        交给viewdraghelper处理
+        viewDragHelper.processTouchEvent(event);
+        return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        super.computeScroll();
+        Log.e("computeScrol", "computeScrol");
+        if (viewDragHelper.continueSettling(true)) {
+            Log.e("computeScrol", "viewDragHelper");
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+    }
+
+
 }
