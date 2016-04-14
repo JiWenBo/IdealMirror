@@ -72,7 +72,6 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
     @Override
     public void getSuccess(String body) {
         try {
-            LogUtils.d("请求成功");
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
             adornPhotosData = gson.fromJson(object.toString(), AdornPhotosData.class);
@@ -99,10 +98,10 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.adornPhotos_return_btn:
+            case R.id.adornPhotos_return_btn: //佩戴图集返回
                 finish();
                 break;
-            case R.id.adornPhotos_buy_btn:
+            case R.id.adornPhotos_buy_btn: //购买
                 Intent intent = new Intent(this, BuyDetailsActivity.class);
                 intent.putExtra("good_pic", adornPhotosData.getData().getGoods_pic());
                 intent.putExtra("good_name", adornPhotosData.getData().getGoods_name());

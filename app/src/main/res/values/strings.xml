@@ -81,6 +81,14 @@
     <string name="AllAddress_setaddress">编辑收货地址</string>
     <string name="AllAddress_xijiao">提交修改</string>
     <string name="rightmessage">请正确填写信息</string>
+    <string name="java_addpeoplemessage">请填写收件人信息</string>
+    <string name="java_addaddress">添加地址</string>
+    <string name="receiver">"收件人: "</string>
+    <string name="java_address">"地址: "</string>
+    <string name="jave_changeaddress">更改地址</string>
+    <string name="java_setpeoplemessage">请填写收件人信息</string>
+    <string name="java_setaddress">添加地址</string>
+    <string name="setmessage">编辑地址</string>
 
 
 </resources>

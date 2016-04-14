@@ -16,6 +16,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.activity.PicDetailsActivity;
 import com.example.dllo.idealmirror.bean.AdornPhotosData;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.tool.LogUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
@@ -85,10 +86,10 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
                 Log.d("视频", videoUrl);
             } else if (type.equals("9")) {
                 videoImg = list.get(i).getData();
-                Log.d("图片", videoImg);
+                LogUtils.d("图片", videoImg);
             } else {
                 imageList.add(list.get(i).getData());
-                Log.d("图集", "-------" + imageList.size());
+                LogUtils.d("图集", "-------" + imageList.size());
             }
         }
 
@@ -98,14 +99,14 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
             ((HeadViewHolder) holder).jCVideoPlayer.ivStart.performClick();
 
             ((HeadViewHolder) holder).jCVideoPlayer.setUp(videoUrl, "", false);
-            Log.d("视频", "--------------" + videoList.size());
+            LogUtils.d("视频", "--------------" + videoList.size());
 
             NetHelper helper = new NetHelper();
             helper.getImage(videoImg, ImageLoader.getImageListener(((HeadViewHolder) holder).jCVideoPlayer.ivThumb, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
         }
         if (holder instanceof PhotosViewHolder) {
 
-            Log.d("图片", "图片list 大小:  " + imageList.size());
+            LogUtils.d("图片", "图片list 大小:  " + imageList.size());
             Uri uri = Uri.parse(imageList.get(position -1));
             ((PhotosViewHolder) holder).iv.setImageURI(uri);
 

@@ -170,6 +170,7 @@
         </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoLinearLayout>
     <Button
+        android:id="@+id/buynow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
         android:layout_marginTop="@dimen/addAddress_commitAddress_top"

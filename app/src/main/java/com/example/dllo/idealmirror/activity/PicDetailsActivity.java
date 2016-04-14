@@ -10,12 +10,14 @@ import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.SmoothImageView;
 
 import java.util.List;
 
 /**
- * Created by zt on 16/4/9.
+ * 三级页面图片放大
+ * Created by LYH on 16/4/9.
  */
 public class PicDetailsActivity extends BaseActivity {
     List<String> mDatas;
@@ -34,11 +36,11 @@ public class PicDetailsActivity extends BaseActivity {
 //        mDatas = (ArrayList<String>) getIntent().getSerializableExtra("images");
         mDatas = intent.getStringArrayListExtra("images");
         final int mPosition = intent.getIntExtra("position", 0) ;
-        Log.d("PicDetailsActivity", "适配器传过来的position:  "+ mPosition);
-        Log.d("PicDetailsActivity", "图片list 大小:::  "+ mDatas.size());
+        LogUtils.d("PicDetailsActivity", "适配器传过来的position:  " + mPosition);
+        LogUtils.d("PicDetailsActivity", "图片list 大小:::  "+ mDatas.size());
         for (int i = 0; i < mDatas.size(); i++) {
 
-            Log.d("PicDetailsActivity", "图片网址:" + mDatas.get(i));
+            LogUtils.d("PicDetailsActivity", "图片网址:" + mDatas.get(i));
 
         }
 

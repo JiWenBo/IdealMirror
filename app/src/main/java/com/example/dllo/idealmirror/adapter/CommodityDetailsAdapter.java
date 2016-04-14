@@ -109,7 +109,7 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.d("xxx", "---holder--" + holder.getClass() + position);
+       LogUtils.d("xxx", "---holder--" + holder.getClass() + position);
         // 头布局
         if (holder instanceof HeadViewHolder) {
             ((HeadViewHolder) holder).commodityHeadEnglishNameTv.setText(goodsListData.getData().getGoods_name());
@@ -157,10 +157,9 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             int valueDetails = layoutScrollValue;
             RelativeLayout.LayoutParams paramsDetails = (RelativeLayout.LayoutParams) ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.getLayoutParams();
             paramsDetails.setMargins(0, (int) ((valueDetails + heiDetails * (position - 1)) * 0.15), 0, 0);
-            Log.d("xxx", layoutScrollValue + "");
+            LogUtils.d("xxx", layoutScrollValue + "");
             ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.setLayoutParams(paramsDetails);
 
-            NetHelper helper = new NetHelper();
 
             if (goodsListData.getData().getDesign_des().get(position - 2).getType().equals("1")) {
                 //加数据

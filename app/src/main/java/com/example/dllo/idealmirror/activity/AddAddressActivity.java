@@ -19,13 +19,11 @@ import java.util.HashMap;
  */
 public class AddAddressActivity extends BaseActivity implements VolleyListener, Url {
     EditText name, number, address;
-    TextView nametitle, numtitle, addtitle, title;
+    TextView nameTitle, numTitle, addTitle, title;
     Button sub_btn;
     ImageView close;
     String addr;
     HashMap<String, String> parm;
-    private int result = 1;
-
 
     @Override
     protected int setContent() {
@@ -39,9 +37,9 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         number = bindView(R.id.add_number);
         address = bindView(R.id.add_address);
         sub_btn = bindView(R.id.submit);
-        nametitle = bindView(R.id.add_nametitle);
-        numtitle = bindView(R.id.add_numtitel);
-        addtitle = bindView(R.id.add_addtitle);
+        nameTitle = bindView(R.id.add_nametitle);
+        numTitle = bindView(R.id.add_numtitel);
+        addTitle = bindView(R.id.add_addtitle);
         title = bindView(R.id.add_title);
         close = bindView(R.id.set_close);
 
@@ -53,9 +51,9 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         name.setText(intent.getStringExtra("name"));
         number.setText(intent.getStringExtra("number"));
         address.setText(intent.getStringExtra("address"));
-        nametitle.setText(intent.getStringExtra("nametitie"));
-        numtitle.setText(intent.getStringExtra("numtitle"));
-        addtitle.setText(intent.getStringExtra("addtitle"));
+        nameTitle.setText(intent.getStringExtra("nametitie"));
+        numTitle.setText(intent.getStringExtra("numtitle"));
+        addTitle.setText(intent.getStringExtra("addtitle"));
         title.setText(intent.getStringExtra("title"));
         sub_btn.setText(intent.getStringExtra("btntext"));
         close.setOnClickListener(new View.OnClickListener() {

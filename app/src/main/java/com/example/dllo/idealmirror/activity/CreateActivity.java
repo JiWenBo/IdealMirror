@@ -62,12 +62,12 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
             case R.id.create_close:
                 finish();
                 break;
-            case R.id.create_verifi_btn:
-                // 发送验证码
+            case R.id.create_verifi_btn: // 发送验证码
+
                 sendVerification();
                 break;
-            case R.id.create_account_btn:
-                // 创建账号
+            case R.id.create_account_btn:// 创建账号
+
                 createAccount();
                 break;
         }

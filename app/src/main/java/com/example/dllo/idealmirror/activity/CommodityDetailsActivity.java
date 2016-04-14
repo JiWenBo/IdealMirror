@@ -120,7 +120,6 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                     visible = true;
 
                 } else if (value >= -2590 && visible == true) {
-//                    commodityDetailsMenuRl.setVisibility(View.INVISIBLE);
                     ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", 0, -1100);
                     animator.setDuration(500);
                     animator.start();
@@ -150,7 +149,6 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     @Override
     public void getSuccess(String body) {
         try {
-            LogUtils.d("请求成功");
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
             goodsListData = gson.fromJson(object.toString(), CommodityDetailsData.class);

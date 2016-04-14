@@ -54,6 +54,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         recyclerView = (RecyclerView) findViewById(R.id.allAddress_recyclerview);
         NetHelper helper = new NetHelper();
         // 获取我的收货地址列表
+
         parma = new HashMap<>();
         parma.put("token", TOKEN);
         parma.put("device_type", "3");
@@ -65,6 +66,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
 
     @Override
     protected void initData() {
+        //内部广播注册
         getNewUI = new GetNewUI();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BROIDCAST);
@@ -77,12 +79,9 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                 intent.putExtra("name", "");
                 intent.putExtra("number", "");
                 intent.putExtra("address", "");
-
-
-
                 intent.putExtra("nametitie", getString(R.string.java_alladdress_receiver_name));
-                intent.putExtra("numtitle", getString(R.string.java_alladdress_contact_phone));
-                intent.putExtra("addtitle", getString(R.string.java_alladdress_receiver_address));
+                intent.putExtra("numTitle", getString(R.string.java_alladdress_contact_phone));
+                intent.putExtra("addTitle", getString(R.string.java_alladdress_receiver_address));
                 intent.putExtra("title", getString(R.string.java_alladdress_add_address));
                 intent.putExtra("btntext", getString(R.string.java_alladdress_commit_address));
                 startActivityForResult(intent, request);
@@ -130,6 +129,8 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
 
     }
 
+
+
     @Override
     public void getData(String addr_id, int position) {
         // 删除收货地址
@@ -151,7 +152,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                         try {
                             SuccessData(body);
                             LogUtils.d(body);
-                            /*数据删除成功之后也需要BuyAcyivity的UI*/
+                            /*数据删除成功之后也需要刷新BuyActivity的UI*/
                             Intent intent = new Intent(SETNEWBUY);
                             sendBroadcast(intent);
 
@@ -203,6 +204,10 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
             }
         }, datas);
     }
+
+    /**
+     * 动态广播用于刷新UI
+     */
 
     public class GetNewUI extends BroadcastReceiver {
 

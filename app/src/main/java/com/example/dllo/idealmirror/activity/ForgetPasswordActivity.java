@@ -7,7 +7,7 @@ import com.example.dllo.idealmirror.R;
 
 /**
  * Created by LYH on 16/3/31.
- * 忘记密码
+ * 忘记密码,暂无
  */
 public class ForgetPasswordActivity extends AppCompatActivity {
 

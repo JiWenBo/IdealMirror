@@ -49,6 +49,11 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
     }
 
     public interface RecyclerItemLinstener{
+        /**
+         * 利用接口传递默认地址数据
+         * @param addr    addr_id
+         * @param position   位置
+         */
         void getItemData(String addr,int position);
 
     }
@@ -77,7 +82,7 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
                 intent.putExtra("nametitie", context.getString(R.string.AllAddress_name));
                 intent.putExtra("numtitle", context.getString(R.string.AllAddress_address));
                 intent.putExtra("addtitle", context.getString(R.string.AllAddress_setaddress));
-                intent.putExtra("title","编辑地址");
+                intent.putExtra("title", context.getString(R.string.setmessage));
                 intent.putExtra("btntext", context.getString(R.string.AllAddress_xijiao));
                 intent.putExtra("name", data.getData().getList().get(position).getUsername());
                 intent.putExtra("number",data.getData().getList().get(position).getCellphone());

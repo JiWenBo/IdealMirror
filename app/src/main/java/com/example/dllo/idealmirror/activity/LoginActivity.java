@@ -19,6 +19,7 @@ import com.example.dllo.idealmirror.bean.UserRegBean;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
+import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 
@@ -226,7 +227,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
             @Override
             public void getFail() {
-                Toast.makeText(getBaseContext(), R.string.java_login_fail, Toast.LENGTH_SHORT).show();
+                ToastUtils.showToast(getBaseContext(), String.valueOf(R.string.java_login_fail));
+
             }
         }, paramBund);
     }
@@ -256,10 +258,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 switch (result) {
                     case "":
                         String msg = object.getString("msg");
-                        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(this, msg);
                         break;
                     case "1":
-                        Toast.makeText(this, R.string.java_login_success, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(this, String.valueOf(R.string.java_login_success));
+                        /**
+                         * 确认登陆
+                         */
                         makeSureLogin();
                         finish();
                         break;
@@ -289,7 +294,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
      */
     @Override
     public void getFail() {
-        Toast.makeText(this, R.string.java_login_fail, Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(this, String.valueOf(R.string.java_login_fail));
     }
 
 }

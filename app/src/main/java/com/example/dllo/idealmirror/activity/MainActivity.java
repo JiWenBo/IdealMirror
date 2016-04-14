@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private LinearLayout menu;
     private FrameLayout frameLayout;
     private DaoSingleton daoSingleton;
-
+//TODO
     public MainActivity() {
     }
 

@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by dllo on 16/4/5.
+ * Created by JWB on 16/4/5.
  * 专题分享界面
  */
 public class ShareActivity extends BaseActivity {
@@ -56,7 +56,6 @@ public class ShareActivity extends BaseActivity {
         List<Fragment> data = new ArrayList<>();
         for (int i=0;i<beans.getData().getList().get(1).getStory_data().getImg_array().size();i++){
             ShareFragmnet shareFragmnet = new ShareFragmnet();
-            LogUtils.d("3333",beans.getData().getList().get(1).getStory_data().getImg_array().size()+"x");
             StoryListBean.DataEntity.ListEntity.StoryDataEntity.TextArrayEntity listBean = beans.getData().getList().get(nowposition).getStory_data().getText_array().get(i);
             Bundle bundle = new Bundle();
             bundle.putParcelable("shareBean", listBean);
@@ -87,7 +86,7 @@ public class ShareActivity extends BaseActivity {
         });
     }
 
-    private void  setImgandtext(int position){
+    private void setImgandtext(int position){
         String url = beans.getData().getList().get(nowposition).getStory_data().getImg_array().get(position);
         draweeView.setImageURI(Uri.parse(url));
     }
