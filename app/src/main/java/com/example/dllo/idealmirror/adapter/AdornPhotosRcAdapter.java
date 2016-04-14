@@ -19,20 +19,24 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import com.example.dllo.idealmirror.R;
 /**
  * Created by LYH on 16/4/8.
+ * 佩戴图集的适配器
  */
 public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
-
     private AdornPhotosData adornPhotosData;
     private Context context;
     final int TYPE_HEAD = 0;
     final int TYPE_PHOTOS = 1;
-
 
     public AdornPhotosRcAdapter(AdornPhotosData adornPhotosData, Context context) {
         this.adornPhotosData = adornPhotosData;
         this.context = context;
     }
 
+    /**
+     * 返回数据类型
+     * @param position 位置
+     * @return
+     */
     @Override
     public int getItemViewType(int position) {
         if (position == 0){

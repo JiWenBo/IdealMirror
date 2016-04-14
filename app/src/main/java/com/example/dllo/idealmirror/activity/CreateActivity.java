@@ -26,14 +26,13 @@ import java.util.Map;
 
 /**
  * Created by nan on 16/3/30.
+ * 用户注册界面
  */
-
 public class CreateActivity extends BaseActivity implements View.OnClickListener, Url {
     ImageView closeIv;
     EditText phoneEt, codeEt, passwordEt;
     Button codeBtn, accountBtn;
     private UserRegBean bean;
-
 
     @Override
     protected int setContent() {
@@ -74,6 +73,9 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    /**
+     * 创建账号
+     */
     private void createAccount() {
         bean = new UserRegBean();
         NetHelper helper = new NetHelper();
@@ -82,6 +84,10 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
         paramCreate.put("number", codeEt.getText().toString());
         paramCreate.put("password", passwordEt.getText().toString());
         helper.getInformation(USER_REG, new VolleyListener() {
+            /**
+             * 数据获取成功 解析数据
+             * @param body 获取到的数据
+             */
             @Override
             public void getSuccess(String body) {
                 LogUtils.d(body);
@@ -89,6 +95,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
                     JSONObject object = new JSONObject(body);
                     if (object.has("result")) {
                         String result = object.getString("result");
+                        // 利用result 判断是否创建成功
                         switch (result) {
                             case "":
                                 String msg = object.getString("msg");
@@ -98,6 +105,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
                                 Toast.makeText(CreateActivity.this, R.string.java_create_sure_message, Toast.LENGTH_SHORT).show();
                                 break;
                             case "1":
+                                // 创建成功
                                 Gson gson = new Gson();
                                 bean = gson.fromJson(object.toString(), UserRegBean.class);
                                 Toast.makeText(CreateActivity.this, R.string.java_create_success, Toast.LENGTH_SHORT).show();
@@ -123,6 +131,9 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
         }, paramCreate);
     }
 
+    /**
+     * 发送验证码
+     */
     private void sendVerification() {
         NetHelper netHelper = new NetHelper();
         HashMap<String, String> paramVer = new HashMap<>();

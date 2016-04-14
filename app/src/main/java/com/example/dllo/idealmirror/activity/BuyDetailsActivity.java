@@ -16,6 +16,7 @@ import java.net.URL;
 
 /**
  * Created by dllo on 16/4/11.
+ * 订单详情
  */
 public class BuyDetailsActivity extends BaseActivity implements View.OnClickListener{
     private AutoRelativeLayout setaddress;
@@ -29,7 +30,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initView() {
-      setaddress = bindView(R.id.setaddress);
+        setaddress = bindView(R.id.setaddress);
         close = bindView(R.id.addressclose);
         mirimg = bindView(R.id.mirrimg);
         title = bindView(R.id.mirrtitle);
@@ -44,7 +45,6 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         Uri uri = Uri.parse(intent.getStringExtra("good_pic"));
         mirimg.setImageURI(uri);
         title.setText(intent.getStringExtra("good_name"));
-
         price.setText("¥" +intent.getStringExtra("good_price"));
     }
 

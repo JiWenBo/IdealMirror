@@ -18,30 +18,38 @@ import de.greenrobot.event.EventBus;
  */
 public abstract class BaseFragment extends Fragment{
 
-    // 绑定布局
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(getLayout(), null);
     }
 
-    // 初始化组件
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
     }
 
-    // 添加数据
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
     }
 
-
+    /**
+     * 绑定布局
+     * @return
+     */
     public abstract int getLayout();
+
+    /**
+     * 绑定组件
+     */
     protected abstract void initView();
+
+    /**
+     * 添加数据
+     */
     protected abstract void initData();
     protected <T extends View> T bindView(int id) {
         return (T) getView().findViewById(id);

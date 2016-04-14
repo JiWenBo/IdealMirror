@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by nan on 16/3/31.
+ * 菜单listview的适配器
  */
 public class MenuAdapter extends BaseAdapter {
     private Context context;
@@ -47,24 +48,24 @@ public class MenuAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        PopupHolder holder = null;
+        MenuHolder holder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_menu, null);
-            holder = new PopupHolder(convertView, position);
+            holder = new MenuHolder(convertView, position);
             convertView.setTag(holder);
         } else {
-            holder = (PopupHolder) convertView.getTag();
+            holder = (MenuHolder) convertView.getTag();
         }
         holder.titleTv.setText(data.get(position).getTitle());
 
         return convertView;
     }
 
-    public class PopupHolder {
+    public class MenuHolder {
         private TextView titleTv;
         private ImageView underLine;
 
-        public PopupHolder(View itemView, int position) {
+        public MenuHolder(View itemView, int position) {
             titleTv = (TextView) itemView.findViewById(R.id.item_menu_tv);
             underLine = (ImageView) itemView.findViewById(R.id.item_menu_line);
             if (data.get(position).getStore().equals(store)) {

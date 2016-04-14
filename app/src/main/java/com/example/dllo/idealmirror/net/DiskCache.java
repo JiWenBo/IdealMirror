@@ -21,40 +21,41 @@ public class DiskCache implements ImageLoader.ImageCache {
     }
 
     @Override
-        public Bitmap getBitmap(String url) {
-            // 获取url中的图片名称
-           String fileName = MDStr.getMD5(url);
-            // 用文件名拼接出实际文件存储路径
-            String filePath = diskPath + "/" + fileName;
-            Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-            return bitmap;
-        }
-        @Override
-        public void putBitmap(String url, Bitmap bitmap) {
-            // 获取url中的图片名称
-           // String fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
-            String fileName = MDStr.getMD5(url);
-            // 用文件名拼接出实际文件存储路径
-            String filePath = diskPath + "/" + fileName;
+    public Bitmap getBitmap(String url) {
+        // 获取url中的图片名称
+        String fileName = MDStr.getMD5(url);
+        // 用文件名拼接出实际文件存储路径
+        String filePath = diskPath + "/" + fileName;
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        return bitmap;
+    }
 
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(filePath);
-                // 将bitmap对象写入文件中
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, fos);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                // 关闭文件流
-                if (fos != null) {
-                    try {
-                        fos.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+    @Override
+    public void putBitmap(String url, Bitmap bitmap) {
+        // 获取url中的图片名称
+        // String fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
+        String fileName = MDStr.getMD5(url);
+        // 用文件名拼接出实际文件存储路径
+        String filePath = diskPath + "/" + fileName;
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(filePath);
+            // 将bitmap对象写入文件中
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0, fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            // 关闭文件流
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
             }
+
         }
+    }
 }
 

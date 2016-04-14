@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 /**
  * Created by LYH on 16/4/8.
+ * 佩戴图集界面
  */
 public class AdornPhotosActivity extends BaseActivity implements VolleyListener,Url, View.OnClickListener {
 
@@ -32,7 +33,7 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
     private RecyclerView recyclerView;
     private Context context;
     private AdornPhotosRcAdapter adornPhotosRcAdapter;
-    private  String id;
+    private String id;
     private ImageView returnIv, buyIv;
 
     @Override
@@ -47,7 +48,7 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
         buyIv = (ImageView) findViewById(R.id.adornPhotos_buy_btn);
         returnIv.setOnClickListener(this);
         buyIv.setOnClickListener(this);
-
+        // 从二级界面获得id
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
     }
@@ -74,7 +75,7 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
             e.printStackTrace();
         }
 
-        adornPhotosRcAdapter = new AdornPhotosRcAdapter(adornPhotosData,context);
+        adornPhotosRcAdapter = new AdornPhotosRcAdapter(adornPhotosData, context);
         recyclerView.setAdapter(adornPhotosRcAdapter);
         GridLayoutManager gm = new GridLayoutManager(this, 1);
         gm.setOrientation(LinearLayoutManager.VERTICAL);

@@ -88,11 +88,11 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initData() {
-        if (store.equals("分享")) {
+        if (store.equals("share")) {
             storyTv.setSelected(true);
             storyIv.setVisibility(View.VISIBLE);
         }
-        else if (store.equals("购物")) {
+        else if (store.equals("shopping")) {
             shoppingTv.setSelected(true);
             shoppingIv.setVisibility(View.VISIBLE);
         }

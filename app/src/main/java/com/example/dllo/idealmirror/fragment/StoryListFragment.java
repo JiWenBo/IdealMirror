@@ -30,6 +30,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
+ * 专题分享fragment
  */
 public class StoryListFragment extends BaseFragment implements VolleyListener,Url{
     private StoryAdapter storyAdapter;
@@ -37,9 +38,9 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
     private HashMap<String,String> data;
     private RecyclerView recyclerView;
     private LinearLayout layout;
-    private StoryMirrorDao storyMirrorDao;
     private StoryMirror storyMirror;
     private List<StoryMirror> storyMirrors;
+    private DaoSingleton daoSingleton;
     String title;
     String store;
     TextView titleTv;
@@ -64,7 +65,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.setMenuFrame(getActivity(), "分享");
+                mainActivity.setMenuFrame(getActivity(), "share");
             }
         });
     }
@@ -74,7 +75,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
      */
     @Override
     protected void initData() {
-
+        daoSingleton = DaoSingleton.getInstance();
         Bundle bundle = getArguments();
         title = bundle.getString("title");
         store = bundle.getString("store");
@@ -84,53 +85,49 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
         data.put("device_type", "3");
         netHelper.getInformation(TEST_STORY_LIST, this, data);
         titleTv.setText(title);
-        storyMirrorDao = DaoSingleton.getInstance().getStoryMirrorDao();
-
     }
 
 
     @Override
     public void getSuccess(String body) {
         try {
-            LogUtils.d("请求成功");
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
             storyListBean = gson.fromJson(object.toString(), StoryListBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        storyMirrorDao.deleteAll();
+        daoSingleton.deleteStoryMirrorAll();
         storyMirrors = new ArrayList<>();
         for (int i=0;i<storyListBean.getData().getList().size();i++){
             storyMirror = new StoryMirror();
             storyMirror.setPicimg(storyListBean.getData().getList().get(i).getStory_img());
             storyMirror.setTitle(storyListBean.getData().getList().get(i).getStory_title());
-            storyMirrorDao.insert(storyMirror);
             storyMirrors.add(storyMirror);
+            daoSingleton.insert(storyMirror);
         }
-        storyMirrors = storyMirrorDao.queryBuilder().list();
+        storyMirrors = daoSingleton.queryStoryMirror();
         storyAdapter = new StoryAdapter(getContext(),storyMirrors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(storyAdapter);
-
 
     }
 
     @Override
     public void getFail() {
-        LogUtils.d("请求失败");
-        storyMirrors = storyMirrorDao.queryBuilder().list();
+        storyMirrors = daoSingleton.queryStoryMirror();
         storyAdapter = new StoryAdapter(getContext(),storyMirrors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(storyAdapter);
     }
+
     /**
      * 通过静态方法将参数传过来
-     * @param body
+     * @param
      * @return
      */
     public static StoryListFragment setUrl( String title, String store){

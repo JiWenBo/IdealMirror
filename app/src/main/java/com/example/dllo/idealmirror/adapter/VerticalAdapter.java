@@ -18,6 +18,7 @@ import de.greenrobot.event.EventBus;
 
 /**
  * Created by dllo on 16/3/29.
+ * 主界面viewpager的适配器
  */
 public class VerticalAdapter extends FragmentPagerAdapter implements Url {
 
@@ -31,31 +32,27 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
         fragmenta = new ShoppingFragment();
     }
 
+    /**
+     * 根据位置 获得fragment
+     * @param position 位置
+     * @return
+     */
     @Override
     public Fragment getItem(int position) {
         if (position < 3) {
-
             store = data.get(position).getStore();
             if (data.get(position).getType().equals("6")) {
                 return MrtjFragment.setUrl(INDEX_MRTJ, data.get(position).getTitle(), store);
             } else if (data.get(position).getType().equals("3")) {
-
                 return GoodsListFragment.setUrl(++position, data.get(--position).getTitle(), store);
             }
-
         }
-
         if (position == 3) {
-
             return StoryListFragment.setUrl("専題分享", "XXX");
         }
-
         if (position == 4) {
-
             return fragmenta;
         }
-
-
         return null;
     }
 

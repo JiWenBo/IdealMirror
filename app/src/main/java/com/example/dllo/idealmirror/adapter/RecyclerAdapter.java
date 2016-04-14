@@ -25,6 +25,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/3/30.
+ * 主界面的适配器
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
     private Context context;
@@ -34,8 +35,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         this.context = context;
         this.data = datas;
     }
-
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -65,7 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 intent.putExtra("id",data.getGoodsid());
                 intent.putExtra("backgroudUrl",data.getGoodsimg());
                 LogUtils.d(data.getGoodsid());
-                        ((Activity) context).startActivity(intent);
+                ((Activity) context).startActivity(intent);
             }
         });
 
@@ -73,8 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public int getItemCount() {
-            return  1;
-
+        return  1;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

@@ -12,7 +12,10 @@ public class LogUtils {
     private LogUtils() {
     }
 
-    // 使用默认的TAG
+    /**
+     * 使用默认的TAG
+     * @param msg 打印的信息
+     */
     public static void i(String msg) {
         if (DEBUG)
             Log.d(TAG, msg);
@@ -38,7 +41,11 @@ public class LogUtils {
             Log.d(TAG, msg);
     }
 
-    // 自定义tag
+    /**
+     * 自定义tag
+     * @param tag TAG
+     * @param msg 打印的数据
+     */
     public static void i(String tag, String msg) {
         if (DEBUG)
             Log.d(tag, msg);

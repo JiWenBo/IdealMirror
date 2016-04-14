@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 /**
  * Created by LYH on 16/3/31.
+ * 添加地址界面
  */
 public class AddAddressActivity extends BaseActivity implements VolleyListener, Url {
     EditText name, number, address;

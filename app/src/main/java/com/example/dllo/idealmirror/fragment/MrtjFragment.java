@@ -41,10 +41,10 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
     private String title;
     private String store;
     TextView titleTv;
-    private AllMirrorCacheDao allMirrorCacheDao;
     private List<AllMirrorCache> mirrordata;
     private AllMirrorCache allMirrorCache;
     private MainActivity mainActivity;
+    private DaoSingleton daoSingleton;
 
     @Override
     public void onAttach(Context context) {
@@ -89,8 +89,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         netHelper.getInformation(sd, this, data);
         titleTv.setText(title);
 
-        /*对数据库操作之前的准备*/
-        allMirrorCacheDao = DaoSingleton.getInstance().getAllMirrorCacheDao();
+        daoSingleton = DaoSingleton.getInstance();
 
     }
 
@@ -105,12 +104,10 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        /*第一步删除数据库中的所有数据*/
-        allMirrorCacheDao.deleteAll();
 
-        /**
-         * 第二步:将新数据再加入数据库中
-         */
+        // 第一步删除数据库中的所有数据
+        daoSingleton.deleteAllMirrorAll();
+        // 第二步:将新数据再加入数据库中
         allMirrorCache = new AllMirrorCache();
         allMirrorCache.setImgurl(mrtjListBean.getData().getList().get(0).getData_info().getGoods_img());
         allMirrorCache.setBrand(mrtjListBean.getData().getList().get(0).getData_info().getBrand());
@@ -118,7 +115,8 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         allMirrorCache.setGoodprice(mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
         allMirrorCache.setProductarea(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
         allMirrorCache.setProductarea(mrtjListBean.getData().getList().get(0).getData_info().getGoods_id());
-        allMirrorCacheDao.insert(allMirrorCache);
+        daoSingleton.insert(allMirrorCache);
+
         mrtjAdapter = new MrtjAdapter(getContext(),mrtjListBean);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -128,20 +126,15 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
 
     @Override
     public void getFail() {
-        /**
-         * 失败之后调用数据库取出数据
-         */
+        // 失败之后调用数据库取出数据
         mirrordata = new ArrayList<>();
-        mirrordata  = allMirrorCacheDao.queryBuilder().list();
-
-
+        mirrordata  = daoSingleton.queryAllMirror();
         mrtjAdapter = new MrtjAdapter(getActivity());
         mrtjAdapter.getData(mirrordata);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mrtjAdapter);
-
     }
     /**
      * 通过静态方法将参数传过来

@@ -57,7 +57,7 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
     }
 
     public interface RecyclerItemLinstener{
-        void getitemData(String addr);
+        void getItemData(String addr);
     }
 
 

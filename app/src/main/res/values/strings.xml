@@ -60,6 +60,13 @@
     <string name="tianjiadizhi">添加地址</string>
 
     <string name="menu_story_text">専題分享</string>
+    <string name="java_alladdress_receiver_name">添加收件人姓名</string>
+    <string name="java_alladdress_contact_phone">添加联系人电话号码</string>
+    <string name="java_alladdress_receiver_address">添加收货地址</string>
+    <string name="java_alladdress_add_address">添加地址</string>
+    <string name="java_alladdress_commit_address">提交地址</string>
+    <string name="java_isnet_normal">网络正常</string>
+    <string name="java_isnet_abnormal">网络非正常</string>
 
 
 </resources>

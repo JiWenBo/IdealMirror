@@ -10,16 +10,25 @@ import com.example.dllo.idealmirror.base.BaseApplication;
  */
 public class SingleQueue {
     private static SingleQueue singleQueue;
-    private RequestQueue queue;//创建请求队列
-    //第一步：构造方法私有化，没有对象可以new、
+    //创建请求队列
+    private RequestQueue queue;
+
+    /**
+     * 第一步：构造方法私有化，没有对象可以new
+     */
     private SingleQueue(){
         queue = Volley.newRequestQueue(BaseApplication.getContext());
     }
-    //第三布，提供方法，将自己暴露出去
+
+    /**
+     * 第三步，提供方法，将自己暴露出去
+     * @return
+     */
     public static SingleQueue getInstance(){
-        if (singleQueue==null){//为了快，节约时间
+        if (singleQueue==null){
             /*小括号里为一个类，判断里面有没有线程，所有的类都可以放到这里*/
-            synchronized (SingleQueue.class){//线程锁，能保证大括号的内部只有一个线程
+            // 线程锁，能保证大括号的内部只有一个线程
+            synchronized (SingleQueue.class){
                 if (singleQueue == null){
                     singleQueue = new SingleQueue();
                 }

@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/3/29.
+ * 商品分类界面
  */
 public class GoodsListFragment extends BaseFragment implements VolleyListener, Url {
     private RecyclerView recyclerView;
@@ -36,16 +37,13 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     private LinearLayout layout;
     private static String title,numType;
     private String store;
-
     private TextView titleTv;
-
     private MainActivity mainActivity;
 
-    /*数据库类*/
+    // 数据库类
     private List<PlainMirror> plainMirrors;
     private PlainMirror plainMirror;
-
-    private PlainMirrorDao plainMirrorDao;
+    private DaoSingleton daoSingleton;
 
     @Override
     public void onAttach(Context context) {
@@ -77,7 +75,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
      */
     @Override
     protected void initData() {
-
+        daoSingleton = DaoSingleton.getInstance();
         Bundle bundle = getArguments();
         title = bundle.getString("title");
         store = bundle.getString("store");
@@ -101,9 +99,8 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        /*添加数据库*/
-        plainMirrorDao = DaoSingleton.getInstance().getPlainMirrorDao();
-        plainMirrorDao.deleteAll();
+        // 删除数据库中的数据
+        daoSingleton.deletePlainMirrorAll();
         plainMirrors = new ArrayList<>();
         for (int i=0;i<goodsListBean.getData().getList().size();i++){
             plainMirror = new PlainMirror();
@@ -116,9 +113,11 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
             plainMirror.setWholestorge(goodsListBean.getData().getList().get(i).getWhole_storge());
             plainMirror.setGoodsid(goodsListBean.getData().getList().get(i).getGoods_id());
             plainMirrors.add(plainMirror);
-            plainMirrorDao.insert(plainMirror);
+            // 加入到数据库
+            daoSingleton.insert(plainMirror);
         }
-       plainMirrors = plainMirrorDao.queryBuilder().list();
+        // 查询数据库 获得数据
+        plainMirrors = daoSingleton.queryPlainMirror();
         for (int j=0;j<plainMirrors.size();j++){
             if (plainMirrors.get(j).getWholestorge().equals(numType)){
                 recyclerAdapter = new RecyclerAdapter(getContext(),plainMirrors.get(j));
@@ -131,10 +130,12 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         }
     }
 
+    /**
+     * 数据获取失败时 从数据库中获得
+     */
     @Override
     public void getFail() {
-        plainMirrorDao = DaoSingleton.getInstance().getPlainMirrorDao();
-        plainMirrors = plainMirrorDao.queryBuilder().list();
+        plainMirrors = daoSingleton.queryPlainMirror();
         for (int i=0;i<plainMirrors.size();i++){
             if (plainMirrors.get(i).getWholestorge().equals(numType)) {
                 recyclerAdapter = new RecyclerAdapter(getContext(), plainMirrors.get(i));
@@ -143,10 +144,8 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
                 recyclerView.setLayoutManager(linearLayoutManager);
                 recyclerView.setAdapter(recyclerAdapter);
                 break;
-
             }
         }
-      LogUtils.d("请求失败");
     }
 
     public static GoodsListFragment setUrl(int type, String title, String store) {

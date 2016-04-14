@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
+ * 专题分享
  */
 public class StoryListBean implements Parcelable{
 

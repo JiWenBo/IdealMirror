@@ -23,6 +23,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
+ * 专题分享一级适配器
  */
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder> {
     private List<StoryMirror> storyListBean;

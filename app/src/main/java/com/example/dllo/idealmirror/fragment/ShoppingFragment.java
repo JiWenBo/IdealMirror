@@ -44,7 +44,7 @@ public class ShoppingFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.shopping_layout:
-                mainActivity.setMenuFrame(getActivity(), "购物");
+                mainActivity.setMenuFrame(getActivity(), "shopping");
                 break;
         }
     }
