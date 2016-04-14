@@ -82,7 +82,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".activity.CommodityDetailsActivity"/>
         <activity android:name=".activity.AdornPhotosActivity"/>
-        <activity android:name=".activity.PhotoActivity"/>
+        <activity android:name=".activity.PicDetailsActivity"/>
     </application>
 
 </manifest>

@@ -95,7 +95,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                  * */
 
                 value -= dy;
-                Log.d("滑动效果", value + "   " + dy);
+                Log.d("滑动效果", value + "   "+dy );
 
                 //这是Recyclerview 的方法来获得当前的 value 值.
                 commodityDetailsAdapter.setScrollValue(value,dy);
@@ -112,14 +112,14 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 //按钮弹出动画效果
                 if (value <= -2600 && visible == false){
                     commodityDetailsMenuRl.setVisibility(View.VISIBLE);
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", -800, 0);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", -1100, 0);
                     animator.setDuration(500);
                     animator.start();
                     visible = true;
 
                 }else if (value >= -2590 && visible == true){
 //                    commodityDetailsMenuRl.setVisibility(View.INVISIBLE);
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", 0, -800);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", 0, -1100);
                     animator.setDuration(500);
                     animator.start();
                     visible = false;
