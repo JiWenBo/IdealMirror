@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.android.volley.toolbox.ImageLoader;
 
@@ -32,17 +30,14 @@ import java.util.List;
  */
 public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
 
-
     private Context context;
     private List<AdornPhotosData.DataEntity.WearVideoEntity> list;
     final int TYPE_HEAD = 0;
     final int TYPE_PHOTOS = 1;
 
-
     public AdornPhotosRcAdapter(List<AdornPhotosData.DataEntity.WearVideoEntity> list, Context context) {
         this.list = list;
         this.context = context;
-
     }
 
     /**
@@ -59,7 +54,6 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
         }
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_HEAD) {
@@ -73,7 +67,6 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-
         List<String> videoList = new ArrayList<>();
         String videoUrl = null;
         String videoImg = null;
@@ -83,7 +76,7 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
             if (type.equals("8")) {
                 videoList.add(list.get(i).getData());
                 videoUrl = list.get(i).getData();
-                Log.d("视频", videoUrl);
+                LogUtils.d("视频", videoUrl);
             } else if (type.equals("9")) {
                 videoImg = list.get(i).getData();
                 LogUtils.d("图片", videoImg);
@@ -94,32 +87,26 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
         }
 
         if (holder instanceof HeadViewHolder) {
-
             JCVideoPlayer.setThumbImageViewScalType(ImageView.ScaleType.FIT_XY);
             ((HeadViewHolder) holder).jCVideoPlayer.ivStart.performClick();
-
             ((HeadViewHolder) holder).jCVideoPlayer.setUp(videoUrl, "", false);
             LogUtils.d("视频", "--------------" + videoList.size());
-
             NetHelper helper = new NetHelper();
             helper.getImage(videoImg, ImageLoader.getImageListener(((HeadViewHolder) holder).jCVideoPlayer.ivThumb, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
         }
         if (holder instanceof PhotosViewHolder) {
-
             LogUtils.d("图片", "图片list 大小:  " + imageList.size());
-            Uri uri = Uri.parse(imageList.get(position -1));
+            Uri uri = Uri.parse(imageList.get(position - 1));
             ((PhotosViewHolder) holder).iv.setImageURI(uri);
-
             ((PhotosViewHolder) holder).iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Intent intent = new Intent(context, PicDetailsActivity.class);
                     //intent.putExtra("images", (Parcelable) image_url_list);//非必须
                     intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
                     intent.putExtra("position", position);
                     int[] location = new int[2];
-                    ((PhotosViewHolder) holder).iv.getLocationOnScreen(location);//location 里 有iv 的横纵坐标
+                    ((PhotosViewHolder) holder).iv.getLocationOnScreen(location);//location 里有iv的横纵坐标
                     intent.putExtra("locationX", location[0]);//必须
                     intent.putExtra("locationY", location[1]);//必须
 
@@ -134,27 +121,25 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return list != null && list.size() -1 > 0 ? list.size() -1: 0;
+        return list != null && list.size() - 1 > 0 ? list.size() - 1 : 0;
     }
 
     public class HeadViewHolder extends RecyclerView.ViewHolder {
-
         private JCVideoPlayer jCVideoPlayer;
 
         public HeadViewHolder(View itemView) {
             super(itemView);
-            jCVideoPlayer = (JCVideoPlayer) itemView.findViewById(R.id.videocontroller);
+            jCVideoPlayer = (JCVideoPlayer) itemView.findViewById(R.id.video_controller);
         }
     }
 
     public class PhotosViewHolder extends RecyclerView.ViewHolder {
-
         private SimpleDraweeView iv;
         private int position;
 
         public PhotosViewHolder(View itemView) {
             super(itemView);
-            iv = (SimpleDraweeView) itemView.findViewById(R.id.recyclerview_adornPhotos_iv);
+            iv = (SimpleDraweeView) itemView.findViewById(R.id.recycler_adorn_photos_iv);
         }
     }
 }

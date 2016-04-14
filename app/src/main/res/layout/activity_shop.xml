@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background">
+
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/shopping_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/matlefttwo_two"
-            android:layout_marginTop="@dimen/marop"
+            android:layout_marginLeft="@dimen/main_menu_left"
+            android:layout_marginTop="@dimen/main_menu_top"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/myshopcart"
-                android:textColor="#fff" />
+                android:text="@string/shopping_menu_title_text"
+                android:textColor="@color/colorWhite" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/marleft_n"
+                android:layout_marginLeft="@dimen/main_menu_iv_left"
                 android:src="@drawable/pull_down_content" />
         </com.zhy.autolayout.AutoLinearLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/matlefttwo_two"
-            android:layout_marginTop="@dimen/matlefttwo_two"
+            android:layout_marginLeft="@dimen/main_menu_left"
+            android:layout_marginTop="@dimen/main_menu_left"
             android:src="@drawable/title_underline" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/matlefttwo_two"
-            android:layout_marginTop="@dimen/mattop_twosix"
+            android:layout_marginLeft="@dimen/main_menu_left"
+            android:layout_marginTop="@dimen/main_menu_text_top"
             android:text="@string/tuij"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/textsizefive" />
+            android:textSize="@dimen/main_menu_text_size" />
     </com.zhy.autolayout.AutoLinearLayout>
 
 
     <ImageView
-        android:layout_centerInParent="true"
-        android:id="@+id/shopcart"
+        android:id="@+id/shopping_cart"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
 </com.zhy.autolayout.AutoRelativeLayout>

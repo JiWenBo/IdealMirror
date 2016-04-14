@@ -2,8 +2,8 @@
 
     <string name="app_name">IdealMirror</string>
 
-    <string name="denglu">登陆</string>
-    <string name="liulan">浏览所有类别</string>
+    <string name="main_login_text">登陆</string>
+    <string name="main_menu_title_text">浏览所有类别</string>
     <string name="tuij">显示排序为 最新推荐</string>
     <string name="create_title">创建账号</string>
     <string name="create_phone_text">手机号</string>
@@ -13,35 +13,35 @@
     <string name="create_btn_text">创建账号</string>
 
 
-    <string name="loginTitle">帐号登录</string>
-    <string name="phoneNumber">手机号</string>
-    <string name="passWord">密码</string>
+    <string name="login_title_text">帐号登录</string>
+    <string name="phone_number">手机号</string>
+    <string name="login_password">密码</string>
     <string name="forgetPwd">忘记密码？</string>
-    <string name="loginBtn">登录</string>
-    <string name="createAccounts">创建帐号</string>
-    <string name="socialContactPwd">使用社交帐号</string>
+    <string name="login_btn_text">登录</string>
+    <string name="create_accounts">创建帐号</string>
+    <string name="social_contact_pwd">使用社交帐号</string>
     
     <string name="addAddress">添加地址</string>
     <string name="addReceiverName">添加收件人姓名</string>
     <string name="addContactPhone">添加联络人电话号码</string>
     <string name="addReceiverGoodsAddress">添加收货地址</string>
-    <string name="commitAddress">提交地址</string>
-    <string name="forgetPassword">忘记密码</string>
-    <string name="alterPassword">修改密码</string>
+    <string name="commit_address">提交地址</string>
+    <string name="forget_password_title_text">忘记密码</string>
+    <string name="alter_password">修改密码</string>
 
     <string name="delete">删除</string>
     <string name="address">地址：</string>
-    <string name="addressee">收件人：</string>
-    <string name="myaddress">我的所有地址</string>
-    <string name="add">添加地址</string>
+    <string name="all_address_receiver">收件人：</string>
+    <string name="my_address">我的所有地址</string>
+    <string name="add_address">添加地址</string>
     <string name="text">$450</string>
     <string name="caomeiyanj">草莓红色圆框眼镜</string>
     <string name="faguo">法国巴黎</string>
     <string name="textsee">SEE CONCEPT</string>
     <string name="liulanping">浏览平光眼镜</string>
-    <string name="back">返回首页</string>
+    <string name="menu_back">返回首页</string>
     <string name="close">退出</string>
-    <string name="myshopcart">我的購物車</string>
+    <string name="shopping_menu_title_text">我的購物車</string>
     <string name="main_shopping">購物車</string>
     <string name="java_create_sure_message">请确认填写信息</string>
     <string name="java_create_success">创建成功</string>
@@ -50,13 +50,13 @@
     <string name="java_login_fail">登录失败</string>
 
     <string name="adornPhotos">佩戴图集</string>
-    <string name="watchDetails">滑动浏览详情</string>
-    <string name="goodsShow">商品细节展示</string>
+    <string name="watch_details">滑动浏览详情</string>
+    <string name="goods_show">商品细节展示</string>
 
-    <string name="xiangqing">订单详情</string>
+    <string name="buy_detail_title_tv">订单详情</string>
     <string name="xinxi">请填写收件人信息:</string>
-    <string name="dizhi">填写地址</string>
-    <string name="yes">确认下单</string>
+    <string name="buy_detail_add_address_tv">填写地址</string>
+    <string name="buy_detail_sure_btn_text">确认下单</string>
     <string name="tianjiadizhi">添加地址</string>
 
     <string name="menu_story_text">専題分享</string>
@@ -89,6 +89,9 @@
     <string name="java_setpeoplemessage">请填写收件人信息</string>
     <string name="java_setaddress">添加地址</string>
     <string name="setmessage">编辑地址</string>
+    <string name="java_story_check_net">请检查网络</string>
+    <string name="java_vertical_three_story">専題分享</string>
+    <string name="menu_shopping">我的購物車</string>
 
 
 </resources>

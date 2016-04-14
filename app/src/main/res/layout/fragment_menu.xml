@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_menu_back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_custom"
-    android:paddingLeft="@dimen/fivepx"
-    android:id="@+id/fragment_menu_back">
+    android:paddingLeft="@dimen/menu_fragment_left">
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/fivepx"
+        android:layout_marginLeft="@dimen/menu_fragment_left"
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/menu_listview"
+            android:id="@+id/menu_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/sixpxs"
-            android:divider="@null"
-            />
+            android:layout_marginTop="@dimen/menu_list_top"
+            android:divider="@null" />
 
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/menu_to_story_layout"
@@ -30,16 +29,16 @@
                 android:id="@+id/menu_to_story_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fourfour"
+                android:layout_marginTop="@dimen/menu_item_top"
                 android:text="@string/menu_story_text"
                 android:textColor="@drawable/selector_menu_item"
-                android:textSize="@dimen/two" />
+                android:textSize="@dimen/menu_item_size" />
 
             <ImageView
                 android:id="@+id/menu_to_story_line"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/twos"
+                android:layout_marginTop="@dimen/menu_item_iv_top"
                 android:src="@drawable/title_underline"
                 android:visibility="invisible" />
         </com.zhy.autolayout.AutoLinearLayout>
@@ -54,16 +53,16 @@
                 android:id="@+id/menu_to_shopping_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fourfour"
-                android:text="我的購物車"
+                android:layout_marginTop="@dimen/menu_item_top"
+                android:text="@string/menu_shopping"
                 android:textColor="@drawable/selector_menu_item"
-                android:textSize="@dimen/two" />
+                android:textSize="@dimen/menu_item_size" />
 
             <ImageView
                 android:id="@+id/menu_to_shopping_line"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/twos"
+                android:layout_marginTop="@dimen/menu_item_iv_top"
                 android:src="@drawable/title_underline"
                 android:visibility="invisible" />
         </com.zhy.autolayout.AutoLinearLayout>
@@ -78,16 +77,16 @@
                 android:id="@+id/menu_to_home_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fourfour"
-                android:text="@string/back"
+                android:layout_marginTop="@dimen/menu_item_top"
+                android:text="@string/menu_back"
                 android:textColor="@drawable/selector_menu_item"
-                android:textSize="@dimen/two" />
+                android:textSize="@dimen/menu_item_size" />
 
             <ImageView
                 android:id="@+id/menu_to_home_line"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/twos"
+                android:layout_marginTop="@dimen/menu_item_iv_top"
                 android:src="@drawable/title_underline"
                 android:visibility="invisible" />
         </com.zhy.autolayout.AutoLinearLayout>
@@ -102,16 +101,16 @@
                 android:id="@+id/menu_return_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fourfours"
+                android:layout_marginTop="@dimen/menu_item_top"
                 android:text="@string/close"
                 android:textColor="@drawable/selector_menu_item"
-                android:textSize="@dimen/twoehi" />
+                android:textSize="@dimen/menu_item_size" />
 
             <ImageView
                 android:id="@+id/menu_return_line"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/twotwoss"
+                android:layout_marginTop="@dimen/menu_item_iv_top"
                 android:src="@drawable/title_underline"
                 android:visibility="invisible" />
         </com.zhy.autolayout.AutoLinearLayout>

@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/commodityDetails_rl"
+    android:id="@+id/commodity_details_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/commoditydetails_backgroud_iv"
+        android:id="@+id/commodity_details_background_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         fresco:placeholderImage="@mipmap/ic_launcher" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.zhy.autolayout.AutoRelativeLayout
-        android:id="@+id/commoditydetails_menu_rl"
+        android:id="@+id/commodity_details_menu_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/commodityDetails_menu_bottom"
+        android:layout_marginBottom="@dimen/commodity_details_menu_bottom"
         android:visibility="invisible">
 
         <ImageView
-            android:id="@+id/commoditydetails_return_btn"
-            android:layout_width="@dimen/commodityDetails_menu_returnWid"
-            android:layout_height="@dimen/commodityDetails_menu_hei"
-            android:layout_marginLeft="@dimen/commodityDetails_menu_returnLeft"
+            android:id="@+id/commodity_details_return_btn"
+            android:layout_width="@dimen/commodity_details_menu_return_width"
+            android:layout_height="@dimen/commodity_details_menu_height"
+            android:layout_marginLeft="@dimen/commodity_details_menu_return_left"
             android:src="@drawable/return_btn" />
 
         <TextView
-            android:id="@+id/commoditydetails_adornPhotos"
-            android:layout_width="@dimen/commodityDetails_menu_adornWid"
-            android:layout_height="@dimen/commodityDetails_menu_hei"
-            android:layout_marginLeft="@dimen/commodityDetails_menu_adornLeft"
-            android:layout_toRightOf="@id/commoditydetails_return_btn"
+            android:id="@+id/commodity_details_adorn_photos"
+            android:layout_width="@dimen/commodity_details_menu_adorn_wid"
+            android:layout_height="@dimen/commodity_details_menu_height"
+            android:layout_marginLeft="@dimen/commodity_details_menu_adorn_left"
+            android:layout_toRightOf="@id/commodity_details_return_btn"
             android:background="@drawable/adorn_photos_btn"
             android:gravity="center"
             android:text="@string/adornPhotos"
             android:textColor="@color/colorWhite" />
 
         <ImageView
-            android:id="@+id/commodityDetails_menu_buy"
-            android:layout_width="@dimen/commodityDetails_menu_buyWid"
-            android:layout_height="@dimen/commodityDetails_menu_hei"
+            android:id="@+id/commodity_details_menu_buy"
+            android:layout_width="@dimen/commodity_details_menu_buy_width"
+            android:layout_height="@dimen/commodity_details_menu_height"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/commodityDetails_menu_buyRight"
+            android:layout_marginRight="@dimen/commodity_details_menu_buy_right"
             android:src="@drawable/buy_btn" />
     </com.zhy.autolayout.AutoRelativeLayout>
 

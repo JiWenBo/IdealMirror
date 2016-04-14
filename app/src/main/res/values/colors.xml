@@ -13,4 +13,12 @@
     <color name="colorCreateWhite">#ffffff</color>
     <color name="colorDelete">#e62f4a</color>
 
+    <color name="colorBuyDetailTitle">#333</color>
+    <color name="colorBuyDetailPrice">#ff5aab</color>
+    <color name="colorBuyDetailView">#ddd</color>
+
+    <color name="colorShareBg">#50000000</color>
+
+    <color name="colorGoodPrice">#ff0000</color>
+    <color name="colorLucencyBg">#00000000</color>
 </resources>

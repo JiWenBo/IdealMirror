@@ -13,9 +13,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/loginTitle"
+            android:text="@string/login_title_text"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/login_title_textsize" />
+            android:textSize="@dimen/login_title_text_size" />
 
         <ImageView
             android:id="@+id/close"
@@ -29,14 +29,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/login_titleUndline_top"
+        android:layout_marginTop="@dimen/login_title_undline_top"
         android:background="@drawable/item_underline_black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_phone_top"
-        android:text="@string/phoneNumber"
+        android:text="@string/phone_number"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/login_phone_size" />
 
@@ -44,52 +44,52 @@
         android:id="@+id/login_phone_et"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
-        android:layout_marginTop="@dimen/login_phoneNumber_top"
+        android:layout_marginTop="@dimen/login_phone_number_top"
+        android:background="@drawable/phone_input"
         android:phoneNumber="true"
-        android:background="@drawable/phonenum_input"
         android:textColor="@color/colorBlack" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_passWd_top"
-        android:text="@string/passWord"
+        android:layout_marginTop="@dimen/login_password_top"
+        android:text="@string/login_password"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/login_passWord_size" />
+        android:textSize="@dimen/login_password_size" />
 
     <EditText
         android:id="@+id/login_password_et"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edit_height"
-        android:layout_marginTop="@dimen/login_passWord_top"
+        android:layout_marginTop="@dimen/login_password_edit_top"
+        android:background="@drawable/phone_input"
         android:password="true"
-        android:background="@drawable/phonenum_input"
         android:textColor="@color/colorBlack" />
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/heithzero"
+        android:layout_height="@dimen/login_rl_hei"
         android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/login_forget_top"
-            android:text="@string/forgetPwd"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/login_forget_size" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginTop="@dimen/login_forget_top"-->
+            <!--android:text="@string/forgetPwd"-->
+            <!--android:textColor="@color/colorBlack"-->
+            <!--android:textSize="@dimen/login_forget_size" />-->
 
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_edit_height"
-            android:layout_marginTop="@dimen/login_loginBtn_top"
+            android:layout_marginTop="@dimen/login_login_btn_top"
             android:background="@drawable/button_use_false"
             android:gravity="center"
-            android:text="@string/loginBtn"
+            android:text="@string/login_btn_text"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/login_loginBtn_size" />
+            android:textSize="@dimen/login_login_btn_size" />
 
         <Button
             android:id="@+id/create_number"
@@ -99,7 +99,7 @@
             android:layout_marginTop="@dimen/login_create_top"
             android:background="@drawable/login_btn_true"
             android:gravity="center"
-            android:text="@string/createAccounts"
+            android:text="@string/create_accounts"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/login_create_size" />
 
@@ -119,7 +119,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/login_wechat_bottom"
-            android:paddingRight="@dimen/login_wechat_paddingright"
+            android:paddingRight="@dimen/login_wechat_padding_right"
             android:src="@drawable/wechat_icon" />
 
         <TextView
@@ -128,7 +128,7 @@
             android:layout_above="@id/login_wechat"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/login_social_bottom"
-            android:text="@string/socialContactPwd"
+            android:text="@string/social_contact_pwd"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/login_social_size" />
     </com.zhy.autolayout.AutoRelativeLayout>

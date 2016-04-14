@@ -1,60 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/recyclerview_commodityDetails_rl"
+    android:id="@+id/recycler_commodity_details_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/recyclerview_commodityDetails_iv"
+        android:id="@+id/recycler_commodity_details_iv"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/commodityItem_item_picHei"
-        fresco:placeholderImage="@mipmap/ic_launcher"
-        android:layout_margin="@dimen/commodityItem_title_sdv_margin"/>
+        android:layout_height="@dimen/commodity_item_item_pic_hei"
+        android:layout_margin="@dimen/commodity_item_title_sdv_margin"
+        fresco:placeholderImage="@mipmap/ic_launcher" />
 
     <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/recyclerview_commodityDetails_storyLinear"
-        android:layout_width="@dimen/commodityItem_item_storyWid"
+        android:id="@+id/recycler_commodity_details_story_layout"
+        android:layout_width="@dimen/commodity_item_item_story_wid"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recyclerview_commodityDetails_iv"
+        android:layout_below="@id/recycler_commodity_details_iv"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/commodity_details_layout_top"
         android:background="@color/colorBlack"
         android:orientation="vertical"
-        android:layout_marginTop="100dp"
-        android:paddingLeft="@dimen/commodityItem_item_storyLeft"
-        android:paddingRight="@dimen/commodityItem_item_storyRight">
+        android:paddingLeft="@dimen/commodity_item_item_story_left"
+        android:paddingRight="@dimen/commodity_item_item_story_right">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commodityItem_head_lineHei"
-            android:layout_marginTop="@dimen/commodityItem_head_lineTop"
+            android:layout_height="@dimen/commodity_item_head_line_hei"
+            android:layout_marginTop="@dimen/commodity_item_head_line_top"
             android:background="@drawable/title_underline" />
 
-
         <TextView
-            android:id="@+id/recyclerview_commodityDetails_title"
+            android:id="@+id/recycler_commodity_details_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/commodityItem_item_nameTop"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/commodity_item_item_name_top"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/commodityItem_item_nameSize" />
-
+            android:textSize="@dimen/commodity_item_item_name_size" />
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commodityItem_head_lineHei"
-            android:layout_marginTop="@dimen/commodityItem_title_underTop"
+            android:layout_height="@dimen/commodity_item_head_line_hei"
+            android:layout_marginTop="@dimen/commodity_item_title_under_top"
             android:background="@drawable/title_underline" />
 
         <TextView
-            android:id="@+id/recyclerview_commodityDetails_intro"
+            android:id="@+id/recycler_commodity_details_introduce"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/commodityItem_item_introBot"
-            android:layout_marginTop="@dimen/commodityItem_item_introTop"
+            android:layout_marginBottom="@dimen/commodity_item_item_intro_bot"
+            android:layout_marginTop="@dimen/commodity_item_item_intro_top"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/commodityItem_item_introSize" />
+            android:textSize="@dimen/commodity_item_item_intro_size" />
     </com.zhy.autolayout.AutoLinearLayout>
 </com.zhy.autolayout.AutoRelativeLayout>

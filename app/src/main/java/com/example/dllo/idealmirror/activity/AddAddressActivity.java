@@ -1,16 +1,19 @@
 package com.example.dllo.idealmirror.activity;
+
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
+
 import java.util.HashMap;
 
 /**
@@ -20,10 +23,10 @@ import java.util.HashMap;
 public class AddAddressActivity extends BaseActivity implements VolleyListener, Url {
     EditText name, number, address;
     TextView nameTitle, numTitle, addTitle, title;
-    Button sub_btn;
+    Button subBtn;
     ImageView close;
     String addr;
-    HashMap<String, String> parm;
+    HashMap<String, String> param;
 
     @Override
     protected int setContent() {
@@ -32,18 +35,17 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
 
     @Override
     protected void initView() {
-
         name = bindView(R.id.add_name);
         number = bindView(R.id.add_number);
         address = bindView(R.id.add_address);
-        sub_btn = bindView(R.id.submit);
-        nameTitle = bindView(R.id.add_nametitle);
-        numTitle = bindView(R.id.add_numtitel);
-        addTitle = bindView(R.id.add_addtitle);
+        subBtn = bindView(R.id.submit_btn);
+        nameTitle = bindView(R.id.add_name_title);
+        numTitle = bindView(R.id.add_num_title);
+        addTitle = bindView(R.id.add_address_title);
         title = bindView(R.id.add_title);
         close = bindView(R.id.set_close);
-
     }
+
     @Override
     protected void initData() {
         Intent intent = getIntent();
@@ -51,43 +53,43 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         name.setText(intent.getStringExtra("name"));
         number.setText(intent.getStringExtra("number"));
         address.setText(intent.getStringExtra("address"));
-        nameTitle.setText(intent.getStringExtra("nametitie"));
-        numTitle.setText(intent.getStringExtra("numtitle"));
-        addTitle.setText(intent.getStringExtra("addtitle"));
+        nameTitle.setText(intent.getStringExtra("nameTitle"));
+        numTitle.setText(intent.getStringExtra("numTitle"));
+        addTitle.setText(intent.getStringExtra("addTitle"));
         title.setText(intent.getStringExtra("title"));
-        sub_btn.setText(intent.getStringExtra("btntext"));
+        subBtn.setText(intent.getStringExtra("btnText"));
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        sub_btn.setOnClickListener(new View.OnClickListener() {
+
+        subBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( name.getText().length()==0||number.getText().length()==0||address.getText().length()==0){
-                    ToastUtils.showToast(AddAddressActivity.this,getString(R.string.rightmessage));
+                if (name.getText().length() == 0 || number.getText().length() == 0 || address.getText().length() == 0) {
+                    ToastUtils.showToast(AddAddressActivity.this, getString(R.string.rightmessage));
 
-                }
-                else {
+                } else {
                     if (title.getText().equals(getString(R.string.tianjiadizhi))) {
                         NetHelper helper = new NetHelper();
-                        parm = new HashMap<>();
-                        parm.put("cellphone", number.getText().toString());
-                        parm.put("addr_info", address.getText().toString());
-                        parm.put("username", name.getText().toString());
-                        parm.put("token", TOKEN);
-                        helper.getInformation(USER_ADD_ADDRESS, AddAddressActivity.this, parm);
+                        param = new HashMap<>();
+                        param.put("cellphone", number.getText().toString());
+                        param.put("addr_info", address.getText().toString());
+                        param.put("username", name.getText().toString());
+                        param.put("token", TOKEN);
+                        helper.getInformation(USER_ADD_ADDRESS, AddAddressActivity.this, param);
                     } else {
 
                         NetHelper helper = new NetHelper();
-                        parm = new HashMap<>();
-                        parm.put("addr_id", addr);
-                        parm.put("cellphone", number.getText().toString());
-                        parm.put("addr_info", address.getText().toString());
-                        parm.put("username", name.getText().toString());
-                        parm.put("token", TOKEN);
-                        helper.getInformation(USER_EDIT_ADDRESS, AddAddressActivity.this, parm);
+                        param = new HashMap<>();
+                        param.put("addr_id", addr);
+                        param.put("cellphone", number.getText().toString());
+                        param.put("addr_info", address.getText().toString());
+                        param.put("username", name.getText().toString());
+                        param.put("token", TOKEN);
+                        helper.getInformation(USER_EDIT_ADDRESS, AddAddressActivity.this, param);
 
                     }
                 }

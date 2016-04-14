@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <com.zhy.autolayout.AutoRelativeLayout
-        android:id="@+id/commodityDetails_head_rl"
+        android:id="@+id/commodity_details_head_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.5"
@@ -12,115 +13,115 @@
 
         <ImageView
             android:id="@+id/commodity_detail_share"
-            android:layout_width="@dimen/commodityItem_head_shareWid"
-            android:layout_height="@dimen/commodityItem_head_shareHei"
+            android:layout_width="@dimen/commodity_item_head_share_wid"
+            android:layout_height="@dimen/commodity_item_head_share_hei"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/commodityItem_head_shareRight"
-            android:layout_marginTop="@dimen/commodityItem_head_shareTop"
+            android:layout_marginRight="@dimen/commodity_item_head_share_right"
+            android:layout_marginTop="@dimen/commodity_item_head_share_top"
             android:src="@drawable/share" />
 
         <com.zhy.autolayout.AutoRelativeLayout
-            android:id="@+id/commoditydetails_commodityIntro"
-            android:layout_width="@dimen/commodityItem_head_rlWid"
-            android:layout_height="@dimen/commodityItem_head_rlHei"
+            android:id="@+id/commodity_details_introduce"
+            android:layout_width="@dimen/commodity_item_head_rl_wid"
+            android:layout_height="@dimen/commodity_item_head_rl_hei"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/commodityItem_head_rlTop"
+            android:layout_marginTop="@dimen/commodity_item_head_rl_top"
             android:background="@drawable/share_frame">
 
             <TextView
-                android:id="@+id/commoditydetails_englishTitle"
+                android:id="@+id/commodity_details_english_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/commodity_item_head_eng_title_top"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/commodityItem_head_engTitTop"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/commodityItem_head_engTitSize" />
+                android:textSize="@dimen/commodity_item_head_eng_title_size" />
 
             <ImageView
-                android:id="@+id/commoditydetails_whiteLine"
-                android:layout_width="@dimen/commodityItem_head_lineWid"
-                android:layout_height="@dimen/commodityItem_head_lineHei"
-                android:layout_below="@id/commoditydetails_englishTitle"
+                android:id="@+id/commodity_details_white_line"
+                android:layout_width="@dimen/commodity_item_head_line_wid"
+                android:layout_height="@dimen/commodity_item_head_line_hei"
+                android:layout_below="@id/commodity_details_english_title"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/commodityItem_head_lineTop"
-                android:background="@drawable/title_underline"/>
+                android:layout_marginTop="@dimen/commodity_item_head_line_top"
+                android:background="@drawable/title_underline" />
 
             <TextView
-                android:id="@+id/commoditydetails_name"
-                android:layout_width="@dimen/commodityItem_head_nameWid"
-                android:layout_height="@dimen/commodityItem_head_nameHei"
-                android:layout_below="@id/commoditydetails_whiteLine"
+                android:id="@+id/commodity_details_name"
+                android:layout_width="@dimen/commodity_item_head_name_wid"
+                android:layout_height="@dimen/commodity_item_head_name_hei"
+                android:layout_below="@id/commodity_details_white_line"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/commodityItem_head_nameSize" />
+                android:textSize="@dimen/commodity_item_head_name_size" />
 
             <ImageView
-                android:id="@+id/commoditydetails_whiteUnderLine"
-                android:layout_width="@dimen/commodityItem_head_underlineWid"
-                android:layout_height="@dimen/commodityItem_head_underlineHei"
-                android:layout_below="@id/commoditydetails_name"
+                android:id="@+id/commodity_details_white_underline"
+                android:layout_width="@dimen/commodity_item_head_underline_wid"
+                android:layout_height="@dimen/commodity_item_head_underline_hei"
+                android:layout_below="@id/commodity_details_name"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/title_underline" />
 
             <TextView
-                android:id="@+id/commoditydetails_commodityStory"
-                android:layout_width="@dimen/commodityItem_head_storyWid"
+                android:id="@+id/commodity_details_commodity_story"
+                android:layout_width="@dimen/commodity_item_head_story_wid"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/commoditydetails_whiteUnderLine"
+                android:layout_below="@id/commodity_details_white_underline"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/commodityItem_head_storyTop"
+                android:layout_marginTop="@dimen/commodity_item_head_story_top"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/commodityItem_head_storySize" />
+                android:textSize="@dimen/commodity_item_head_story_size" />
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/commoditydetails_commodityStory"
+                android:layout_below="@id/commodity_details_commodity_story"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/commodityItem_head_llTop"
+                android:layout_marginTop="@dimen/commodity_item_head_ll_top"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/commodityItem_head_priceHei"
+                    android:layout_height="@dimen/commodity_item_head_price_hei"
                     android:src="@drawable/money" />
 
                 <TextView
-                    android:id="@+id/commoditydetails_commodityMoney"
+                    android:id="@+id/commodity_details_commodity_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/commodityItem_head_priceLeft"
+                    android:layout_marginLeft="@dimen/commodity_item_head_price_left"
                     android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/commodityItem_head_priceSize" />
+                    android:textSize="@dimen/commodity_item_head_price_size" />
             </com.zhy.autolayout.AutoLinearLayout>
 
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/commoditydetails_watchDetails"
+            android:id="@+id/commodity_details_watch_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/commodity_details_introduce"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/commoditydetails_commodityIntro"
-            android:layout_marginTop="@dimen/commodityItem_head_endllTop"
+            android:layout_marginTop="@dimen/commodity_item_head_endll_top"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/watchDetails"
+                android:text="@string/watch_details"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/commodityItem_head_watchSize" />
+                android:textSize="@dimen/commodity_item_head_watch_size" />
 
             <ImageView
-                android:layout_width="@dimen/commodityItem_head_watchWid"
-                android:layout_height="@dimen/commodityItem_head_watchHei"
+                android:layout_width="@dimen/commodity_item_head_watch_wid"
+                android:layout_height="@dimen/commodity_item_head_watch_hei"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/commodityItem_head_watchBot"
-                android:layout_marginTop="@dimen/commodityItem_head_watchTop"
+                android:layout_marginBottom="@dimen/commodity_item_head_watch_bottom"
+                android:layout_marginTop="@dimen/commodity_item_head_watch_top"
                 android:src="@drawable/pull_down" />
         </com.zhy.autolayout.AutoLinearLayout>
 

@@ -58,7 +58,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.create_close:
                 finish();
                 break;

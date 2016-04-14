@@ -1,4 +1,5 @@
 package com.example.dllo.idealmirror.fragment;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -6,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.RecyclerAdapter;
@@ -13,14 +15,15 @@ import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
 import com.example.dllo.idealmirror.mirrordao.PlainMirror;
-import com.example.dllo.idealmirror.mirrordao.PlainMirrorDao;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,9 +36,9 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
     private GoodsListBean goodsListBean;
-    private HashMap<String, String> parm;
+    private HashMap<String, String> param;
     private LinearLayout layout;
-    private static String title,numType;
+    private static String title, numType;
     private String store;
     private TextView titleTv;
     private MainActivity mainActivity;
@@ -55,7 +58,6 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     public int getLayout() {
         return R.layout.fragment_goods;
     }
-
 
     @Override
     protected void initView() {
@@ -80,12 +82,12 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         title = bundle.getString("title");
         store = bundle.getString("store");
         numType = bundle.getString("type");
-        parm = new HashMap<>();
+        param = new HashMap<>();
         NetHelper netHelper = new NetHelper();
-        parm.put("token", "null");
-        parm.put("device_type", "3");
-        parm.put("category_id", "");
-        netHelper.getInformation(GOODS_LIST, this, parm);
+        param.put("token", "null");
+        param.put("device_type", "3");
+        param.put("category_id", "");
+        netHelper.getInformation(GOODS_LIST, this, param);
         titleTv.setText(title);
     }
 
@@ -102,7 +104,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         // 删除数据库中的数据
         daoSingleton.deletePlainMirrorAll();
         plainMirrors = new ArrayList<>();
-        for (int i=0;i<goodsListBean.getData().getList().size();i++){
+        for (int i = 0; i < goodsListBean.getData().getList().size(); i++) {
             plainMirror = new PlainMirror();
             plainMirror.setGoodsimg(goodsListBean.getData().getList().get(i).getGoods_img());
             plainMirror.setBrand(goodsListBean.getData().getList().get(i).getBrand());
@@ -118,9 +120,9 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         }
         // 查询数据库 获得数据
         plainMirrors = daoSingleton.queryPlainMirror();
-        for (int j=0;j<plainMirrors.size();j++){
-            if (plainMirrors.get(j).getWholestorge().equals(numType)){
-                recyclerAdapter = new RecyclerAdapter(getContext(),plainMirrors.get(j));
+        for (int j = 0; j < plainMirrors.size(); j++) {
+            if (plainMirrors.get(j).getWholestorge().equals(numType)) {
+                recyclerAdapter = new RecyclerAdapter(getContext(), plainMirrors.get(j));
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView.setLayoutManager(linearLayoutManager);
@@ -136,7 +138,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     @Override
     public void getFail() {
         plainMirrors = daoSingleton.queryPlainMirror();
-        for (int i=0;i<plainMirrors.size();i++){
+        for (int i = 0; i < plainMirrors.size(); i++) {
             if (plainMirrors.get(i).getWholestorge().equals(numType)) {
                 recyclerAdapter = new RecyclerAdapter(getContext(), plainMirrors.get(i));
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -153,7 +155,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
         bundle.putString("store", store);
-        bundle.putString("type",type+"");
+        bundle.putString("type", type + "");
         goodsListFragment.setArguments(bundle);
         return goodsListFragment;
     }

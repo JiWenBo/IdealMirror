@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/itemx"
-    android:layout_width="@dimen/widththouth"
-    android:layout_height="@dimen/heithright">
+    android:id="@+id/item_goods"
+    android:layout_width="@dimen/item_good_pic_wid"
+    android:layout_height="@dimen/item_good_pic_hei">
 
     <com.zhy.autolayout.AutoRelativeLayout
-        android:id="@+id/picclick"
-        android:layout_width="@dimen/widththouth"
-        android:layout_height="@dimen/heithright"
-        android:layout_marginRight="@dimen/marleft_twotwo"
+        android:id="@+id/picture_rl"
+        android:layout_width="@dimen/item_good_pic_wid"
+        android:layout_height="@dimen/item_good_pic_hei"
+        android:layout_marginRight="@dimen/item_good_pic_right"
         android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/picture"
-            android:layout_width="@dimen/widththouth"
+            android:layout_width="@dimen/item_good_pic_wid"
             android:layout_height="wrap_content"
             android:scaleType="fitXY" />
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="@dimen/widththouth"
-            android:layout_height="@dimen/layhei"
-            android:layout_marginTop="@dimen/martopsix"
+            android:layout_width="@dimen/item_good_pic_wid"
+            android:layout_height="@dimen/item_good_msg_layout_hei"
+            android:layout_marginTop="@dimen/item_good_msg_layout_top"
             android:background="@color/colorWhite"
             android:orientation="vertical">
 
             <com.zhy.autolayout.AutoLinearLayout
-
-                android:layout_width="@dimen/widththouth"
-                android:layout_height="@dimen/heigh_fifth"
-                android:layout_marginTop="@dimen/martopfive"
+                android:layout_width="@dimen/item_good_pic_wid"
+                android:layout_height="@dimen/item_good_msg_item_hei"
+                android:layout_marginTop="@dimen/item_good_msg_item_top"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/mrtj_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/marleftsix"
+                    android:layout_marginLeft="@dimen/item_title_name_left"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/texsizethree"
+                    android:textSize="@dimen/item_good_msg_item_size"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/mrtj_price"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/heieight"
-                    android:layout_marginRight="@dimen/marrightsix"
+                    android:layout_height="@dimen/item_good_msg_item_price_hei"
+                    android:layout_marginRight="@dimen/item_good_msg_item_price_right"
                     android:gravity="right"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
@@ -54,34 +53,35 @@
                 android:id="@+id/mrtj_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marlatfthree"
-                android:layout_marginTop="@dimen/martop"
-                android:textColor="#333"
-                android:textSize="@dimen/textsizetwo" />
+                android:layout_marginLeft="@dimen/item_good_msg_item_area_left"
+                android:layout_marginTop="@dimen/item_mrtj_area_top"
+                android:textColor="@color/colorCreateTest"
+                android:textSize="@dimen/item_good_msg_item_area_size" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marlatfthree"
-                android:layout_marginRight="@dimen/marlatfthree"
-                android:layout_marginTop="20px"
+                android:layout_marginLeft="@dimen/item_good_msg_item_area_left"
+                android:layout_marginRight="@dimen/item_good_msg_item_area_left"
+                android:layout_marginTop="@dimen/item_mag_line_top"
                 android:src="@drawable/create_account_unline" />
 
             <TextView
                 android:id="@+id/mrtj_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marlatfthree"
-                android:layout_marginTop="@dimen/sixpx"
+                android:layout_marginLeft="@dimen/item_good_msg_item_area_left"
+                android:layout_marginTop="@dimen/item_good_msg_item_brand_top"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/threepx" />
+                android:textSize="@dimen/item_good_msg_item_brand_size" />
         </com.zhy.autolayout.AutoLinearLayout>
+
         <ProgressBar
             android:id="@+id/progressbar"
-            android:layout_centerInParent="true"
             style="?android:progressBarStyleLarge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
 

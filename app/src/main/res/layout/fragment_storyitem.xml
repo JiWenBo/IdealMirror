@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/storyitem"
-    android:layout_width="@dimen/widththouth"
-    android:layout_height="@dimen/nineone">
+    android:id="@+id/item_story"
+    android:layout_width="@dimen/item_good_pic_wid"
+    android:layout_height="@dimen/item_good_pic_hei">
 
     <com.zhy.autolayout.AutoRelativeLayout
-        android:layout_width="@dimen/widththouth"
+        android:layout_width="@dimen/item_good_pic_wid"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/marleft_twotwo"
+        android:layout_marginRight="@dimen/item_good_pic_right"
         android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/picture"
-            android:layout_width="@dimen/marfour"
+            android:layout_width="@dimen/item_good_pic_wid"
             android:layout_height="wrap_content"
             android:scaleType="fitXY" />
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="@dimen/widththouth"
-            android:layout_height="@dimen/onefive"
-            android:layout_marginTop="@dimen/sevennine"
+            android:layout_width="@dimen/item_good_pic_wid"
+            android:layout_height="@dimen/item_story_msg_hei"
+            android:layout_marginTop="@dimen/item_story_msh_top"
             android:background="@color/colorWhite"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marlatfthree"
-                android:layout_marginRight="@dimen/marlatfthree"
-                android:layout_marginTop="@dimen/threefour"
+                android:layout_marginLeft="@dimen/item_good_msg_item_area_left"
+                android:layout_marginRight="@dimen/item_good_msg_item_area_left"
+                android:layout_marginTop="@dimen/item_story_msg_iv_top"
                 android:src="@drawable/create_account_unline" />
 
             <TextView
-                android:id="@+id/storytitle"
+                android:id="@+id/story_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marlatfthree"
-                android:layout_marginTop="@dimen/sixpx"
+                android:layout_marginLeft="@dimen/item_good_msg_item_area_left"
+                android:layout_marginTop="@dimen/item_good_msg_item_brand_top"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/threepx" />
+                android:textSize="@dimen/item_good_msg_item_brand_size" />
         </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoRelativeLayout>
 

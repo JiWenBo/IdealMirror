@@ -30,14 +30,14 @@ public class ShoppingFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void initView() {
-        cart = bindView(R.id.shopcart);
+        cart = bindView(R.id.shopping_cart);
         layout = bindView(R.id.shopping_layout);
         layout.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
-     cart.setImageResource(R.drawable.shopping_cart_none);
+        cart.setImageResource(R.drawable.shopping_cart_none);
     }
 
     @Override

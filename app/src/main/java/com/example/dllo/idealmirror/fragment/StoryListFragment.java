@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.MainActivity;
 import com.example.dllo.idealmirror.adapter.StoryAdapter;
@@ -32,10 +33,10 @@ import java.util.List;
  * Created by dllo on 16/4/1.
  * 专题分享fragment
  */
-public class StoryListFragment extends BaseFragment implements VolleyListener,Url{
+public class StoryListFragment extends BaseFragment implements VolleyListener, Url {
     private StoryAdapter storyAdapter;
     private static StoryListBean storyListBean;
-    private HashMap<String,String> data;
+    private HashMap<String, String> data;
     private RecyclerView recyclerView;
     private LinearLayout layout;
     private StoryMirror storyMirror;
@@ -99,7 +100,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
         }
         daoSingleton.deleteStoryMirrorAll();
         storyMirrors = new ArrayList<>();
-        for (int i=0;i<storyListBean.getData().getList().size();i++){
+        for (int i = 0; i < storyListBean.getData().getList().size(); i++) {
             storyMirror = new StoryMirror();
             storyMirror.setPicimg(storyListBean.getData().getList().get(i).getStory_img());
             storyMirror.setTitle(storyListBean.getData().getList().get(i).getStory_title());
@@ -107,7 +108,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
             daoSingleton.insert(storyMirror);
         }
         storyMirrors = daoSingleton.queryStoryMirror();
-        storyAdapter = new StoryAdapter(getContext(),storyMirrors);
+        storyAdapter = new StoryAdapter(getContext(), storyMirrors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -118,7 +119,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
     @Override
     public void getFail() {
         storyMirrors = daoSingleton.queryStoryMirror();
-        storyAdapter = new StoryAdapter(getContext(),storyMirrors);
+        storyAdapter = new StoryAdapter(getContext(), storyMirrors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -127,10 +128,11 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
 
     /**
      * 通过静态方法将参数传过来
+     *
      * @param
      * @return
      */
-    public static StoryListFragment setUrl( String title, String store){
+    public static StoryListFragment setUrl(String title, String store) {
         StoryListFragment storyListFragment = new StoryListFragment();
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
@@ -139,7 +141,7 @@ public class StoryListFragment extends BaseFragment implements VolleyListener,Ur
         return storyListFragment;
     }
 
-    public static StoryListBean bean(){
+    public static StoryListBean bean() {
         return storyListBean;
     }
 }

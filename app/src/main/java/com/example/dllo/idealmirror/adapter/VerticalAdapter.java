@@ -4,32 +4,30 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.dllo.idealmirror.R;
+import com.example.dllo.idealmirror.base.BaseApplication;
 import com.example.dllo.idealmirror.fragment.GoodsListFragment;
 import com.example.dllo.idealmirror.fragment.MrtjFragment;
 import com.example.dllo.idealmirror.fragment.ShoppingFragment;
 import com.example.dllo.idealmirror.fragment.StoryListFragment;
 import com.example.dllo.idealmirror.mirrordao.GoodListCache;
-import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.Url;
 
 import java.util.List;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by dllo on 16/3/29.
  * 主界面viewpager的适配器
  */
 public class VerticalAdapter extends FragmentPagerAdapter implements Url {
-
-    private ShoppingFragment fragmenta;
+    private ShoppingFragment fragment;
     String store;
     private List<GoodListCache> data;
 
     public VerticalAdapter(FragmentManager fm, List<GoodListCache> datas) {
         super(fm);
         this.data = datas;
-        fragmenta = new ShoppingFragment();
+        fragment = new ShoppingFragment();
     }
 
     /**
@@ -48,10 +46,11 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
             }
         }
         if (position == 3) {
-            return StoryListFragment.setUrl("専題分享", "XXX");
+            return StoryListFragment.setUrl(BaseApplication.getContext()
+                    .getString(R.string.java_vertical_three_story), "XXX");
         }
         if (position == 4) {
-            return fragmenta;
+            return fragment;
         }
         return null;
     }

@@ -21,8 +21,6 @@ import java.util.List;
  */
 public class PicDetailsActivity extends BaseActivity {
     List<String> mDatas;
-
-
     private SmoothImageView imageView;
 
     @Override
@@ -35,13 +33,11 @@ public class PicDetailsActivity extends BaseActivity {
         final Intent intent = getIntent();
 //        mDatas = (ArrayList<String>) getIntent().getSerializableExtra("images");
         mDatas = intent.getStringArrayListExtra("images");
-        final int mPosition = intent.getIntExtra("position", 0) ;
+        final int mPosition = intent.getIntExtra("position", 0);
         LogUtils.d("PicDetailsActivity", "适配器传过来的position:  " + mPosition);
-        LogUtils.d("PicDetailsActivity", "图片list 大小:::  "+ mDatas.size());
+        LogUtils.d("PicDetailsActivity", "图片list 大小:::  " + mDatas.size());
         for (int i = 0; i < mDatas.size(); i++) {
-
             LogUtils.d("PicDetailsActivity", "图片网址:" + mDatas.get(i));
-
         }
 
         int mLocationX = intent.getIntExtra("locationX", 0);
@@ -49,15 +45,12 @@ public class PicDetailsActivity extends BaseActivity {
         int mWidth = intent.getIntExtra("width", 0);
         int mHeight = intent.getIntExtra("height", 0);
 
-
         imageView = new SmoothImageView(this);
-
         imageView.setOriginalInfo(mWidth, mHeight, mLocationX, mLocationY);
         imageView.transformIn();
         imageView.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
 
-        setContentView(imageView);
-
+//        setContentView(imageView);
         setContentView(imageView);
 
         NetHelper helper = new NetHelper();

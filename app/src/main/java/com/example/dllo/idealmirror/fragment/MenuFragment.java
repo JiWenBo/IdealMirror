@@ -72,7 +72,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
         backLayout = bindView(R.id.fragment_menu_back);
         backLayout.setOnClickListener(this);
 
-        listView = bindView(R.id.menu_listview);
+        listView = bindView(R.id.menu_list);
         adapter = new MenuAdapter(bean, context, store);
         listView.setAdapter(adapter);
 
@@ -124,7 +124,6 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
     }
 
     public void removeMenu() {
-
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().remove(this).commit();
     }

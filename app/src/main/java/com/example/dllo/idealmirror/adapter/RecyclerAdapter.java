@@ -13,15 +13,11 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.CommodityDetailsActivity;
-import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.mirrordao.PlainMirror;
-import com.example.dllo.idealmirror.net.ImageLoaderCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.tool.LogUtils;
 import com.zhy.autolayout.AutoRelativeLayout;
 import com.zhy.autolayout.utils.AutoUtils;
-
-import java.util.List;
 
 /**
  * Created by dllo on 16/3/30.
@@ -31,7 +27,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     private Context context;
     private PlainMirror data;
 
-    public RecyclerAdapter(Context context,PlainMirror datas) {
+    public RecyclerAdapter(Context context, PlainMirror datas) {
         this.context = context;
         this.data = datas;
     }
@@ -46,23 +42,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NetHelper netHelper = new NetHelper();
         ImageLoader loader = netHelper.getImageLoader();
-        String goodsurl = data.getGoodsimg();
-        loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+        String goodsUrl = data.getGoodsimg();
+        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
         holder.brand.setText(data.getBrand());
         holder.area.setText(data.getProduct());
-        holder.price.setText("¥"+data.getGoodsprice());
+        holder.price.setText("¥" + data.getGoodsprice());
         holder.name.setText(data.getGoodsname());
-        if (!data.getDiscount().equals("")){
+        if (!data.getDiscount().equals("")) {
             holder.line.setVisibility(View.VISIBLE);
-            holder.disprice.setText("¥"+data.getDiscount());
+            holder.disprice.setText("¥" + data.getDiscount());
         }
 
         holder.pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CommodityDetailsActivity.class);
-                intent.putExtra("id",data.getGoodsid());
-                intent.putExtra("backgroudUrl",data.getGoodsimg());
+                intent.putExtra("id", data.getGoodsid());
+                intent.putExtra("backgroundUrl", data.getGoodsimg());
                 LogUtils.d(data.getGoodsid());
                 ((Activity) context).startActivity(intent);
             }
@@ -72,14 +68,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return  1;
+        return 1;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView name,price,area,disprice,brand;
+        TextView name, price, area, disprice, brand;
         View line;
         AutoRelativeLayout pic;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             AutoUtils.autoSize(itemView);
@@ -90,7 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             disprice = (TextView) itemView.findViewById(R.id.good_disprice);
             brand = (TextView) itemView.findViewById(R.id.good_brand);
             line = itemView.findViewById(R.id.line);
-            pic = (AutoRelativeLayout) itemView.findViewById(R.id.picclick);
+            pic = (AutoRelativeLayout) itemView.findViewById(R.id.picture_rl);
         }
     }
 }
