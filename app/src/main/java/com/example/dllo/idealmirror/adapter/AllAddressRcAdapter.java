@@ -13,8 +13,6 @@ import com.example.dllo.idealmirror.activity.AddAddressActivity;
 import com.example.dllo.idealmirror.bean.Address;
 import com.example.dllo.idealmirror.tool.ContentViewLinister;
 import com.example.dllo.idealmirror.tool.SwipeLayout;
-
-
 /**
  * Created by LYH on 16/3/31.
  */

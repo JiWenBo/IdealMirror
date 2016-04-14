@@ -1,6 +1,9 @@
 package com.example.dllo.idealmirror.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,6 +38,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     private TextView title, price, name, nameid, address, addressid, phone, changeadd;
     private Address data;
     private int requsetcode = 1;
+    private SetNewBuyUI setNewBuyUI;
 
 
 
@@ -46,6 +50,8 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initView() {
+        setNewBuyUI = new SetNewBuyUI();
+
         setaddress = bindView(R.id.setaddress);
         close = bindView(R.id.addressclose);
         mirimg = bindView(R.id.mirrimg);
@@ -74,6 +80,9 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         data.put("token", TOKEN);
         data.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, data);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(SETNEWBUY);
+        registerReceiver(setNewBuyUI,intentFilter);
 
     }
 
@@ -94,21 +103,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     @Override
     public void getSuccess(String body) {
         try {
-            JSONObject jsonObject = new JSONObject(body);
-            Gson gson = new Gson();
-            data = new Address();
-            data = gson.fromJson(jsonObject.toString(), Address.class);
-            for (int i = 0; i < data.getData().getList().size(); i++) {
-                if (!data.getData().getList().get(i).getIf_moren().equals("2")) {
-                    name.setText("收件人: ");
-                    nameid.setText(data.getData().getList().get(i).getUsername());
-                    address.setText("地址: ");
-                    addressid.setText(data.getData().getList().get(i).getAddr_info());
-                    phone.setText(data.getData().getList().get(i).getCellphone());
-                    changeadd.setText("更改地址");
-                }
-
-            }
+            SuccessData(body);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -116,18 +111,61 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
 
     }
 
+    private void SuccessData(String body) throws JSONException {
+        JSONObject jsonObject = new JSONObject(body);
+        Gson gson = new Gson();
+        data = new Address();
+        data = gson.fromJson(jsonObject.toString(), Address.class);
+        LogUtils.d("00", body);
+        if (data.getData().getPagination().getFirst_time()==""){
+            name.setText("请填写收件人信息");
+            nameid.setText("");
+            LogUtils.d("3333", "3");
+            address.setText("");
+            addressid.setText("");
+            phone.setText("");
+            changeadd.setText("添加地址");
+        }
+        else {
+            for (int i = 0; i < data.getData().getList().size(); i++) {
+                LogUtils.d("1111","1");
+                if (!data.getData().getList().get(i).getIf_moren().equals("2")) {
+                    name.setText("收件人: ");
+                    LogUtils.d("2222", "2");
+                    nameid.setText(data.getData().getList().get(i).getUsername());
+                    address.setText("地址: ");
+                    addressid.setText(data.getData().getList().get(i).getAddr_info());
+                    phone.setText(data.getData().getList().get(i).getCellphone());
+                    changeadd.setText("更改地址");
+                }
+                else if (data.getData().getList().get(i).getIf_moren().equals("2")||data.getData().getList().get(i).getIf_moren().equals("")){
+                    name.setText("请填写收件人信息");
+                    nameid.setText("");
+                    LogUtils.d("3333", "3");
+                    address.setText("");
+                    addressid.setText("");
+                    phone.setText("");
+                    changeadd.setText("添加地址");
+                }
+            }
+        }
+    }
+
     @Override
     public void getFail() {
         name.setText("请填写收件人信息");
+        nameid.setText("");
+        address.setText("");
+        addressid.setText("");
+        phone.setText("");
         changeadd.setText("添加地址");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtils.e("one", "tone");
         if (requestCode == 1 && resultCode == 1) {
-            LogUtils.e("one", "one");
+
             name.setText("收件人: ");
             nameid.setText(data.getStringExtra("nameid"));
             address.setText("地址: ");
@@ -136,12 +174,38 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
             changeadd.setText("更改地址");
         }
     }
+    class SetNewBuyUI extends BroadcastReceiver{
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        EventBus.getDefault().unregister(this);
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            NetHelper helper = new NetHelper();
+            HashMap<String, String> data;
+            data = new HashMap<>();
+            data.put("token", TOKEN);
+            data.put("device_type", "3");
+            helper.getInformation(USER_ADDRESS_LIST, new VolleyListener() {
+                @Override
+                public void getSuccess(String body) {
+                    try {
+                        SuccessData(body);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void getFail() {
+
+                }
+            }, data);
+
+        }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(setNewBuyUI);
+    }
 }

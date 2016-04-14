@@ -80,6 +80,7 @@
     <string name="AllAddress_address">编辑联系人电话号码</string>
     <string name="AllAddress_setaddress">编辑收货地址</string>
     <string name="AllAddress_xijiao">提交修改</string>
+    <string name="rightmessage">请正确填写信息</string>
 
 
 </resources>

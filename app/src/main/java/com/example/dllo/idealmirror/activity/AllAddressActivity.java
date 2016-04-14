@@ -101,7 +101,6 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
     public void getSuccess(String body) {
         try {
             SuccessData(body);
-            LogUtils.d(body);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -137,7 +136,6 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         NetHelper helper = new NetHelper();
         parm = new HashMap<>();
         parm.put("addr_id", addr_id);
-        LogUtils.d(addr_id);
         parm.put("token", TOKEN);
         helper.getInformation(USER_DEL_ADDRESS, new VolleyListener() {
             @Override
@@ -153,6 +151,10 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                         try {
                             SuccessData(body);
                             LogUtils.d(body);
+                            /*数据删除成功之后也需要BuyAcyivity的UI*/
+                            Intent intent = new Intent(SETNEWBUY);
+                            sendBroadcast(intent);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -9,6 +9,7 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
+import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import java.util.HashMap;
 
@@ -66,26 +67,33 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         sub_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (title.getText().equals(getString(R.string.tianjiadizhi))) {
-                    NetHelper helper = new NetHelper();
-                    parm = new HashMap<>();
-                    parm.put("cellphone", number.getText().toString());
-                    parm.put("addr_info", address.getText().toString());
-                    parm.put("username", name.getText().toString());
-                    parm.put("token", TOKEN);
-                    helper.getInformation(USER_ADD_ADDRESS, AddAddressActivity.this, parm);
-                } else {
-
-                    NetHelper helper = new NetHelper();
-                    parm = new HashMap<>();
-                    parm.put("addr_id", addr);
-                    parm.put("cellphone", number.getText().toString());
-                    parm.put("addr_info", address.getText().toString());
-                    parm.put("username", name.getText().toString());
-                    parm.put("token", TOKEN);
-                    helper.getInformation(USER_EDIT_ADDRESS, AddAddressActivity.this, parm);
+                if ( name.getText().length()==0||number.getText().length()==0||address.getText().length()==0){
+                    ToastUtils.showToast(AddAddressActivity.this,getString(R.string.rightmessage));
 
                 }
+                else {
+                    if (title.getText().equals(getString(R.string.tianjiadizhi))) {
+                        NetHelper helper = new NetHelper();
+                        parm = new HashMap<>();
+                        parm.put("cellphone", number.getText().toString());
+                        parm.put("addr_info", address.getText().toString());
+                        parm.put("username", name.getText().toString());
+                        parm.put("token", TOKEN);
+                        helper.getInformation(USER_ADD_ADDRESS, AddAddressActivity.this, parm);
+                    } else {
+
+                        NetHelper helper = new NetHelper();
+                        parm = new HashMap<>();
+                        parm.put("addr_id", addr);
+                        parm.put("cellphone", number.getText().toString());
+                        parm.put("addr_info", address.getText().toString());
+                        parm.put("username", name.getText().toString());
+                        parm.put("token", TOKEN);
+                        helper.getInformation(USER_EDIT_ADDRESS, AddAddressActivity.this, parm);
+
+                    }
+                }
+
             }
         });
     }
@@ -97,7 +105,6 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         Intent setnewUi = new Intent(BROIDCAST);
         sendBroadcast(setnewUi);
         finish();
-
     }
 
     @Override

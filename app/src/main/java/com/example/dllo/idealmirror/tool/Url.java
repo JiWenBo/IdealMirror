@@ -14,6 +14,7 @@ public interface Url {
      */
     String TOKEN = "1bb26b25b32ccb55890611b8fb9d552f";
     String BROIDCAST = "com.example.dllo.day14broadcast.MY_BROADACAST";
+    String SETNEWBUY = "com.example.dllo.day14broadcast.MY_SETNEWBUY";
 
     /**
      * 菜单数据

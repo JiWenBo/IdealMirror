@@ -88,7 +88,6 @@ public class ShareActivity extends BaseActivity {
     }
 
     private void  setImgandtext(int position){
-        LogUtils.d("ssss",nowposition+"s");
         String url = beans.getData().getList().get(nowposition).getStory_data().getImg_array().get(position);
         draweeView.setImageURI(Uri.parse(url));
     }

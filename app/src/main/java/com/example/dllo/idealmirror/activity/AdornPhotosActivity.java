@@ -103,7 +103,11 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
                 finish();
                 break;
             case R.id.adornPhotos_buy_btn:
-                //TODO 购买
+                Intent intent = new Intent(this, BuyDetailsActivity.class);
+                intent.putExtra("good_pic", adornPhotosData.getData().getGoods_pic());
+                intent.putExtra("good_name", adornPhotosData.getData().getGoods_name());
+                intent.putExtra("good_price", adornPhotosData.getData().getGoods_price());
+                startActivity(intent);
                 break;
         }
     }
