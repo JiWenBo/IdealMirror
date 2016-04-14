@@ -51,7 +51,8 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
     }
 
     public interface RecyclerItemLinstener{
-        void getitemData(String addr,int position);
+        void getItemData(String addr,int position);
+
     }
 
 
@@ -75,11 +76,11 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AddAddressActivity.class);
-                intent.putExtra("nametitie", "编辑收件人姓名");
-                intent.putExtra("numtitle", "编辑联系人电话号码");
-                intent.putExtra("addtitle", "编辑收货地址");
+                intent.putExtra("nametitie", context.getString(R.string.AllAddress_name));
+                intent.putExtra("numtitle", context.getString(R.string.AllAddress_address));
+                intent.putExtra("addtitle", context.getString(R.string.AllAddress_setaddress));
                 intent.putExtra("title","编辑地址");
-                intent.putExtra("btntext","提交修改");
+                intent.putExtra("btntext", context.getString(R.string.AllAddress_xijiao));
                 intent.putExtra("name", data.getData().getList().get(position).getUsername());
                 intent.putExtra("number",data.getData().getList().get(position).getCellphone());
                 intent.putExtra("address",data.getData().getList().get(position).getAddr_info());
@@ -112,7 +113,7 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
             addressline.setContentListener(new ContentViewLinister() {
                 @Override
                 public void doSomeThing() {
-                    relistener.getitemData(data.getData().getList().get(position).getAddr_id(),position);
+                    relistener.getItemData(data.getData().getList().get(position).getAddr_id(), position);
 
                 }
             });

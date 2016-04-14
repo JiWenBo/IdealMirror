@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by LYH on 16/4/6.
+ * 商品详情
  */
 public class CommodityDetailsData {
 

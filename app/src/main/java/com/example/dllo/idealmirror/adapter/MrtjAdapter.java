@@ -25,13 +25,13 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
+ * 每日推荐适配器
  */
 public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> {
     private MrtjListBean mrtjListBean;
     private Context context;
     private IsNetWork isNetWorks;
     private List<AllMirrorCache> data;
-
 
     public MrtjAdapter(Context context) {
         this.context = context;
@@ -59,9 +59,6 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         NetHelper netHelper = new NetHelper();
         ImageLoader loader = netHelper.getImageLoader();
-
-
-
         if (isNetWorks.isnetWorkAvilable(context)) {
             final String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
             loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
@@ -108,7 +105,6 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
         } else {
             return data.size();
         }
-
 
     }
 

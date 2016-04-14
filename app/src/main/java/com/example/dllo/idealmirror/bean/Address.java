@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by LYH on 16/3/31.
+ * 地址
  */
 public class Address {
 

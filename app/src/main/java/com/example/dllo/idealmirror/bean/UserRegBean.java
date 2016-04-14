@@ -2,6 +2,7 @@ package com.example.dllo.idealmirror.bean;
 
 /**
  * Created by nan on 16/4/6.
+ * 用户注册
  */
 public class UserRegBean {
 

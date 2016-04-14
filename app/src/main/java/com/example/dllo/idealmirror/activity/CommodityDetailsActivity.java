@@ -37,6 +37,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by LYH on 16/4/1.
+ * 二级界面异步滑动界面
  */
 public class CommodityDetailsActivity extends BaseActivity implements VolleyListener, Url, View.OnClickListener {
 
@@ -82,6 +83,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
         Log.d("backgroudUrl", "-----" + backgroud);
 
 
+        // 添加滑动监听
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
@@ -94,7 +96,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
 
                 /**
                  * 这里的 value 是获得recyclerview 所有的滑动距离,将每一次的滑动距离叠加形成的结果.
-                 * */
+                 */
 
                 value -= dy;
                 Log.d("滑动效果", value + "   " + dy);
@@ -102,14 +104,12 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 //这是Recyclerview 的方法来获得当前的 value 值.
                 commodityDetailsAdapter.setScrollValue(value, dy);
 
-
                 //头布局透明度渐变
                 if (dy > 0 && value >= -1110) {
                     commodityDetailsHeadRl.setAlpha((float) (0.5 - (-value) / 0.5 / 1110 * 0.5 / 2));
                 } else if (dy < 0 && value >= -1110) {
                     commodityDetailsHeadRl.setAlpha((float) (0.5 - (-value) / 0.5 / 1110 * 0.5 / 2));
                 }
-
 
                 //按钮弹出动画效果
                 if (value <= -2600 && visible == false) {
@@ -131,6 +131,9 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
         });
     }
 
+    /**
+     * 获取详情数据
+     */
     @Override
     protected void initData() {
         NetHelper netHelper = new NetHelper();
@@ -173,26 +176,23 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
 
     @Override
     public void onClick(View v) {
-
-     switch (v.getId()){
-         case R.id.commoditydetails_return_btn:
-             finish();
-             break;
-         case R.id.commoditydetails_adornPhotos:
-             Intent intentAdorn = new Intent(this,AdornPhotosActivity.class);
-             intentAdorn.putExtra("id",id);
-             startActivity(intentAdorn);
-
-             break;
-         case R.id.commodityDetails_menu_buy:
-             Intent intent = new Intent(this,BuyDetailsActivity.class);
-             intent.putExtra("good_pic",goodsListData.getData().getGoods_pic());
-             intent.putExtra("good_name",goodsListData.getData().getGoods_name());
-             intent.putExtra("good_price",goodsListData.getData().getGoods_price());
-             startActivity(intent);
-
-             break;
-     }
+        switch (v.getId()) {
+            case R.id.commoditydetails_return_btn:      // 返回
+                finish();
+                break;
+            case R.id.commoditydetails_adornPhotos:     // 佩戴图集
+                Intent intentAdorn = new Intent(this, AdornPhotosActivity.class);
+                intentAdorn.putExtra("id", id);
+                startActivity(intentAdorn);
+                break;
+            case R.id.commodityDetails_menu_buy:         // 购买
+                Intent intent = new Intent(this, BuyDetailsActivity.class);
+                intent.putExtra("good_pic", goodsListData.getData().getGoods_pic());
+                intent.putExtra("good_name", goodsListData.getData().getGoods_name());
+                intent.putExtra("good_price", goodsListData.getData().getGoods_price());
+                startActivity(intent);
+                break;
+        }
 
     }
 

@@ -30,6 +30,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by LYH on 16/4/1.
+ * 二级界面
  */
 public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
@@ -56,15 +57,9 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
     public void setScrollValue(int scrollValue, int dy) {
         this.layoutScrollValue = scrollValue;
         this.dy = dy;
-//           Log.i("传递过来的dy", dy + "我是传递的dy值");
-        //刷新UI
-        /**
-         * 必须加上这句话,持续的刷新从Actvity 接收的滑动值.
-         * */
-
+        // 必须加上这句话,持续的刷新从Actvity 接收的滑动值.
         try {
             notifyDataSetChanged();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,14 +68,11 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
     /**
      * 决定元素的布局使用哪种类型
-     *
      * @param
      * @return 一个int型标志，传递给onCreateViewHolder的第二个参数
      */
-
     @Override
     public int getItemViewType(int position) {
-        // int p=position;
         if (position == 0) {
             return TYPE_HEAD;
         } else if (position == 1) {
@@ -92,16 +84,13 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
         }
     }
 
-
+    /** 渲染具体的ViewHolder
+     * @param parent   ViewHolder的容器
+     * @param viewType 一个标志，根据该标志可以实现渲染不同类型的ViewHolder
+     * @return
+     */
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /** 渲染具体的ViewHolder
-         *
-         * @param parent   ViewHolder的容器
-         * @param viewType 一个标志，我们根据该标志可以实现渲染不同类型的ViewHolder
-         * @return
-         */
-        // View view = null;
         if (viewType == TYPE_HEAD) {
             View viewHead = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_commodity_item_head, parent, false);
             return new HeadViewHolder(viewHead);
@@ -120,11 +109,9 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
         Log.d("xxx", "---holder--" + holder.getClass() + position);
-        //  之后在此添加数据
+        // 头布局
         if (holder instanceof HeadViewHolder) {
-            // TODO 添加数据
             ((HeadViewHolder) holder).commodityHeadEnglishNameTv.setText(goodsListData.getData().getGoods_name());
             ((HeadViewHolder) holder).commodityHeadNameTv.setText(goodsListData.getData().getBrand());
             ((HeadViewHolder) holder).commodityHeadStoryTv.setText(goodsListData.getData().getInfo_des());
@@ -137,9 +124,10 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             });
 
         }
-        //带标题的布局
-        if (holder instanceof GoodsTitleViewHolder) {//如果holder的实例是GoodsTitleViewHolder的话
 
+        //带标题的布局
+        if (holder instanceof GoodsTitleViewHolder) {
+            //如果holder的实例是GoodsTitleViewHolder的话
             //滑动的时候使文字布局发生偏移
             int valueTitle = layoutScrollValue;
             int heiTitle = ((GoodsTitleViewHolder) holder).commodityTitleRl.getHeight();
@@ -161,10 +149,9 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
             ((GoodsTitleViewHolder) holder).position = position;
         }
+
         //不带标题的布局
         if (holder instanceof GoodsDetailsViewHolder) {
-
-
             //滑动的时候使文字布局发生偏移
             int heiDetails = ((GoodsDetailsViewHolder) holder).commodityDetailsRl.getHeight();
             int valueDetails = layoutScrollValue;
@@ -197,9 +184,8 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
     }
 
     /**
-     * 新建缓存类
+     * 新建缓存类 商品详情二级页面头布局(半透明)缓存类
      */
-    //商品详情二级页面头布局(半透明)缓存类
     public class HeadViewHolder extends RecyclerView.ViewHolder {
         //需要网络解析的数据
         private TextView commodityHeadEnglishNameTv, commodityHeadNameTv, commodityHeadStoryTv, commodityHeadMoney;
@@ -215,7 +201,9 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
         }
     }
 
-    // 分享
+    /**
+     * 分享
+     */
     private void toShare() {
         ShareSDK.initSDK(BaseApplication.getContext());
         OnekeyShare onekeyShare = new OnekeyShare();
@@ -241,14 +229,18 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
         onekeyShare.show(BaseApplication.getContext());
     }
 
-    //商品二级页面第二布局(全透明)加载布局时别忘喽!
+    /**
+     * 商品二级页面第二布局(全透明)
+     */
     public class TransparentViewHolder extends RecyclerView.ViewHolder {
         public TransparentViewHolder(View itemView) {
             super(itemView);
         }
     }
 
-    //商品二级页面商品详情带标题布局缓存类
+    /**
+     * 商品二级页面商品详情带标题布局缓存类
+     */
     public class GoodsTitleViewHolder extends RecyclerView.ViewHolder {
         //需要网络解析的数据
         private TextView commodityTitleNameTv, commodityTitleTv, commodityTitleEngTv, commodityTitleCity, commodityTitleIntro;
@@ -270,7 +262,9 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
         }
     }
 
-    //商品二级页面商品详情不带标题布局缓存类
+    /**
+     * 商品二级页面商品详情不带标题布局缓存类
+     */
     public class GoodsDetailsViewHolder extends RecyclerView.ViewHolder {
         //需要网络解析的数据
         private TextView commodityDetailsName, commodityDetailsIntro;

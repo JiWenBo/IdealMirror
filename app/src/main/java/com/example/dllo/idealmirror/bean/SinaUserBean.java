@@ -2,6 +2,7 @@ package com.example.dllo.idealmirror.bean;
 
 /**
  * Created by nan on 16/4/8.
+ * 登陆微博后 获取到的信息
  */
 public class SinaUserBean {
     private String name, img, id;

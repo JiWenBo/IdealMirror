@@ -26,6 +26,7 @@ import de.greenrobot.event.EventBus;
 
 /**
  * Created by dllo on 16/4/11.
+ * 订单详情
  */
 public class BuyDetailsActivity extends BaseActivity implements View.OnClickListener, Url, VolleyListener {
     private AutoRelativeLayout setaddress;
@@ -74,7 +75,6 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         data.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, data);
 
-
     }
 
     @Override
@@ -82,10 +82,9 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.setaddress:
                 Intent intent = new Intent(BuyDetailsActivity.this, AllAddressActivity.class);
-
                 startActivityForResult(intent, requsetcode);
                 break;
-            case R.id.close:
+            case R.id.addressclose:
                 finish();
                 break;
         }

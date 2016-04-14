@@ -39,15 +39,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.Scroller;
 
-
-
 public class MainActivity extends BaseActivity implements View.OnClickListener, VolleyListener, Url {
     private ImageView mirror;
     private GoodList datas;
-    private DaoSession daoSession;
-    private DaoMaster daoMaster;
-    private SQLiteDatabase db;
-    private GoodListCacheDao goodListCacheDao;
     private List<GoodListCache> goodListCachelist;
     private GoodListCache goodListCache;
     private DirectionalViewPager viewPager;
@@ -55,6 +49,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView login, shopping;
     private LinearLayout menu;
     private FrameLayout frameLayout;
+    private DaoSingleton daoSingleton;
 
     public MainActivity() {
     }
@@ -80,6 +75,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     protected void initData() {
+        daoSingleton = DaoSingleton.getInstance();
         // 菜单数据请求
         NetHelper netHelper = new NetHelper();
         netHelper.getInformation(MENU_LIST, this, null);
@@ -114,6 +110,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 // 登陆
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                frameLayout.setVisibility(View.GONE);
                 break;
             case R.id.main_shopping:
                 // 购物车
@@ -127,9 +124,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     /**
      * Mirror
-     * 图片跳动
+     * 图片跳动 按钮模拟心脏跳动
      */
-    // 按钮模拟心脏跳动
     private void playHeartbeatAnimation(final View view) {
         AnimationSet animationSet = new AnimationSet(true);
         // Animation.RELATIVE_TO_SELF 变化中心角
@@ -173,7 +169,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     }
 
-    // 菜单请求成功
+    /**
+     * 菜单请求成功 解析数据
+     * @param body 成功获得数据
+     */
     @Override
     public void getSuccess(String body) {
         datas = new GoodList();
@@ -185,15 +184,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             e.printStackTrace();
         }
 
-        /*第一步清空数据库*/
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "allmirror.db", null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-        goodListCacheDao = daoSession.getGoodListCacheDao();
-        goodListCacheDao.deleteAll();
-        /*将数据重新添加到数据库*/
-        goodListCacheDao = DaoSingleton.getInstance().getGoodListCacheDao();
         goodListCachelist = new ArrayList<>();
         for (int i = 0; i < datas.getData().getList().size()-1; i++) {
             goodListCache = new GoodListCache();
@@ -203,38 +193,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             goodListCache.setTitle(datas.getData().getList().get(i).getTitle());
             goodListCache.setTopColor(datas.getData().getList().get(i).getTopColor());
             goodListCache.setStore(datas.getData().getList().get(i).getStore());
-            goodListCacheDao.insert(goodListCache);
             goodListCachelist.add(goodListCache);
         }
-
-        goodListCachelist = goodListCacheDao.queryBuilder().list();
+        // 清空数据库
+        daoSingleton.deleteGoodListAll();
+        // 将数据加入到数据库中
+        daoSingleton.insertGoodList(goodListCachelist);
         verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
 
     }
 
-    // 菜单请求失败
+    /**
+     * 请求失败时 从数据库中获得数据
+     */
     @Override
     public void getFail() {
-
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "allmirror.db", null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-        goodListCacheDao = daoSession.getGoodListCacheDao();
-        goodListCachelist = goodListCacheDao.queryBuilder().list();
+        goodListCachelist = daoSingleton.queryGoodList();
         verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
-
-
     }
 
-    //暴露方法 得到position
-
+    /**
+     * 暴露一个方法 获得位置
+     * @param position fragment的位置
+     */
     public void getDataFromFragment(int position) {
-
         //这个是设置viewPager切换过度时间的类
         ViewPagerScroller scroller = new ViewPagerScroller(this);
         scroller.setScrollDuration(80);
@@ -288,7 +274,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
+    /**
+     * 设置菜单的帧布局
+     * @param context
+     * @param store 区分数据的类型
+     */
     public void setMenuFrame(Context context, String store) {
+        frameLayout.setVisibility(View.VISIBLE);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().add(R.id.main_menu_frame,
                 new MenuFragment(store, context, goodListCachelist)).commit();

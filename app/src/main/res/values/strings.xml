@@ -60,6 +60,7 @@
     <string name="tianjiadizhi">添加地址</string>
 
     <string name="menu_story_text">専題分享</string>
+
     <string name="wenan">文案(订购商品)文案(订购商品)文案(订购商品)文案(订购商品)</string>
     <string name="moren">地址已添加为默认地址</string>
     <string name="name">添加收件人姓名</string>
@@ -67,6 +68,18 @@
     <string name="addresss">添加收货地址</string>
     <string name="addaddress">添加地址</string>
     <string name="asfd">提交地址</string>
+
+    <string name="java_alladdress_receiver_name">添加收件人姓名</string>
+    <string name="java_alladdress_contact_phone">添加联系人电话号码</string>
+    <string name="java_alladdress_receiver_address">添加收货地址</string>
+    <string name="java_alladdress_add_address">添加地址</string>
+    <string name="java_alladdress_commit_address">提交地址</string>
+    <string name="java_isnet_normal">网络正常</string>
+    <string name="java_isnet_abnormal">网络非正常</string>
+    <string name="AllAddress_name">编辑收件人姓名</string>
+    <string name="AllAddress_address">编辑联系人电话号码</string>
+    <string name="AllAddress_setaddress">编辑收货地址</string>
+    <string name="AllAddress_xijiao">提交修改</string>
 
 
 </resources>

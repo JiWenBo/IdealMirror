@@ -157,7 +157,7 @@ public class SwipeLayout extends LinearLayout {
         //得到窗口横向移动的范围
         @Override
         public int getViewHorizontalDragRange(View child) {
-           // Log.e("getViewHorizontalDragRange","");
+            Log.e("getViewHorizontalDragRange","");
             return dragDistance;
         }
 

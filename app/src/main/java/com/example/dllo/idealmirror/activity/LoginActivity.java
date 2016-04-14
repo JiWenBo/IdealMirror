@@ -34,6 +34,7 @@ import cn.sharesdk.sina.weibo.SinaWeibo;
 
 /**
  * Created by LYH on 16/3/30.
+ * 登陆界面
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener, Url, VolleyListener {
     Button createBtn, loginBtn;
@@ -147,7 +148,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    // 新浪微博登陆
+    /**
+     * 新浪微博登陆
+     */
     public void loginSina() {
         userBean = new SinaUserBean();
         ShareSDK.initSDK(this);
@@ -178,7 +181,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         sinaPlatform.showUser(null);
     }
 
-    // 绑定第三方账号
+    /**
+     * 绑定第三方账号
+     */
     private void toBundling() {
         Log.d("LoginActivity", "bundling");
         NetHelper bundlingHelper = new NetHelper();
@@ -197,6 +202,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     JSONObject object = new JSONObject(body);
                     if (object.has("result")) {
                         String result = object.getString("result");
+                        // 通过result 判断绑定的结果
                         switch (result) {
                             case "":
                                 String msg = object.getString("msg");
@@ -225,7 +231,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }, paramBund);
     }
 
-    // 实现登陆
+    /**
+     * 实现登陆
+     */
     private void toLogin() {
         NetHelper netHelper = new NetHelper();
         HashMap<String, String> param = new HashMap<>();
@@ -234,7 +242,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         netHelper.getInformation(USER_LOGIN, this, param);
     }
 
-    // 登陆成功
+    /**
+     * 登陆成功 解析获得的数据
+     * @param body 网上拉取的数据
+     */
     @Override
     public void getSuccess(String body) {
         LogUtils.d(body);
@@ -259,7 +270,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    // 确认已经登陆 存到数据库
+    /**
+     * 确认已经登陆 存到数据库
+     */
     private void makeSureLogin() {
         // 登陆成功时  实例化一个Share的Preferences对象
         SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
@@ -271,7 +284,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         editor.commit();
     }
 
-    // 登陆失败
+    /**
+     * 登陆失败
+     */
     @Override
     public void getFail() {
         Toast.makeText(this, R.string.java_login_fail, Toast.LENGTH_SHORT).show();

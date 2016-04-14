@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by LYH on 16/4/8.
+ * 佩戴图集
  */
 public class AdornPhotosData {
 

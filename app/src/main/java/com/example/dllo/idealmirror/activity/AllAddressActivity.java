@@ -31,6 +31,7 @@ import java.util.HashMap;
 
 /**
  * Created by LYH on 16/3/31.
+ * 所有地址的界面
  */
 public class AllAddressActivity extends BaseActivity implements Url, VolleyListener, AllAddressRcAdapter.ReclcleListrner,
         AllAddressRcAdapter.RecyclerItemLinstener {
@@ -56,14 +57,13 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
     protected void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.allAddress_recyclerview);
         NetHelper helper = new NetHelper();
-
+        // 获取我的收货地址列表
         parma = new HashMap<>();
         parma.put("token", TOKEN);
         parma.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, parma);
         add = bindView(R.id.addaddress);
         close = bindView(R.id.add_close);
-
 
     }
 
@@ -81,12 +81,16 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                 intent.putExtra("name", "");
                 intent.putExtra("number", "");
                 intent.putExtra("address", "");
-                intent.putExtra("nametitie", getString(R.string.name));
-                intent.putExtra("numtitle", getString(R.string.number));
-                intent.putExtra("addtitle", getString(R.string.addresss));
-                intent.putExtra("title", getString(R.string.addaddress));
-                intent.putExtra("btntext", getString(R.string.asfd));
+
+
+
+                intent.putExtra("nametitie", getString(R.string.java_alladdress_receiver_name));
+                intent.putExtra("numtitle", getString(R.string.java_alladdress_contact_phone));
+                intent.putExtra("addtitle", getString(R.string.java_alladdress_receiver_address));
+                intent.putExtra("title", getString(R.string.java_alladdress_add_address));
+                intent.putExtra("btntext", getString(R.string.java_alladdress_commit_address));
                 startActivityForResult(intent, request);
+
             }
         });
         close.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +111,11 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         }
     }
 
+    /**
+     * 成功获取数据后 解析数据
+     * @param body 获取的数据
+     * @throws JSONException 抛出异常
+     */
     private void SuccessData(String body) throws JSONException {
         data = new Address();
         JSONObject jsonObject = new JSONObject(body);
@@ -126,9 +135,9 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
 
     }
 
-
     @Override
     public void getData(String addr_id, int position) {
+        // 删除收货地址
         NetHelper helper = new NetHelper();
         parm = new HashMap<>();
         parm.put("addr_id", addr_id);
@@ -137,7 +146,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         helper.getInformation(USER_DEL_ADDRESS, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
-
+                // 获取我的收货地址列表
                 NetHelper helper = new NetHelper();
                 parma = new HashMap<>();
                 parma.put("token", TOKEN);
@@ -169,12 +178,14 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
     }
 
     @Override
-    public void getitemData(String addr, final int position) {
+
+    public void getItemData(String addr, final int position) {
         NetHelper helper = new NetHelper();
         final HashMap<String, String> datas;
         datas = new HashMap<>();
         datas.put("token", TOKEN);
         datas.put("addr_id", addr);
+
         helper.getInformation(USER_MR_ADDRESS, new VolleyListener() {
             @Override
             public void getSuccess(String body) {

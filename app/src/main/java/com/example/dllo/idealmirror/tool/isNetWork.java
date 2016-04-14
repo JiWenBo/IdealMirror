@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.example.dllo.idealmirror.R;
+
 /**
  * 该类为了判断是否有网络
  * Created by dllo on 16/4/7.
@@ -18,13 +20,13 @@ public class IsNetWork {
             if(networkInfos != null){
                 for (int i = 0, count = networkInfos.length; i < count; i++) {
                     if(networkInfos[i].getState() == NetworkInfo.State.CONNECTED){
-                        ToastUtils.showToast(context,"网络正常");
+                        ToastUtils.showToast(context, context.getString(R.string.java_isnet_normal));
                         return true;
                     }
                 }
             }
         }
-        ToastUtils.showToast(context,"网络非正常");
+        ToastUtils.showToast(context, context.getString(R.string.java_isnet_abnormal));
         return false;
     }
 

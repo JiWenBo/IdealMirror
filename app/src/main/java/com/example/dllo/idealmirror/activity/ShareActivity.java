@@ -27,17 +27,18 @@ import de.greenrobot.event.EventBus;
 
 /**
  * Created by dllo on 16/4/5.
+ * 专题分享界面
  */
 public class ShareActivity extends BaseActivity {
     private DirectionalViewPager viewPagers;
     private ShareAdapter adapter;
     private StoryListBean beans;
-    private static  int nowposition;
+    private static int nowposition;
     private SimpleDraweeView draweeView;
+
     @Override
     protected int setContent() {
         return R.layout.activity_share;
-
     }
 
     @Override
@@ -45,30 +46,24 @@ public class ShareActivity extends BaseActivity {
         Intent intent = getIntent();
         nowposition = Integer.parseInt(intent.getStringExtra("posi"));
         viewPagers = bindView(R.id.viewpager);
-       draweeView = (SimpleDraweeView) findViewById(R.id.img_back);
+        draweeView = (SimpleDraweeView) findViewById(R.id.img_back);
     }
+
     @Override
     protected void initData() {
-        /**
-         * 获得实体类
-         */
         beans = new StoryListBean();
-        beans =  StoryListFragment.bean();
-        /*******从activity向fragment传值的时候*最别用eventbus,使用bundle*******/
+        beans = StoryListFragment.bean();
         List<Fragment> data = new ArrayList<>();
         for (int i=0;i<beans.getData().getList().get(1).getStory_data().getImg_array().size();i++){
             ShareFragmnet shareFragmnet = new ShareFragmnet();
             LogUtils.d("3333",beans.getData().getList().get(1).getStory_data().getImg_array().size()+"x");
             StoryListBean.DataEntity.ListEntity.StoryDataEntity.TextArrayEntity listBean = beans.getData().getList().get(nowposition).getStory_data().getText_array().get(i);
             Bundle bundle = new Bundle();
-            /******/
             bundle.putParcelable("shareBean", listBean);
             shareFragmnet.setArguments(bundle);
             data.add(shareFragmnet);
         }
         adapter = new ShareAdapter(getSupportFragmentManager(), data);
-        /***************/
-
         viewPagers.setAdapter(adapter);
         viewPagers.setOrientation(DirectionalViewPager.VERTICAL);
 
