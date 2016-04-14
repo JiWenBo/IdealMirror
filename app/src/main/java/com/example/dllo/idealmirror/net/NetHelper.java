@@ -24,6 +24,7 @@ public class NetHelper {
     VolleyListener postListenetr;                 //接口对象，请求后回调
     private ImageLoader imageLoader;              //用来加载网络图片
     private String diskPath;
+    private static NetHelper netHelperInstance;
 
 
     public NetHelper() {
@@ -50,6 +51,18 @@ public class NetHelper {
         //实现三级缓存
         imageLoader = new ImageLoader(requestQueue, new DoubleCache(diskPath));
 
+    }
+
+
+    public static NetHelper getInstance() {
+        if (netHelperInstance == null) {
+            synchronized (NetHelper.class) {
+                if (netHelperInstance == null) {
+                    netHelperInstance = new NetHelper();
+                }
+            }
+        }
+        return netHelperInstance;
     }
 
     public ImageLoader getImageLoader() {

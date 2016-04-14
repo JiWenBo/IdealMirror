@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/recyclerview_adornPhotos_line"
-    android:padding="10px">
+    android:padding="@dimen/recyclerview_adornphotos_padding">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/recyclerview_adornPhotos_iv"
         android:layout_width="match_parent"
-        android:layout_height="600px"
+        android:layout_height="@dimen/recyclerview_adornphotos_imgHei"
         fresco:placeholderImage="@mipmap/ic_launcher"/>
 </com.zhy.autolayout.AutoLinearLayout>

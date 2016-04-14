@@ -203,6 +203,9 @@
     <dimen name="adornpgotos_top">20px</dimen>
     <dimen name="adornPhotos_title_bottom">20px</dimen>
     <dimen name="adornPhotos_recyclerView_top">20px</dimen>
+    <dimen name="recyclerview_adornphotos_padding">10px</dimen>
+    <dimen name="recyclerview_adornphotos_imgHei">600px</dimen>
+    <dimen name="recyclerview_adornphotos_videoHei">200dp</dimen>
 
     <dimen name="therezero">30px</dimen>
     <dimen name="threrfour">34px</dimen>

@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by LYH on 16/4/8.
@@ -30,8 +31,9 @@ import java.util.HashMap;
 public class AdornPhotosActivity extends BaseActivity implements VolleyListener,Url, View.OnClickListener {
 
     private AdornPhotosData adornPhotosData;
+    private List<AdornPhotosData.DataEntity.WearVideoEntity> list;
     private RecyclerView recyclerView;
-    private Context context;
+    private Context context = this;
     private AdornPhotosRcAdapter adornPhotosRcAdapter;
     private String id;
     private ImageView returnIv, buyIv;
@@ -40,6 +42,7 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
     protected int setContent() {
         return R.layout.activity_adornphotos;
     }
+
 
     @Override
     protected void initView() {
@@ -62,6 +65,8 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
         data.put("version","1.0.1");
         data.put("goods_id",id);
         netHelper.getInformation(GOODS_INFO, this, data);
+
+
     }
 
     @Override
@@ -71,11 +76,14 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
             adornPhotosData = gson.fromJson(object.toString(), AdornPhotosData.class);
+            list = adornPhotosData.getData().getWear_video();
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        adornPhotosRcAdapter = new AdornPhotosRcAdapter(adornPhotosData, context);
+
+        adornPhotosRcAdapter = new AdornPhotosRcAdapter(list, context);
+
         recyclerView.setAdapter(adornPhotosRcAdapter);
         GridLayoutManager gm = new GridLayoutManager(this, 1);
         gm.setOrientation(LinearLayoutManager.VERTICAL);

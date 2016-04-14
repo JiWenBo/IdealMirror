@@ -1,8 +1,10 @@
 package com.example.dllo.idealmirror.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,25 +13,35 @@ import android.widget.LinearLayout;
 
 import com.android.volley.toolbox.ImageLoader;
 
+import com.example.dllo.idealmirror.activity.PicDetailsActivity;
 import com.example.dllo.idealmirror.bean.AdornPhotosData;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 import com.example.dllo.idealmirror.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by LYH on 16/4/8.
  * 佩戴图集的适配器
  */
 public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
-    private AdornPhotosData adornPhotosData;
+
+
     private Context context;
+    private List<AdornPhotosData.DataEntity.WearVideoEntity> list;
     final int TYPE_HEAD = 0;
     final int TYPE_PHOTOS = 1;
 
-    public AdornPhotosRcAdapter(AdornPhotosData adornPhotosData, Context context) {
-        this.adornPhotosData = adornPhotosData;
+
+    public AdornPhotosRcAdapter(List<AdornPhotosData.DataEntity.WearVideoEntity> list, Context context) {
+        this.list = list;
         this.context = context;
+
     }
 
     /**
@@ -39,9 +51,9 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
      */
     @Override
     public int getItemViewType(int position) {
-        if (position == 0){
+        if (position == 0) {
             return TYPE_HEAD;
-        }else {
+        } else {
             return TYPE_PHOTOS;
         }
     }
@@ -49,42 +61,82 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_HEAD){
-            View viewHead = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_adornphotos_head,parent,false);
+        if (viewType == TYPE_HEAD) {
+            View viewHead = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_adornphotos_head, parent, false);
             return new HeadViewHolder(viewHead);
-        }else {
+        } else {
             View viewPhotos = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_adornphotos_item, null);
             return new PhotosViewHolder(viewPhotos);
         }
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof HeadViewHolder){
-            if (adornPhotosData.getData().getWear_video().get(position).getType().equals("8")){
-                JCVideoPlayer.setThumbImageViewScalType(ImageView.ScaleType.FIT_XY);
-                ((HeadViewHolder) holder).jCVideoPlayer.ivStart.performClick();
-                ((HeadViewHolder) holder).jCVideoPlayer.setUp(adornPhotosData.getData().getWear_video().get(position).getData(), "");
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+
+        List<String> videoList = new ArrayList<>();
+        String videoUrl = null;
+        String videoImg = null;
+        final List<String> imageList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            String type = list.get(i).getType();
+            if (type.equals("8")) {
+                videoList.add(list.get(i).getData());
+                videoUrl = list.get(i).getData();
+                Log.d("视频", videoUrl);
+            } else if (type.equals("9")) {
+                videoImg = list.get(i).getData();
+                Log.d("图片", videoImg);
+            } else {
+                imageList.add(list.get(i).getData());
+                Log.d("图集", "-------" + imageList.size());
             }
-            NetHelper helper = new NetHelper();
-            helper.getImage(adornPhotosData.getData().getWear_video().get(0).getData(), ImageLoader.getImageListener(((HeadViewHolder) holder).jCVideoPlayer.ivThumb, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-//            Uri uri = Uri.parse(adornPhotosData.getData().getWear_video().get(0).getData());
-//            ((HeadViewHolder) holder).jCVideoPlayer.ivThumb.setImageURI(uri);
         }
-        if (holder instanceof PhotosViewHolder && position > 1){
-            Uri uri = Uri.parse(adornPhotosData.getData().getWear_video().get(position).getData());
+
+        if (holder instanceof HeadViewHolder) {
+
+            JCVideoPlayer.setThumbImageViewScalType(ImageView.ScaleType.FIT_XY);
+            ((HeadViewHolder) holder).jCVideoPlayer.ivStart.performClick();
+
+            ((HeadViewHolder) holder).jCVideoPlayer.setUp(videoUrl, "", false);
+            Log.d("视频", "--------------" + videoList.size());
+
+            NetHelper helper = new NetHelper();
+            helper.getImage(videoImg, ImageLoader.getImageListener(((HeadViewHolder) holder).jCVideoPlayer.ivThumb, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+        }
+        if (holder instanceof PhotosViewHolder) {
+
+            Log.d("图片", "图片list 大小:  " + imageList.size());
+            Uri uri = Uri.parse(imageList.get(position -1));
             ((PhotosViewHolder) holder).iv.setImageURI(uri);
+
+            ((PhotosViewHolder) holder).iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(context, PicDetailsActivity.class);
+                    //intent.putExtra("images", (Parcelable) image_url_list);//非必须
+                    intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
+                    intent.putExtra("position", position);
+                    int[] location = new int[2];
+                    ((PhotosViewHolder) holder).iv.getLocationOnScreen(location);//location 里 有iv 的横纵坐标
+                    intent.putExtra("locationX", location[0]);//必须
+                    intent.putExtra("locationY", location[1]);//必须
+
+                    intent.putExtra("width", ((PhotosViewHolder) holder).iv.getWidth());//必须
+                    intent.putExtra("height", ((PhotosViewHolder) holder).iv.getHeight());//必须
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
 
     @Override
     public int getItemCount() {
-        return adornPhotosData != null && adornPhotosData.getData().getWear_video().size() > 0 ? adornPhotosData.getData().getWear_video().size() : 0;
-
+        return list != null && list.size() -1 > 0 ? list.size() -1: 0;
     }
 
-    public class HeadViewHolder extends RecyclerView.ViewHolder{
+    public class HeadViewHolder extends RecyclerView.ViewHolder {
 
         private JCVideoPlayer jCVideoPlayer;
 
@@ -94,22 +146,14 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
         }
     }
 
-   public class PhotosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PhotosViewHolder extends RecyclerView.ViewHolder {
 
         private SimpleDraweeView iv;
-        private LinearLayout line;
         private int position;
 
         public PhotosViewHolder(View itemView) {
             super(itemView);
             iv = (SimpleDraweeView) itemView.findViewById(R.id.recyclerview_adornPhotos_iv);
-            line = (LinearLayout) itemView.findViewById(R.id.recyclerview_adornPhotos_line);
-            line.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-
         }
     }
 }
