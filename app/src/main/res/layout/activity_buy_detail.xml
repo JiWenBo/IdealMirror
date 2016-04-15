@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_create_padding">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/buy_detail_title_top"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/buy_detail_title_left"
+            android:text="@string/buy_detail_title_tv"
+            android:textColor="@color/colorBuyDetailTitle"
+            android:textSize="@dimen/buy_detail_title_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/address_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/buy_detail_close_right"
+            android:src="@drawable/close" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/create_unline_top"
+        android:src="@drawable/create_account_unline" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buy_detail_address_height"
+        android:layout_marginTop="@dimen/buy_detail_address_top"
+        android:background="@color/colorCreateWhite"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/buy_detail_margin_left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/buy_detail_address_name_left"
+                android:layout_marginTop="@dimen/buy_detail_address_name_left"
+                android:textColor="@color/colorBuyDetailTitle"
+                android:textSize="@dimen/buy_detail_address_name_size" />
+
+            <TextView
+                android:id="@+id/name_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/buy_detail_address_name_left"
+                android:textColor="@color/colorBuyDetailTitle"
+                android:textSize="@dimen/buy_detail_address_name_size" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/buy_detail_margin_left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/buy_detail_address_name_left"
+                android:layout_marginTop="@dimen/buy_detail_address_name_left"
+                android:textColor="@color/colorBuyDetailTitle"
+                android:textSize="@dimen/buy_detail_address_name_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/address_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/buy_detail_address_name_left"
+                android:textColor="@color/colorBuyDetailTitle"
+                android:textSize="@dimen/buy_detail_address_name_size" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/buy_detail_address_phone_left"
+            android:layout_marginTop="@dimen/buy_detail_address_name_left"
+            android:textColor="@color/colorBuyDetailTitle"
+            android:textSize="@dimen/buy_detail_address_name_size"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buy_detail_address_view_height"
+            android:layout_marginTop="@dimen/buy_detail_address_view_top"
+            android:background="@color/colorBuyDetailView" />
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buy_detail_add_address_height">
+
+            <TextView
+                android:id="@+id/change_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/buy_detail_add_address_tv"
+                android:textColor="@color/colorBuyDetailTitle"
+                android:textSize="@dimen/buy_detail_add_address_size" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buy_detail_good_height"
+        android:layout_marginTop="@dimen/buy_detail_good_top"
+        android:background="@color/colorCreateWhite"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/mirror_sdv"
+            android:layout_width="@dimen/buy_detail_good_sdv_wid"
+            android:layout_height="match_parent" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mirror_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/buy_detail_left"
+                android:layout_marginRight="@dimen/buy_detail_right"
+                android:layout_marginTop="@dimen/buy_detail_top"
+                android:textColor="@color/colorBuyDetailTitle"
+                android:textSize="@dimen/buy_detail_good_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/buy_detail_left"
+                android:layout_marginRight="@dimen/buy_detail_right"
+                android:layout_marginTop="@dimen/buy_detail_good_text_top"
+                android:text="@string/wenan"
+                android:textColor="@color/colorBuyDetailTitle"
+                android:textSize="@dimen/buy_detail_good_text_size" />
+
+            <TextView
+                android:id="@+id/mirror_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/buy_detail_left"
+                android:layout_marginRight="@dimen/buy_detail_right"
+                android:layout_marginTop="@dimen/buy_detail_good_text_top"
+                android:textColor="@color/colorBuyDetailPrice"
+                android:textSize="@dimen/buy_detail_good_price_size"
+                android:textStyle="bold" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <Button
+        android:id="@+id/buy_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edit_height"
+        android:layout_marginTop="@dimen/add_address_commit_address_top"
+        android:background="@drawable/create_account_true"
+        android:gravity="center"
+        android:text="@string/buy_detail_sure_btn_text"
+        android:textColor="@color/colorCreateWhite"
+        android:textSize="@dimen/add_address_commit_address_size" />
+</com.zhy.autolayout.AutoLinearLayout>
+

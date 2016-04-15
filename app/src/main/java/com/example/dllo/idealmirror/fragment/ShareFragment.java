@@ -1,7 +1,6 @@
 package com.example.dllo.idealmirror.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.dllo.idealmirror.R;
@@ -11,8 +10,9 @@ import com.example.dllo.idealmirror.bean.StoryListBean;
 /**
  * Created by dllo on 16/4/5.
  */
-public class ShareFragmnet extends BaseFragment {
-    private TextView titles, subtitle, smalltitle;
+public class ShareFragment extends BaseFragment {
+    private TextView titles, subTitle, smallTitle;
+
     @Override
     public int getLayout() {
         return R.layout.fragment_share;
@@ -20,17 +20,17 @@ public class ShareFragmnet extends BaseFragment {
 
     @Override
     protected void initView() {
-        subtitle = bindView(R.id.subtitle);
+        subTitle = bindView(R.id.sub_title);
         titles = bindView(R.id.titles);
-        smalltitle = bindView(R.id.smalltitle);
+        smallTitle = bindView(R.id.small_title);
     }
 
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
         StoryListBean.DataEntity.ListEntity.StoryDataEntity.TextArrayEntity listBean = bundle.getParcelable("shareBean");
-        smalltitle.setText(listBean.getSmallTitle());
-        subtitle.setText(listBean.getSubTitle());
+        smallTitle.setText(listBean.getSmallTitle());
+        subTitle.setText(listBean.getSubTitle());
         titles.setText(listBean.getTitle());
     }
 

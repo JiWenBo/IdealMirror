@@ -11,7 +11,7 @@ import com.example.dllo.idealmirror.R;
  * Created by dllo on 16/4/7.
  */
 public class IsNetWork {
-    public static boolean isnetWorkAvilable(Context context) {
+    public static boolean isNetWorkAvilable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager == null) {
 

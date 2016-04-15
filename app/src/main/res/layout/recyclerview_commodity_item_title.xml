@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/commodity_details_title_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/commoditydetails_title_rl"
     android:background="@color/colorWhite">
 
     <TextView
-        android:id="@+id/commoditydetails_title_name"
+        android:id="@+id/commodity_details_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/commodityItem_title_nameLeft"
-        android:layout_marginRight="@dimen/commodityItem_title_nameRight"
-        android:layout_marginTop="@dimen/commodityItem_title_nameTop"
+        android:layout_marginLeft="@dimen/commodity_item_title_name_left"
+        android:layout_marginRight="@dimen/commodity_item_title_name_right"
+        android:layout_marginTop="@dimen/commodity_item_title_name_top"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/commodityItem_title_nameSize" />
+        android:textSize="@dimen/commodity_item_title_name_size" />
 
     <ImageView
-        android:id="@+id/commoditydetails_item_underline"
+        android:id="@+id/commodity_details_item_underline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/commodityItem_title_lineLeft"
-        android:layout_marginRight="@dimen/commodityItem_title_lineRight"
-        android:layout_marginTop="@dimen/commodityItem_title_lineTop"
-        android:layout_below="@id/commoditydetails_title_name"
+        android:layout_below="@id/commodity_details_title_name"
+        android:layout_marginLeft="@dimen/commodity_item_title_line_left"
+        android:layout_marginRight="@dimen/commodity_item_title_line_right"
+        android:layout_marginTop="@dimen/commodity_item_title_line_top"
         android:src="@drawable/item_underline_black" />
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/recyclerview_title_iv"
+        android:id="@+id/recycler_title_iv"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/commodityItem_title_picHei"
-        android:layout_below="@id/commoditydetails_item_underline"
-        fresco:placeholderImage="@mipmap/ic_launcher"
-        android:layout_marginTop="200dp"
-        android:layout_margin="@dimen/commodityItem_title_sdv_margin"/>
+        android:layout_height="@dimen/commodity_item_title_picture_hei"
+        android:layout_below="@id/commodity_details_item_underline"
+        android:layout_margin="@dimen/commodity_item_title_sdv_margin"
+        android:layout_marginTop="@dimen/commodity_item_title_sdv_top"
+        fresco:placeholderImage="@mipmap/ic_launcher" />
 
     <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/recyclerview_title_storyLinear"
-        android:layout_width="@dimen/commodityItem_title_storyWid"
+        android:id="@+id/recycler_title_story_layout"
+        android:layout_width="@dimen/commodity_item_title_story_wid"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recyclerview_title_iv"
+        android:layout_below="@id/recycler_title_iv"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/commodity_item_title_layout_top"
         android:background="@color/colorBlack"
         android:orientation="vertical"
-        android:layout_marginTop="240dp"
-        android:paddingLeft="@dimen/commodityItem_title_storyLeft"
-        android:paddingRight="@dimen/commodityItem_title_storyRight">
+        android:paddingLeft="@dimen/commodity_item_title_story_left"
+        android:paddingRight="@dimen/commodity_item_title_story_right">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commodityItem_title_lineHei"
-            android:layout_marginTop="@dimen/commodityItem_title_underlineTop"
+            android:layout_height="@dimen/commodity_item_title_line_hei"
+            android:layout_marginTop="@dimen/commodity_item_title_underline_top"
             android:background="@drawable/title_underline" />
 
         <RelativeLayout
@@ -58,46 +58,46 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/recyclerview_title_title"
+                android:id="@+id/recycler_title_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/commodityItem_title_titleTop"
+                android:layout_marginTop="@dimen/commodity_item_title_title_top"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/commodityItem_title_titleSize" />
+                android:textSize="@dimen/commodity_item_title_title_size" />
 
             <TextView
-                android:id="@+id/recyclerview_title_englishTitle"
+                android:id="@+id/recycler_title_english_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/recyclerview_title_title"
-                android:layout_marginTop="@dimen/commodityItem_title_engTitTop"
+                android:layout_below="@id/recycler_title_title"
+                android:layout_marginTop="@dimen/commodity_item_title_eng_title_top"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/commodityItem_title_engTitSize" />
+                android:textSize="@dimen/commodity_item_title_eng_title_size" />
 
             <TextView
-                android:id="@+id/recyclerview_title_city"
+                android:id="@+id/recycler_title_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/commodityItem_title_citySize" />
+                android:textSize="@dimen/commodity_item_title_city_size" />
         </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commodityItem_head_lineHei"
-            android:layout_marginTop="@dimen/commodityItem_title_underTop"
+            android:layout_height="@dimen/commodity_item_head_line_hei"
+            android:layout_marginTop="@dimen/commodity_item_title_under_top"
             android:background="@drawable/title_underline" />
 
         <TextView
-            android:id="@+id/recyclerview_title_intro"
+            android:id="@+id/recycler_title_introduce"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/commodityItem_title_introBot"
-            android:layout_marginTop="@dimen/commodityItem_title_introTop"
+            android:layout_marginBottom="@dimen/commodity_item_title_introduce_bottom"
+            android:layout_marginTop="@dimen/commodity_item_title_intro_top"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/commodityItem_title_introSize" />
+            android:textSize="@dimen/commodity_item_title_intro_size" />
     </com.zhy.autolayout.AutoLinearLayout>
 
 </com.zhy.autolayout.AutoRelativeLayout>

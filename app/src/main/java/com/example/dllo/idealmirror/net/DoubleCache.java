@@ -3,18 +3,17 @@ package com.example.dllo.idealmirror.net;
 import android.graphics.Bitmap;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.example.dllo.idealmirror.tool.LogUtils;
 
 /**
  * Created by dllo on 16/4/6.
  */
 public class DoubleCache implements ImageLoader.ImageCache {
 
-    private MenoryCache memoryCache;
+    private MemoryCache memoryCache;
     private DiskCache diskCache;
 
     public DoubleCache(String diskPathurl) {
-        memoryCache = new MenoryCache();
+        memoryCache = new MemoryCache();
         diskCache = new DiskCache(diskPathurl);
     }
 

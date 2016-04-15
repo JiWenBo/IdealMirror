@@ -28,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initData();
 
     // 初始化组件
-    protected <T extends View>T bindView(int id) {
+    protected <T extends View> T bindView(int id) {
         return (T) findViewById(id);
     }
 }

@@ -3,7 +3,6 @@ package com.example.dllo.idealmirror.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.example.dllo.idealmirror.activity.CommodityDetailsActivity;
 import com.example.dllo.idealmirror.base.BaseApplication;
 import com.example.dllo.idealmirror.bean.CommodityDetailsData;
-import com.example.dllo.idealmirror.bean.GoodsListBean;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.tool.LogUtils;
-import com.example.dllo.idealmirror.tool.Url;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import java.util.ArrayList;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -44,15 +37,13 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
     final int TYPE_GOODS_TITLE = 2;
     final int TYPE_GOODS_DETAILS = 3;
 
-
     public CommodityDetailsAdapter(CommodityDetailsData goodsListData, Context context) {
         this.goodsListData = goodsListData;
         this.context = context;
     }
 
-
     /**
-     * 该方法为接收activity传来的监听recycleview滑动距离的value
+     * 该方法为接收activity传来的监听recycleView滑动距离的value
      */
     public void setScrollValue(int scrollValue, int dy) {
         this.layoutScrollValue = scrollValue;
@@ -84,7 +75,8 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
         }
     }
 
-    /** 渲染具体的ViewHolder
+    /**
+     * 渲染具体的ViewHolder
      * @param parent   ViewHolder的容器
      * @param viewType 一个标志，根据该标志可以实现渲染不同类型的ViewHolder
      * @return
@@ -104,12 +96,11 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             View viewGoodsDetails = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_commoditydetails_item, parent, false);
             return new GoodsDetailsViewHolder(viewGoodsDetails);
         }
-
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-       LogUtils.d("xxx", "---holder--" + holder.getClass() + position);
+        LogUtils.d("xxx", "---holder--" + holder.getClass() + position);
         // 头布局
         if (holder instanceof HeadViewHolder) {
             ((HeadViewHolder) holder).commodityHeadEnglishNameTv.setText(goodsListData.getData().getGoods_name());
@@ -125,10 +116,10 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
         }
 
-        //带标题的布局
+        // 带标题的布局
         if (holder instanceof GoodsTitleViewHolder) {
-            //如果holder的实例是GoodsTitleViewHolder的话
-            //滑动的时候使文字布局发生偏移
+            // 如果holder的实例是GoodsTitleViewHolder的话
+            // 滑动的时候使文字布局发生偏移
             int valueTitle = layoutScrollValue;
             int heiTitle = ((GoodsTitleViewHolder) holder).commodityTitleRl.getHeight();
             RelativeLayout.LayoutParams paramsTitle = (RelativeLayout.LayoutParams) ((GoodsTitleViewHolder) holder).commodityTitleLinearLayout.getLayoutParams();
@@ -146,13 +137,12 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
             Uri uri = Uri.parse(goodsListData.getData().getGoods_pic());
             ((GoodsTitleViewHolder) holder).commodityTitleIv.setImageURI(uri);
-
             ((GoodsTitleViewHolder) holder).position = position;
         }
 
-        //不带标题的布局
+        // 不带标题的布局
         if (holder instanceof GoodsDetailsViewHolder) {
-            //滑动的时候使文字布局发生偏移
+            // 滑动的时候使文字布局发生偏移
             int heiDetails = ((GoodsDetailsViewHolder) holder).commodityDetailsRl.getHeight();
             int valueDetails = layoutScrollValue;
             RelativeLayout.LayoutParams paramsDetails = (RelativeLayout.LayoutParams) ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.getLayoutParams();
@@ -160,20 +150,17 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             LogUtils.d("xxx", layoutScrollValue + "");
             ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.setLayoutParams(paramsDetails);
 
-
             if (goodsListData.getData().getDesign_des().get(position - 2).getType().equals("1")) {
-                //加数据
+                // 加数据
                 ((GoodsDetailsViewHolder) holder).commodityDetailsName.setText(goodsListData.getData().getGoods_data().get(position - 2).getName());
                 ((GoodsDetailsViewHolder) holder).commodityDetailsIntro.setText(goodsListData.getData().getGoods_data().get(position - 2).getIntroContent());
                 ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.setVisibility(View.VISIBLE);
-
             } else {
                 ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.setVisibility(View.GONE);
             }
 
             Uri uri = Uri.parse(goodsListData.getData().getDesign_des().get(position - 2).getImg());
             ((GoodsDetailsViewHolder) holder).commodityDetailsIv.setImageURI(uri);
-
         }
     }
 
@@ -186,16 +173,16 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
      * 新建缓存类 商品详情二级页面头布局(半透明)缓存类
      */
     public class HeadViewHolder extends RecyclerView.ViewHolder {
-        //需要网络解析的数据
+        // 需要网络解析的数据
         private TextView commodityHeadEnglishNameTv, commodityHeadNameTv, commodityHeadStoryTv, commodityHeadMoney;
         private ImageView shareIv;
 
         public HeadViewHolder(View itemView) {
             super(itemView);
-            commodityHeadEnglishNameTv = (TextView) itemView.findViewById(R.id.commoditydetails_englishTitle);
-            commodityHeadNameTv = (TextView) itemView.findViewById(R.id.commoditydetails_name);
-            commodityHeadStoryTv = (TextView) itemView.findViewById(R.id.commoditydetails_commodityStory);
-            commodityHeadMoney = (TextView) itemView.findViewById(R.id.commoditydetails_commodityMoney);
+            commodityHeadEnglishNameTv = (TextView) itemView.findViewById(R.id.commodity_details_english_title);
+            commodityHeadNameTv = (TextView) itemView.findViewById(R.id.commodity_details_name);
+            commodityHeadStoryTv = (TextView) itemView.findViewById(R.id.commodity_details_commodity_story);
+            commodityHeadMoney = (TextView) itemView.findViewById(R.id.commodity_details_commodity_money);
             shareIv = (ImageView) itemView.findViewById(R.id.commodity_detail_share);
         }
     }
@@ -250,14 +237,14 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
         public GoodsTitleViewHolder(View itemView) {
             super(itemView);
-            commodityTitleNameTv = (TextView) itemView.findViewById(R.id.commoditydetails_title_name);
-            commodityTitleLinearLayout = (LinearLayout) itemView.findViewById(R.id.recyclerview_title_storyLinear);
-            commodityTitleIv = (SimpleDraweeView) itemView.findViewById(R.id.recyclerview_title_iv);
-            commodityTitleTv = (TextView) itemView.findViewById(R.id.recyclerview_title_title);
-            commodityTitleEngTv = (TextView) itemView.findViewById(R.id.recyclerview_title_englishTitle);
-            commodityTitleCity = (TextView) itemView.findViewById(R.id.recyclerview_title_city);
-            commodityTitleIntro = (TextView) itemView.findViewById(R.id.recyclerview_title_intro);
-            commodityTitleRl = (RelativeLayout) itemView.findViewById(R.id.commoditydetails_title_rl);
+            commodityTitleNameTv = (TextView) itemView.findViewById(R.id.commodity_details_title_name);
+            commodityTitleLinearLayout = (LinearLayout) itemView.findViewById(R.id.recycler_title_story_layout);
+            commodityTitleIv = (SimpleDraweeView) itemView.findViewById(R.id.recycler_title_iv);
+            commodityTitleTv = (TextView) itemView.findViewById(R.id.recycler_title_title);
+            commodityTitleEngTv = (TextView) itemView.findViewById(R.id.recycler_title_english_title);
+            commodityTitleCity = (TextView) itemView.findViewById(R.id.recycler_title_city);
+            commodityTitleIntro = (TextView) itemView.findViewById(R.id.recycler_title_introduce);
+            commodityTitleRl = (RelativeLayout) itemView.findViewById(R.id.commodity_details_title_rl);
         }
     }
 
@@ -274,11 +261,11 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
 
         public GoodsDetailsViewHolder(View itemView) {
             super(itemView);
-            commodityDetailsLinearLayout = (LinearLayout) itemView.findViewById(R.id.recyclerview_commodityDetails_storyLinear);
-            commodityDetailsIv = (SimpleDraweeView) itemView.findViewById(R.id.recyclerview_commodityDetails_iv);
-            commodityDetailsName = (TextView) itemView.findViewById(R.id.recyclerview_commodityDetails_title);
-            commodityDetailsIntro = (TextView) itemView.findViewById(R.id.recyclerview_commodityDetails_intro);
-            commodityDetailsRl = (RelativeLayout) itemView.findViewById(R.id.recyclerview_commodityDetails_rl);
+            commodityDetailsLinearLayout = (LinearLayout) itemView.findViewById(R.id.recycler_commodity_details_story_layout);
+            commodityDetailsIv = (SimpleDraweeView) itemView.findViewById(R.id.recycler_commodity_details_iv);
+            commodityDetailsName = (TextView) itemView.findViewById(R.id.recycler_commodity_details_title);
+            commodityDetailsIntro = (TextView) itemView.findViewById(R.id.recycler_commodity_details_introduce);
+            commodityDetailsRl = (RelativeLayout) itemView.findViewById(R.id.recycler_commodity_details_rl);
         }
     }
 

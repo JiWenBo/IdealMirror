@@ -1,6 +1,6 @@
 package com.example.dllo.idealmirror.activity;
+
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 
@@ -16,33 +16,35 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.VerticalAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.GoodList;
 import com.example.dllo.idealmirror.fragment.MenuFragment;
-import com.example.dllo.idealmirror.mirrordao.DaoMaster;
-import com.example.dllo.idealmirror.mirrordao.DaoSession;
 import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
 import com.example.dllo.idealmirror.mirrordao.GoodListCache;
-import com.example.dllo.idealmirror.mirrordao.GoodListCacheDao;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.widget.Scroller;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, VolleyListener, Url {
     private ImageView mirror;
     private GoodList datas;
-    private List<GoodListCache> goodListCachelist;
+    private List<GoodListCache> goodListCacheList;
     private GoodListCache goodListCache;
     private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
@@ -50,7 +52,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private LinearLayout menu;
     private FrameLayout frameLayout;
     private DaoSingleton daoSingleton;
-//TODO
+
+    //TODO
     public MainActivity() {
     }
 
@@ -62,7 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void initView() {
         viewPager = bindView(R.id.viewpager);
-        mirror = bindView(R.id.mirrorpic);
+        mirror = bindView(R.id.mirror_iv);
         mirror.setOnClickListener(this);
         login = bindView(R.id.login);
         login.setOnClickListener(this);
@@ -102,7 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.mirrorpic:
+            case R.id.mirror_iv:
                 // Mirror按钮动画
                 playHeartbeatAnimation(mirror);
                 break;
@@ -171,6 +174,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     /**
      * 菜单请求成功 解析数据
+     *
      * @param body 成功获得数据
      */
     @Override
@@ -184,8 +188,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             e.printStackTrace();
         }
 
-        goodListCachelist = new ArrayList<>();
-        for (int i = 0; i < datas.getData().getList().size()-1; i++) {
+        goodListCacheList = new ArrayList<>();
+        for (int i = 0; i < datas.getData().getList().size() - 1; i++) {
             goodListCache = new GoodListCache();
             goodListCache.setType(datas.getData().getList().get(i).getType());
             goodListCache.setButtomColor(datas.getData().getList().get(i).getButtomColor());
@@ -193,13 +197,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             goodListCache.setTitle(datas.getData().getList().get(i).getTitle());
             goodListCache.setTopColor(datas.getData().getList().get(i).getTopColor());
             goodListCache.setStore(datas.getData().getList().get(i).getStore());
-            goodListCachelist.add(goodListCache);
+            goodListCacheList.add(goodListCache);
         }
         // 清空数据库
         daoSingleton.deleteGoodListAll();
         // 将数据加入到数据库中
-        daoSingleton.insertGoodList(goodListCachelist);
-        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
+        daoSingleton.insertGoodList(goodListCacheList);
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCacheList);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
 
@@ -210,14 +214,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      */
     @Override
     public void getFail() {
-        goodListCachelist = daoSingleton.queryGoodList();
-        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCachelist);
+        goodListCacheList = daoSingleton.queryGoodList();
+        verticalAdapter = new VerticalAdapter(getSupportFragmentManager(), goodListCacheList);
         viewPager.setAdapter(verticalAdapter);
         viewPager.setOrientation(DirectionalViewPager.VERTICAL);
     }
 
     /**
      * 暴露一个方法 获得位置
+     *
      * @param position fragment的位置
      */
     public void getDataFromFragment(int position) {
@@ -276,14 +281,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     /**
      * 设置菜单的帧布局
+     *
      * @param context
-     * @param store 区分数据的类型
+     * @param store   区分数据的类型
      */
     public void setMenuFrame(Context context, String store) {
         frameLayout.setVisibility(View.VISIBLE);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().add(R.id.main_menu_frame,
-                new MenuFragment(store, context, goodListCachelist)).commit();
+                new MenuFragment(store, context, goodListCacheList)).commit();
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.menu_fragment);
         frameLayout.setAnimation(animation);
     }

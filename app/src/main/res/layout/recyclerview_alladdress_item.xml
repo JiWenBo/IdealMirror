@@ -2,91 +2,95 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-    android:background="@color/colorWhite"
-    android:layout_marginTop="@dimen/recyclerView_allAddress_itemTop">
+    android:layout_marginTop="@dimen/recycler_all_address_item_top"
+    android:background="@color/colorWhite">
 
     <com.example.dllo.idealmirror.tool.SwipeLayout
+        android:id="@+id/all_address_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/allAddress_line">
+        android:layout_height="wrap_content">
 
         <com.zhy.autolayout.AutoRelativeLayout
-            android:id="@+id/additem"
+            android:id="@+id/add_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/recyclerView_allAddress_contentTop"
-                android:layout_marginLeft="@dimen/recyclerView_allAddress_contentLeft"
-                android:layout_marginBottom="@dimen/recyclerView_allAddress_contentBottom"
+                android:layout_marginBottom="@dimen/recycler_all_address_content_bottom"
+                android:layout_marginLeft="@dimen/recycler_all_address_content_left"
+                android:layout_marginTop="@dimen/recycler_all_address_content_top"
                 android:orientation="vertical">
+
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/all_address_receiver"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/recyclerView_allAddress_addressee_size"
-                        android:text="@string/addressee"/>
+                        android:textSize="@dimen/all_address_receiver_size" />
+
                     <TextView
-                        android:id="@+id/allAddress_addressee"
+                        android:id="@+id/all_address_receiver"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/recyclerView_allAddress_addressee_size"
                         android:textColor="@color/colorBlack"
-                        />
+                        android:textSize="@dimen/all_address_receiver_size" />
                 </com.zhy.autolayout.AutoLinearLayout>
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/all_address_address_top"
+                        android:text="@string/address"
                         android:textColor="@color/colorBlack"
-                        android:layout_marginTop="@dimen/recyclerView_allAddress_addressTop"
-                        android:textSize="@dimen/recyclerView_allAddress_address_size"
-                        android:text="@string/address"/>
+                        android:textSize="@dimen/all_address_address_size" />
+
                     <TextView
-                        android:id="@+id/allAddress_address"
+                        android:id="@+id/all_address_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/recyclerView_allAddress_addressTop"
-                        android:layout_marginRight="@dimen/recyclerView_allAddress_addressRight"
-                        android:textSize="@dimen/recyclerView_allAddress_address_size"
-                        android:textColor="@color/colorBlack" />
+                        android:layout_marginRight="@dimen/all_address_address_right"
+                        android:layout_marginTop="@dimen/all_address_address_top"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/all_address_address_size" />
                 </com.zhy.autolayout.AutoLinearLayout>
 
                 <TextView
-                    android:textStyle="bold"
-                    android:id="@+id/allAddress_phoneNumber"
+                    android:id="@+id/all_address_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/recyclerView_allAddress_phoneNum_top"
-                    android:textSize="@dimen/recyclerView_allAddress_phoneNum_size"
-                    android:textColor="@color/colorBlack" />
+                    android:layout_marginTop="@dimen/all_address_phone_top"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/all_address_phone_size"
+                    android:textStyle="bold" />
             </com.zhy.autolayout.AutoLinearLayout>
+
             <ImageView
                 android:id="@+id/editing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/recyclerView_allAddress_alterRight"
-                android:src="@mipmap/alter"/>
+                android:layout_marginRight="@dimen/all_address_alter_right"
+                android:src="@mipmap/alter" />
 
         </com.zhy.autolayout.AutoRelativeLayout>
 
 
         <com.zhy.autolayout.AutoRelativeLayout
-            android:id="@+id/allAddress_delete"
-            android:layout_width="@dimen/recyclerView_allAddress_deleteWidth"
+            android:id="@+id/all_address_delete"
+            android:layout_width="@dimen/all_address_delete_width"
             android:layout_height="match_parent"
             android:background="@color/colorDelete"
             android:clickable="true">
@@ -97,7 +101,7 @@
                 android:layout_centerInParent="true"
                 android:text="@string/delete"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/recyclerView_allAddress_delete_size" />
+                android:textSize="@dimen/all_address_delete_size" />
         </com.zhy.autolayout.AutoRelativeLayout>
 
     </com.example.dllo.idealmirror.tool.SwipeLayout>

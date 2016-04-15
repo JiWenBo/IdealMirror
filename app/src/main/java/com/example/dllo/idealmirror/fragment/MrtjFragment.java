@@ -15,7 +15,6 @@ import com.example.dllo.idealmirror.adapter.MrtjAdapter;
 import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.MrtjListBean;
 import com.example.dllo.idealmirror.mirrordao.AllMirrorCache;
-import com.example.dllo.idealmirror.mirrordao.AllMirrorCacheDao;
 import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
@@ -32,16 +31,16 @@ import java.util.List;
 /**
  * Created by dllo on 16/4/1.
  */
-public class MrtjFragment extends BaseFragment implements VolleyListener{
+public class MrtjFragment extends BaseFragment implements VolleyListener {
     private MrtjAdapter mrtjAdapter;
     private MrtjListBean mrtjListBean;
-    private HashMap<String,String> data;
+    private HashMap<String, String> data;
     private RecyclerView recyclerView;
     private LinearLayout layout;
     private String title;
     private String store;
     TextView titleTv;
-    private List<AllMirrorCache> mirrordata;
+    private List<AllMirrorCache> mirrorData;
     private AllMirrorCache allMirrorCache;
     private MainActivity mainActivity;
     private DaoSingleton daoSingleton;
@@ -51,7 +50,6 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         super.onAttach(context);
         mainActivity = (MainActivity) context;
     }
-
 
 
     @Override
@@ -118,7 +116,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
         LogUtils.d(mrtjListBean.getData().getList().get(0).getData_info().getGoods_id());
         daoSingleton.insert(allMirrorCache);
 
-        mrtjAdapter = new MrtjAdapter(getContext(),mrtjListBean);
+        mrtjAdapter = new MrtjAdapter(getContext(), mrtjListBean);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -128,25 +126,27 @@ public class MrtjFragment extends BaseFragment implements VolleyListener{
     @Override
     public void getFail() {
         // 失败之后调用数据库取出数据
-        mirrordata = new ArrayList<>();
+        mirrorData = new ArrayList<>();
 
-        mirrordata  = daoSingleton.queryAllMirror();
+        mirrorData = daoSingleton.queryAllMirror();
         mrtjAdapter = new MrtjAdapter(getActivity());
-        mrtjAdapter.getData(mirrordata);
+        mrtjAdapter.getData(mirrorData);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mrtjAdapter);
     }
+
     /**
      * 通过静态方法将参数传过来
+     *
      * @param body
      * @return
      */
-    public static MrtjFragment setUrl(String body, String title, String store){
+    public static MrtjFragment setUrl(String body, String title, String store) {
         MrtjFragment mrtjFragment = new MrtjFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("body",body);
+        bundle.putString("body", body);
         bundle.putString("title", title);
         bundle.putString("store", store);
         mrtjFragment.setArguments(bundle);

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recycler_adorn_photos_line"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/recyclerview_adornPhotos_line"
-    android:padding="@dimen/recyclerview_adornphotos_padding">
+    android:padding="@dimen/recycler_adorn_photos_padding">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/recyclerview_adornPhotos_iv"
+        android:id="@+id/recycler_adorn_photos_iv"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/recyclerview_adornphotos_imgHei"
-        fresco:placeholderImage="@mipmap/ic_launcher"/>
+        android:layout_height="@dimen/recycler_adorn_photos_img_hei"
+        fresco:placeholderImage="@mipmap/ic_launcher" />
 </com.zhy.autolayout.AutoLinearLayout>

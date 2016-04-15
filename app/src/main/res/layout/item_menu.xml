@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_menu_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/item_menu_layout">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/item_menu_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fourmar"
+        android:layout_marginTop="@dimen/item_menu_top"
         android:textColor="@drawable/selector_menu_item"
-        android:textSize="@dimen/twoeight" />
+        android:textSize="@dimen/item_menu_tv_size" />
 
     <ImageView
         android:id="@+id/item_menu_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/twotwo"
+        android:layout_marginTop="@dimen/item_menu_iv_top"
         android:src="@drawable/title_underline"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 </com.zhy.autolayout.AutoLinearLayout>

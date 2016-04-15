@@ -14,7 +14,6 @@ import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.AdornPhotosData;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
-import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import com.google.gson.Gson;
 
@@ -28,7 +27,7 @@ import java.util.List;
  * Created by LYH on 16/4/8.
  * 佩戴图集界面
  */
-public class AdornPhotosActivity extends BaseActivity implements VolleyListener,Url, View.OnClickListener {
+public class AdornPhotosActivity extends BaseActivity implements VolleyListener, Url, View.OnClickListener {
 
     private AdornPhotosData adornPhotosData;
     private List<AdornPhotosData.DataEntity.WearVideoEntity> list;
@@ -40,15 +39,15 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
 
     @Override
     protected int setContent() {
-        return R.layout.activity_adornphotos;
+        return R.layout.activity_adorn_photos;
     }
 
 
     @Override
     protected void initView() {
-        recyclerView = (RecyclerView) findViewById(R.id.adornPhotos_recyclerview);
-        returnIv = (ImageView) findViewById(R.id.adornPhotos_return_btn);
-        buyIv = (ImageView) findViewById(R.id.adornPhotos_buy_btn);
+        recyclerView = (RecyclerView) findViewById(R.id.adorn_photos_recycler);
+        returnIv = (ImageView) findViewById(R.id.adorn_photos_return_btn);
+        buyIv = (ImageView) findViewById(R.id.adorn_photos_buy_btn);
         returnIv.setOnClickListener(this);
         buyIv.setOnClickListener(this);
         // 从二级界面获得id
@@ -59,14 +58,12 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
     @Override
     protected void initData() {
         NetHelper netHelper = new NetHelper();
-        HashMap<String,String> data;
+        HashMap<String, String> data;
         data = new HashMap<>();
-        data.put("device_type","3");
-        data.put("version","1.0.1");
-        data.put("goods_id",id);
+        data.put("device_type", "3");
+        data.put("version", "1.0.1");
+        data.put("goods_id", id);
         netHelper.getInformation(GOODS_INFO, this, data);
-
-
     }
 
     @Override
@@ -80,9 +77,7 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
             e.printStackTrace();
         }
 
-
         adornPhotosRcAdapter = new AdornPhotosRcAdapter(list, context);
-
         recyclerView.setAdapter(adornPhotosRcAdapter);
         GridLayoutManager gm = new GridLayoutManager(this, 1);
         gm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -97,11 +92,11 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.adornPhotos_return_btn: //佩戴图集返回
+        switch (v.getId()) {
+            case R.id.adorn_photos_return_btn: //佩戴图集返回
                 finish();
                 break;
-            case R.id.adornPhotos_buy_btn: //购买
+            case R.id.adorn_photos_buy_btn: //购买
                 Intent intent = new Intent(this, BuyDetailsActivity.class);
                 intent.putExtra("good_pic", adornPhotosData.getData().getGoods_pic());
                 intent.putExtra("good_name", adornPhotosData.getData().getGoods_name());

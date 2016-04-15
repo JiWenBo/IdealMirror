@@ -4,9 +4,9 @@
     android:layout_height="wrap_content">
 
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
-        android:id="@+id/videocontroller"
+        android:id="@+id/video_controller"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/recyclerview_adornphotos_videoHei" />
+        android:layout_height="@dimen/recycler_adorn_photos_video_hei" />
 </com.zhy.autolayout.AutoLinearLayout>
 
 

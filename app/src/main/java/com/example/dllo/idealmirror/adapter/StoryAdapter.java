@@ -45,44 +45,41 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NetHelper netHelper = new NetHelper();
         ImageLoader loader = netHelper.getImageLoader();
-        String goodsurl = storyListBean.get(position).getPicimg();
-        holder.thisposition = position;
-        loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-        holder.thistitle.setText(storyListBean.get(position).getTitle());
+        String goodsUrl = storyListBean.get(position).getPicimg();
+        holder.position = position;
+        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+        holder.titleTv.setText(storyListBean.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
         return storyListBean.size();
-
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView img;
-        TextView thistitle;
+        TextView titleTv;
         AutoRelativeLayout story;
-        int thisposition;
-
+        int position;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             AutoUtils.autoSize(itemView);
             img = (ImageView) itemView.findViewById(R.id.picture);
-            thistitle = (TextView) itemView.findViewById(R.id.storytitle);
-            story = (AutoRelativeLayout) itemView.findViewById(R.id.storyitem);
+            titleTv = (TextView) itemView.findViewById(R.id.story_title);
+            story = (AutoRelativeLayout) itemView.findViewById(R.id.item_story);
             story.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            if (IsNetWork.isnetWorkAvilable(context)){
+            if (IsNetWork.isNetWorkAvilable(context)) {
                 Intent intent = new Intent(context, ShareActivity.class);
-                intent.putExtra("posi", thisposition+"");
+                intent.putExtra("posi", position + "");
                 context.startActivity(intent);
 
-            }
-            else {
-                ToastUtils.showToast(context,"请检查网络");
+            } else {
+                ToastUtils.showToast(context, context.getString(R.string.java_story_check_net));
             }
 
         }

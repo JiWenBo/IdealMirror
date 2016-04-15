@@ -12,40 +12,40 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="@dimen/widthzero"
+            android:layout_width="@dimen/all_address_title_wid_wei"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/myaddress"
+            android:text="@string/my_address"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/create_title_size" />
 
         <ImageView
             android:id="@+id/add_close"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/create_close_right"
             android:src="@drawable/close" />
     </com.zhy.autolayout.AutoLinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/create_unline_top"
         android:src="@drawable/create_account_unline" />
+
     <Button
-        android:id="@+id/addaddress"
+        android:id="@+id/add_address_btn"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/heihun"
-        android:layout_marginTop="@dimen/fifthpx"
-        android:textColor="@color/colorBlack"
+        android:layout_height="@dimen/all_address_add_btn_hei"
+        android:layout_marginTop="@dimen/all_address_add_top"
         android:background="@color/colorWhite"
-        android:text="@string/add"/>
+        android:text="@string/add_address"
+        android:textColor="@color/colorBlack" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/allAddress_recyclerview"
+        android:id="@+id/all_address_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
 </com.zhy.autolayout.AutoLinearLayout>

@@ -246,6 +246,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     /**
      * 登陆成功 解析获得的数据
+     *
      * @param body 网上拉取的数据
      */
     @Override

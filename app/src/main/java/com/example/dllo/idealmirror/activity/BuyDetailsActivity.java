@@ -31,47 +31,45 @@ import java.util.HashMap;
  * 订单详情
  */
 public class BuyDetailsActivity extends BaseActivity implements View.OnClickListener, Url, VolleyListener {
-    private AutoRelativeLayout setaddress;
+    private AutoRelativeLayout setAddress;
     private ImageView close;
-    private SimpleDraweeView mirimg;
-    private TextView title, price, name, nameid, address, addressid, phone, changeAdd;
-    private Button buyNow;
+    private SimpleDraweeView mirrorImg;
+    private TextView title, price, name, nameId, address, addressId, phone, changeAdd;
+    private Button buyBtn;
     private Address data;
-    private int requsetcode = 1;
+    private int requsetCode = 1;
     private SetNewBuyUI setNewBuyUI;
-
-
 
     @Override
     protected int setContent() {
-        return R.layout.activity_buydetails;
+        return R.layout.activity_buy_detail;
     }
 
     @Override
     protected void initView() {
         setNewBuyUI = new SetNewBuyUI();
-        buyNow = bindView(R.id.buynow);
-        setaddress = bindView(R.id.setaddress);
-        close = bindView(R.id.addressclose);
-        mirimg = bindView(R.id.mirrimg);
-        title = bindView(R.id.mirrtitle);
-        price = bindView(R.id.mirrprice);
+        buyBtn = bindView(R.id.buy_btn);
+        setAddress = bindView(R.id.set_address);
+        close = bindView(R.id.address_close);
+        mirrorImg = bindView(R.id.mirror_sdv);
+        title = bindView(R.id.mirror_title);
+        price = bindView(R.id.mirror_price);
         name = bindView(R.id.name);
-        nameid = bindView(R.id.nameID);
+        nameId = bindView(R.id.name_id);
         address = bindView(R.id.address);
-        addressid = bindView(R.id.addressID);
+        addressId = bindView(R.id.address_id);
         phone = bindView(R.id.phone);
-        changeAdd = bindView(R.id.changeaddres);
+        changeAdd = bindView(R.id.change_address);
     }
 
     @Override
     protected void initData() {
-       // getOrder();//订单拉取
+        // getOrder();//订单拉取
         Intent intent = getIntent();
-        setaddress.setOnClickListener(this);
+        setAddress.setOnClickListener(this);
         close.setOnClickListener(this);
         Uri uri = Uri.parse(intent.getStringExtra("good_pic"));
-        mirimg.setImageURI(uri);
+        mirrorImg.setImageURI(uri);
         title.setText(intent.getStringExtra("good_name"));
         price.setText("¥" + intent.getStringExtra("good_price"));
         NetHelper helper = new NetHelper();
@@ -83,21 +81,21 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(SETNEWBUY);
         registerReceiver(setNewBuyUI, intentFilter);
-        buyNow.setOnClickListener(this);
+        buyBtn.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.setaddress:
+            case R.id.set_address:
                 Intent intent = new Intent(BuyDetailsActivity.this, AllAddressActivity.class);
-                startActivityForResult(intent, requsetcode);
+                startActivityForResult(intent, requsetCode);
                 break;
-            case R.id.addressclose:
+            case R.id.address_close:
                 finish();
                 break;
-            case R.id.buynow:
+            case R.id.buy_btn:
                 //TODO
 
                 break;
@@ -106,6 +104,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
 
     /**
      * 获取默认地址
+     *
      * @param body
      */
     @Override
@@ -127,30 +126,28 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         data = new Address();
         data = gson.fromJson(jsonObject.toString(), Address.class);
         LogUtils.d("00", body);
-        if (data.getData().getPagination().getFirst_time()==""){
+        if (data.getData().getPagination().getFirst_time() == "") {
             name.setText(R.string.java_addpeoplemessage);
-            nameid.setText("");
+            nameId.setText("");
             address.setText("");
-            addressid.setText("");
+            addressId.setText("");
             phone.setText("");
             changeAdd.setText(R.string.java_addaddress);
-        }
-        else {
+        } else {
             for (int i = 0; i < data.getData().getList().size(); i++) {
 
                 if (!data.getData().getList().get(i).getIf_moren().equals("2")) {
                     name.setText(R.string.receiver);
-                    nameid.setText(data.getData().getList().get(i).getUsername());
+                    nameId.setText(data.getData().getList().get(i).getUsername());
                     address.setText(R.string.java_address);
-                    addressid.setText(data.getData().getList().get(i).getAddr_info());
+                    addressId.setText(data.getData().getList().get(i).getAddr_info());
                     phone.setText(data.getData().getList().get(i).getCellphone());
                     changeAdd.setText(R.string.jave_changeaddress);
-                }
-                else if (data.getData().getList().get(i).getIf_moren().equals("2")||data.getData().getList().get(i).getIf_moren().equals("")){
+                } else if (data.getData().getList().get(i).getIf_moren().equals("2") || data.getData().getList().get(i).getIf_moren().equals("")) {
                     name.setText(R.string.java_setpeoplemessage);
-                    nameid.setText("");
+                    nameId.setText("");
                     address.setText("");
-                    addressid.setText("");
+                    addressId.setText("");
                     phone.setText("");
                     changeAdd.setText(R.string.java_setaddress);
                 }
@@ -161,9 +158,9 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     @Override
     public void getFail() {
         name.setText(R.string.java_setpeoplemessage);
-        nameid.setText("");
+        nameId.setText("");
         address.setText("");
-        addressid.setText("");
+        addressId.setText("");
         phone.setText("");
         changeAdd.setText(R.string.java_setaddress);
     }
@@ -174,14 +171,15 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         if (requestCode == 1 && resultCode == 1) {
 
             name.setText(R.string.receiver);
-            nameid.setText(data.getStringExtra("nameid"));
+            nameId.setText(data.getStringExtra("nameId"));
             address.setText(R.string.java_address);
-            addressid.setText(data.getStringExtra("addressid"));
+            addressId.setText(data.getStringExtra("addressId"));
             phone.setText(data.getStringExtra("phone"));
             changeAdd.setText(R.string.jave_changeaddress);
         }
     }
-    class SetNewBuyUI extends BroadcastReceiver{
+
+    class SetNewBuyUI extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -217,7 +215,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     }
 
     //TODO
-    private void getOrder(){
+    private void getOrder() {
 
     }
 }

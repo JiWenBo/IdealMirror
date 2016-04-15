@@ -4,47 +4,47 @@
     android:layout_height="match_parent">
 
     <com.zhy.autolayout.AutoRelativeLayout
-        android:layout_width="@dimen/sixzero"
+        android:layout_width="@dimen/fragment_share_msg_wid"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/sixfive">
 
         <ImageView
-            android:layout_width="@dimen/sixzero"
+            android:layout_width="@dimen/fragment_share_msg_wid"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:src="@drawable/show_bg_frame" />
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="@dimen/sixone"
-            android:layout_height="@dimen/twonine"
+            android:layout_width="@dimen/fragment_share_msg_small_wid"
+            android:layout_height="@dimen/fragment_share_msg_small_hei"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/fourtwo"
-            android:layout_marginRight="@dimen/fourtwo"
+            android:layout_marginLeft="@dimen/fragment_share_msg_small_left"
+            android:layout_marginRight="@dimen/fragment_share_msg_small_left"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/smalltitle"
+                android:id="@+id/small_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:textSize="@dimen/twotwos" />
+                android:textColor="@color/colorCreateWhite"
+                android:textSize="@dimen/fragment_share_msg_small_title_size" />
 
             <TextView
                 android:id="@+id/titles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/twotwos"
-                android:textColor="#fff"
-                android:textSize="@dimen/three" />
+                android:layout_marginTop="@dimen/fragment_share_msg_small_title_size"
+                android:textColor="@color/colorCreateWhite"
+                android:textSize="@dimen/fragment_share_msg_titles_size" />
 
             <TextView
-                android:id="@+id/subtitle"
+                android:id="@+id/sub_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/twotwos"
-                android:textColor="#fff"
-                android:textSize="@dimen/twoing" />
+                android:layout_marginTop="@dimen/fragment_share_msg_small_title_size"
+                android:textColor="@color/colorCreateWhite"
+                android:textSize="@dimen/fragment_share_msg_sub_title_size" />
         </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoRelativeLayout>
 

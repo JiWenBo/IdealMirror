@@ -1,29 +1,23 @@
 package com.example.dllo.idealmirror.activity;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.DirectionalViewPager;
-import com.android.volley.toolbox.ImageLoader;
+
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.adapter.ShareAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
-import com.example.dllo.idealmirror.base.BaseFragment;
 import com.example.dllo.idealmirror.bean.StoryListBean;
-import com.example.dllo.idealmirror.fragment.ShareFragmnet;
+import com.example.dllo.idealmirror.fragment.ShareFragment;
 import com.example.dllo.idealmirror.fragment.StoryListFragment;
-import com.example.dllo.idealmirror.net.ImageLoaderCache;
-import com.example.dllo.idealmirror.net.NetHelper;
-import com.example.dllo.idealmirror.tool.LogUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.widget.ImageView;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by JWB on 16/4/5.
@@ -33,7 +27,7 @@ public class ShareActivity extends BaseActivity {
     private DirectionalViewPager viewPagers;
     private ShareAdapter adapter;
     private StoryListBean beans;
-    private static int nowposition;
+    private static int currentPosition;
     private SimpleDraweeView draweeView;
 
     @Override
@@ -44,7 +38,7 @@ public class ShareActivity extends BaseActivity {
     @Override
     protected void initView() {
         Intent intent = getIntent();
-        nowposition = Integer.parseInt(intent.getStringExtra("posi"));
+        currentPosition = Integer.parseInt(intent.getStringExtra("posi"));
         viewPagers = bindView(R.id.viewpager);
         draweeView = (SimpleDraweeView) findViewById(R.id.img_back);
     }
@@ -54,20 +48,20 @@ public class ShareActivity extends BaseActivity {
         beans = new StoryListBean();
         beans = StoryListFragment.bean();
         List<Fragment> data = new ArrayList<>();
-        for (int i=0;i<beans.getData().getList().get(1).getStory_data().getImg_array().size();i++){
-            ShareFragmnet shareFragmnet = new ShareFragmnet();
-            StoryListBean.DataEntity.ListEntity.StoryDataEntity.TextArrayEntity listBean = beans.getData().getList().get(nowposition).getStory_data().getText_array().get(i);
+        for (int i = 0; i < beans.getData().getList().get(1).getStory_data().getImg_array().size(); i++) {
+            ShareFragment shareFragment = new ShareFragment();
+            StoryListBean.DataEntity.ListEntity.StoryDataEntity.TextArrayEntity listBean = beans.getData().getList().get(currentPosition).getStory_data().getText_array().get(i);
             Bundle bundle = new Bundle();
             bundle.putParcelable("shareBean", listBean);
-            shareFragmnet.setArguments(bundle);
-            data.add(shareFragmnet);
+            shareFragment.setArguments(bundle);
+            data.add(shareFragment);
         }
         adapter = new ShareAdapter(getSupportFragmentManager(), data);
         viewPagers.setAdapter(adapter);
         viewPagers.setOrientation(DirectionalViewPager.VERTICAL);
 
         /* 给一个初始的值,以免第一次进入时没有数据 */
-        setImgandtext(0);
+        setImgAndText(0);
         viewPagers.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -76,7 +70,7 @@ public class ShareActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                setImgandtext(position);
+                setImgAndText(position);
             }
 
             @Override
@@ -86,8 +80,8 @@ public class ShareActivity extends BaseActivity {
         });
     }
 
-    private void setImgandtext(int position){
-        String url = beans.getData().getList().get(nowposition).getStory_data().getImg_array().get(position);
+    private void setImgAndText(int position) {
+        String url = beans.getData().getList().get(currentPosition).getStory_data().getImg_array().get(position);
         draweeView.setImageURI(Uri.parse(url));
     }
 }

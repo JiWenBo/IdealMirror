@@ -4,18 +4,14 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
 import com.example.dllo.idealmirror.adapter.CommodityDetailsAdapter;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.CommodityDetailsData;
@@ -32,19 +28,15 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
-
 /**
  * Created by LYH on 16/4/1.
  * 二级界面异步滑动界面
  */
 public class CommodityDetailsActivity extends BaseActivity implements VolleyListener, Url, View.OnClickListener {
 
-    private HashMap<String, String> parm;
+    private HashMap<String, String> param;
     private Context context;
     private CommodityDetailsData goodsListData;
-
     //只是为了区分和监听RecyclerView 滑动的监听.
     private RecyclerView recyclerView;
     private CommodityDetailsAdapter commodityDetailsAdapter;
@@ -52,36 +44,30 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     private boolean visible = false;
     private RelativeLayout commodityDetailsHeadRl, commodityDetailsMenuRl;
     private ImageView returnIv, buyIv;
-    private SimpleDraweeView backgroudIv;
+    private SimpleDraweeView backgroundIv;
     private String id;
-    private String backgroud;
+    private String background;
     private TextView adornPhotoTv;
-
 
     @Override
     protected int setContent() {
-        return R.layout.activity_commoditydetails;
-
+        return R.layout.activity_commodity_details;
     }
 
     @Override
     protected void initView() {
-
-        recyclerView = bindView(R.id.recyclerview);
-        backgroudIv = bindView(R.id.commoditydetails_backgroud_iv);
-        returnIv = bindView(R.id.commoditydetails_return_btn);
-        adornPhotoTv = bindView(R.id.commoditydetails_adornPhotos);
-        buyIv = bindView(R.id.commodityDetails_menu_buy);
+        recyclerView = bindView(R.id.recycler_view);
+        backgroundIv = bindView(R.id.commodity_details_background_iv);
+        returnIv = bindView(R.id.commodity_details_return_btn);
+        adornPhotoTv = bindView(R.id.commodity_details_adorn_photos);
+        buyIv = bindView(R.id.commodity_details_menu_buy);
         returnIv.setOnClickListener(this);
         adornPhotoTv.setOnClickListener(this);
         buyIv.setOnClickListener(this);
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-        backgroud = intent.getStringExtra("backgroudUrl");
-        Log.d("ididid", "------" + id);
-        Log.d("backgroudUrl", "-----" + backgroud);
-
+        background = intent.getStringExtra("backgroundUrl");
 
         // 添加滑动监听
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -89,19 +75,18 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                Log.d("数据确认", "dx =    " + dx + "     " + "dy     " + dy + "   ");
+                LogUtils.d("数据确认", "dx =    " + dx + "     " + "dy     " + dy + "   ");
 
-                commodityDetailsHeadRl = (RelativeLayout) findViewById(R.id.commodityDetails_head_rl);
-                commodityDetailsMenuRl = (RelativeLayout) findViewById(R.id.commoditydetails_menu_rl);
+                commodityDetailsHeadRl = (RelativeLayout) findViewById(R.id.commodity_details_head_rl);
+                commodityDetailsMenuRl = (RelativeLayout) findViewById(R.id.commodity_details_menu_rl);
 
                 /**
                  * 这里的 value 是获得recyclerview 所有的滑动距离,将每一次的滑动距离叠加形成的结果.
                  */
-
                 value -= dy;
-                Log.d("滑动效果", value + "   "+dy );
+                LogUtils.d("滑动效果", value + "   " + dy);
 
-                //这是Recyclerview 的方法来获得当前的 value 值.
+                //这是RecyclerView 的方法来获得当前的 value 值.
                 commodityDetailsAdapter.setScrollValue(value, dy);
 
                 //头布局透明度渐变
@@ -114,13 +99,13 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 //按钮弹出动画效果
                 if (value <= -2600 && visible == false) {
                     commodityDetailsMenuRl.setVisibility(View.VISIBLE);
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", -1100, 0);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl, "translationX", -1100, 0);
                     animator.setDuration(500);
                     animator.start();
                     visible = true;
 
                 } else if (value >= -2590 && visible == true) {
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl,"translationX", 0, -1100);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl, "translationX", 0, -1100);
                     animator.setDuration(500);
                     animator.start();
                     visible = false;
@@ -163,8 +148,8 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
         recyclerView.setAdapter(commodityDetailsAdapter);
 
         //设置背景图片
-        Uri uri = Uri.parse(backgroud);
-        backgroudIv.setImageURI(uri);
+        Uri uri = Uri.parse(background);
+        backgroundIv.setImageURI(uri);
     }
 
     @Override
@@ -175,15 +160,15 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.commoditydetails_return_btn:      // 返回
+            case R.id.commodity_details_return_btn:      // 返回
                 finish();
                 break;
-            case R.id.commoditydetails_adornPhotos:     // 佩戴图集
+            case R.id.commodity_details_adorn_photos:     // 佩戴图集
                 Intent intentAdorn = new Intent(this, AdornPhotosActivity.class);
                 intentAdorn.putExtra("id", id);
                 startActivity(intentAdorn);
                 break;
-            case R.id.commodityDetails_menu_buy:         // 购买
+            case R.id.commodity_details_menu_buy:         // 购买
                 Intent intent = new Intent(this, BuyDetailsActivity.class);
                 intent.putExtra("good_pic", goodsListData.getData().getGoods_pic());
                 intent.putExtra("good_name", goodsListData.getData().getGoods_name());
