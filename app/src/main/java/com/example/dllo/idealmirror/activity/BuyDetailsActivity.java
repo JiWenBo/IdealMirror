@@ -125,7 +125,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         Gson gson = new Gson();
         data = new Address();
         data = gson.fromJson(jsonObject.toString(), Address.class);
-        LogUtils.d("00", body);
+
         if (data.getData().getPagination().getFirst_time() == "") {
             name.setText(R.string.java_addpeoplemessage);
             nameId.setText("");
@@ -136,13 +136,15 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         } else {
             for (int i = 0; i < data.getData().getList().size(); i++) {
 
-                if (!data.getData().getList().get(i).getIf_moren().equals("2")) {
+                if (data.getData().getList().get(i).getIf_moren().equals("1")) {
                     name.setText(R.string.receiver);
                     nameId.setText(data.getData().getList().get(i).getUsername());
                     address.setText(R.string.java_address);
                     addressId.setText(data.getData().getList().get(i).getAddr_info());
                     phone.setText(data.getData().getList().get(i).getCellphone());
                     changeAdd.setText(R.string.jave_changeaddress);
+                    break;
+
                 } else if (data.getData().getList().get(i).getIf_moren().equals("2") || data.getData().getList().get(i).getIf_moren().equals("")) {
                     name.setText(R.string.java_setpeoplemessage);
                     nameId.setText("");
@@ -150,6 +152,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                     addressId.setText("");
                     phone.setText("");
                     changeAdd.setText(R.string.java_setaddress);
+
                 }
             }
         }
