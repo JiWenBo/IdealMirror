@@ -53,9 +53,9 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
         name.setText(intent.getStringExtra("name"));
         number.setText(intent.getStringExtra("number"));
         address.setText(intent.getStringExtra("address"));
-        nameTitle.setText(intent.getStringExtra("nameTitle"));
-        numTitle.setText(intent.getStringExtra("numTitle"));
-        addTitle.setText(intent.getStringExtra("addTitle"));
+        nameTitle.setText(intent.getStringExtra("nametitle"));
+        numTitle.setText(intent.getStringExtra("numtitle"));
+        addTitle.setText(intent.getStringExtra("addtitle"));
         title.setText(intent.getStringExtra("title"));
         subBtn.setText(intent.getStringExtra("btnText"));
         close.setOnClickListener(new View.OnClickListener() {

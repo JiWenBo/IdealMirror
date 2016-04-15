@@ -82,9 +82,9 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                 intent.putExtra("name", "");
                 intent.putExtra("number", "");
                 intent.putExtra("address", "");
-                intent.putExtra("nameTitle", getString(R.string.java_alladdress_receiver_name));
-                intent.putExtra("numTitle", getString(R.string.java_alladdress_contact_phone));
-                intent.putExtra("addTitle", getString(R.string.java_alladdress_receiver_address));
+                intent.putExtra("nametitle", getString(R.string.java_alladdress_receiver_name));
+                intent.putExtra("numtitle", getString(R.string.java_alladdress_contact_phone));
+                intent.putExtra("addtitle", getString(R.string.java_alladdress_receiver_address));
                 intent.putExtra("title", getString(R.string.java_alladdress_add_address));
                 intent.putExtra("btnText", getString(R.string.java_alladdress_commit_address));
                 startActivityForResult(intent, request);
