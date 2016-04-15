@@ -10,5 +10,8 @@
         android:id="@+id/recycler_adorn_photos_iv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/recycler_adorn_photos_img_hei"
-        fresco:placeholderImage="@mipmap/ic_launcher" />
+        fresco:actualImageScaleType="focusCrop"
+        fresco:progressBarImage="@mipmap/icon_progress_bar"
+        fresco:progressBarImageScaleType="centerInside"
+        fresco:progressBarAutoRotateInterval="5000"/>
 </com.zhy.autolayout.AutoLinearLayout>

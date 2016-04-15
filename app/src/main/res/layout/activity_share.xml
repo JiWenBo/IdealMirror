@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        fresco:actualImageScaleType="focusCrop"
+        fresco:progressBarImage="@mipmap/icon_progress_bar"
+        fresco:progressBarImageScaleType="centerInside"
+        fresco:progressBarAutoRotateInterval="5000"/>
 
     <android.support.v4.view.DirectionalViewPager
         android:id="@+id/viewpager"

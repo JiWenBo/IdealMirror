@@ -9,7 +9,10 @@
         android:id="@+id/commodity_details_background_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        fresco:placeholderImage="@mipmap/ic_launcher" />
+        fresco:actualImageScaleType="focusCrop"
+        fresco:progressBarImage="@mipmap/icon_progress_bar"
+        fresco:progressBarImageScaleType="centerInside"
+        fresco:progressBarAutoRotateInterval="5000" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

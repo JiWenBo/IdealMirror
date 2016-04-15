@@ -80,7 +80,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mainActivity.getDataFromFragment(position);
-                removeMenu();
+                mainActivity.removeMenuFrame();
             }
         });
 
@@ -103,30 +103,30 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.menu_to_story_layout:
                 mainActivity.getDataFromFragment(3);
-                removeMenu();
+                mainActivity.removeMenuFrame();
                 break;
             case R.id.menu_to_shopping_layout:
                 mainActivity.getDataFromFragment(4);
-                removeMenu();
+                mainActivity.removeMenuFrame();
                 break;
             case R.id.menu_to_home_layout:
                 mainActivity.getDataFromFragment(0);
-                removeMenu();
+                mainActivity.removeMenuFrame();
                 break;
             case R.id.menu_return_layout:
-                removeMenu();
+                mainActivity.removeMenuFrame();
                 break;
             case R.id.fragment_menu_back:
-                removeMenu();
+                mainActivity.removeMenuFrame();
                 break;
         }
 
     }
 
-    public void removeMenu() {
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().remove(this).commit();
-    }
+//    public void removeMenu() {
+//        FragmentManager fm = getFragmentManager();
+//        fm.beginTransaction().remove(this).commit();
+//    }
 
 
 }
