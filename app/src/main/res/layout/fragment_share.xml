@@ -7,7 +7,7 @@
         android:layout_width="@dimen/fragment_share_msg_wid"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/sixfive">
+        android:layout_marginTop="@dimen/share_fragment_msg_top">
 
         <ImageView
             android:layout_width="@dimen/fragment_share_msg_wid"

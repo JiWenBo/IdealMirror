@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_menu_title_text"
-                android:textColor="#fff" />
+                android:textColor="@color/colorWhite" />
 
             <ImageView
                 android:layout_width="wrap_content"

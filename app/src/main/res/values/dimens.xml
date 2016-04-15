@@ -27,8 +27,8 @@
     <dimen name="create_verifi_edit_top">20px</dimen>
     <dimen name="create_verifi_btn_width">208px</dimen>
     <dimen name="create_setpw_text_top">30px</dimen>
-    <dimen name="create_setpw_text_size">24px</dimen>
-    <dimen name="create_setpw_edit_top">20px</dimen>
+    <dimen name="create_set_pw_text_size">24px</dimen>
+    <dimen name="create_set_pw_edit_top">20px</dimen>
     <dimen name="create_btn_height">80px</dimen>
     <dimen name="create_btn_top">50px</dimen>
     <dimen name="create_btn_text_size">34px</dimen>
@@ -69,8 +69,8 @@
     <dimen name="all_address_title_wid_wei">0dp</dimen>
     <dimen name="all_address_add_btn_hei">160px</dimen>
     <dimen name="all_address_add_top">50px</dimen>
-    <dimen name="zeropx">0dp</dimen>
-    <dimen name="zerodp">0dp</dimen>
+    <dimen name="create_account_title_wid">0dp</dimen>
+    <dimen name="create_account_verifi_edit_wid">0dp</dimen>
     <dimen name="login_rl_hei">0dp</dimen>
     <dimen name="main_menu_top">68px</dimen>
     <dimen name="textsize">30px</dimen>
@@ -113,7 +113,7 @@
     <dimen name="item_story_msg_iv_top">34px</dimen>
     <dimen name="item_story_msg_hei">158px</dimen>
     <dimen name="fragment_share_msg_wid">640px</dimen>
-    <dimen name="sixfive">650px</dimen>
+    <dimen name="share_fragment_msg_top">650px</dimen>
     <dimen name="fragment_share_msg_small_wid">610px</dimen>
     <dimen name="fragment_share_msg_small_hei">290px</dimen>
     <dimen name="fragment_share_msg_small_left">42px</dimen>
@@ -167,6 +167,7 @@
     <dimen name="commodity_item_head_watch_hei">20px</dimen>
     <dimen name="commodity_item_head_watch_bottom">20px</dimen>
     <dimen name="commodity_item_head_watch_top">14px</dimen>
+    <dimen name="commodity_item_lucency_height">1200px</dimen>
     <dimen name="commodity_item_title_name_left">54px</dimen>
     <dimen name="commodity_item_title_name_right">54px</dimen>
     <dimen name="commodity_item_title_name_top">102px</dimen>
