@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class SwipeLayout extends LinearLayout {
     //添加一个接口
     private ContentViewLinister linister;
-    private ViewDragHelper viewDragHelper;
+    private ViewDragHelper viewDragHelper;//这个方法提供可以拖动子部件的作用
     private View contentView;
     private View actionView;
     private int dragDistance;
