@@ -62,7 +62,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
         ImageLoader loader = netHelper.getImageLoader();
         if (isNetWorks.isNetWorkAvilable(context)) {
             final String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
-            loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+            loader.get(goodsurl, ImageLoader.getImageListener(holder.img, R.drawable.loading, R.drawable.fail));
             holder.price.setText("¥" + mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
             holder.brand.setText(mrtjListBean.getData().getList().get(0).getData_info().getBrand());
             holder.area.setText(mrtjListBean.getData().getList().get(0).getData_info().getProduct_area());
@@ -83,7 +83,7 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
             holder.area.setText(data.get(0).getProductarea());
             holder.name.setText(data.get(0).getGoodname());
 
-            loader.get(data.get(0).getImgurl(), ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+            loader.get(data.get(0).getImgurl(), ImageLoader.getImageListener(holder.img, R.drawable.loading, R.drawable.fail));
             holder.bar.setVisibility(View.GONE);
 
             holder.pic.setOnClickListener(new View.OnClickListener() {

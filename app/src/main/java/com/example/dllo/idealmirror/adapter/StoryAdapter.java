@@ -47,7 +47,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
         ImageLoader loader = netHelper.getImageLoader();
         String goodsUrl = storyListBean.get(position).getPicimg();
         holder.position = position;
-        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.drawable.loading, R.drawable.fail));
         holder.titleTv.setText(storyListBean.get(position).getTitle());
     }
 
