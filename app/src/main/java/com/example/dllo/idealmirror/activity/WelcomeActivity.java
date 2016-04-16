@@ -1,5 +1,6 @@
 package com.example.dllo.idealmirror.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
@@ -60,6 +61,9 @@ public class WelcomeActivity extends BaseActivity implements Url, VolleyListener
             @Override
             public boolean handleMessage(Message msg) {
                 if (msg.what == 1) {
+
+                    Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }
 

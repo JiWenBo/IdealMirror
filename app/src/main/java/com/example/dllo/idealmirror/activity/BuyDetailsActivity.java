@@ -54,8 +54,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     private int requsetCode = 1;
     private SetNewBuyUI setNewBuyUI;
     private OrderSub orderSub;//订单实体类
-
-    String str = "service=\"mobile.securitypay.pay\"&partner=\"2088021758262531\"&_input_charset=\"utf-8\"&notify_url=\"http%3A%2F%2Fapi.mirroreye.cn%2Findex.php%2Fali_notify\"&out_trade_no=\"14606860192nw\"&subject=\"GENTLE MONSTER\"&payment_type=\"1\"&seller_id=\"2088021758262531\"&total_fee=\"1300.00\"&body=\"GENTLE MONSTER\"&it_b_pay =\"30m\"&sign=\"aOApPfnRYJfkDc1MfdsheG3Zvy217Ri1JkG76ZtyHyztgQfTf796TTOZTp0udugU%2BJr6RztYRAtdyfcDbzHXgfdLXeNTl8kdisZRejZBYrrk9WqbEnpS2yFUEaN5tU8q2QL%2FKAU%2FUolyVP9MYI1NLr%2FdGnW%2FTRBSKPixXuOMRxI%3D\"&sign_type=\"RSA\"";
+    private String strmsg;
     private final static int SDK_PAY_FLAG = 1;
     public static String RSA_PRIVATE = "";// 商户私钥，pkcs8格式
 
@@ -154,6 +153,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.buy_btn:
                 //显示选择支付方式的对话框
+                getPayData();
                 showDialog();
                 break;
         }
@@ -237,12 +237,14 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
             phone.setText(data.getStringExtra("phone"));
             changeAdd.setText(R.string.jave_changeaddress);
         }
+
     }
 
     class SetNewBuyUI extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+
             NetHelper helper = new NetHelper();
             HashMap<String, String> data;
             data = new HashMap<>();
@@ -274,25 +276,26 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     public void showDialog(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("选择支付方式");
+        builder.setTitle(R.string.Buy_choosepay);
         View v = getLayoutInflater().inflate(R.layout.buydetails_dialog_item,null);
         v.findViewById(R.id.wechat_pay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BuyDetailsActivity.this, "选择微信支付", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BuyDetailsActivity.this, R.string.Buy_weichatpay, Toast.LENGTH_SHORT).show();
             }
         });
         v.findViewById(R.id.ali_pay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BuyDetailsActivity.this, "选择支付宝支付", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BuyDetailsActivity.this, R.string.Buy_alibabapay, Toast.LENGTH_SHORT).show();
+
                 //TODO 支付宝支付
-                String sign = sign(str);
+                String sign = sign(strmsg);
 
                 /**
                  * 完整的符合支付宝参数规范的订单信息
                  */
-                final String payInfo = str + "&sign=\"" + sign + "\"&" + getSignType();
+                final String payInfo = strmsg + "&sign=\"" + sign + "\"&" + getSignType();
 
                 Runnable payRunnable = new Runnable() {
 
@@ -372,23 +375,19 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         NetHelper netHelper = new NetHelper();
         HashMap<String,String> data;
         data = new HashMap<>();
-        data.put("token",TOKEN);
-        data.put("goods_id",intent.getStringExtra("good_id"));
-        LogUtils.d(intent.getStringExtra("good_id"));
+        data.put("token", TOKEN);
+        data.put("goods_id", intent.getStringExtra("good_id"));
         data.put("goods_num", "1");
-        data.put("price",intent.getStringExtra("good_price"));
-        LogUtils.d(intent.getStringExtra("good_price"));
-        data.put("device_type","3");
+        data.put("price", intent.getStringExtra("good_price"));
+        data.put("device_type", "3");
         netHelper.getInformation(ORDER_SUB, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
                 try {
-                    LogUtils.d(body);
                     JSONObject jsonObject = new JSONObject(body);
                     Gson gson = new Gson();
                     orderSub = new OrderSub();
-                    orderSub =  gson.fromJson(jsonObject.toString(),OrderSub.class);
-
+                    orderSub = gson.fromJson(jsonObject.toString(), OrderSub.class);
                     Uri uri = Uri.parse(orderSub.getData().getGoods().getPic());
                     mirrorImg.setImageURI(uri);
                     title.setText(orderSub.getData().getGoods().getGoods_name());
@@ -405,5 +404,32 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
             }
         }, data);
 
+    }
+    private void getPayData(){
+        NetHelper helper = new NetHelper();
+        HashMap<String,String> data;
+        data = new HashMap<>();
+        data.put("token",TOKEN);
+        data.put("order_no", orderSub.getData().getOrder_id());
+        data.put("addr_id", orderSub.getData().getAddress().getAddr_id());
+        data.put("goodsname", orderSub.getData().getGoods().getGoods_name());
+        helper.getInformation(PAY_ALI, new VolleyListener() {
+            @Override
+            public void getSuccess(String body) {
+                try {
+                    /*是新的订单执行这个*/
+                    JSONObject jsonObject = new JSONObject(body);
+                    JSONObject dataMsg = jsonObject.getJSONObject("data");
+                     strmsg = dataMsg.getString("str");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void getFail() {
+
+            }
+        }, data);
     }
 }

@@ -27,6 +27,7 @@ import com.example.dllo.idealmirror.mirrordao.GoodListCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.Url;
+import com.example.dllo.idealmirror.tool.VerticalViewPager;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
@@ -46,21 +47,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private GoodList datas;
     private List<GoodListCache> goodListCacheList;
     private GoodListCache goodListCache;
-    private DirectionalViewPager viewPager;
+    private DirectionalViewPager viewPager;//
     private VerticalAdapter verticalAdapter;
     private TextView login, shopping;
     private LinearLayout menu;
     private FrameLayout frameLayout;
     private DaoSingleton daoSingleton;
-
-    //TODO
-    public MainActivity() {
-    }
-
     @Override
     protected int setContent() {
-        Intent intent = new Intent(this,WelcomeActivity.class);
-        startActivity(intent);
         return R.layout.activity_main;
     }
 

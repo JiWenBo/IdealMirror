@@ -92,6 +92,9 @@
     <string name="java_story_check_net">请检查网络</string>
     <string name="java_vertical_three_story">専題分享</string>
     <string name="menu_shopping">我的購物車</string>
+    <string name="Buy_weichatpay">选择微信支付</string>
+    <string name="Buy_alibabapay">选择支付宝支付</string>
+    <string name="Buy_choosepay">选择支付方式</string>
 
 
 </resources>
