@@ -12,16 +12,15 @@ public class DoubleCache implements ImageLoader.ImageCache {
     private MemoryCache memoryCache;
     private DiskCache diskCache;
 
-    public DoubleCache(String diskPathurl) {
+    public DoubleCache(String diskPathUrl) {
         memoryCache = new MemoryCache();
-        diskCache = new DiskCache(diskPathurl);
+        diskCache = new DiskCache(diskPathUrl);
     }
 
     @Override
     public Bitmap getBitmap(String url) {
         Bitmap bitmap = memoryCache.getBitmap(url);
         if (bitmap == null) {
-
             bitmap = diskCache.getBitmap(url);
         }
 

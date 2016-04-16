@@ -54,7 +54,7 @@ public class PicDetailsActivity extends BaseActivity {
         setContentView(imageView);
 
         NetHelper helper = new NetHelper();
-        helper.getImage(mDatas.get(mPosition - 1), ImageLoader.getImageListener(imageView, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+        helper.getImage(mDatas.get(mPosition - 1), ImageLoader.getImageListener(imageView, R.drawable.loading, R.drawable.fail));
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

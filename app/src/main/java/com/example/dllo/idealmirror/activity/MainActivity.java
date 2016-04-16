@@ -109,14 +109,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 // 登陆
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
-                frameLayout.setVisibility(View.GONE);
+//                frameLayout.setVisibility(View.GONE);
+                removeMenuFrame();
                 break;
             case R.id.main_shopping:
                 // 购物车
                 // 按钮动画
                 playHeartbeatAnimation(shopping);
                 getDataFromFragment(4);
-                frameLayout.setVisibility(View.GONE);
+//                frameLayout.setVisibility(View.GONE);
+                removeMenuFrame();
                 break;
         }
     }
@@ -288,6 +290,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 new MenuFragment(store, context, goodListCacheList)).commit();
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.menu_fragment);
         frameLayout.setAnimation(animation);
+    }
+
+    public void removeMenuFrame() {
+        frameLayout.setVisibility(View.GONE);
     }
 
 }

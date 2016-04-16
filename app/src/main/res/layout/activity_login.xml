@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/login_sina_bottom"
-            android:paddingLeft="@dimen/login_sina_paddingleft"
+            android:paddingLeft="@dimen/login_sina_padding_left"
             android:src="@drawable/sina_icon" />
 
         <ImageView

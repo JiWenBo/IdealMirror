@@ -2,6 +2,7 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
     android:orientation="vertical"
     android:padding="@dimen/activity_create_padding">
@@ -136,7 +137,11 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/mirror_sdv"
             android:layout_width="@dimen/buy_detail_good_sdv_wid"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:progressBarImage="@mipmap/icon_progress_bar"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:progressBarAutoRotateInterval="5000"/>
 
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"

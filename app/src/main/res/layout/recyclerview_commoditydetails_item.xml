@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/commodity_item_item_pic_hei"
         android:layout_margin="@dimen/commodity_item_title_sdv_margin"
-        fresco:placeholderImage="@mipmap/ic_launcher" />
+        fresco:actualImageScaleType="focusCrop"
+        fresco:progressBarImage="@mipmap/icon_progress_bar"
+        fresco:progressBarImageScaleType="centerInside"
+        fresco:progressBarAutoRotateInterval="5000" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/recycler_commodity_details_story_layout"

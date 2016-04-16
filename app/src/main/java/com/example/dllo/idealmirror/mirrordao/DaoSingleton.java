@@ -31,7 +31,6 @@ public class DaoSingleton {
      */
     private DaoSingleton() {
         context = BaseApplication.getContext();
-
         DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(context, DATABASE_NAME, null);
         daoMaster = new DaoMaster(devOpenHelper.getWritableDatabase());
         daoSession = daoMaster.newSession();
@@ -80,33 +79,33 @@ public class DaoSingleton {
 //        return daoSession;
 //    }
 
-//    public AllMirrorCacheDao getAllMirrorCacheDao() {
-//        if (allMirrorCacheDao == null) {
-//            allMirrorCacheDao = getDaoSession().getAllMirrorCacheDao();
-//        }
-//        return allMirrorCacheDao;
-//    }
+    public AllMirrorCacheDao getAllMirrorCacheDao() {
+        if (allMirrorCacheDao == null) {
+            allMirrorCacheDao = daoSession.getAllMirrorCacheDao();
+        }
+        return allMirrorCacheDao;
+    }
 
-//    public GoodListCacheDao getGoodListCacheDao() {
-//        if (goodListDao == null) {
-//            goodListDao = getDaoSession().getGoodListCacheDao();
-//        }
-//        return goodListDao;
-//    }
-//
-//    public PlainMirrorDao getPlainMirrorDao() {
-//        if (plainMirrorDao == null) {
-//            plainMirrorDao = getDaoSession().getPlainMirrorDao();
-//        }
-//        return plainMirrorDao;
-//    }
-//
-//    public StoryMirrorDao getStoryMirrorDao() {
-//        if (storyMirrorDao == null) {
-//            storyMirrorDao = getDaoSession().getStoryMirrorDao();
-//        }
-//        return storyMirrorDao;
-//    }
+    public GoodListCacheDao getGoodListCacheDao() {
+        if (goodListDao == null) {
+            goodListDao = daoSession.getGoodListCacheDao();
+        }
+        return goodListDao;
+    }
+
+    public PlainMirrorDao getPlainMirrorDao() {
+        if (plainMirrorDao == null) {
+            plainMirrorDao = daoSession.getPlainMirrorDao();
+        }
+        return plainMirrorDao;
+    }
+
+    public StoryMirrorDao getStoryMirrorDao() {
+        if (storyMirrorDao == null) {
+            storyMirrorDao = daoSession.getStoryMirrorDao();
+        }
+        return storyMirrorDao;
+    }
 
     /**
      * 插入菜单数据
@@ -123,6 +122,14 @@ public class DaoSingleton {
      */
     public void insertGoodList(List<GoodListCache> goodListCacheList) {
         daoSession.getGoodListCacheDao().insertInTx(goodListCacheList);
+    }
+
+    /**
+     * 根据position删除goodListCache数据
+     * @param position key位置
+     */
+    public void deleteGoodListByKey(long position) {
+        daoSession.getGoodListCacheDao().deleteByKey(position);
     }
 
     /**
@@ -159,6 +166,14 @@ public class DaoSingleton {
     }
 
     /**
+     * 根据position删除allMirrorCache数据
+     * @param position key位置
+     */
+    public void deleteAllMirrorByKey(long position) {
+        daoSession.getAllMirrorCacheDao().deleteByKey(position);
+    }
+
+    /**
      * 删除所有类别的所有数据
      */
     public void deleteAllMirrorAll() {
@@ -192,6 +207,14 @@ public class DaoSingleton {
     }
 
     /**
+     * 根据position删除plainMirrorCache数据
+     * @param position
+     */
+    public void deletePlainMirrorByKey(long position) {
+        daoSession.getPlainMirrorDao().deleteByKey(position);
+    }
+
+    /**
      * 删除分类的所有数据
      */
     public void deletePlainMirrorAll() {
@@ -222,6 +245,14 @@ public class DaoSingleton {
      */
     public void insertStoryMirror(List<StoryMirror> storyMirrorList) {
         daoSession.getStoryMirrorDao().insertInTx(storyMirrorList);
+    }
+
+    /**
+     * 根据position删除StoryMirrorCache数据
+     * @param position
+     */
+    public void deleteStoryMirrorByKey(long position) {
+        daoSession.getStoryMirrorDao().deleteByKey(position);
     }
 
     /**

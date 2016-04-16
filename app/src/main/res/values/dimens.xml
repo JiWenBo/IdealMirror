@@ -2,11 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="main_mirror_iv_left">48px</dimen>
-    <dimen name="main_mirror_iv_bottom">40px</dimen>
-    <dimen name="main_login_iv_right">48px</dimen>
+    <dimen name="main_mirror_iv_left">28px</dimen>
+    <dimen name="main_mirror_iv_bottom">20px</dimen>
+    <dimen name="main_login_iv_right">28px</dimen>
     <dimen name="main_menu_left">9dp</dimen>
-    <dimen name="martopthree_four">5dp</dimen>
+    <!--<dimen name="martopthree_four">5dp</dimen>-->
     <dimen name="main_menu_iv_left">9px</dimen>
     <dimen name="main_menu_text_top">26px</dimen>
     <dimen name="good_recycler_top">94px</dimen>
@@ -49,8 +49,6 @@
     <dimen name="add_address_add_address_edit_top">20px</dimen>
     <dimen name="add_address_commit_address_top">50px</dimen>
     <dimen name="add_address_commit_address_size">30px</dimen>
-    <dimen name="login_sina_paddingleft">200px</dimen>
-    <dimen name="login_wechat_padding_right">200px</dimen>
     <dimen name="recycler_all_address_item_top">20px</dimen>
     <dimen name="recycler_all_address_content_top">40px</dimen>
     <dimen name="recycler_all_address_content_left">24px</dimen>
@@ -64,8 +62,6 @@
     <dimen name="all_address_alter_right">60px</dimen>
     <dimen name="all_address_delete_width">130px</dimen>
     <dimen name="all_address_delete_size">26px</dimen>
-    <dimen name="login_edit_height">80px</dimen>
-
     <dimen name="all_address_title_wid_wei">0dp</dimen>
     <dimen name="all_address_add_btn_hei">160px</dimen>
     <dimen name="all_address_add_top">50px</dimen>
@@ -73,7 +69,7 @@
     <dimen name="create_account_verifi_edit_wid">0dp</dimen>
     <dimen name="login_rl_hei">0dp</dimen>
     <dimen name="main_menu_top">68px</dimen>
-    <dimen name="textsize">30px</dimen>
+    <!--<dimen name="textsize">30px</dimen>-->
     <dimen name="main_menu_text_size">25px</dimen>
     <dimen name="good_recycler_left">22px</dimen>
     <dimen name="item_good_pic_wid">470px</dimen>
@@ -89,7 +85,7 @@
     <dimen name="item_good_msg_item_area_left">32px</dimen>
     <dimen name="item_mrtj_area_top">20px</dimen>
     <dimen name="item_good_msg_item_area_size">24px</dimen>
-    <dimen name="topthree">100px</dimen>
+    <!--<dimen name="topthree">100px</dimen>-->
     <dimen name="item_good_msg_item_brand_top">16px</dimen>
     <dimen name="item_good_msg_item_brand_size">30px</dimen>
     <dimen name="item_menu_top">44px</dimen>
@@ -105,10 +101,10 @@
     <dimen name="add_address_add_phone_edit_height">80px</dimen>
     <dimen name="add_address_address_edit_height">200px</dimen>
 
-    <dimen name="marfour">470px</dimen>
-    <dimen name="sevenfive">750px</dimen>
-    <dimen name="threeten">30px</dimen>
-    <dimen name="nineone">912px</dimen>
+    <!--<dimen name="marfour">470px</dimen>-->
+    <!--<dimen name="sevenfive">750px</dimen>-->
+    <!--<dimen name="threeten">30px</dimen>-->
+    <!--<dimen name="nineone">912px</dimen>-->
     <dimen name="item_story_msh_top">750px</dimen>
     <dimen name="item_story_msg_iv_top">34px</dimen>
     <dimen name="item_story_msg_hei">158px</dimen>
@@ -122,7 +118,7 @@
     <dimen name="fragment_share_msg_sub_title_size">20px</dimen>
 
 
-    <dimen name="addAddress_edit">200px</dimen>
+    <!--<dimen name="addAddress_edit">200px</dimen>-->
     <dimen name="item_good_msg_item_line_top">20px</dimen>
     <dimen name="item_good_msg_item_view_left">205dp</dimen>
     <dimen name="item_good_msg_item_view_hei">2dp</dimen>

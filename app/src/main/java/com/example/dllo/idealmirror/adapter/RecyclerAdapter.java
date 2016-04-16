@@ -43,7 +43,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         NetHelper netHelper = new NetHelper();
         ImageLoader loader = netHelper.getImageLoader();
         String goodsUrl = data.getGoodsimg();
-        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.drawable.loading, R.drawable.fail));
         holder.brand.setText(data.getBrand());
         holder.area.setText(data.getProduct());
         holder.price.setText("¥" + data.getGoodsprice());
