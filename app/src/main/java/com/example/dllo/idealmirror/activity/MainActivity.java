@@ -59,6 +59,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     protected int setContent() {
+        Intent intent = new Intent(this,WelcomeActivity.class);
+        startActivity(intent);
         return R.layout.activity_main;
     }
 

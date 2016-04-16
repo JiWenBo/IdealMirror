@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.base.BaseActivity;
 import com.example.dllo.idealmirror.bean.Address;
+import com.example.dllo.idealmirror.bean.OrderSub;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
@@ -34,11 +35,12 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     private AutoRelativeLayout setAddress;
     private ImageView close;
     private SimpleDraweeView mirrorImg;
-    private TextView title, price, name, nameId, address, addressId, phone, changeAdd;
+    private TextView title, price, name, nameId, address, addressId, phone, changeAdd,bodycontent;
     private Button buyBtn;
     private Address data;
     private int requsetCode = 1;
     private SetNewBuyUI setNewBuyUI;
+    private OrderSub orderSub;//订单实体类
 
     @Override
     protected int setContent() {
@@ -60,18 +62,15 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         addressId = bindView(R.id.address_id);
         phone = bindView(R.id.phone);
         changeAdd = bindView(R.id.change_address);
+        bodycontent = bindView(R.id.content);
     }
 
     @Override
     protected void initData() {
-        // getOrder();//订单拉取
-        Intent intent = getIntent();
+         getOrder();//订单拉取
         setAddress.setOnClickListener(this);
         close.setOnClickListener(this);
-        Uri uri = Uri.parse(intent.getStringExtra("good_pic"));
-        mirrorImg.setImageURI(uri);
-        title.setText(intent.getStringExtra("good_name"));
-        price.setText("¥" + intent.getStringExtra("good_price"));
+
         NetHelper helper = new NetHelper();
         HashMap<String, String> data;
         data = new HashMap<>();
@@ -217,8 +216,46 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         unregisterReceiver(setNewBuyUI);
     }
 
-    //TODO
+    /**
+     * 将订单数据获得
+     */
     private void getOrder() {
+        Intent  intent = getIntent();
+        NetHelper netHelper = new NetHelper();
+        HashMap<String,String> data;
+        data = new HashMap<>();
+        data.put("token",TOKEN);
+        data.put("goods_id",intent.getStringExtra("good_id"));
+        LogUtils.d(intent.getStringExtra("good_id"));
+        data.put("goods_num", "1");
+        data.put("price",intent.getStringExtra("good_price"));
+        LogUtils.d(intent.getStringExtra("good_price"));
+        data.put("device_type","3");
+        netHelper.getInformation(ORDER_SUB, new VolleyListener() {
+            @Override
+            public void getSuccess(String body) {
+                try {
+                    LogUtils.d(body);
+                    JSONObject jsonObject = new JSONObject(body);
+                    Gson gson = new Gson();
+                    orderSub = new OrderSub();
+                    orderSub =  gson.fromJson(jsonObject.toString(),OrderSub.class);
+
+                    Uri uri = Uri.parse(orderSub.getData().getGoods().getPic());
+                    mirrorImg.setImageURI(uri);
+                    title.setText(orderSub.getData().getGoods().getGoods_name());
+                    price.setText("¥" + orderSub.getData().getGoods().getPrice());
+                    bodycontent.setText(orderSub.getData().getGoods().getBook_copy());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void getFail() {
+
+            }
+        }, data);
 
     }
 }

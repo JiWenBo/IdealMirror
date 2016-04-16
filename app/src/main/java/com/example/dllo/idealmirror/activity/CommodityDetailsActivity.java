@@ -173,6 +173,8 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 intent.putExtra("good_pic", goodsListData.getData().getGoods_pic());
                 intent.putExtra("good_name", goodsListData.getData().getGoods_name());
                 intent.putExtra("good_price", goodsListData.getData().getGoods_price());
+                intent.putExtra("good_id",goodsListData.getData().getGoods_id());
+
                 startActivity(intent);
                 break;
         }

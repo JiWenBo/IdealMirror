@@ -20,7 +20,6 @@ public class IsNetWork {
             if(networkInfos != null){
                 for (int i = 0, count = networkInfos.length; i < count; i++) {
                     if(networkInfos[i].getState() == NetworkInfo.State.CONNECTED){
-                        ToastUtils.showToast(context, context.getString(R.string.java_isnet_normal));
                         return true;
                     }
                 }

@@ -31,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.WelcomeActivity"/>
         <activity android:name=".adapter.VerticalAdapter"/>
         <activity android:name=".bean.GoodsListBean"/>
         <activity android:name=".database.Database"/>
