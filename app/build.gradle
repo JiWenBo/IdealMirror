@@ -42,5 +42,5 @@ dependencies {
     compile files('libs/ShareSDK-Core-2.7.0.jar')
     compile files('libs/ShareSDK-QZone-2.7.0.jar')
     compile 'fm.jiecao:jiecaovideoplayer:2.0'
-
+    compile files('libs/alipaySdk-20160223.jar')
 }
