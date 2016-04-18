@@ -1,15 +1,16 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" ><LinearLayout
+    android:layout_height="fill_parent" >
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/pay_marginten"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -17,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="商品名称:"
+                android:text="@string/pay_goodsname"
                 android:textColor="#777777"
                 tools:ignore="HardcodedText" />
 
@@ -26,15 +27,15 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="测试的商品"
+                android:text="@string/pay_testgoods"
                 android:textColor="#333333"
                 tools:ignore="HardcodedText" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/pay_margintens"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -42,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="商品描述:"
+                android:text="@string/pay_goodsdes"
                 android:textColor="#777777"
                 tools:ignore="HardcodedText" />
 
@@ -50,15 +51,15 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="该测试商品的详细描述"
+                android:text="@string/pay_testgoodstitle"
                 android:textColor="#333333"
                 tools:ignore="HardcodedText" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/pay_tems"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -66,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="商品价格:"
+                android:text="@string/pay_goodsprice"
                 android:textColor="#777777"
                 tools:ignore="HardcodedText" />
 
@@ -75,18 +76,18 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="0.01元"
+                android:text="@string/pay_zerozero"
                 android:textColor="#ff6600"
                 tools:ignore="HardcodedText" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
         <Button
             android:id="@+id/pay"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/pay_martens"
             android:onClick="pay"
-            android:text="支付"
+            android:text="@string/pay_paybtn"
             tools:ignore="HardcodedText" />
 
         <Button
@@ -95,8 +96,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:onClick="h5Pay"
-            android:text="网页支付转native"
+            android:text="@string/pay_webtonatice"
             tools:ignore="HardcodedText" />
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
 </ScrollView>

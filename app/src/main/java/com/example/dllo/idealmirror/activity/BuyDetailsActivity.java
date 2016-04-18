@@ -77,16 +77,16 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        Toast.makeText(BuyDetailsActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BuyDetailsActivity.this, R.string.Buy_paysuccess, Toast.LENGTH_SHORT).show();
                     } else {
                         // 判断resultStatus 为非"9000"则代表可能支付失败
                         // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                         if (TextUtils.equals(resultStatus, "8000")) {
-                            Toast.makeText(BuyDetailsActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BuyDetailsActivity.this, R.string.Buy_payfalse, Toast.LENGTH_SHORT).show();
 
                         } else {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                            Toast.makeText(BuyDetailsActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BuyDetailsActivity.this, R.string.Buy_payoom, Toast.LENGTH_SHORT).show();
                         }
                     }
                     break;
@@ -331,7 +331,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                  * demo中拦截url进行支付的逻辑是在H5PayDemoActivity中shouldOverrideUrlLoading方法实现，
                  * 商户可以根据自己的需求来实现
                  */
-                String url = "http://m.meituan.com";
+                String url = MEITUAN;
                 // url可以是一号店或者美团等第三方的购物wap站点，在该网站的支付过程中，支付宝sdk完成拦截支付
                 extras.putString("url", url);
                 intent.putExtras(extras);

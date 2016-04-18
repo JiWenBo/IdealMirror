@@ -232,6 +232,16 @@
     <dimen name="commodity_item_title_sdv_top">200dp</dimen>
     <dimen name="commodity_item_title_layout_top">300dp</dimen>
     <dimen name="commodity_details_layout_top">300dp</dimen>
+    <dimen name="dialog_martop">50px</dimen>
+    <dimen name="dialog_marlefttwofour">24px</dimen>
+    <dimen name="dialog_textsice">30px</dimen>
+    <dimen name="dialog_marginfive">50px</dimen>
+    <dimen name="dialog_twofour">24px</dimen>
+    <dimen name="dialog_three">30px</dimen>
+    <dimen name="pay_marginten">10dp</dimen>
+    <dimen name="pay_margintens">10dp</dimen>
+    <dimen name="pay_tems">10dp</dimen>
+    <dimen name="pay_martens">10dp</dimen>
 
 
 </resources>

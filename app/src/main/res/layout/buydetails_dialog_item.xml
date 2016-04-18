@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:id = "@+id/wechat_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="@dimen/dialog_martop"
         android:layout_gravity="center"
         android:gravity="center"
         android:background="@drawable/wechat_pay_btn_true">
@@ -20,20 +20,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24px"
-            android:textSize="30px"
+            android:layout_marginLeft="@dimen/dialog_marlefttwofour"
+            android:textSize="@dimen/dialog_textsice"
             android:textColor="@color/colorWhite"
-            android:text="微信支付"/>
-    </LinearLayout>
+            android:text="@string/wchat_pay"/>
+    </com.zhy.autolayout.AutoLinearLayout>
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:id = "@+id/ali_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_margin="50px"
+        android:layout_margin="@dimen/dialog_marginfive"
         android:background="@drawable/wechat_pay_btn_true">
         <ImageView
             android:layout_width="wrap_content"
@@ -42,10 +42,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24px"
-            android:textSize="30px"
+            android:layout_marginLeft="@dimen/dialog_twofour"
+            android:textSize="@dimen/dialog_three"
             android:textColor="@color/colorWhite"
-            android:text="支付宝支付"/>
-    </LinearLayout>
+            android:text="@string/alibaba_pay"/>
+    </com.zhy.autolayout.AutoLinearLayout>
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

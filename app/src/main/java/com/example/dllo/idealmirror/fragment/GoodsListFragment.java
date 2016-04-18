@@ -94,7 +94,7 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
     @Override
     public void getSuccess(String body) {
         try {
-            LogUtils.d("请求成功");
+            LogUtils.d(mainActivity.getString(R.string.GoodList_paysuccess));
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
             goodsListBean = gson.fromJson(object.toString(), GoodsListBean.class);

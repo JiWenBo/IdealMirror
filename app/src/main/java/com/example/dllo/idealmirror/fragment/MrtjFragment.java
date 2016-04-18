@@ -95,7 +95,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener {
     @Override
     public void getSuccess(String body) {
         try {
-            LogUtils.d("请求成功");
+            LogUtils.d(mainActivity.getString(R.string.Mrtj_requestseccess));
             JSONObject object = new JSONObject(body);
             Gson gson = new Gson();
             mrtjListBean = gson.fromJson(object.toString(), MrtjListBean.class);

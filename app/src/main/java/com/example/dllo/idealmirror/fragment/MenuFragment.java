@@ -124,10 +124,6 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
 
     }
 
-//    public void removeMenu() {
-//        FragmentManager fm = getFragmentManager();
-//        fm.beginTransaction().remove(this).commit();
-//    }
 
 
 }

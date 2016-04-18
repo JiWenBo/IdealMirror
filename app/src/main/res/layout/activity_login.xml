@@ -70,16 +70,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_rl_hei"
         android:layout_weight="1">
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginTop="@dimen/login_forget_top"-->
-            <!--android:text="@string/forgetPwd"-->
-            <!--android:textColor="@color/colorBlack"-->
-            <!--android:textSize="@dimen/login_forget_size" />-->
-
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"

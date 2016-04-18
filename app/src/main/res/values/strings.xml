@@ -95,6 +95,21 @@
     <string name="Buy_weichatpay">选择微信支付</string>
     <string name="Buy_alibabapay">选择支付宝支付</string>
     <string name="Buy_choosepay">选择支付方式</string>
+    <string name="Buy_paysuccess">支付成功</string>
+    <string name="Buy_payfalse">支付失败</string>
+    <string name="Buy_payoom">支付失败</string>
+    <string name="GoodList_paysuccess">请求成功</string>
+    <string name="Mrtj_requestseccess">请求成功</string>
+    <string name="wchat_pay">微信支付</string>
+    <string name="alibaba_pay">支付宝支付</string>
+    <string name="pay_goodsname">商品名称:</string>
+    <string name="pay_testgoods">测试的商品</string>
+    <string name="pay_goodsdes">商品描述:</string>
+    <string name="pay_testgoodstitle">该测试商品的详细描述</string>
+    <string name="pay_goodsprice">商品价格:</string>
+    <string name="pay_zerozero">0.01元</string>
+    <string name="pay_paybtn">支付</string>
+    <string name="pay_webtonatice">网页支付转native</string>
 
 
 </resources>
