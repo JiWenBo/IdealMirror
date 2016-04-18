@@ -124,7 +124,7 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             int heiTitle = ((GoodsTitleViewHolder) holder).commodityTitleRl.getHeight();
             RelativeLayout.LayoutParams paramsTitle = (RelativeLayout.LayoutParams) ((GoodsTitleViewHolder) holder).commodityTitleLinearLayout.getLayoutParams();
 
-            paramsTitle.setMargins(0, (int) ((valueTitle + heiTitle * (position - 1)) * 0.15), 0, 0);
+            paramsTitle.setMargins(0, (int) ((valueTitle + heiTitle * (position - 1)) * 0.05), 0, 0);
             ((GoodsTitleViewHolder) holder).commodityTitleLinearLayout.setLayoutParams(paramsTitle);
 
             NetHelper helper = new NetHelper();
@@ -146,7 +146,7 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
             int heiDetails = ((GoodsDetailsViewHolder) holder).commodityDetailsRl.getHeight();
             int valueDetails = layoutScrollValue;
             RelativeLayout.LayoutParams paramsDetails = (RelativeLayout.LayoutParams) ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.getLayoutParams();
-            paramsDetails.setMargins(0, (int) ((valueDetails + heiDetails * (position - 1)) * 0.15), 0, 0);
+            paramsDetails.setMargins(0, (int) ((valueDetails + heiDetails * (position - 1)) * 0.10), 0, 0);
             LogUtils.d("xxx", layoutScrollValue + "");
             ((GoodsDetailsViewHolder) holder).commodityDetailsLinearLayout.setLayoutParams(paramsDetails);
 

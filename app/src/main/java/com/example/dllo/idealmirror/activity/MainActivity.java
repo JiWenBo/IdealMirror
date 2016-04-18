@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private GoodList datas;
     private List<GoodListCache> goodListCacheList;
     private GoodListCache goodListCache;
-    private DirectionalViewPager viewPager;//
+    private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
     private TextView login, shopping;
     private LinearLayout menu;
