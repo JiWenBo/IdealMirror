@@ -92,7 +92,7 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
             ((HeadViewHolder) holder).jCVideoPlayer.setUp(videoUrl, "", false);
             LogUtils.d("视频", "--------------" + videoList.size());
             NetHelper helper = new NetHelper();
-            helper.getImage(videoImg, ImageLoader.getImageListener(((HeadViewHolder) holder).jCVideoPlayer.ivThumb, R.drawable.loading, R.drawable.fail));
+            helper.getImage(videoImg, ImageLoader.getImageListener(((HeadViewHolder) holder).jCVideoPlayer.ivThumb, R.mipmap.icon_progress_bar, R.drawable.fail));
         }
         if (holder instanceof PhotosViewHolder) {
             LogUtils.d("图片", "图片list 大小:  " + imageList.size());

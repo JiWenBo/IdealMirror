@@ -43,7 +43,6 @@ public class StoryListFragment extends BaseFragment implements VolleyListener, U
     private List<StoryMirror> storyMirrors;
     private DaoSingleton daoSingleton;
     String title;
-    String store;
     TextView titleTv;
     private MainActivity mainActivity;
 
@@ -79,7 +78,6 @@ public class StoryListFragment extends BaseFragment implements VolleyListener, U
         daoSingleton = DaoSingleton.getInstance();
         Bundle bundle = getArguments();
         title = bundle.getString("title");
-        store = bundle.getString("store");
         data = new HashMap<>();
         NetHelper netHelper = new NetHelper();
         data.put("token", "");
@@ -132,11 +130,10 @@ public class StoryListFragment extends BaseFragment implements VolleyListener, U
      * @param
      * @return
      */
-    public static StoryListFragment setUrl(String title, String store) {
+    public static StoryListFragment setUrl(String title) {
         StoryListFragment storyListFragment = new StoryListFragment();
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
-        bundle.putString("store", store);
         storyListFragment.setArguments(bundle);
         return storyListFragment;
     }

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 
 import android.support.v4.view.DirectionalViewPager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -41,18 +43,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.widget.Scroller;
+import android.widget.Toast;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, VolleyListener, Url {
     private ImageView mirror;
     private GoodList datas;
     private List<GoodListCache> goodListCacheList;
     private GoodListCache goodListCache;
-    private DirectionalViewPager viewPager;//
+    private DirectionalViewPager viewPager;
     private VerticalAdapter verticalAdapter;
     private TextView login, shopping;
     private LinearLayout menu;
     private FrameLayout frameLayout;
     private DaoSingleton daoSingleton;
+    private long firstTime = 0;
     @Override
     protected int setContent() {
         return R.layout.activity_main;
@@ -295,5 +299,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void removeMenuFrame() {
         frameLayout.setVisibility(View.GONE);
     }
+
+    /**
+     * 系统返回键的监听事件
+     * 如果超过两秒则返回true表示表示拦截事件,小于2秒的时候回执行
+     * @param keyCode The value in event.getKeyCode(),什么按键
+     * @param event   点击事件
+     * @return
+     */
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime =System.currentTimeMillis();
+                Log.e("x", secondTime + "S");
+                if (secondTime-firstTime>2000){
+                    Toast.makeText(MainActivity.this, "确定真的要离开我了吗~", Toast.LENGTH_SHORT).show();
+                    firstTime = secondTime;
+                    return true;
+                }
+                else {
+                    System.exit(0);//退出程序
+                }
+                break;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
 
 }

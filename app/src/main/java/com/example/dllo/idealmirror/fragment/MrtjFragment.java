@@ -136,7 +136,6 @@ public class MrtjFragment extends BaseFragment implements VolleyListener {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mrtjAdapter);
     }
-
     /**
      * 通过静态方法将参数传过来
      *
