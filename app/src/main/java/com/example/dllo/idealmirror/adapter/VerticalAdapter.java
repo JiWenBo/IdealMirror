@@ -29,7 +29,6 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
         this.data = datas;
         fragment = new ShoppingFragment();
     }
-
     /**
      * 根据位置 获得fragment
      * @param position 位置
@@ -47,7 +46,7 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
         }
         if (position == 3) {
             return StoryListFragment.setUrl(BaseApplication.getContext()
-                    .getString(R.string.java_vertical_three_story), "XXX");
+                    .getString(R.string.java_vertical_three_story));
         }
         if (position == 4) {
             return fragment;

@@ -47,7 +47,6 @@ public class NetHelper {
         }
         diskPath = BaseApplication.getContext().getCacheDir().toString();
 
-        LogUtils.d("文件路径", BaseApplication.getContext().getCacheDir().toString());
         //实现三级缓存
         imageLoader = new ImageLoader(requestQueue, new DoubleCache(diskPath));
 
