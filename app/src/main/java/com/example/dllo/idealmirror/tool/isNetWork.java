@@ -25,7 +25,6 @@ public class IsNetWork {
                 }
             }
         }
-        ToastUtils.showToast(context, context.getString(R.string.java_isnet_abnormal));
         return false;
     }
 
