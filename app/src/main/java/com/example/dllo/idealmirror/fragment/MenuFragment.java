@@ -110,10 +110,11 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
                 mainActivity.removeMenuFrame();
                 break;
             case R.id.menu_to_home_layout:
-                mainActivity.getDataFromFragment(0);
+                mainActivity.getDataFromFragment(4);
                 mainActivity.removeMenuFrame();
                 break;
             case R.id.menu_return_layout:
+                mainActivity.getDataFromFragment(4);
                 mainActivity.removeMenuFrame();
                 break;
             case R.id.fragment_menu_back:
