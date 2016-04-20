@@ -25,10 +25,12 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
     private Context context;
     private AddressRcListener addListener;
     private RecyclerItemListener itemListener;
+    private String token;
 
-    public AllAddressRcAdapter(Address datas, Context context) {
+    public AllAddressRcAdapter(Address datas, Context context,String userToken) {
         this.data = datas;
         this.context = context;
+        this.token = userToken;
     }
 
     /**
@@ -87,6 +89,7 @@ public class AllAddressRcAdapter extends RecyclerView.Adapter<AllAddressRcAdapte
                 intent.putExtra("number", data.getData().getList().get(position).getCellphone());
                 intent.putExtra("address", data.getData().getList().get(position).getAddr_info());
                 intent.putExtra("addr_id", data.getData().getList().get(position).getAddr_id());
+                intent.putExtra("token",token);
                 context.startActivity(intent);
             }
         });

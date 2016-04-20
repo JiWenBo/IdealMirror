@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -15,6 +16,7 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.CommodityDetailsActivity;
 import com.example.dllo.idealmirror.mirrordao.PlainMirror;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.net.SingleUniverImage;
 import com.example.dllo.idealmirror.tool.LogUtils;
 import com.zhy.autolayout.AutoRelativeLayout;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -40,10 +42,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        NetHelper netHelper = new NetHelper();
-        ImageLoader loader = netHelper.getImageLoader();
+
         String goodsUrl = data.getGoodsimg();
-        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.mipmap.icon_progress_bar, R.drawable.fail));
+        SingleUniverImage singleUniverImage = SingleUniverImage.getSingleUniverImage();
+        singleUniverImage.setImageRes(goodsUrl,holder.img,holder.bar);
+
+        LogUtils.e(position+"S");
         holder.brand.setText(data.getBrand());
         holder.area.setText(data.getProduct());
         holder.price.setText("¥" + data.getGoodsprice());
@@ -76,6 +80,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         TextView name, price, area, disprice, brand;
         View line;
         AutoRelativeLayout pic;
+        ProgressBar bar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +93,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             brand = (TextView) itemView.findViewById(R.id.good_brand);
             line = itemView.findViewById(R.id.line);
             pic = (AutoRelativeLayout) itemView.findViewById(R.id.picture_rl);
+            bar = (ProgressBar) itemView.findViewById(R.id.parogressbar);
         }
     }
 }

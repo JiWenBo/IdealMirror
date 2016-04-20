@@ -110,6 +110,7 @@
     <string name="pay_zerozero">0.01元</string>
     <string name="pay_paybtn">支付</string>
     <string name="pay_webtonatice">网页支付转native</string>
+    <string name="Loadingyes">登陆成功</string>
 
 
 </resources>

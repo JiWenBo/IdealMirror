@@ -57,6 +57,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     private String strmsg;
     private final static int SDK_PAY_FLAG = 1;
     public static String RSA_PRIVATE = "";// 商户私钥，pkcs8格式
+    public static String userToken;
 
     //支付宝之后的回调 判断是否支付成功
 
@@ -128,10 +129,12 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         setAddress.setOnClickListener(this);
         close.setOnClickListener(this);
 
+
         NetHelper helper = new NetHelper();
         HashMap<String, String> data;
         data = new HashMap<>();
-        data.put("token", TOKEN);
+        //TODO TOKEN
+        data.put("token", userToken);
         data.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, data);
         IntentFilter intentFilter = new IntentFilter();
@@ -146,6 +149,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.set_address:
                 Intent intent = new Intent(BuyDetailsActivity.this, AllAddressActivity.class);
+                intent.putExtra("token",userToken);
                 startActivityForResult(intent, requsetCode);
                 break;
             case R.id.address_close:
@@ -248,7 +252,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
             NetHelper helper = new NetHelper();
             HashMap<String, String> data;
             data = new HashMap<>();
-            data.put("token", TOKEN);
+            data.put("token",userToken);
             data.put("device_type", "3");
             helper.getInformation(USER_ADDRESS_LIST, new VolleyListener() {
                 @Override
@@ -372,10 +376,16 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
      */
     private void getOrder() {
         Intent  intent = getIntent();
+        userToken = intent.getStringExtra("token");
+
+
+
+
+
         NetHelper netHelper = new NetHelper();
         HashMap<String,String> data;
         data = new HashMap<>();
-        data.put("token", TOKEN);
+        data.put("token", userToken);
         data.put("goods_id", intent.getStringExtra("good_id"));
         data.put("goods_num", "1");
         data.put("price", intent.getStringExtra("good_price"));
@@ -383,7 +393,9 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         netHelper.getInformation(ORDER_SUB, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
-                try {
+
+           /*     try {
+
                     JSONObject jsonObject = new JSONObject(body);
                     Gson gson = new Gson();
                     orderSub = new OrderSub();
@@ -393,6 +405,32 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                     title.setText(orderSub.getData().getGoods().getGoods_name());
                     price.setText("¥" + orderSub.getData().getGoods().getPrice());
                     bodycontent.setText(orderSub.getData().getGoods().getBook_copy());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }*/
+                try {
+                    JSONObject object = new JSONObject(body);
+                    if (object.has("result")) {
+                        String result = object.getString("result");
+                        switch (result) {
+                            case "":
+                               // String msg = object.getString("msg");
+                              //  ToastUtils.showToast(this, msg);
+                                break;
+                            case "1":
+                                JSONObject jsonObject = new JSONObject(body);
+                                Gson gson = new Gson();
+                                orderSub = new OrderSub();
+                                orderSub = gson.fromJson(jsonObject.toString(), OrderSub.class);
+                                Uri uri = Uri.parse(orderSub.getData().getGoods().getPic());
+                                mirrorImg.setImageURI(uri);
+                                title.setText(orderSub.getData().getGoods().getGoods_name());
+                                price.setText("¥" + orderSub.getData().getGoods().getPrice());
+                                bodycontent.setText(orderSub.getData().getGoods().getBook_copy());
+
+                                break;
+                        }
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -409,7 +447,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         NetHelper helper = new NetHelper();
         HashMap<String,String> data;
         data = new HashMap<>();
-        data.put("token",TOKEN);
+        data.put("token",userToken);
         data.put("order_no", orderSub.getData().getOrder_id());
         data.put("addr_id", orderSub.getData().getAddress().getAddr_id());
         data.put("goodsname", orderSub.getData().getGoods().getGoods_name());

@@ -121,7 +121,9 @@ public class GoodsListFragment extends BaseFragment implements VolleyListener, U
         // 查询数据库 获得数据
         plainMirrors = daoSingleton.queryPlainMirror();
         for (int j = 0; j < plainMirrors.size(); j++) {
+            LogUtils.e("QQQ",plainMirrors.get(j).getWholestorge());
             if (plainMirrors.get(j).getWholestorge().equals(numType)) {
+                LogUtils.e("QQQQ",plainMirrors.get(j).getWholestorge()+" = "+numType);
                 recyclerAdapter = new RecyclerAdapter(getContext(), plainMirrors.get(j));
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

@@ -137,7 +137,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
     private void sendVerification() {
         NetHelper netHelper = new NetHelper();
         HashMap<String, String> paramVer = new HashMap<>();
-        paramVer.put("phone number", phoneEt.getText().toString());
+        paramVer.put("phone number",phoneEt.getText().toString());
         netHelper.getInformation(USER_SEND_CODE, new VolleyListener() {
             @Override
             public void getSuccess(String body) {

@@ -57,11 +57,13 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
         storyIv = bindView(R.id.menu_to_story_line);
         storyLayout = bindView(R.id.menu_to_story_layout);
         storyLayout.setOnClickListener(this);
+        storyIv.setVisibility(View.INVISIBLE);
 
         shoppingTv = bindView(R.id.menu_to_shopping_title);
         shoppingIv = bindView(R.id.menu_to_shopping_line);
         shoppingLayout = bindView(R.id.menu_to_shopping_layout);
         shoppingLayout.setOnClickListener(this);
+        storyIv.setVisibility(View.INVISIBLE);
 
         homeLayout = bindView(R.id.menu_to_home_layout);
         homeLayout.setOnClickListener(this);

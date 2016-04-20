@@ -3,6 +3,7 @@ package com.example.dllo.idealmirror.activity;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
+import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
@@ -48,6 +50,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     private String id;
     private String background;
     private TextView adornPhotoTv;
+    private int requrest = 2;
 
     @Override
     protected int setContent() {
@@ -168,14 +171,27 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 intentAdorn.putExtra("id", id);
                 startActivity(intentAdorn);
                 break;
-            case R.id.commodity_details_menu_buy:         // 购买
-                Intent intent = new Intent(this, BuyDetailsActivity.class);
-                intent.putExtra("good_pic", goodsListData.getData().getGoods_pic());
-                intent.putExtra("good_name", goodsListData.getData().getGoods_name());
-                intent.putExtra("good_price", goodsListData.getData().getGoods_price());
-                intent.putExtra("good_id",goodsListData.getData().getGoods_id());
+            case R.id.commodity_details_menu_buy:
+
+                     // 购买
+                SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+                String userToken = sharedPreferences.getString("tokens", "");
+                if (userToken ==""){
+                    Intent intent = new Intent(this,LoginActivity.class);
+                    startActivity(intent);
+                    break;
+                }
+                    Intent intent = new Intent(this, BuyDetailsActivity.class);
+                    intent.putExtra("good_pic", goodsListData.getData().getGoods_pic());
+                    intent.putExtra("good_name", goodsListData.getData().getGoods_name());
+                    intent.putExtra("good_price", goodsListData.getData().getGoods_price());
+                    intent.putExtra("good_id",goodsListData.getData().getGoods_id());
+                    intent.putExtra("token",userToken);
 
                 startActivity(intent);
+
+
+
                 break;
         }
 

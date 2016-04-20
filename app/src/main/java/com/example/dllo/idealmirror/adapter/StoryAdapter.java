@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -14,6 +15,7 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.activity.ShareActivity;
 import com.example.dllo.idealmirror.mirrordao.StoryMirror;
 import com.example.dllo.idealmirror.net.NetHelper;
+import com.example.dllo.idealmirror.net.SingleUniverImage;
 import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.IsNetWork;
 import com.zhy.autolayout.AutoRelativeLayout;
@@ -43,11 +45,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        NetHelper netHelper = new NetHelper();
-        ImageLoader loader = netHelper.getImageLoader();
         String goodsUrl = storyListBean.get(position).getPicimg();
         holder.position = position;
-        loader.get(goodsUrl, ImageLoader.getImageListener(holder.img, R.mipmap.icon_progress_bar, R.drawable.fail));
+        SingleUniverImage singleUniverImage = SingleUniverImage.getSingleUniverImage();
+        singleUniverImage.setImageRes(goodsUrl,holder.img,holder.bar);
         holder.titleTv.setText(storyListBean.get(position).getTitle());
     }
 
@@ -61,6 +62,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
         TextView titleTv;
         AutoRelativeLayout story;
         int position;
+        ProgressBar bar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +70,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
             img = (ImageView) itemView.findViewById(R.id.picture);
             titleTv = (TextView) itemView.findViewById(R.id.story_title);
             story = (AutoRelativeLayout) itemView.findViewById(R.id.item_story);
+            bar = (ProgressBar) itemView.findViewById(R.id.Story_progressbar);
             story.setOnClickListener(this);
         }
 

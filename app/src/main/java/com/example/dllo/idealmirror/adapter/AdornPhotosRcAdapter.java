@@ -74,11 +74,11 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
         for (int i = 0; i < list.size(); i++) {
             String type = list.get(i).getType();
             if (type.equals("8")) {
-                videoList.add(list.get(i).getData());
+                videoList.add(list.get(i).getData());//将所有的视屏都放入videoList这个集合中
                 videoUrl = list.get(i).getData();
                 LogUtils.d("视频", videoUrl);
             } else if (type.equals("9")) {
-                videoImg = list.get(i).getData();
+                videoImg = list.get(i).getData();//将视屏图片放入videoImg这个集合中
                 LogUtils.d("图片", videoImg);
             } else {
                 imageList.add(list.get(i).getData());
@@ -94,9 +94,13 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
             NetHelper helper = new NetHelper();
             helper.getImage(videoImg, ImageLoader.getImageListener(((HeadViewHolder) holder).jCVideoPlayer.ivThumb, R.mipmap.icon_progress_bar, R.drawable.fail));
         }
+        /**
+         * java 中的instanceof 运算符是用来在运行时指出对象是否是特定类的一个实例。
+         * instanceof通过返回一个布尔值来指出，这个对象是否是这个特定类或者是它的子类的一个实例。
+         */
         if (holder instanceof PhotosViewHolder) {
             LogUtils.d("图片", "图片list 大小:  " + imageList.size());
-            Uri uri = Uri.parse(imageList.get(position - 1));
+            Uri uri = Uri.parse(imageList.get(position - 1));//???
             ((PhotosViewHolder) holder).iv.setImageURI(uri);
             ((PhotosViewHolder) holder).iv.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -106,9 +110,16 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
                     intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
                     intent.putExtra("position", position);
                     int[] location = new int[2];
-                    ((PhotosViewHolder) holder).iv.getLocationOnScreen(location);//location 里有iv的横纵坐标
+                    /**
+                     * location 里有iv的横纵坐标,是绝对坐标,location[0] X坐标
+                     * location[1]    Y坐标
+                     */
+                    ((PhotosViewHolder) holder).iv.getLocationOnScreen(location);
                     intent.putExtra("locationX", location[0]);//必须
                     intent.putExtra("locationY", location[1]);//必须
+                    /**
+                     * 或得到视图的宽高
+                     */
 
                     intent.putExtra("width", ((PhotosViewHolder) holder).iv.getWidth());//必须
                     intent.putExtra("height", ((PhotosViewHolder) holder).iv.getHeight());//必须

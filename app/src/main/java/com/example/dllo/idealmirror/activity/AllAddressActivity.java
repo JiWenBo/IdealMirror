@@ -45,6 +45,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
     HashMap<String, String> paramDel;
     private int result = 1;
     private GetNewUI getNewUI;
+    private static String userToken;
 
 
     @Override
@@ -54,12 +55,15 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
 
     @Override
     protected void initView() {
+        Intent intent = getIntent();
+        userToken = intent.getStringExtra("token");
         recyclerView = (RecyclerView) findViewById(R.id.all_address_recycler);
         NetHelper helper = new NetHelper();
         // 获取我的收货地址列表
 
         paramAll = new HashMap<>();
-        paramAll.put("token", TOKEN);
+        //TODO
+        paramAll.put("token", userToken);
         paramAll.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, paramAll);
         addBtn = bindView(R.id.add_address_btn);
@@ -82,11 +86,12 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                 intent.putExtra("name", "");
                 intent.putExtra("number", "");
                 intent.putExtra("address", "");
-                intent.putExtra("nametitle", getString(R.string.java_alladdress_receiver_name));
-                intent.putExtra("numtitle", getString(R.string.java_alladdress_contact_phone));
-                intent.putExtra("addtitle", getString(R.string.java_alladdress_receiver_address));
+                intent.putExtra("nameTitle", getString(R.string.java_alladdress_receiver_name));
+                intent.putExtra("numTitle", getString(R.string.java_alladdress_contact_phone));
+                intent.putExtra("addTitle", getString(R.string.java_alladdress_receiver_address));
                 intent.putExtra("title", getString(R.string.java_alladdress_add_address));
                 intent.putExtra("btnText", getString(R.string.java_alladdress_commit_address));
+                intent.putExtra("token",userToken);
                 startActivityForResult(intent, request);
 
             }
@@ -119,7 +124,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         JSONObject jsonObject = new JSONObject(body);
         Gson gson = new Gson();
         data = gson.fromJson(jsonObject.toString(), Address.class);
-        allAddressRcAdapter = new AllAddressRcAdapter(data, AllAddressActivity.this);
+        allAddressRcAdapter = new AllAddressRcAdapter(data, AllAddressActivity.this,userToken);
         allAddressRcAdapter.getListener(AllAddressActivity.this);
         allAddressRcAdapter.RecyclerItem(AllAddressActivity.this);
         recyclerView.setAdapter(allAddressRcAdapter);
@@ -140,14 +145,15 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         NetHelper helper = new NetHelper();
         paramDel = new HashMap<>();
         paramDel.put("addr_id", addr_id);
-        paramDel.put("token", TOKEN);
+
+        paramDel.put("token", userToken);
         helper.getInformation(USER_DEL_ADDRESS, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
                 // 获取我的收货地址列表
                 NetHelper helper = new NetHelper();
                 paramAll = new HashMap<>();
-                paramAll.put("token", TOKEN);
+                paramAll.put("token", userToken);
                 paramAll.put("device_type", "3");
                 helper.getInformation(USER_ADDRESS_LIST, new VolleyListener() {
                     @Override
@@ -185,7 +191,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         NetHelper helper = new NetHelper();
         final HashMap<String, String> datas;
         datas = new HashMap<>();
-        datas.put("token", TOKEN);
+        datas.put("token", userToken);
         datas.put("addr_id", addr);
 
         helper.getInformation(USER_MR_ADDRESS, new VolleyListener() {
@@ -219,7 +225,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
             /*重新拉取数据刷新*/
             NetHelper helper = new NetHelper();
             paramAll = new HashMap<>();
-            paramAll.put("token", TOKEN);
+            paramAll.put("token", userToken);
             paramAll.put("device_type", "3");
             helper.getInformation(USER_ADDRESS_LIST, new VolleyListener() {
                 @Override

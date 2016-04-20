@@ -43,6 +43,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     EditText phoneEt, passwordEt;
     private Platform sinaPlatform;
     private SinaUserBean userBean;     // 微博用户的信息
+    private int result = 2;
 
     @Override
     protected int setContent() {
@@ -215,7 +216,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 UserRegBean bean = new UserRegBean();
                                 bean = gson.fromJson(object.toString(), UserRegBean.class);
                                 // 确认已经登陆成功 返回到main
-                                makeSureLogin();
+                                makeSureLogin(bean.getData().getToken());
                                 finish();
                                 break;
                         }
@@ -259,14 +260,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 switch (result) {
                     case "":
                         String msg = object.getString("msg");
-                        ToastUtils.showToast(this, msg);
                         break;
                     case "1":
-                        ToastUtils.showToast(this, String.valueOf(R.string.java_login_success));
+
+                        ToastUtils.showToast(this, getString(R.string.Loadingyes));
                         /**
                          * 确认登陆
                          */
-                        makeSureLogin();
+                        JSONObject objectdata = object.getJSONObject("data");
+                        String userToken = objectdata.getString("token");
+
+                        makeSureLogin(userToken);
                         finish();
                         break;
                 }
@@ -279,15 +283,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     /**
      * 确认已经登陆 存到数据库
      */
-    private void makeSureLogin() {
+    private void makeSureLogin(String userToken) {
         // 登陆成功时  实例化一个Share的Preferences对象
         SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         // 实例化SharedPreferences.Editor对象
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();//先把旧数据清楚
         // 保存数据
         editor.putBoolean("isLogin", true);
+        editor.putString("tokens", userToken);
         // 提交当前数据
         editor.commit();
+
+
+
     }
 
     /**

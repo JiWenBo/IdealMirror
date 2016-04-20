@@ -27,6 +27,7 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
     ImageView close;
     String addr;
     HashMap<String, String> param;
+    private static String userToken;
 
     @Override
     protected int setContent() {
@@ -49,13 +50,14 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
     @Override
     protected void initData() {
         Intent intent = getIntent();
+        userToken  = intent.getStringExtra("token");
         addr = intent.getStringExtra("addr_id");
         name.setText(intent.getStringExtra("name"));
         number.setText(intent.getStringExtra("number"));
         address.setText(intent.getStringExtra("address"));
-        nameTitle.setText(intent.getStringExtra("nametitle"));
-        numTitle.setText(intent.getStringExtra("numtitle"));
-        addTitle.setText(intent.getStringExtra("addtitle"));
+        nameTitle.setText(intent.getStringExtra("nameTitle"));
+        numTitle.setText(intent.getStringExtra("numTitle"));
+        addTitle.setText(intent.getStringExtra("addTitle"));
         title.setText(intent.getStringExtra("title"));
         subBtn.setText(intent.getStringExtra("btnText"));
         close.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +80,7 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
                         param.put("cellphone", number.getText().toString());
                         param.put("addr_info", address.getText().toString());
                         param.put("username", name.getText().toString());
-                        param.put("token", TOKEN);
+                        param.put("token", userToken);
                         helper.getInformation(USER_ADD_ADDRESS, AddAddressActivity.this, param);
                     } else {
 
@@ -88,8 +90,8 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
                         param.put("cellphone", number.getText().toString());
                         param.put("addr_info", address.getText().toString());
                         param.put("username", name.getText().toString());
-                        param.put("token", TOKEN);
-                        helper.getInformation(USER_EDIT_ADDRESS, AddAddressActivity.this, param);
+                        param.put("token",userToken);
+                        helper.getInformation(USER_EDIT_ADDRESS,AddAddressActivity.this, param);
 
                     }
                 }
