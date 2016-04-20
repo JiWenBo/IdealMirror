@@ -2,6 +2,7 @@ package com.example.dllo.idealmirror.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
     private String id;
     private ImageView returnIv, buyIv;
 
+
     @Override
     protected int setContent() {
         return R.layout.activity_adorn_photos;
@@ -53,6 +55,8 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
         // 从二级界面获得id
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
+
+
     }
 
     @Override
@@ -97,10 +101,19 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
                 finish();
                 break;
             case R.id.adorn_photos_buy_btn: //购买
+                SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+                String  userToken = sharedPreferences.getString("tokens", "");
+                if (userToken ==""){
+                    Intent intent = new Intent(this,LoginActivity.class);
+                    startActivity(intent);
+                    break;
+                }
                 Intent intent = new Intent(this, BuyDetailsActivity.class);
                 intent.putExtra("good_pic", adornPhotosData.getData().getGoods_pic());
                 intent.putExtra("good_name", adornPhotosData.getData().getGoods_name());
                 intent.putExtra("good_price", adornPhotosData.getData().getGoods_price());
+                intent.putExtra("good_id",adornPhotosData.getData().getGoods_id());
+                intent.putExtra("token",userToken);
                 startActivity(intent);
                 break;
         }

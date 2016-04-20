@@ -20,7 +20,6 @@ import com.example.dllo.idealmirror.R;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
 import com.example.dllo.idealmirror.tool.LogUtils;
-import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
@@ -50,7 +49,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     private String id;
     private String background;
     private TextView adornPhotoTv;
-    private int requrest = 2;
+    private String userToken;
 
     @Override
     protected int setContent() {
@@ -130,6 +129,8 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
         data.put("goods_id", id);
         data.put("version", "1.0.1");
         netHelper.getInformation(GOODS_INFO, this, data);
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        userToken = sharedPreferences.getString("tokens", "");
 
     }
 
@@ -169,13 +170,15 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
             case R.id.commodity_details_adorn_photos:     // 佩戴图集
                 Intent intentAdorn = new Intent(this, AdornPhotosActivity.class);
                 intentAdorn.putExtra("id", id);
+                intentAdorn.putExtra("token",userToken);
                 startActivity(intentAdorn);
                 break;
             case R.id.commodity_details_menu_buy:
 
                      // 购买
+
                 SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
-                String userToken = sharedPreferences.getString("tokens", "");
+                userToken = sharedPreferences.getString("tokens", "");
                 if (userToken ==""){
                     Intent intent = new Intent(this,LoginActivity.class);
                     startActivity(intent);
