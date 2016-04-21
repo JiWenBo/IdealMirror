@@ -110,6 +110,7 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
                     intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
                     intent.putExtra("position", position);
                     int[] location = new int[2];
+
                     /**
                      * location 里有iv的横纵坐标,是绝对坐标,location[0] X坐标
                      * location[1]    Y坐标
@@ -117,10 +118,10 @@ public class AdornPhotosRcAdapter extends RecyclerView.Adapter {
                     ((PhotosViewHolder) holder).iv.getLocationOnScreen(location);
                     intent.putExtra("locationX", location[0]);//必须
                     intent.putExtra("locationY", location[1]);//必须
+
                     /**
                      * 或得到视图的宽高
                      */
-
                     intent.putExtra("width", ((PhotosViewHolder) holder).iv.getWidth());//必须
                     intent.putExtra("height", ((PhotosViewHolder) holder).iv.getHeight());//必须
                     context.startActivity(intent);

@@ -88,7 +88,6 @@ public class MrtjFragment extends BaseFragment implements VolleyListener {
         titleTv.setText(title);
 
         daoSingleton = DaoSingleton.getInstance();
-
     }
 
 
@@ -135,6 +134,7 @@ public class MrtjFragment extends BaseFragment implements VolleyListener {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mrtjAdapter);
     }
+
     /**
      * 通过静态方法将参数传过来
      *

@@ -51,34 +51,6 @@ public class DaoSingleton {
         return instance;
     }
 
-//    public DaoMaster.DevOpenHelper getHelper() {
-//        if (helper == null) {
-//            helper = new DaoMaster.DevOpenHelper(context, DATABASE_NAME, null);
-//        }
-//        return helper;
-//    }
-
-//    private SQLiteDatabase getDb() {
-//        if (db == null) {
-//            db = getHelper().getWritableDatabase();
-//        }
-//        return db;
-//    }
-
-//    private DaoMaster getDaoMaster() {
-//        if (daoMaster == null) {
-//            daoMaster = new DaoMaster(getDb());
-//        }
-//        return daoMaster;
-//    }
-
-//    public DaoSession getDaoSession() {
-//        if (daoSession == null) {
-//            daoSession = getDaoMaster().newSession();
-//        }
-//        return daoSession;
-//    }
-
     public AllMirrorCacheDao getAllMirrorCacheDao() {
         if (allMirrorCacheDao == null) {
             allMirrorCacheDao = daoSession.getAllMirrorCacheDao();

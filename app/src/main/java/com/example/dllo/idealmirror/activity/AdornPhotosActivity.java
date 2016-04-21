@@ -38,12 +38,10 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
     private String id;
     private ImageView returnIv, buyIv;
 
-
     @Override
     protected int setContent() {
         return R.layout.activity_adorn_photos;
     }
-
 
     @Override
     protected void initView() {
@@ -55,8 +53,6 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
         // 从二级界面获得id
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-
-
     }
 
     @Override
@@ -86,7 +82,6 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
         GridLayoutManager gm = new GridLayoutManager(this, 1);
         gm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gm);
-
     }
 
     @Override
@@ -102,9 +97,9 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
                 break;
             case R.id.adorn_photos_buy_btn: //购买
                 SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
-                String  userToken = sharedPreferences.getString("tokens", "");
-                if (userToken ==""){
-                    Intent intent = new Intent(this,LoginActivity.class);
+                String userToken = sharedPreferences.getString("tokens", "");
+                if (userToken == "") {
+                    Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     break;
                 }
@@ -112,8 +107,8 @@ public class AdornPhotosActivity extends BaseActivity implements VolleyListener,
                 intent.putExtra("good_pic", adornPhotosData.getData().getGoods_pic());
                 intent.putExtra("good_name", adornPhotosData.getData().getGoods_name());
                 intent.putExtra("good_price", adornPhotosData.getData().getGoods_price());
-                intent.putExtra("good_id",adornPhotosData.getData().getGoods_id());
-                intent.putExtra("token",userToken);
+                intent.putExtra("good_id", adornPhotosData.getData().getGoods_id());
+                intent.putExtra("token", userToken);
                 startActivity(intent);
                 break;
         }

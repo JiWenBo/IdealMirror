@@ -31,7 +31,6 @@ public class PicDetailsActivity extends BaseActivity {
     @Override
     protected void initData() {
         final Intent intent = getIntent();
-//        mDatas = (ArrayList<String>) getIntent().getSerializableExtra("images");
         mDatas = intent.getStringArrayListExtra("images");
         final int mPosition = intent.getIntExtra("position", 0);
         LogUtils.d("PicDetailsActivity", "适配器传过来的position:  " + mPosition);
@@ -49,8 +48,6 @@ public class PicDetailsActivity extends BaseActivity {
         imageView.setOriginalInfo(mWidth, mHeight, mLocationX, mLocationY);
         imageView.transformIn();
         imageView.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
-
-//        setContentView(imageView);
         setContentView(imageView);
 
         NetHelper helper = new NetHelper();

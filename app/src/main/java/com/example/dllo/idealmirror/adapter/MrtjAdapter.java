@@ -64,7 +64,6 @@ public class MrtjAdapter extends RecyclerView.Adapter<MrtjAdapter.MyViewHolder> 
         if (isNetWorks.isNetWorkAvilable(context)) {
             final String goodsurl = mrtjListBean.getData().getList().get(0).getData_info().getGoods_img();
 
-
             singleUniverImage.setImageRes(goodsurl, holder.img, holder.bar);
             holder.price.setText("¥" + mrtjListBean.getData().getList().get(0).getData_info().getGoods_price());
             holder.brand.setText(mrtjListBean.getData().getList().get(0).getData_info().getBrand());

@@ -187,14 +187,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
      * 绑定第三方账号
      */
     private void toBundling() {
-        Log.d("LoginActivity", "bundling");
         NetHelper bundlingHelper = new NetHelper();
         HashMap<String, String> paramBund = new HashMap<>();
         paramBund.put("iswb_orwx", "1");
         paramBund.put("wb_name", userBean.getName());
         paramBund.put("wb_img", userBean.getImg());
         paramBund.put("wb_id", userBean.getId());
-        Log.d("LoginActivity", userBean.getName());
         bundlingHelper.getInformation(USER_BUNDLING, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
@@ -208,10 +206,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         switch (result) {
                             case "":
                                 String msg = object.getString("msg");
-                                Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
+                                ToastUtils.showToast(getBaseContext(), msg);
                                 break;
                             case "1":
-                                Toast.makeText(getBaseContext(), R.string.java_login_success, Toast.LENGTH_SHORT).show();
+                                ToastUtils.showToast(getBaseContext(), getString(R.string.java_login_success));
                                 Gson gson = new Gson();
                                 UserRegBean bean = new UserRegBean();
                                 bean = gson.fromJson(object.toString(), UserRegBean.class);
@@ -228,7 +226,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
             @Override
             public void getFail() {
-                ToastUtils.showToast(getBaseContext(), String.valueOf(R.string.java_login_fail));
+                ToastUtils.showToast(getBaseContext(), getString(R.string.java_login_fail));
 
             }
         }, paramBund);
@@ -262,13 +260,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         String msg = object.getString("msg");
                         break;
                     case "1":
-
-                        ToastUtils.showToast(this, getString(R.string.Loadingyes));
+                        ToastUtils.showToast(this, getString(R.string.java_login_success));
                         /**
                          * 确认登陆
                          */
-                        JSONObject objectdata = object.getJSONObject("data");
-                        String userToken = objectdata.getString("token");
+                        JSONObject objectData = object.getJSONObject("data");
+                        String userToken = objectData.getString("token");
 
                         makeSureLogin(userToken);
                         finish();
@@ -294,9 +291,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         editor.putString("tokens", userToken);
         // 提交当前数据
         editor.commit();
-
-
-
     }
 
     /**
@@ -304,7 +298,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
      */
     @Override
     public void getFail() {
-        ToastUtils.showToast(this, String.valueOf(R.string.java_login_fail));
+        ToastUtils.showToast(this, getString(R.string.java_login_fail));
     }
 
 }

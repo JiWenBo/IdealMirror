@@ -92,12 +92,12 @@
     <string name="java_story_check_net">请检查网络</string>
     <string name="java_vertical_three_story">専題分享</string>
     <string name="menu_shopping">我的購物車</string>
-    <string name="Buy_weichatpay">选择微信支付</string>
+    <string name="buy_weichat_pay">选择微信支付</string>
     <string name="Buy_alibabapay">选择支付宝支付</string>
     <string name="Buy_choosepay">选择支付方式</string>
-    <string name="Buy_paysuccess">支付成功</string>
-    <string name="Buy_payfalse">支付失败</string>
-    <string name="Buy_payoom">支付失败</string>
+    <string name="buy_pay_success">支付成功</string>
+    <string name="buy_pay_false">支付失败</string>
+    <string name="buy_pay_oom">支付失败</string>
     <string name="GoodList_paysuccess">请求成功</string>
     <string name="Mrtj_requestseccess">请求成功</string>
     <string name="wchat_pay">微信支付</string>
@@ -111,6 +111,7 @@
     <string name="pay_paybtn">支付</string>
     <string name="pay_webtonatice">网页支付转native</string>
     <string name="Loadingyes">登陆成功</string>
+    <string name="java_main_back">确定真的要离开我了吗~</string>
 
 
 </resources>

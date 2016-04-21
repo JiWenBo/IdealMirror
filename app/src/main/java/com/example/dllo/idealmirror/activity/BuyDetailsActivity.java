@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -28,7 +27,6 @@ import com.example.dllo.idealmirror.bean.Address;
 import com.example.dllo.idealmirror.bean.OrderSub;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
-import com.example.dllo.idealmirror.tool.LogUtils;
 import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -48,19 +46,18 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     private AutoRelativeLayout setAddress;
     private ImageView close;
     private SimpleDraweeView mirrorImg;
-    private TextView title, price, name, nameId, address, addressId, phone, changeAdd,bodycontent;
+    private TextView title, price, name, nameId, address, addressId, phone, changeAdd, bodycontent;
     private Button buyBtn;
     private Address data;
-    private int requsetCode = 1;
+    private int requestCode = 1;
     private SetNewBuyUI setNewBuyUI;
-    private OrderSub orderSub;//订单实体类
-    private String strmsg;
+    private OrderSub orderSub;                 //订单实体类
+    private String strMsg;
     private final static int SDK_PAY_FLAG = 1;
-    public static String RSA_PRIVATE = "";// 商户私钥，pkcs8格式
+    public static String RSA_PRIVATE = "";     // 商户私钥，pkcs8格式
     public static String userToken;
 
     //支付宝之后的回调 判断是否支付成功
-
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
@@ -78,16 +75,16 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        Toast.makeText(BuyDetailsActivity.this, R.string.Buy_paysuccess, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(BuyDetailsActivity.this, getString(R.string.buy_pay_success));
                     } else {
                         // 判断resultStatus 为非"9000"则代表可能支付失败
                         // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                         if (TextUtils.equals(resultStatus, "8000")) {
-                            Toast.makeText(BuyDetailsActivity.this, R.string.Buy_payfalse, Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(BuyDetailsActivity.this, getString(R.string.buy_pay_false));
 
                         } else {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                            Toast.makeText(BuyDetailsActivity.this, R.string.Buy_payoom, Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(BuyDetailsActivity.this, getString(R.string.buy_pay_oom));
                         }
                     }
                     break;
@@ -125,15 +122,13 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initData() {
-         getOrder();//订单拉取
+        getOrder();                                          //订单拉取
         setAddress.setOnClickListener(this);
         close.setOnClickListener(this);
-
 
         NetHelper helper = new NetHelper();
         HashMap<String, String> data;
         data = new HashMap<>();
-        //TODO TOKEN
         data.put("token", userToken);
         data.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, data);
@@ -149,14 +144,14 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.set_address:
                 Intent intent = new Intent(BuyDetailsActivity.this, AllAddressActivity.class);
-                intent.putExtra("token",userToken);
-                startActivityForResult(intent, requsetCode);
+                intent.putExtra("token", userToken);
+                startActivityForResult(intent, requestCode);
                 break;
             case R.id.address_close:
                 finish();
                 break;
             case R.id.buy_btn:
-                //显示选择支付方式的对话框
+                // 显示选择支付方式的对话框
                 getPayData();
                 showDialog();
                 break;
@@ -171,9 +166,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     @Override
     public void getSuccess(String body) {
         try {
-
             SuccessData(body);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -233,7 +226,6 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 1) {
-
             name.setText(R.string.receiver);
             nameId.setText(data.getStringExtra("nameId"));
             address.setText(R.string.java_address);
@@ -248,11 +240,10 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
 
         @Override
         public void onReceive(Context context, Intent intent) {
-
             NetHelper helper = new NetHelper();
             HashMap<String, String> data;
             data = new HashMap<>();
-            data.put("token",userToken);
+            data.put("token", userToken);
             data.put("device_type", "3");
             helper.getInformation(USER_ADDRESS_LIST, new VolleyListener() {
                 @Override
@@ -277,38 +268,36 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     /**
      * 确认下单，弹出支付方式选择框
      */
-    public void showDialog(){
+    public void showDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.Buy_choosepay);
-        View v = getLayoutInflater().inflate(R.layout.buydetails_dialog_item,null);
+        View v = getLayoutInflater().inflate(R.layout.buydetails_dialog_item, null);
         v.findViewById(R.id.wechat_pay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BuyDetailsActivity.this, R.string.Buy_weichatpay, Toast.LENGTH_SHORT).show();
+                ToastUtils.showToast(BuyDetailsActivity.this, getString(R.string.buy_weichat_pay));
             }
         });
         v.findViewById(R.id.ali_pay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BuyDetailsActivity.this, R.string.Buy_alibabapay, Toast.LENGTH_SHORT).show();
-
-                //TODO 支付宝支付
-                String sign = sign(strmsg);
+                ToastUtils.showToast(BuyDetailsActivity.this, getString(R.string.Buy_alibabapay));
+                String sign = sign(strMsg);
 
                 /**
                  * 完整的符合支付宝参数规范的订单信息
                  */
-                final String payInfo = strmsg + "&sign=\"" + sign + "\"&" + getSignType();
+                final String payInfo = strMsg + "&sign=\"" + sign + "\"&" + getSignType();
 
                 Runnable payRunnable = new Runnable() {
 
                     @Override
                     public void run() {
                         // 构造PayTask 对象
-                        PayTask alipay = new PayTask(BuyDetailsActivity.this);
+                        PayTask aliPay = new PayTask(BuyDetailsActivity.this);
                         // 调用支付接口，获取支付结果
-                        String result = alipay.pay(payInfo, true);
+                        String result = aliPay.pay(payInfo, true);
 
                         Message msg = new Message();
                         msg.what = SDK_PAY_FLAG;
@@ -364,7 +353,6 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -375,15 +363,11 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
      * 将订单数据获得
      */
     private void getOrder() {
-        Intent  intent = getIntent();
+        Intent intent = getIntent();
         userToken = intent.getStringExtra("token");
 
-
-
-
-
         NetHelper netHelper = new NetHelper();
-        HashMap<String,String> data;
+        HashMap<String, String> data;
         data = new HashMap<>();
         data.put("token", userToken);
         data.put("goods_id", intent.getStringExtra("good_id"));
@@ -393,29 +377,12 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         netHelper.getInformation(ORDER_SUB, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
-
-           /*     try {
-
-                    JSONObject jsonObject = new JSONObject(body);
-                    Gson gson = new Gson();
-                    orderSub = new OrderSub();
-                    orderSub = gson.fromJson(jsonObject.toString(), OrderSub.class);
-                    Uri uri = Uri.parse(orderSub.getData().getGoods().getPic());
-                    mirrorImg.setImageURI(uri);
-                    title.setText(orderSub.getData().getGoods().getGoods_name());
-                    price.setText("¥" + orderSub.getData().getGoods().getPrice());
-                    bodycontent.setText(orderSub.getData().getGoods().getBook_copy());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
                 try {
                     JSONObject object = new JSONObject(body);
                     if (object.has("result")) {
                         String result = object.getString("result");
                         switch (result) {
                             case "":
-                               // String msg = object.getString("msg");
-                              //  ToastUtils.showToast(this, msg);
                                 break;
                             case "1":
                                 JSONObject jsonObject = new JSONObject(body);
@@ -427,7 +394,6 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                                 title.setText(orderSub.getData().getGoods().getGoods_name());
                                 price.setText("¥" + orderSub.getData().getGoods().getPrice());
                                 bodycontent.setText(orderSub.getData().getGoods().getBook_copy());
-
                                 break;
                         }
                     }
@@ -443,11 +409,12 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
         }, data);
 
     }
-    private void getPayData(){
+
+    private void getPayData() {
         NetHelper helper = new NetHelper();
-        HashMap<String,String> data;
+        HashMap<String, String> data;
         data = new HashMap<>();
-        data.put("token",userToken);
+        data.put("token", userToken);
         data.put("order_no", orderSub.getData().getOrder_id());
         data.put("addr_id", orderSub.getData().getAddress().getAddr_id());
         data.put("goodsname", orderSub.getData().getGoods().getGoods_name());
@@ -458,7 +425,7 @@ public class BuyDetailsActivity extends BaseActivity implements View.OnClickList
                     /*是新的订单执行这个*/
                     JSONObject jsonObject = new JSONObject(body);
                     JSONObject dataMsg = jsonObject.getJSONObject("data");
-                     strmsg = dataMsg.getString("str");
+                    strMsg = dataMsg.getString("str");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

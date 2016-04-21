@@ -16,7 +16,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
 /**
- * Created by zt on 16/4/9.
+ * Created by LYH on 16/4/9.
  */
 public class SmoothImageView extends ImageView {
 
@@ -113,12 +113,12 @@ public class SmoothImageView extends ImageView {
     }
 
     private class Transfrom {
-        float startScale;// 图片开始的缩放值
-        float endScale;// 图片结束的缩放值
-        float scale;// 属性ValueAnimator计算出来的值
-        LocationSizeF startRect;// 开始的区域
-        LocationSizeF endRect;// 结束的区域
-        LocationSizeF rect;// 属性ValueAnimator计算出来的值
+        float startScale;                           // 图片开始的缩放值
+        float endScale;                             // 图片结束的缩放值
+        float scale;                                // 属性ValueAnimator计算出来的值
+        LocationSizeF startRect;                    // 开始的区域
+        LocationSizeF endRect;                      // 结束的区域
+        LocationSizeF rect;                         // 属性ValueAnimator计算出来的值
 
         void initStartIn() {
             scale = startScale;
@@ -150,7 +150,7 @@ public class SmoothImageView extends ImageView {
         if (mBitmap == null || mBitmap.isRecycled()) {
             mBitmap = ((BitmapDrawable) getDrawable()).getBitmap();
         }
-        //防止mTransfrom重复的做同样的初始化
+        // 防止mTransfrom重复的做同样的初始化
         if (mTransfrom != null) {
             return;
         }
@@ -295,7 +295,7 @@ public class SmoothImageView extends ImageView {
                 startTransform(mState);
             }
         } else {
-            //当Transform In变化完成后，把背景改为黑色，使得Activity不透明
+            // 当Transform In变化完成后，把背景改为黑色，使得Activity不透明
             mPaint.setAlpha(255);
             canvas.drawPaint(mPaint);
             super.onDraw(canvas);

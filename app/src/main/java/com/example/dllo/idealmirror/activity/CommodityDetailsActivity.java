@@ -38,8 +38,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
     private HashMap<String, String> param;
     private Context context;
     private CommodityDetailsData goodsListData;
-    //只是为了区分和监听RecyclerView 滑动的监听.
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView;    // 只是为了区分和监听RecyclerView 滑动的监听.
     private CommodityDetailsAdapter commodityDetailsAdapter;
     private int value;
     private boolean visible = false;
@@ -88,17 +87,17 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 value -= dy;
                 LogUtils.d("滑动效果", value + "   " + dy);
 
-                //这是RecyclerView 的方法来获得当前的 value 值.
+                // 这是RecyclerView 的方法来获得当前的 value 值.
                 commodityDetailsAdapter.setScrollValue(value, dy);
 
-                //头布局透明度渐变
+                // 头布局透明度渐变
                 if (dy > 0 && value >= -1110) {
                     commodityDetailsHeadRl.setAlpha((float) (0.5 - (-value) / 0.5 / 1110 * 0.5 / 2));
                 } else if (dy < 0 && value >= -1110) {
                     commodityDetailsHeadRl.setAlpha((float) (0.5 - (-value) / 0.5 / 1110 * 0.5 / 2));
                 }
 
-                //按钮弹出动画效果
+                // 按钮弹出动画效果
                 if (value <= -2600 && visible == false) {
                     commodityDetailsMenuRl.setVisibility(View.VISIBLE);
                     ObjectAnimator animator = ObjectAnimator.ofFloat(commodityDetailsMenuRl, "translationX", -1100, 0);
@@ -170,31 +169,25 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
             case R.id.commodity_details_adorn_photos:     // 佩戴图集
                 Intent intentAdorn = new Intent(this, AdornPhotosActivity.class);
                 intentAdorn.putExtra("id", id);
-                intentAdorn.putExtra("token",userToken);
+                intentAdorn.putExtra("token", userToken);
                 startActivity(intentAdorn);
                 break;
             case R.id.commodity_details_menu_buy:
-
-                     // 购买
-
+                // 购买
                 SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
                 userToken = sharedPreferences.getString("tokens", "");
-                if (userToken ==""){
-                    Intent intent = new Intent(this,LoginActivity.class);
+                if (userToken == "") {
+                    Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     break;
                 }
-                    Intent intent = new Intent(this, BuyDetailsActivity.class);
-                    intent.putExtra("good_pic", goodsListData.getData().getGoods_pic());
-                    intent.putExtra("good_name", goodsListData.getData().getGoods_name());
-                    intent.putExtra("good_price", goodsListData.getData().getGoods_price());
-                    intent.putExtra("good_id",goodsListData.getData().getGoods_id());
-                    intent.putExtra("token",userToken);
-
+                Intent intent = new Intent(this, BuyDetailsActivity.class);
+                intent.putExtra("good_pic", goodsListData.getData().getGoods_pic());
+                intent.putExtra("good_name", goodsListData.getData().getGoods_name());
+                intent.putExtra("good_price", goodsListData.getData().getGoods_price());
+                intent.putExtra("good_id", goodsListData.getData().getGoods_id());
+                intent.putExtra("token", userToken);
                 startActivity(intent);
-
-
-
                 break;
         }
 
