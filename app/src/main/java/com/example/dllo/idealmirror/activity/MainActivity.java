@@ -3,7 +3,6 @@ package com.example.dllo.idealmirror.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
-
 import android.support.v4.view.DirectionalViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -28,8 +27,8 @@ import com.example.dllo.idealmirror.mirrordao.DaoSingleton;
 import com.example.dllo.idealmirror.mirrordao.GoodListCache;
 import com.example.dllo.idealmirror.net.NetHelper;
 import com.example.dllo.idealmirror.net.VolleyListener;
+import com.example.dllo.idealmirror.tool.ToastUtils;
 import com.example.dllo.idealmirror.tool.Url;
-import com.example.dllo.idealmirror.tool.VerticalViewPager;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
@@ -113,7 +112,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 // 登陆
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
-//                frameLayout.setVisibility(View.GONE);
                 removeMenuFrame();
                 break;
             case R.id.main_shopping:
@@ -121,7 +119,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 // 按钮动画
                 playHeartbeatAnimation(shopping);
                 getDataFromFragment(4);
-//                frameLayout.setVisibility(View.GONE);
                 removeMenuFrame();
                 break;
         }
@@ -133,7 +130,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      */
     private void playHeartbeatAnimation(final View view) {
         AnimationSet animationSet = new AnimationSet(true);
-        // Animation.RELATIVE_TO_SELF 变化中心角
         animationSet.addAnimation(new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
                 0.5f));
@@ -141,11 +137,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         animationSet.setDuration(200);
         animationSet.setInterpolator(new AccelerateInterpolator());
-        //结尾停在最后一针
+        // 结尾停在最后一针
         animationSet.setFillAfter(true);
-        //对动画进行监听
+        // 对动画进行监听
         animationSet.setAnimationListener(new Animation.AnimationListener() {
-            //开始时候怎么样
+            // 开始时候怎么样
             @Override
             public void onAnimationStart(Animation animation) {
             }
@@ -154,7 +150,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             public void onAnimationRepeat(Animation animation) {
             }
 
-            //结束时候怎么样
+            // 结束时候怎么样
             @Override
             public void onAnimationEnd(Animation animation) {
                 AnimationSet animationSet = new AnimationSet(true);
@@ -269,10 +265,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         public void initViewPagerScroll(ViewPager viewPager) {
             try {
-                //就是存储一个类的属性值
-                //通过这个方法找到private的方法
+                // 就是存储一个类的属性值
+                // 通过这个方法找到private的方法
                 Field mScroller = ViewPager.class.getDeclaredField("mScroller");
-                //试图设置accessible标志。其设置为true防止IllegalAccessExceptions。
+                // 试图设置accessible标志。其设置为true防止IllegalAccessExceptions。
                 mScroller.setAccessible(true);
                 mScroller.set(viewPager, this);
             } catch (Exception e) {
@@ -307,20 +303,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * @param event   点击事件
      * @return
      */
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode){
             case KeyEvent.KEYCODE_BACK:
                 long secondTime =System.currentTimeMillis();
-                Log.e("x", secondTime + "S");
                 if (secondTime-firstTime>2000){
-                    Toast.makeText(MainActivity.this, "确定真的要离开我了吗~", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(MainActivity.this, getString(R.string.java_main_back));
                     firstTime = secondTime;
                     return true;
                 }
                 else {
-                    System.exit(0);//退出程序
+                    System.exit(0);                      //退出程序
                 }
                 break;
         }

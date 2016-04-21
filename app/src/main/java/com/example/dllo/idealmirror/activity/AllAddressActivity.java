@@ -27,7 +27,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-
 /**
  * Created by LYH on 16/3/31.
  * 所有地址的界面
@@ -59,10 +58,9 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         userToken = intent.getStringExtra("token");
         recyclerView = (RecyclerView) findViewById(R.id.all_address_recycler);
         NetHelper helper = new NetHelper();
-        // 获取我的收货地址列表
 
+        // 获取我的收货地址列表
         paramAll = new HashMap<>();
-        //TODO
         paramAll.put("token", userToken);
         paramAll.put("device_type", "3");
         helper.getInformation(USER_ADDRESS_LIST, this, paramAll);
@@ -91,7 +89,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
                 intent.putExtra("addTitle", getString(R.string.java_alladdress_receiver_address));
                 intent.putExtra("title", getString(R.string.java_alladdress_add_address));
                 intent.putExtra("btnText", getString(R.string.java_alladdress_commit_address));
-                intent.putExtra("token",userToken);
+                intent.putExtra("token", userToken);
                 startActivityForResult(intent, request);
 
             }
@@ -124,7 +122,7 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         JSONObject jsonObject = new JSONObject(body);
         Gson gson = new Gson();
         data = gson.fromJson(jsonObject.toString(), Address.class);
-        allAddressRcAdapter = new AllAddressRcAdapter(data, AllAddressActivity.this,userToken);
+        allAddressRcAdapter = new AllAddressRcAdapter(data, AllAddressActivity.this, userToken);
         allAddressRcAdapter.getListener(AllAddressActivity.this);
         allAddressRcAdapter.RecyclerItem(AllAddressActivity.this);
         recyclerView.setAdapter(allAddressRcAdapter);
@@ -145,8 +143,8 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
         NetHelper helper = new NetHelper();
         paramDel = new HashMap<>();
         paramDel.put("addr_id", addr_id);
-
         paramDel.put("token", userToken);
+
         helper.getInformation(USER_DEL_ADDRESS, new VolleyListener() {
             @Override
             public void getSuccess(String body) {
@@ -217,7 +215,6 @@ public class AllAddressActivity extends BaseActivity implements Url, VolleyListe
     /**
      * 动态广播用于刷新UI
      */
-
     public class GetNewUI extends BroadcastReceiver {
 
         @Override

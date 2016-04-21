@@ -29,6 +29,7 @@ public class VerticalAdapter extends FragmentPagerAdapter implements Url {
         this.data = datas;
         fragment = new ShoppingFragment();
     }
+
     /**
      * 根据位置 获得fragment
      * @param position 位置

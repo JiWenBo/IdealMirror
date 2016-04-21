@@ -62,12 +62,12 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
             case R.id.create_close:
                 finish();
                 break;
-            case R.id.create_verifi_btn: // 发送验证码
-
+            case R.id.create_verifi_btn:
+                // 发送验证码
                 sendVerification();
                 break;
-            case R.id.create_account_btn:// 创建账号
-
+            case R.id.create_account_btn:
+                // 创建账号
                 createAccount();
                 break;
         }
@@ -99,16 +99,16 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
                         switch (result) {
                             case "":
                                 String msg = object.getString("msg");
-                                Toast.makeText(CreateActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                ToastUtils.showToast(CreateActivity.this, msg);
                                 break;
                             case "0":
-                                Toast.makeText(CreateActivity.this, R.string.java_create_sure_message, Toast.LENGTH_SHORT).show();
+                                ToastUtils.showToast(CreateActivity.this, getString(R.string.java_create_sure_message));
                                 break;
                             case "1":
                                 // 创建成功
                                 Gson gson = new Gson();
                                 bean = gson.fromJson(object.toString(), UserRegBean.class);
-                                Toast.makeText(CreateActivity.this, R.string.java_create_success, Toast.LENGTH_SHORT).show();
+                                ToastUtils.showToast(CreateActivity.this, getString(R.string.java_create_success));
                                 Bundle bundle = new Bundle();
                                 bundle.putString("phone", phoneEt.getText().toString());
                                 Intent intent = new Intent(CreateActivity.this, LoginActivity.class);
@@ -126,7 +126,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void getFail() {
-                Toast.makeText(CreateActivity.this, R.string.java_create_fail, Toast.LENGTH_SHORT).show();
+                ToastUtils.showToast(CreateActivity.this, getString(R.string.java_create_fail));
             }
         }, paramCreate);
     }

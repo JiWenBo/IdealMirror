@@ -104,8 +104,8 @@ public class AddAddressActivity extends BaseActivity implements VolleyListener, 
     @Override
     public void getSuccess(String body) {
         /*点击之后刷新UI*/
-        Intent setnewUi = new Intent(BROIDCAST);
-        sendBroadcast(setnewUi);
+        Intent setNewUi = new Intent(BROIDCAST);
+        sendBroadcast(setNewUi);
         finish();
     }
 
