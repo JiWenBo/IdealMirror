@@ -62,6 +62,8 @@ public class ShareActivity extends BaseActivity {
 
         /* 给一个初始的值,以免第一次进入时没有数据 */
         setImgAndText(0);
+
+
         viewPagers.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

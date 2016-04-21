@@ -63,9 +63,6 @@ public class SingleUniverImage {
                 super.onLoadingComplete(imageUri, view, loadedImage);
                 img.setImageBitmap(loadedImage);
                 bar.setVisibility(View.GONE);
-
-
-
             }
 
             @Override

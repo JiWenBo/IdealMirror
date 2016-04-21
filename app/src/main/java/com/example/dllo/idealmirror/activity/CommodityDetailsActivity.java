@@ -89,7 +89,7 @@ public class CommodityDetailsActivity extends BaseActivity implements VolleyList
                 LogUtils.d("滑动效果", value + "   " + dy);
 
                 //这是RecyclerView 的方法来获得当前的 value 值.
-                commodityDetailsAdapter.setScrollValue(value, dy);
+                commodityDetailsAdapter.setScrollValue(value);
 
                 //头布局透明度渐变
                 if (dy > 0 && value >= -1110) {

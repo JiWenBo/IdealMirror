@@ -31,7 +31,6 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
     private Context context;
     private RecyclerView recyclerView;
     private int layoutScrollValue;
-    private int dy;
     final int TYPE_HEAD = 0;
     final int TYPE_TRANSPARENT = 1;
     final int TYPE_GOODS_TITLE = 2;
@@ -45,9 +44,9 @@ public class CommodityDetailsAdapter extends RecyclerView.Adapter {
     /**
      * 该方法为接收activity传来的监听recycleView滑动距离的value
      */
-    public void setScrollValue(int scrollValue, int dy) {
+    public void setScrollValue(int scrollValue) {
         this.layoutScrollValue = scrollValue;
-        this.dy = dy;
+
         // 必须加上这句话,持续的刷新从Actvity 接收的滑动值.
         try {
             notifyDataSetChanged();
